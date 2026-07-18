@@ -237,6 +237,14 @@ p.st{font-size:16px;color:var(--muted);max-width:620px;margin-bottom:3rem;line-h
 }
 .media-meta h3{font-size:15px;font-weight:600;letter-spacing:-.2px}
 
+/* ---------- Impact funnel ---------- */
+.funnel{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-bottom:1.25rem}
+.fstep{background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);padding:22px}
+.fstep .fs{font-family:var(--mono);font-size:9px;text-transform:uppercase;letter-spacing:.14em;color:var(--dim);margin-bottom:10px}
+.fstep .fn{font-family:var(--display);font-style:italic;font-size:30px;color:var(--accent);line-height:1}
+.fstep .fl{font-size:12px;color:var(--muted);margin-top:8px;line-height:1.5}
+.data-note{font-family:var(--mono);font-size:10px;color:var(--dim);line-height:1.7;max-width:760px;border-top:1px solid var(--border);padding-top:16px;margin-top:2rem}
+
 /* ---------- Founder ---------- */
 .founder{display:grid;grid-template-columns:1fr 1.6fr;gap:56px;align-items:start}
 .fp{

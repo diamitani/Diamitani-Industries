@@ -245,6 +245,24 @@ p.st{font-size:16px;color:var(--muted);max-width:620px;margin-bottom:3rem;line-h
 .fstep .fl{font-size:12px;color:var(--muted);margin-top:8px;line-height:1.5}
 .data-note{font-family:var(--mono);font-size:10px;color:var(--dim);line-height:1.7;max-width:760px;border-top:1px solid var(--border);padding-top:16px;margin-top:2rem}
 
+/* ---------- Case-study article ---------- */
+.article{max-width:800px}
+.article h3{font-size:20px;font-weight:600;letter-spacing:-.3px;margin:2.2rem 0 .75rem}
+.article h3 em{font-family:var(--display);font-style:italic;font-weight:400;color:var(--accent)}
+.article p{font-size:15px;color:var(--muted);line-height:1.75;margin-bottom:1rem}
+.article p strong,.article li strong{color:var(--text)}
+.article ul{list-style:none;margin:1rem 0}
+.article ul li{font-size:14px;color:var(--muted);line-height:1.7;padding:10px 0 10px 22px;position:relative;border-bottom:1px solid var(--border)}
+.article ul li::before{content:'—';position:absolute;left:0;color:var(--accent)}
+.cs-table{width:100%;border-collapse:collapse;font-size:14px;margin:1.25rem 0}
+.cs-table th{font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:.12em;color:var(--dim);text-align:left;padding:10px 14px;border-bottom:1px solid var(--border)}
+.cs-table td{padding:12px 14px;border-bottom:1px solid var(--border);color:var(--muted);vertical-align:top}
+.cs-table td:last-child{color:var(--text);font-weight:500}
+.cs-table tr.total td{color:var(--accent);font-weight:600;border-top:2px solid var(--border)}
+.table-wrap{overflow-x:auto}
+.stack-strip{display:flex;flex-wrap:wrap;gap:8px;margin:1.5rem 0}
+.stack-strip span{font-family:var(--mono);font-size:10px;color:var(--muted);border:1px solid var(--border);border-radius:99px;padding:5px 12px}
+
 /* ---------- Founder ---------- */
 .founder{display:grid;grid-template-columns:1fr 1.6fr;gap:56px;align-items:start}
 .fp{

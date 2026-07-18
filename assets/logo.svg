@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 160" width="600" height="160">
+  <defs>
+    <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#a78bfa"/>
+      <stop offset="100%" stop-color="#06b6d4"/>
+    </linearGradient>
+    <linearGradient id="g2" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#a78bfa"/>
+      <stop offset="50%" stop-color="#c4b5fd"/>
+      <stop offset="100%" stop-color="#06b6d4"/>
+    </linearGradient>
+  </defs>
+  <rect x="30" y="28" width="88" height="88" rx="18" fill="none" stroke="url(#g2)" stroke-width="2.5"/>
+  <text x="74" y="87" text-anchor="middle" font-family="'Inter','Helvetica Neue',sans-serif" font-size="42" font-weight="700" fill="url(#g1)" letter-spacing="-1">DI</text>
+  <text x="145" y="68" font-family="'Inter','Helvetica Neue',sans-serif" font-size="28" font-weight="700" fill="#e4e5e7" letter-spacing="2.5">DIAMITANI</text>
+  <text x="145" y="92" font-family="'Inter','Helvetica Neue',sans-serif" font-size="11" font-weight="500" fill="#8b8d93" letter-spacing="5">INDUSTRIES</text>
+  <line x1="145" y1="102" x2="340" y2="102" stroke="#23262d" stroke-width="1"/>
+  <text x="145" y="118" font-family="'Inter','Helvetica Neue',sans-serif" font-size="9" fill="#54565c" letter-spacing="3">EST. 2014 · NEW YORK CITY</text>
+</svg>

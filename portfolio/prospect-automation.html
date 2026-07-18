@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Case Study — Prospect Automation Engine · Daily Intent to Outreach</title>
+<meta name="description" content="A daily n8n pipeline that turns yesterday's buying signals into routed, enriched, ICP-clean accounts — size gates, safety gauntlet, competitor filters, and round-robin territory routing with zero manual triage.">
+<link rel="icon" type="image/svg+xml" href="/assets/logo.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/theme.css">
+</head>
+<body data-division="portfolio">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="https://diamitani.com" class="nav-logo">Diamitani <span>Industries</span><span class="division-tag">Case Study</span></a>
+    <div class="nav-links">
+      <a href="./">← Portfolio</a>
+      <a href="#build">How it works</a>
+      <a href="#results">Results</a>
+      <a href="inbound-automation.html">Study: Inbound →</a>
+      <a href="marketing-chatbot.html">Study: Maia →</a>
+    </div>
+    <a href="mailto:patrick.diamitani@gmail.com" class="nav-cta">Contact</a>
+  </div>
+</nav>
+
+<header class="hero" data-section="hero">
+  <div class="hero-inner hero-narrow">
+    <div class="hero-est">Case Study 03 · Prospect Automation Engine · Atlas HXM · Live in Production</div>
+    <h1>Yesterday's intent. <em>Today's territory list.</em></h1>
+    <p class="hero-tag">A daily n8n pipeline that turns raw buying signals into routed, enriched, ICP-clean accounts — every survivor of the filter gauntlet lands with the right sales pod before the day starts, with zero manual triage. The outreach it feeds runs at a 55%+ email open rate, more than double the industry average.</p>
+    <div class="hero-links">
+      <a href="#build" class="btn btn-primary">How it works</a>
+      <a href="#results" class="btn btn-ghost">Results</a>
+    </div>
+  </div>
+</header>
+
+<div class="metrics" data-section="metrics">
+  <div class="metrics-inner">
+    <div class="metric"><div class="metric-n">100%</div><div class="metric-l">Workflow success rate, 7 AM daily runs</div></div>
+    <div class="metric"><div class="metric-n">75</div><div class="metric-l">Companies processed per week (~15/day)</div></div>
+    <div class="metric"><div class="metric-n">757</div><div class="metric-l">Companies in the enrichment table</div></div>
+    <div class="metric"><div class="metric-n">55%+</div><div class="metric-l">Email open rate (industry ~20–25%)</div></div>
+    <div class="metric"><div class="metric-n">0</div><div class="metric-l">Manual triage steps</div></div>
+  </div>
+</div>
+
+<section class="section" data-section="challenge">
+  <div class="section-inner article">
+    <div class="sl">The Challenge</div>
+    <h2>Hot intent went <em>cold in the queue.</em></h2>
+    <p>Buying-intent signals were pouring into the CRM from third-party data providers — ZoomInfo firmographics, Factors.ai ABM signals — but converting them into actionable outbound meant a human manually filtering out customers, open deals, competitors, out-of-ICP accounts, and wrong regions <strong>every single day</strong>, then hand-assigning each account to the right rep.</p>
+    <p>Slow, inconsistent, and worst of all: hot intent went cold before anyone acted. An account researching EOR services yesterday needed to be in a rep's queue this morning — not whenever someone got around to the spreadsheet.</p>
+
+    <h3>The approach: make the filters <em>structural</em></h3>
+    <p>Every exclusion a human used to apply by eye became a deterministic gate in the pipeline: size, region, lifecycle, open deals, competitors, entity type, recent touches. Accounts that survive get routed by a round-robin engine and handed to enrichment automatically. If it reaches a rep, it's already clean — <em style="color:var(--text)">compliance-first by design, not by review.</em></p>
+    <p>The full architecture (v2) chains the whole motion: intent sources (ZoomInfo live, Factors.ai staged, inbound planned) → HubSpot CRM → the 7 AM n8n filter chain and round-robin owner assignment → Clay enrichment with a CEO-fallback contact path → an LLM decision layer → Amplemarket outreach. Every stage observable, every run logged.</p>
+  </div>
+</section>
+
+<section class="section-dark" id="build" data-section="build">
+  <div class="section-inner">
+    <div class="sl">What Was Built</div>
+    <h2>A morning gauntlet, <em>run unattended.</em></h2>
+    <p class="st">Each morning the workflow pulls every company that showed buying intent yesterday and marches it through the gates.</p>
+    <div class="grid">
+      <div class="card">
+        <div class="ht">01 · Trigger + Pull</div>
+        <h3>Yesterday-window intent pull</h3>
+        <p>A daily schedule fires the workflow; a CRM company-search call pulls every company whose intent-workflow date falls in yesterday's window, with ~30 firmographic and intent properties.</p>
+      </div>
+      <div class="card">
+        <div class="ht">02 · Size Gate</div>
+        <h3>ICP sizing</h3>
+        <p>Companies are split out and filtered to under 2,000 employees — the ICP ceiling — before anything else spends time or money on them.</p>
+      </div>
+      <div class="card">
+        <div class="ht">03 · Region Filter</div>
+        <h3>Multi-signal exclusion</h3>
+        <p>A hand-written JS filter removes out-of-region accounts using location fields, country codes, domain TLD, and company-name keywords — so an account with empty location fields is still caught by its domain.</p>
+      </div>
+      <div class="card">
+        <div class="ht">04 · Safety Gauntlet</div>
+        <h3>Never re-touch what's in play</h3>
+        <p>Sequential filters strip companies with associated deals, customer lifecycle or type, and any sales activity in the last 30 days; a competitor filter removes named competitors, and an ICP filter drops schools and governments (keeping NGOs).</p>
+      </div>
+      <div class="card">
+        <div class="ht">05 · Routing</div>
+        <h3>Round-robin territory engine</h3>
+        <p>A JS engine normalizes state and country, assigns each survivor to the correct regional pod, and stamps the CRM owner ID, rep name, and email — territory assignment is deterministic, not tribal.</p>
+      </div>
+      <div class="card">
+        <div class="ht">06 · Handoff</div>
+        <h3>Enrichment + source of truth</h3>
+        <p>Survivors are POSTed in batches to a Clay enrichment webhook for contact discovery and upserted into an n8n Data Table as the run's auditable record.</p>
+      </div>
+    </div>
+    <div class="stack-strip" style="margin-top:2rem">
+      <span>n8n cloud</span><span>HubSpot API</span><span>ZoomInfo</span><span>Factors.ai</span><span>Clay (webhook)</span><span>Custom JS filters</span><span>n8n Data Table</span>
+    </div>
+  </div>
+</section>
+
+<section class="section" data-section="thinking">
+  <div class="section-inner">
+    <div class="sl">Challenges &amp; Fixes</div>
+    <h2>Where it broke, and how it <em>stopped breaking.</em></h2>
+    <ul class="highlights">
+      <li><strong>Out-of-region accounts slipping through on empty location fields</strong> → the filter was layered with domain-TLD and company-name keyword detection, not just location fields — absence of data is not evidence of eligibility.</li>
+      <li><strong>Re-touching accounts already in play</strong> → sequential gates on associated deals, customer lifecycle and type, and a 30-day recent-activity window run before routing, so a rep never collides with a live conversation.</li>
+      <li><strong>Wasting enrichment credit on non-ICP orgs</strong> → schools, governments, and 2,000+ employee companies are filtered before the enrichment handoff — the same cost-engineering rule as every system in the library: free checks run before paid steps.</li>
+      <li><strong>Uneven rep distribution</strong> → a normalized state/country → pod round-robin makes territory assignment deterministic and balanced instead of first-come-first-grabbed.</li>
+    </ul>
+  </div>
+</section>
+
+<section class="section-dark" id="results" data-section="results">
+  <div class="section-inner">
+    <div class="sl">Results</div>
+    <h2>Reps start every day <em>in market.</em></h2>
+    <div class="grid">
+      <div class="card">
+        <div class="ht">Cadence</div>
+        <h3>Live daily, unattended</h3>
+        <p>Running in production on the sales pipeline every morning — a fresh, deduped, territory-routed list of in-market accounts with zero manual triage.</p>
+      </div>
+      <div class="card">
+        <div class="ht">Coverage</div>
+        <h3>Catches what humans miss</h3>
+        <p>The multi-signal region exclusion flags accounts even when location fields are blank, via domain TLD and name keywords.</p>
+      </div>
+      <div class="card">
+        <div class="ht">Safety</div>
+        <h3>Clean by construction</h3>
+        <p>Customers, open deals, competitors, and recently-touched accounts are all stripped before any account reaches a rep — compliance is upstream of the humans.</p>
+      </div>
+    </div>
+    <div class="table-wrap">
+      <table class="cs-table">
+        <tr><th>Metric · March 2026 snapshot</th><th>Value</th></tr>
+        <tr><td>Workflow success rate</td><td>100% — 10/10 runs, avg 2m 43s, daily 7:00 AM CT</td></tr>
+        <tr><td>Companies processed</td><td>~15/day · 75/week</td></tr>
+        <tr><td>Companies in the Clay enrichment table</td><td>757 (Intent Hot Leads)</td></tr>
+        <tr><td>Leads enrolled in outreach</td><td>~100, ramping toward 3,000+ with inbox warm-up</td></tr>
+        <tr class="total"><td>Email open rate</td><td>55%+ — target 35%+, industry average ~20–25%</td></tr>
+        <tr><td>Sequence performance</td><td>172 sent, 74 opened (43%)</td></tr>
+        <tr><td>Daily ops review</td><td>Automated batch reports: companies reviewed, contacts found, per-company pursue/skip verdicts</td></tr>
+      </table>
+    </div>
+    <p class="data-note">Companion system: the Prospect Enrichment Pipeline — a nine-script Python pipeline feeding an outsourced SDR agency with confirmed 0% overlap against thousands of already-called contacts and ~91% phone coverage · Sources: live n8n ops dashboard, KPI dashboard, and daily batch-review reports, March 2026 · Rep and prospect names withheld on this public page.</p>
+    <div class="hero-links" style="margin-top:2rem">
+      <a href="inbound-automation.html" class="btn btn-accent">Case study: $9M inbound →</a>
+      <a href="marketing-chatbot.html" class="btn btn-ghost">Case study: Maia, $7M →</a>
+      <a href="./" class="btn btn-ghost">Back to portfolio</a>
+    </div>
+  </div>
+</section>
+
+<footer class="footer" data-section="footer">
+  <div class="footer-inner">
+    <div class="footer-base">
+      <p>Diamitani Industries, Inc. · Portfolio Division · Case Study 03</p>
+      <p>Patrick Diamitani · Chicago, IL · © 2026</p>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

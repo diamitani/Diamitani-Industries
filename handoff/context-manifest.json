@@ -1,0 +1,130 @@
+{
+  "generatedBy": "context-handoff v1 (skills/context-handoff/SKILL.md)",
+  "generatedAt": "2026-07-19T03:37:00Z",
+  "project": {
+    "repo": "diamitani/Diamitani-Industries",
+    "branch": "cursor/diamitani-music-portfolio-company-17de",
+    "baseBranch": "main",
+    "pr": "https://github.com/diamitani/Diamitani-Industries/pull/1",
+    "siteType": "Static multi-domain site (diamitani.com + 5 subdomains) + Vercel Node serverless functions under /api. No build step, no framework, no external DB."
+  },
+  "session": {
+    "summary": "Two-part engagement on the Diamitani Industries holding-company site: (1) stood up 'Diamitani Music' as a new portfolio company — a small web app at /diamitani-music/ (label.diamitani.com) backed by real Vercel serverless functions implementing a label operating model (roster, catalog, royalty/recoupment calculator); (2) researched Patrick Diamitani's/Pat Dia's real presence on Spotify and YouTube, built a verified multi-artist discography into the site (music.diamitani.com/artists/*), and formalized the metadata-extraction + critic-description workflow as a reusable 'catalog-track-critic' skill — explicitly disclosing that descriptions are metadata-informed, not from an audio listen, since no audio-analysis tool was available.",
+    "userRequests": [
+      "Create a section for Diamitani Music. Under Portfolio Companies or Homding Company Section. Build out the infrastructure and web app . And operating model back end",
+      "ok give me link",
+      "i ned you to search everything about patrick diamitani and pat dia on youtube instagram spotify pandora etc collect links an showcase discography an embed music in the Artists. section of the app. and do a music.diaimtani.com/artists/patrickdiamitani layout here are some linkes to udnerstand hwo im talking about and if you can listen to the audio and create an audio generated analysis or description breakdown as if you're a music critique but feed back learner and understander and coniser so you candescribe what the sound is like hten build an agent that does that all the time to add to my roster of skills for meta data exractio for catalaoges and build a short description of each song and then a document hosting it for later https://open.spotify.com/artist/0N3LRUvTtIok9S9z45ONvQ https://open.spotify.com/artist/1ioo8TqdBc8RIzvSYkUS1y these are both me https://www.youtube.com/@DelalyRecords?app=desktop https://www.youtube.com/@patrickdiamitanimusic6241 https://www.youtube.com/channel/UCDvHMHDma9vJMb3I6bj625g https://www.youtube.com/channel/UCdPNIf6ug_MxkMO8u5XHgPg",
+      "i need a master .md of all you did in here this entire trasncript verbatim so icn transfer to another agent/chat/llm/platform etc. build me the transcraipt.md, build optimized prompt summary for new agent to know whats going on and what to do next and build prompts for next steps as well as a one sheeter of this prompt to go into a prompt librar y so anyone can use and implement and save context to transfer so make it a skill that anyone can use deploy it on my git hub with context engine and pal integrated"
+    ]
+  },
+  "completedWork": [
+    {
+      "area": "Diamitani Music — portfolio company + operating model backend",
+      "details": "New division at /diamitani-music/ (label.diamitani.com) with roster, catalog, operating-model, and a live royalty/recoupment calculator, all rendered client-side from real serverless endpoints. Wired into industries/index.html (new portfolio-company card, venture count 8→9), home index.html (new division + holdings cards), and cross-linked from portfolio/art/music nav+footers.",
+      "files": [
+        "diamitani-music/index.html", "diamitani-music/app.js",
+        "api/diamitani-music/roster.js", "api/diamitani-music/releases.js",
+        "api/diamitani-music/operating-model.js", "api/diamitani-music/royalties.js",
+        "data/diamitani-music/roster.json", "data/diamitani-music/releases.json",
+        "data/diamitani-music/operating-model.json",
+        "assets/theme.css (new 'label' division accent + app-panel/calculator/split-bar styles)",
+        "vercel.json (label.diamitani.com rewrites; /api/ excluded from every host rewrite)",
+        "index.html", "industries/index.html", "portfolio/index.html", "art/index.html", "music/index.html",
+        "README.md"
+      ],
+      "commits": ["d3590da"]
+    },
+    {
+      "area": "Discography, Artists pages, catalog-track-critic skill",
+      "details": "Verified via direct Spotify artist-embed fetches: Pat Dia (5 tracks) and Patrick Diamitani (10-track beat tape + 1 unverified additional single). Built /music/artists/ directory + /music/artists/patdia/ + /music/artists/patrickdiamitani/ profile pages rendering live from a new discography API. Added an Artists section to the label app. Every track description is explicitly flagged 'metadata-informed' (no audio-listening tool was available this session) — no platform ID or acoustic detail was invented anywhere.",
+      "files": [
+        "data/diamitani-music/discography.json", "api/diamitani-music/discography.js",
+        "skills/catalog-track-critic/SKILL.md",
+        "diamitani-music/docs/pat-dia-track-notes.md", "diamitani-music/docs/patrick-diamitani-track-notes.md",
+        "music/artists/index.html", "music/artists/app.js",
+        "music/artists/patdia/index.html", "music/artists/patrickdiamitani/index.html",
+        "diamitani-music/index.html (new #artists section)", "diamitani-music/app.js (renderArtists)",
+        "music/index.html (nav/hero/channels rework)",
+        "data/diamitani-music/operating-model.json (new 'Catalog Intelligence' service)",
+        "README.md"
+      ],
+      "commits": ["45ae4aa"]
+    }
+  ],
+  "openItems": [
+    {
+      "id": "confirm-youtube-ids-patrick-diamitani",
+      "description": "No YouTube video IDs are confirmed for any of Patrick Diamitani's 10 beat-tape tracks. Resolve them (check the 'Patrick Diamitani - Topic' channel UCDvHMHDma9vJMb3I6bj625g, the 'Patrick Diamitani Music' uploads channel @patrickdiamitanimusic6241, and Delaly Records @DelalyRecords) and add each confirmed id to data/diamitani-music/discography.json — never guess one.",
+      "priority": "high"
+    },
+    {
+      "id": "confirm-go-west-young-man-video",
+      "description": "Pat Dia's 'Go West Young Man' has no confirmed YouTube video ID (the other 4 Pat Dia tracks do). Resolve and add.",
+      "priority": "medium"
+    },
+    {
+      "id": "resolve-delaly-and-uploads-channel-ids",
+      "description": "@DelalyRecords and @patrickdiamitanimusic6241 are handle-based YouTube channels; their numeric channel IDs were never resolved this session (generic web search could not reliably confirm one — a search result claiming a Delaly Records channel ID looked unsourced/unreliable and was deliberately not used). Resolve via an authenticated method (YouTube Data API, or asking the user directly) if the numeric ID is ever needed (e.g. for an RSS feed).",
+      "priority": "low"
+    },
+    {
+      "id": "upgrade-track-descriptions-to-listened",
+      "description": "Every track description in discography.json and the two dossiers (diamitani-music/docs/*.md) is confidence:'metadata-informed'. Re-run the catalog-track-critic skill with real audio-analysis access to upgrade descriptions to confidence:'listened', and update each dossier's changelog per skills/catalog-track-critic/SKILL.md.",
+      "priority": "high"
+    },
+    {
+      "id": "verify-twelve-43-burn-me",
+      "description": "'Twelve 43, Burn Me' (2022) was found via a YouTube Music catalog search under a different, unconfirmed channel ID (UC-Ma5IiJjm6lA1ETnVXC0Iw) and logged as an 'additionalKnownSingles' entry for Patrick Diamitani with confidence:'unverified' — not folded into the main 10-track list. Verify and either promote or drop it.",
+      "priority": "low"
+    },
+    {
+      "id": "pandora-presence",
+      "description": "No verified Pandora artist profile was found for Pat Dia or Patrick Diamitani this session (search results returned unrelated people). If a real Pandora profile exists, add it to discography.json otherLinks and to the relevant footers — do not fabricate a link.",
+      "priority": "low"
+    },
+    {
+      "id": "deploy-and-dns",
+      "description": "None of this has been deployed/verified live — it's been tested against a local Node harness that mimics Vercel's static+serverless routing, plus a jsdom DOM-execution pass. Import the repo into Vercel, add the 6 domains (see README.md § Deploy), and re-verify the live /api/diamitani-music/* endpoints and the label.diamitani.com + music.diamitani.com/artists/* pages once DNS/domains are attached.",
+      "priority": "high"
+    },
+    {
+      "id": "pr-review-and-merge",
+      "description": "PR #1 is open as a draft against main. It has not been reviewed, approved, or merged.",
+      "priority": "medium"
+    }
+  ],
+  "hardConstraints": [
+    "Never fabricate a platform ID (YouTube video ID, Spotify track URI, release date) or claim an audio listen that didn't happen — see skills/catalog-track-critic/SKILL.md.",
+    "vercel.json: every host-based rewrite rule must exclude 'api/' (and 'assets/') or the serverless functions break on that subdomain — see vercel.json comments/structure.",
+    "The site has no build step and no framework — keep new pages as plain static HTML + vanilla JS + the shared assets/theme.css design system (per-division --accent via body[data-division=...]).",
+    "Diamitani Music (the label, /diamitani-music/) is a distinct entity from the personal artist page at /music/ — don't re-merge them.",
+    "Branch naming/PR conventions for this environment: branches must match cursor/<name>-17de; do not force-push, do not merge/close PRs, do not mark ready-for-review unless explicitly asked."
+  ],
+  "links": {
+    "pr": "https://github.com/diamitani/Diamitani-Industries/pull/1",
+    "commits": [
+      "d3590da: Add Diamitani Music portfolio company: web app + operating-model backend",
+      "45ae4aa: Add full discography, Artists pages, and a catalog-track-critic skill"
+    ],
+    "docs": [
+      "README.md",
+      "skills/catalog-track-critic/SKILL.md",
+      "skills/context-handoff/SKILL.md",
+      "diamitani-music/docs/pat-dia-track-notes.md",
+      "diamitani-music/docs/patrick-diamitani-track-notes.md",
+      "handoff/TRANSCRIPT.md",
+      "handoff/NEXT_AGENT_PROMPT.md",
+      "handoff/NEXT_STEPS_PROMPTS.md"
+    ],
+    "externalSourcesUsedThisSession": [
+      "https://open.spotify.com/embed/artist/1ioo8TqdBc8RIzvSYkUS1y",
+      "https://open.spotify.com/embed/artist/0N3LRUvTtIok9S9z45ONvQ",
+      "https://www.youtube.com/@DelalyRecords",
+      "https://www.youtube.com/@patrickdiamitanimusic6241",
+      "https://www.youtube.com/channel/UCDvHMHDma9vJMb3I6bj625g",
+      "https://www.youtube.com/channel/UCdPNIf6ug_MxkMO8u5XHgPg",
+      "https://www.diamitani.me/",
+      "https://zenodo.org/records/19550414 (ROSTR framework — PAL / ContextEngine definitions)"
+    ]
+  }
+}

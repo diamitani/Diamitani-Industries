@@ -88,3 +88,20 @@ so the site works fully on any Vercel preview URL before DNS is configured.
 - The Portfolio division currently links out to the deployed portfolio apps
   (`diamitani.me`) for the full case-study library — swap those URLs if the
   library moves under `portfolio.diamitani.com`.
+
+## Skills & prompt library
+
+- `skills/*/SKILL.md` — reusable agent skills that live in this repo, each
+  with its own inputs/process/output-schema/hard-rules. Currently:
+  `catalog-track-critic` (catalog metadata extraction + critic-style track
+  descriptions) and `context-handoff` (turn any agent session into a
+  portable, resumable context package — see below).
+- `prompts/` — a small prompt library of generalized, copy-paste "prompt
+  cards," each pointing at the matching skill for the full process. See
+  `prompts/README.md` for the index.
+- `handoff/` — session-specific output of the `context-handoff` skill for
+  the engagement that built Diamitani Music, its backend, and the artist
+  discography: `TRANSCRIPT.md` (full session record), `context-manifest.json`
+  (structured state for a new agent), `NEXT_AGENT_PROMPT.md`, and
+  `NEXT_STEPS_PROMPTS.md`. Read these before picking this work back up in a
+  different agent/chat/platform.

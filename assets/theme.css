@@ -73,18 +73,42 @@ a{color:inherit}
   letter-spacing:.15em;color:var(--dim);
   border:1px solid var(--border);border-radius:99px;padding:3px 10px;
 }
-.nav-links{display:flex;gap:1.4rem;align-items:center}
+.nav-links{display:flex;gap:1.4rem;align-items:center;flex-wrap:wrap}
 .nav-links a{
   font-size:13px;color:var(--muted);text-decoration:none;font-weight:500;
   transition:color .15s;
 }
 .nav-links a:hover,.nav-links a.active{color:var(--text)}
+.nav-links .family-sep{
+  width:1px;height:14px;background:var(--border);flex-shrink:0;
+}
 .nav-cta{
   padding:7px 18px;border-radius:8px;font-size:13px;font-weight:600;
   background:var(--cream);color:var(--ink);text-decoration:none;
-  transition:opacity .15s;
+  transition:opacity .15s;white-space:nowrap;
 }
 .nav-cta:hover{opacity:.85}
+
+/* Shared family footer strip — same order on every division */
+.family-strip{
+  border-top:1px solid var(--border);
+  padding:18px 2rem;
+  background:var(--bg);
+}
+.family-strip-inner{
+  max-width:var(--maxw);margin:0 auto;
+  display:flex;flex-wrap:wrap;gap:10px 22px;align-items:center;
+  justify-content:space-between;
+}
+.family-strip .fs-label{
+  font-family:var(--mono);font-size:9px;text-transform:uppercase;
+  letter-spacing:.16em;color:var(--dim);
+}
+.family-strip .fs-links{display:flex;flex-wrap:wrap;gap:14px 18px}
+.family-strip .fs-links a{
+  font-size:12px;color:var(--muted);text-decoration:none;font-weight:500;
+}
+.family-strip .fs-links a:hover,.family-strip .fs-links a.active{color:var(--accent)}
 
 /* ---------- Hero ---------- */
 .hero{
@@ -320,11 +344,16 @@ p.st{font-size:16px;color:var(--muted);max-width:620px;margin-bottom:3rem;line-h
   .fp{max-width:240px}
   .footer-grid{grid-template-columns:1fr 1fr}
 }
+@media(max-width:860px){
+  .nav-links .family-sep{display:none}
+}
 @media(max-width:640px){
-  .nav-links{display:none}
+  .nav-links a:not(.active){display:none}
+  .nav-links a.active{display:inline}
   .hero{padding:120px 1.25rem 64px;min-height:70vh}
   .section,.section-dark{padding:64px 1.25rem}
   .metric{border-left:none;border-top:1px solid var(--border)}
   .metric:first-child{border-top:none}
   .footer-grid{grid-template-columns:1fr}
+  .family-strip{padding:16px 1.25rem}
 }

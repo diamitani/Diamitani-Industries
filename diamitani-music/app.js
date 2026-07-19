@@ -74,6 +74,70 @@
     });
   }
 
+  // ---------- Artists / discography ----------
+  function renderArtists(data) {
+    const list = document.getElementById('artists-list');
+    list.innerHTML = '';
+
+    data.artists.forEach((artist) => {
+      const wrap = el('div', '');
+      wrap.style.marginBottom = '2rem';
+
+      const head = el(
+        'div',
+        '',
+        `<h3 style="margin-bottom:4px">${artist.displayName}</h3><p class="rr" style="margin-bottom:14px">${artist.tagline}</p>`
+      );
+
+      const embed = el('div', 'media-card', '');
+      const frame = el('div', 'media-frame');
+      frame.style.aspectRatio = '';
+      frame.style.height = '352px';
+      const iframe = document.createElement('iframe');
+      iframe.src = `https://open.spotify.com/embed/artist/${artist.spotifyArtistId}?utm_source=generator&theme=0`;
+      iframe.loading = 'lazy';
+      iframe.allow = 'encrypted-media';
+      iframe.style.borderRadius = '12px';
+      frame.appendChild(iframe);
+      embed.appendChild(frame);
+
+      const trackList = el('div', '');
+      trackList.style.marginTop = '14px';
+      artist.tracks
+        .slice()
+        .sort((a, b) => a.order - b.order)
+        .forEach((track) => {
+          const row = el('div', 'catalog-row');
+          const title = el(
+            'div',
+            '',
+            `<div class="rn">${track.order}. ${track.title}</div><div class="rr">${track.description}</div>`
+          );
+          const duration = el('div', 'rr', track.duration || '—');
+          const linkText = track.youtubeVideoId
+            ? `<a class="hl" href="https://youtube.com/watch?v=${track.youtubeVideoId}" target="_blank" rel="noopener">Watch →</a>`
+            : '<span class="rv">no video ID on file</span>';
+          const link = el('div', '', linkText);
+          const badge = el(
+            'span',
+            `pill${track.confidence === 'listened' ? ' pill-on' : ''}`,
+            track.confidence
+          );
+          row.append(title, duration, link, badge);
+          trackList.appendChild(row);
+        });
+
+      const footer = el(
+        'p',
+        'api-note',
+        `Full write-up, links, and changelog: <a class="hl" href="https://music.diamitani.com/artists/${artist.slug}/">music.diamitani.com/artists/${artist.slug} →</a>`
+      );
+
+      wrap.append(head, embed, trackList, footer);
+      list.appendChild(wrap);
+    });
+  }
+
   // ---------- Operating model flow ----------
   function renderFlow(model) {
     const flow = document.getElementById('op-flow');
@@ -189,6 +253,13 @@
       ['roster-list', 'catalog-list'].forEach((id) => {
         document.getElementById(id).innerHTML = `<p class="state-msg">Couldn't reach the label's backend (${err.message}). This page needs to run on Vercel for the /api routes to respond.</p>`;
       });
+    }
+
+    try {
+      const discography = await getJSON(`${API_BASE}/discography`);
+      renderArtists(discography);
+    } catch (err) {
+      document.getElementById('artists-list').innerHTML = `<p class="state-msg">Couldn't reach the label's discography backend (${err.message}).</p>`;
     }
 
     const form = document.getElementById('calc-form');

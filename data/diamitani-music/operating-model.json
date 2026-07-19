@@ -41,6 +41,10 @@
     {
       "name": "Royalty & Revenue Ops",
       "detail": "A transparent split engine — every payout traceable to a release, a split profile, and a recoupment ledger. No black-box accounting."
+    },
+    {
+      "name": "Catalog Intelligence",
+      "detail": "The catalog-track-critic skill extracts structured metadata and a short critic-style description for every release, feeding one-sheets and sync-licensing pitches without a human drafting copy from scratch."
     }
   ]
 }

@@ -35,10 +35,32 @@ calculator.
 | `GET` | `/api/diamitani-music/releases` | Release catalog, joined to artist name |
 | `GET` | `/api/diamitani-music/operating-model` | Sign → release → collect → split → reinvest flow + services |
 | `POST` | `/api/diamitani-music/royalties` | `{ artistId, revenue }` → full split + recoupment breakdown |
+| `GET` | `/api/diamitani-music/discography` | Full multi-artist discography (`?artist=<slug>` to filter). Track descriptions carry a `confidence` field (`metadata-informed` \| `listened`) |
 
 Source data lives in `data/diamitani-music/*.json` — edit those files (roster,
-releases, operating model) to change what the app and API serve; no code
-changes needed for day-to-day roster/catalog updates.
+releases, operating model, discography) to change what the app and API
+serve; no code changes needed for day-to-day roster/catalog updates.
+
+### Artist directory — music.diamitani.com/artists
+
+`/music/artists/` is a directory of the two artist projects in the catalog
+(Pat Dia; Patrick Diamitani), each with a full profile page —
+`/music/artists/patdia/` and `/music/artists/patrickdiamitani/` — that
+render live from `/api/diamitani-music/discography`: a playable Spotify
+embed, YouTube embeds for any track with a confirmed video ID, and a
+critic-style note per track.
+
+**Every track description is honestly labeled.** The `catalog-track-critic`
+skill (`skills/catalog-track-critic/SKILL.md`) generates these from
+confirmed metadata — title, duration, tracklist position, platform links —
+never from an actual audio listen unless an audio-analysis tool was used
+in that run. Descriptions are tagged `metadata-informed` until a real
+listening pass upgrades them to `listened`; no platform ID or acoustic
+detail is ever invented. The full per-artist write-ups (with a changelog)
+are hosted as Markdown dossiers:
+
+- `diamitani-music/docs/pat-dia-track-notes.md`
+- `diamitani-music/docs/patrick-diamitani-track-notes.md`
 
 Every division is also reachable path-style (e.g. `diamitani.com/portfolio/`),
 so the site works fully on any Vercel preview URL before DNS is configured.

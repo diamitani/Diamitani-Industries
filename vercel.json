@@ -36,6 +36,10 @@
       "source": "/:path((?!assets/|music).*)",
       "has": [{ "type": "host", "value": "music.diamitani.com" }],
       "destination": "/music/:path"
+    },
+    {
+      "source": "/",
+      "destination": "/home"
     }
   ]
 }

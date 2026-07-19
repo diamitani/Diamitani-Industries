@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ROSTR Framework — Patrick Diamitani</title>
+<meta name="description" content="The open build methodology behind every agent in the portfolio — PAL, NPAO, RAG/DAL, and ContextEngine, unified.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<nav class="nav">
+  <a class="brand" href="../index.html">Patrick Diamitani<span class="brand-div">/</span><span class="brand-sub">Enterprise AI Production</span></a>
+  <div class="nav-links">
+    <a href="../index.html#about">About</a>
+    <a href="../index.html#library">Skill &amp; Product Library</a>
+    <a href="../index.html#contact">Contact</a>
+    <a class="nav-cta" href="https://linkedin.com/in/diamitani" target="_blank" rel="noopener">LinkedIn ↗</a>
+  </div>
+</nav>
+
+<main class="product-page" style="--cat:#1b2a4a">
+  <div class="crumbs"><a href="../index.html#library">Skill &amp; Product Library</a> <span>/</span> <span>Platform</span></div>
+  <header class="product-hero">
+    <div class="badge-row">
+      <span class="badge type-badge">Platform</span>
+      <span class="badge status-badge">Published</span>
+    </div>
+    <h1>ROSTR Framework</h1>
+    <p class="tagline">The open build methodology behind every agent in the portfolio — PAL, NPAO, RAG/DAL, and ContextEngine, unified.</p>
+    <div class="metric-callout">One methodology behind every skill in the library — eliminates the AI cold-start tax</div>
+    <div class="tags"><span class="tag">ROSTR</span><span class="tag">PAL</span><span class="tag">NPAO</span><span class="tag">RAG/DAL</span><span class="tag">ContextEngine</span><span class="tag">Claude Skills</span><span class="tag">framework</span></div>
+  </header>
+  <div class="product-body">
+    <article class="onesheet">
+      <h3>Overview</h3>
+<p>ROSTR is Patrick Diamitani&#x27;s open-source framework for building AI agents and automations that are deep, correct, and durable instead of one-off and forgettable. It unifies four layers: <strong>PAL</strong> (prompt compilation — setting technical depth and audience framing), <strong>NPAO</strong> (Navigate / Prioritize / Allocate / Orchestrate — a work-classification spine for any project), <strong>RAG/DAL</strong> (retrieval + data-access-layer provenance honesty — never presenting an inference as a verified fact), and <strong>ContextEngine</strong> (a zero-infrastructure, flat-file persistent memory layer so AI sessions stop starting cold). Every skill and agent in this portfolio is built on it. Published as whitepapers and applied in production across a 50+ person GTM org at a global HR-tech (EOR) platform.</p>
+<h3>The Problem</h3>
+<p>AI work doesn&#x27;t compound. Every prompt is written from scratch, every session starts with no memory of the last, quality depends entirely on who&#x27;s driving, and it&#x27;s dangerously easy to let a model&#x27;s confident guess pass as fact. Without a shared methodology, a growing library of skills becomes a pile of inconsistent one-offs that only their author understands — and organizational learning evaporates between conversations.</p>
+<h3>How It Works</h3>
+<ol>
+<li><strong>PAL — depth compilation.</strong> Before building, PAL sets the dials for the task: how technical the output should be, who the audience is, and how much to translate. It&#x27;s why a compliance engine and a marketing email built on the same framework each land at the right altitude.</li>
+<li><strong>NPAO — work classification.</strong> Any project is decomposed into Navigate (research/feasibility), Prioritize (what matters most), Allocate (who/what does what), and Orchestrate (how it runs end to end) — the repeatable spine that becomes a project&#x27;s &quot;how it works&quot; narrative.</li>
+<li><strong>RAG/DAL — provenance honesty.</strong> A three-tier credibility rule separates evidenced fact (primary artifacts) from recollection from inference, so nothing gets dressed up as more certain than it is. RAG handles world knowledge; DAL governs how data is accessed and cited.</li>
+<li><strong>ContextEngine — the state layer.</strong> A flat-file (<code>.context-engine/</code>) persistent memory that survives across sessions: every session compresses into a structured JSON record (what worked, what failed <em>specifically</em>, decisions, open questions), appends to a queryable index, and surfaces the most actionable context at the start of the next session — with zero database or infrastructure.</li>
+<li><strong>ROSTR Hub — the assembly.</strong> The four layers compose into one operating model: PAL defines what agents <em>are</em>, NPAO determines what they <em>do next</em>, RAG/DAL gives them honest access to knowledge, and ContextEngine gives them memory — so a team of agents behaves like a team, not a set of amnesiac strangers.</li>
+</ol>
+<h3>Stack &amp; Integrations</h3>
+<div class="table-wrap"><table><thead><tr><th>Tool</th><th>Role</th><th>Access needed</th></tr></thead><tbody>
+<tr><td>Claude / Anthropic (skills, Agent SDK, MCP)</td><td>The runtime ROSTR agents are built on</td><td>Claude Code / Claude access</td></tr>
+<tr><td>Flat-file store (<code>.context-engine/</code>)</td><td>Persistent session memory — no DB required</td><td>Local repo filesystem</td></tr>
+<tr><td>Python (ContextEngine core / API)</td><td>Programmatic memory + optional Hub integration</td><td>Local runtime</td></tr>
+<tr><td>Markdown whitepapers</td><td>PAL / NPAO / RAG-DAL / ContextEngine / ROSTR specs</td><td>Published docs</td></tr>
+<tr><td>Optional: PostgreSQL adapter</td><td>Enterprise-scale state layer (same API)</td><td>For 100+ agent deployments</td></tr>
+</tbody></table></div>
+<h3>Setup Process</h3>
+<ol>
+<li>Read the ROSTR whitepapers (PAL, NPAO, RAG/DAL, ContextEngine, combined) — the framework is doc-first by design.</li>
+<li>Adopt PAL + NPAO as the required shape for any new skill/agent build (this portfolio&#x27;s skills all follow it).</li>
+<li>Drop <code>context-engine.skill</code> into your Claude Code skills directory (or reference it from CLAUDE.md) — it works on first use, no config.</li>
+<li>Use the five ContextEngine modes: CACHE (&quot;save this session&quot;), RETRIEVE (&quot;context flash&quot;), REPORT, QUERY, SCHEDULE.</li>
+<li>For a multi-agent Hub, wire ContextEngine as the State Layer (auto-cache on session end, auto-retrieve on start); migrate to the Postgres adapter only at enterprise scale.</li>
+</ol>
+<h3>What You Need</h3>
+<ul>
+<li>Claude Code / Claude access</li>
+<li>A repo to host <code>.context-engine/</code> (flat files, ~1MB/year at 10 sessions/week)</li>
+<li>A willingness to make the methodology the standard, not an option</li>
+<li><strong>Time-to-adopt:</strong> minutes for ContextEngine; ongoing for full-framework adoption</li>
+</ul>
+<h3>Results</h3>
+<ul>
+<li><strong>Published</strong> as an open framework (whitepapers + <code>context-engine.skill</code>), applied to every agent manifest in this portfolio.</li>
+<li>Turns ephemeral AI sessions into durable, searchable organizational memory — eliminating the &quot;cold start tax&quot; (5–20 min of re-explaining context per session).</li>
+<li>Provenance honesty baked in: inferences are never presented as evidenced facts, which is what keeps a portfolio&#x27;s claims defensible under scrutiny.</li>
+<li>One methodology means any single build in the library reveals the standard behind all of them — the &quot;read one, understand the system&quot; property.</li>
+</ul>
+<h3>Challenges &amp; Fixes</h3>
+<ul>
+<li><strong>Sessions starting cold, re-discovering the same failures</strong> → ContextEngine&#x27;s append-only session index with specific <code>what_failed</code> entries (&quot;HTTP 401 on token refresh,&quot; not &quot;auth issue&quot;).</li>
+<li><strong>Vector-DB overkill for a small iterative team</strong> → flat-file memory (no embeddings, no infra) that handles years of sessions before any scaling concern.</li>
+<li><strong>Models overstating certainty</strong> → RAG/DAL three-tier provenance rule enforced at the framework level.</li>
+<li><strong>Inconsistent, author-dependent builds</strong> → PAL/NPAO as a shared, published spec every new skill inherits.</li>
+</ul>
+<h3>Demonstrates</h3>
+<p>Framework/architecture thinking · provenance discipline in AI systems · zero-infrastructure engineering pragmatism · building for compounding, not one-offs.</p>
+<p><em>Open framework by Patrick Diamitani. See the PAL, NPAO, RAG/DAL, and ContextEngine whitepapers.</em></p>
+    </article>
+    <aside class="side-panel">
+      <div class="panel">
+        <h3>Stack &amp; Integrations</h3>
+        <div class="chips"><span class="chip">Claude Skills/Agent SDK</span><span class="chip">MCP</span><span class="chip">Python</span><span class="chip">ContextEngine (flat-file)</span><span class="chip">PostgreSQL (optional)</span></div>
+      </div>
+      <div class="panel">
+        <h3>What It Needs</h3>
+        <ul class="req-list"><li>Claude Code / Claude access</li><li>A repo to host the flat-file .context-engine/ store</li><li>Adoption of PAL/NPAO as the build standard</li></ul>
+      </div>
+      <div class="panel panel-cta">
+        <h3>Discuss this build</h3>
+        <p>Happy to walk through the architecture, the failures along the way, or how this could translate to your team.</p>
+        <a class="btn btn-primary" href="mailto:pdiamitani@atlashxm.com?subject=Portfolio%3A%20ROSTR Framework">Email Patrick</a>
+      </div>
+    </aside>
+  </div>
+</main>
+<footer class="footer">
+  <div class="footer-inner">
+    <div>© 2026 Patrick Diamitani. Case studies anonymized for public portfolio use — no employer-identifying or client-identifying detail included.</div>
+    <div class="footer-meta">pdiamitani@atlashxm.com · linkedin.com/in/diamitani</div>
+  </div>
+</footer>
+<script src="../assets/app.js"></script>
+</body>
+</html>

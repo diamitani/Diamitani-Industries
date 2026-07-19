@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Clay Prospecting Engine — Patrick Diamitani</title>
+<meta name="description" content="Zero-UI prospecting for non-technical reps — upload a CSV, get an enriched list back.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<nav class="nav">
+  <a class="brand" href="../index.html">Patrick Diamitani<span class="brand-div">/</span><span class="brand-sub">Enterprise AI Production</span></a>
+  <div class="nav-links">
+    <a href="../index.html#about">About</a>
+    <a href="../index.html#library">Skill &amp; Product Library</a>
+    <a href="../index.html#contact">Contact</a>
+    <a class="nav-cta" href="https://linkedin.com/in/diamitani" target="_blank" rel="noopener">LinkedIn ↗</a>
+  </div>
+</nav>
+
+<main class="product-page" style="--cat:#8a6d3b">
+  <div class="crumbs"><a href="../index.html#library">Skill &amp; Product Library</a> <span>/</span> <span>Sales Automation</span></div>
+  <header class="product-hero">
+    <div class="badge-row">
+      <span class="badge type-badge">Claude Skill</span>
+      <span class="badge status-badge">Shipped</span>
+    </div>
+    <h1>Clay Prospecting Engine</h1>
+    <p class="tagline">Zero-UI prospecting for non-technical reps — upload a CSV, get an enriched list back.</p>
+    <div class="metric-callout">Two-mode prospecting, zero Clay UI interaction required from reps</div>
+    <div class="tags"><span class="tag">Claude Skill</span><span class="tag">Clay</span><span class="tag">HubSpot</span><span class="tag">enrichment</span><span class="tag">prospecting</span></div>
+  </header>
+  <div class="product-body">
+    <article class="onesheet">
+      <h3>Overview</h3>
+<p>Clay is a powerful GTM enrichment platform, but reps at a global HR-tech (EOR) platform couldn&#x27;t (and shouldn&#x27;t have to) drive its UI — every list request bottlenecked on one person. This production Claude skill lets a rep upload any CSV; it auto-detects whether it&#x27;s a company list or a contact list, routes to the right Clay pipeline via the Clay REST API, and returns enriched results — synced to a CRM table, dropped as a CSV in chat, or emailed. Two-mode prospecting (Company → find &amp; enrich contacts; Contacts → fill missing emails/phones/LinkedIn/firmographics) with zero Clay UI interaction required. Backed by a full AI Revenue Operations agent charter governing source-of-truth boundaries, an 18-code suppression taxonomy, and a safe CRM-update policy.</p>
+<h3>The Problem</h3>
+<p>Clay is genuinely powerful for enrichment, but its table-building UI isn&#x27;t something 50+ non-technical reps can (or should) drive themselves. Every list request — &quot;enrich this list of companies,&quot; &quot;fill in missing emails for these contacts&quot; — routed through one person, creating a queue and a single point of failure.</p>
+<h3>How It Works</h3>
+<ol>
+<li><strong>Upload any CSV</strong> — a rep drops a spreadsheet into the Claude skill; no Clay account or login needed on the rep&#x27;s side.</li>
+<li><strong>Header-signature mode detection</strong> — the skill inspects the column headers to auto-detect whether the upload is company-level or contact-level data, and picks the matching Clay pipeline without the rep specifying anything.</li>
+<li><strong>Company mode</strong> — for a company list, the skill routes to a Clay table via the <strong>Clay REST API</strong> (Clay&#x27;s programmatic interface, letting other tools trigger its enrichment without opening Clay itself) that finds and enriches decision-maker contacts at each company.</li>
+<li><strong>Contact mode</strong> — for a contact list, a different Clay pipeline fills missing emails, phones, LinkedIn URLs, and firmographic data on existing records.</li>
+<li><strong>Staged execution protocol</strong> — the skill runs in defined stages (validate → submit to Clay → poll for completion → format results) rather than a single black-box call, so failures are catchable and reportable mid-run.</li>
+<li><strong>Delivery choice</strong> — results return as a <strong>CRM table sync</strong> (writes directly into HubSpot), a CSV attached in the chat, or an emailed file — whichever fits the rep&#x27;s workflow.</li>
+<li><strong>Governance underneath</strong> — every run operates inside an AI Revenue Operations charter: the CRM is the source of truth, Clay is enrichment-only, a workflow-automation layer handles orchestration, and a backfill data vendor covers gaps; an 18-code suppression taxonomy (customers, open deals, active sequences, bounces, DNC, etc.) prevents prospecting into people who shouldn&#x27;t be prospected; CRM writes fill blanks but never blind-overwrite existing data, flagging conflicts instead.</li>
+</ol>
+<h3>Stack &amp; Integrations</h3>
+<div class="table-wrap"><table><thead><tr><th>Tool</th><th>Role</th><th>Access needed</th></tr></thead><tbody>
+<tr><td>Claude skill</td><td>CSV ingestion, mode detection, staged execution, delivery</td><td>Claude Code / Claude with skill installed</td></tr>
+<tr><td>Clay REST API</td><td>Programmatic trigger of company/contact enrichment pipelines</td><td>Clay API key + pre-built table IDs</td></tr>
+<tr><td>CRM (HubSpot)</td><td>System of truth; optional direct table sync destination</td><td>Private-app token (contacts/companies read-write)</td></tr>
+<tr><td>CSV parsing/validation</td><td>Header-signature detection, input validation</td><td>Ships with the skill</td></tr>
+</tbody></table></div>
+<h3>Setup Process</h3>
+<ol>
+<li>Build (or reuse) the two Clay pipelines the skill routes to: one for company→contact enrichment, one for contact backfill.</li>
+<li>Install the Claude skill; configure the Clay API key and the two table IDs it targets.</li>
+<li>Configure the CRM private-app token if direct table sync is wanted; otherwise chat/email delivery works standalone.</li>
+<li>Test with a small sample company list and a small sample contact list to confirm mode auto-detection picks correctly.</li>
+<li>Set suppression rules (18-code taxonomy) matching your CRM&#x27;s own do-not-contact / customer / active-sequence fields.</li>
+<li>Roll out to the rep team with a short usage guide; monitor the first week&#x27;s runs against the governance charter.</li>
+</ol>
+<h3>What You Need</h3>
+<ul>
+<li>[ ] Clay workspace with the two target pipelines built and an API key</li>
+<li>[ ] Claude Code or Claude access for the team</li>
+<li>[ ] Optional: CRM private-app token for direct table sync</li>
+<li>[ ] A defined suppression policy (customers, open deals, DNC, bounces, active sequences, etc.)</li>
+<li>[ ] ~1 day to configure pipelines + test both modes</li>
+</ul>
+<h3>Results</h3>
+<ul>
+<li><strong>Shipped</strong> with a rep-facing guide.</li>
+<li>Two-mode prospecting (Company and Contacts) with <strong>zero Clay UI interaction</strong> required from reps.</li>
+<li>Backed by a full agent charter: source-of-truth boundaries per system, safe CRM-update policy (fill blanks, never blind-overwrite, flag conflicts), audit trail per run, and a secrets policy that forbids pasted credentials.</li>
+</ul>
+<h3>Challenges &amp; Fixes</h3>
+<ul>
+<li><strong>Every enrichment request bottlenecked on one person</strong> → self-serve skill with auto-detected mode, removing the manual triage step entirely.</li>
+<li><strong>Risk of reps overwriting good CRM data with enrichment results</strong> → safe-update policy: fill blanks only, never blind-overwrite, flag conflicts for review instead of silently resolving them.</li>
+<li><strong>Risk of re-prospecting suppressed contacts (customers, DNC, active sequences)</strong> → an 18-code suppression taxonomy enforced before any list goes out.</li>
+<li><strong>Credential handling by non-technical users</strong> → a secrets policy that forbids pasting credentials into chat; the skill holds the Clay API key, not the rep.</li>
+</ul>
+<h3>Demonstrates</h3>
+<p>Productizing internal tooling for non-technical users · compliance-first outbound design · agent governance documents that read like platform policy, not a README.</p>
+    </article>
+    <aside class="side-panel">
+      <div class="panel">
+        <h3>Stack &amp; Integrations</h3>
+        <div class="chips"><span class="chip">Claude Skill</span><span class="chip">Clay</span><span class="chip">HubSpot</span></div>
+      </div>
+      <div class="panel">
+        <h3>What It Needs</h3>
+        <ul class="req-list"><li>Clay workspace with target pipelines built and an API key</li><li>Claude Code or Claude access for the team</li><li>Optional: CRM private-app token for direct table sync</li><li>A defined suppression policy (DNC, customers, active sequences, etc.)</li></ul>
+      </div>
+      <div class="panel panel-cta">
+        <h3>Discuss this build</h3>
+        <p>Happy to walk through the architecture, the failures along the way, or how this could translate to your team.</p>
+        <a class="btn btn-primary" href="mailto:pdiamitani@atlashxm.com?subject=Portfolio%3A%20Clay Prospecting Engine">Email Patrick</a>
+      </div>
+    </aside>
+  </div>
+</main>
+<footer class="footer">
+  <div class="footer-inner">
+    <div>© 2026 Patrick Diamitani. Case studies anonymized for public portfolio use — no employer-identifying or client-identifying detail included.</div>
+    <div class="footer-meta">pdiamitani@atlashxm.com · linkedin.com/in/diamitani</div>
+  </div>
+</footer>
+<script src="../assets/app.js"></script>
+</body>
+</html>

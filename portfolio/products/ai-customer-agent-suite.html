@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Customer Agent Suite — Patrick Diamitani</title>
+<meta name="description" content="A production website AI agent, plus the qualification pipeline, reporting warehouse, and revenue-attribution layer that prove exactly what it&#x27;s worth.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<nav class="nav">
+  <a class="brand" href="../index.html">Patrick Diamitani<span class="brand-div">/</span><span class="brand-sub">Enterprise AI Production</span></a>
+  <div class="nav-links">
+    <a href="../index.html#about">About</a>
+    <a href="../index.html#library">Skill &amp; Product Library</a>
+    <a href="../index.html#contact">Contact</a>
+    <a class="nav-cta" href="https://linkedin.com/in/diamitani" target="_blank" rel="noopener">LinkedIn ↗</a>
+  </div>
+</nav>
+
+<main class="product-page" style="--cat:#8a6d3b">
+  <div class="crumbs"><a href="../index.html#library">Skill &amp; Product Library</a> <span>/</span> <span>Sales Automation</span></div>
+  <header class="product-hero">
+    <div class="badge-row">
+      <span class="badge type-badge">AI Agent System</span>
+      <span class="badge status-badge">Live in production</span>
+    </div>
+    <h1>AI Customer Agent Suite</h1>
+    <p class="tagline">A production website AI agent, plus the qualification pipeline, reporting warehouse, and revenue-attribution layer that prove exactly what it&#x27;s worth.</p>
+    <div class="metric-callout">Quarter-million-dollar deal sourced from a single chat — traced to the exact conversation</div>
+    <div class="tags"><span class="tag">HubSpot</span><span class="tag">Breeze Customer Agent</span><span class="tag">n8n</span><span class="tag">Azure OpenAI</span><span class="tag">GPT-4o-mini</span><span class="tag">Microsoft Graph</span><span class="tag">SharePoint</span><span class="tag">MQL classification</span><span class="tag">revenue attribution</span><span class="tag">LangChain</span></div>
+  </header>
+  <div class="product-body">
+    <article class="onesheet">
+      <h3>Overview</h3>
+<p>A production AI customer agent for a global HR-tech (EOR) platform (~500 employees, hiring in 160+ countries) — built end to end by one person: the agent itself (versioned conversation guidelines, guardrails, knowledge base, routing), a live AI qualification pipeline that classifies every closed chat as MQL or Not under strict governance rules, a three-workflow reporting warehouse, and a three-tier deal-attribution layer. Live on the pricing page since launch. Headline result: a visitor chatted one day, the pipeline stamped an MQL, and a rep opened a <strong>quarter-million-dollar deal the next day</strong> — traceable to the exact conversation. <strong>Over $500K in agent-sourced deal value</strong> in the first four months.</p>
+<h3>The Problem</h3>
+<p>The company needed an AI agent on its website that qualifies visitors, feeds the CRM cleanly, and — the hard part — can <em>prove</em> its revenue impact. Chatbot leads were unattributed, duplicated, and contaminated by hundreds of legacy pre-launch contacts, so nobody could answer &quot;what is the chatbot worth?&quot;</p>
+<h3>How It Works</h3>
+<ol>
+<li><strong>HubSpot Customer Agent (Breeze)</strong> — HubSpot&#x27;s native AI chat product — runs the agent on the pricing page under versioned conversation guidelines governing what it says and when it routes to sales, partners, or support.</li>
+<li>On every closed conversation, a webhook fires an <strong>n8n</strong> qualification workflow (4,146 logged executions) — n8n is a visual workflow-automation platform that orchestrates the whole pipeline.</li>
+<li>A hand-written <strong>JavaScript normalizer</strong> strips HTML, orders messages, distinguishes visitor from bot by actor ID, and extracts email/phone/company from free text with personal-domain filtering — deterministic cleanup before any AI sees the data.</li>
+<li>An <strong>Azure OpenAI GPT-4o-mini</strong> agent (Microsoft-hosted OpenAI model) with a structured-output parser classifies MQL vs Non-MQL under authored rules: only visitor messages count as intent; confidence &lt; 0.65 forces Non-MQL; blank values never overwrite existing CRM data. MQLs get lifecycle + 15 chatbot properties stamped via the <strong>HubSpot CRM APIs</strong>, plus a drafted follow-up email.</li>
+<li>A <strong>three-workflow reporting warehouse</strong> — webhook event collector, daily reconciliation job, and hourly AI-credit watcher (4-tier thresholds: 60/75/85/90%) — writes to a five-table SharePoint Excel workbook via <strong>Microsoft Graph</strong>, Microsoft&#x27;s API for Office 365 files and mail.</li>
+<li>A <strong>deal-attribution walk</strong> (deal → contact → chatbot properties) assigns three honesty tiers — sourced, influenced, excluded — operationalized as a weekly n8n stamper writing attribution tier + originating conversation onto deals, report-only until sign-off.</li>
+</ol>
+<h3>Stack &amp; Integrations</h3>
+<div class="table-wrap"><table><thead><tr><th>Tool</th><th>Role</th><th>Access needed</th></tr></thead><tbody>
+<tr><td>HubSpot Customer Agent (Breeze)</td><td>The visitor-facing agent</td><td>Portal admin (chatflows, knowledge base)</td></tr>
+<tr><td>n8n cloud</td><td>Pipeline orchestration (LangChain agent nodes)</td><td>n8n workspace; workflow import rights</td></tr>
+<tr><td>Azure OpenAI (GPT-4o-mini)</td><td>MQL classification + email drafting</td><td>Azure OpenAI deployment + API credential</td></tr>
+<tr><td>HubSpot Conversations + CRM v3/v4 APIs</td><td>Threads, contacts, deals, property writes</td><td>Private-app token: conversations read, contacts/deals read-write</td></tr>
+<tr><td>Microsoft Graph</td><td>SharePoint Excel warehouse + Outlook alerts</td><td>OAuth2: file read-write, mail send</td></tr>
+<tr><td>Python dashboard</td><td>Local reporting views</td><td>Read access to warehouse workbook</td></tr>
+</tbody></table></div>
+<h3>Setup Process</h3>
+<ol>
+<li>Configure the Customer Agent chatflow, knowledge base, and conversation guidelines in HubSpot.</li>
+<li>Run the property-creation script to create the custom chatbot contact properties (idempotent — skips existing).</li>
+<li>Build the attribution stamp workflow in HubSpot (engagement flag + source, never overwriting native source fields).</li>
+<li>Import the MQL classification workflow JSON into n8n; bind HubSpot private-app and Azure OpenAI credentials; wire the shared error workflow.</li>
+<li>Register the conversation-close webhook; deploy the warehouse workflows and SharePoint workbook.</li>
+<li>Dry-run on a sample of closed conversations; verify stamps on live contacts before enabling writes.</li>
+<li>Deploy the attribution stamper in report-only mode; enable deal writes only after sign-off.</li>
+</ol>
+<h3>What You Need</h3>
+<ul>
+<li>HubSpot portal with Customer Agent (Breeze) enabled + private-app token</li>
+<li>Azure OpenAI deployment (GPT-4o-mini)</li>
+<li>n8n cloud workspace; Microsoft 365 (SharePoint + Outlook) OAuth credential</li>
+<li>Workflow JSONs + property script · <strong>Time-to-deploy: ~2–3 weeks</strong> including pilot</li>
+</ul>
+<h3>Results</h3>
+<ul>
+<li><strong>A quarter-million-dollar open deal sourced by the agent</strong> — visitor chat one day, rep-opened deal the next, traced to the exact originating conversation</li>
+<li><strong>Over $500K in agent-sourced deal value</strong> in the first four months; <strong>~$680K</strong> year-to-date closed-won on chatbot-engaged contacts (influence tier)</li>
+<li><strong>~$3.6M lifetime deal value</strong> across ~390 chatbot-engaged contacts; 4,146 logged pipeline executions</li>
+</ul>
+<h3>Challenges &amp; Fixes</h3>
+<ul>
+<li>Hundreds of legacy pre-launch contacts contaminated metrics → excluded tier + launch-era cutoff; even a lost first-attributed deal stays counted (influence, not cherry-picking)</li>
+<li>Webhook-only reporting missed late closures → hybrid design: webhook collector <em>and</em> daily reconciliation rebuild</li>
+<li>Over-eager AI classification risk → confidence gate (&lt;0.65 = Non-MQL), visitor-messages-only intent, never-overwrite rule</li>
+<li>&quot;Why did this chat not create a contact?&quot; → reconciliation-gap metric answered by transcript email search</li>
+</ul>
+<h3>Demonstrates</h3>
+<p>Full-stack AI product ownership (agent → pipeline → warehouse → attribution) · LLM governance rails in a production CRM · revenue-attribution design · executive-grade reporting.</p>
+    </article>
+    <aside class="side-panel">
+      <div class="panel">
+        <h3>Stack &amp; Integrations</h3>
+        <div class="chips"><span class="chip">HubSpot Customer Agent (Breeze)</span><span class="chip">HubSpot Conversations API</span><span class="chip">HubSpot CRM v3/v4 APIs</span><span class="chip">n8n cloud</span><span class="chip">Azure OpenAI</span><span class="chip">Microsoft Graph (SharePoint Excel + Outlook)</span><span class="chip">Python dashboard</span></div>
+      </div>
+      <div class="panel">
+        <h3>What It Needs</h3>
+        <ul class="req-list"><li>HubSpot portal with Customer Agent (Breeze) enabled</li><li>HubSpot private-app token (conversations read; contacts/deals read-write)</li><li>Azure OpenAI deployment (GPT-4o-mini)</li><li>n8n cloud workspace</li><li>Microsoft 365 OAuth credential (SharePoint file read-write, mail send)</li></ul>
+      </div>
+      <div class="panel panel-cta">
+        <h3>Discuss this build</h3>
+        <p>Happy to walk through the architecture, the failures along the way, or how this could translate to your team.</p>
+        <a class="btn btn-primary" href="mailto:pdiamitani@atlashxm.com?subject=Portfolio%3A%20AI Customer Agent Suite">Email Patrick</a>
+      </div>
+    </aside>
+  </div>
+</main>
+<footer class="footer">
+  <div class="footer-inner">
+    <div>© 2026 Patrick Diamitani. Case studies anonymized for public portfolio use — no employer-identifying or client-identifying detail included.</div>
+    <div class="footer-meta">pdiamitani@atlashxm.com · linkedin.com/in/diamitani</div>
+  </div>
+</footer>
+<script src="../assets/app.js"></script>
+</body>
+</html>

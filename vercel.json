@@ -3,14 +3,9 @@
   "trailingSlash": false,
   "rewrites": [
     {
-      "source": "/",
+      "source": "/:path*",
       "has": [{ "type": "host", "value": "portfolio.diamitani.com" }],
-      "destination": "/portfolio"
-    },
-    {
-      "source": "/:path((?!assets/|portfolio).*)",
-      "has": [{ "type": "host", "value": "portfolio.diamitani.com" }],
-      "destination": "/portfolio/:path"
+      "destination": "/portfolio/:path*"
     },
     {
       "source": "/",

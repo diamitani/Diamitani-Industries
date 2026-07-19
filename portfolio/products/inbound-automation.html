@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Inbound Automation Workflow — Patrick Diamitani</title>
+<meta name="description" content="Every contact-form submission classified, routed, and replied to by AI — the moment it lands.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<nav class="nav">
+  <a class="brand" href="../index.html">Patrick Diamitani<span class="brand-div">/</span><span class="brand-sub">Enterprise AI Production</span></a>
+  <div class="nav-links">
+    <a href="../index.html#about">About</a>
+    <a href="../index.html#library">Skill &amp; Product Library</a>
+    <a href="../index.html#contact">Contact</a>
+    <a class="nav-cta" href="https://linkedin.com/in/diamitani" target="_blank" rel="noopener">LinkedIn ↗</a>
+  </div>
+</nav>
+
+<main class="product-page" style="--cat:#3d6b5c">
+  <div class="crumbs"><a href="../index.html#library">Skill &amp; Product Library</a> <span>/</span> <span>RevOps</span></div>
+  <header class="product-hero">
+    <div class="badge-row">
+      <span class="badge type-badge">Automation Workflow</span>
+      <span class="badge status-badge">Live in production</span>
+    </div>
+    <h1>Inbound Automation Workflow</h1>
+    <p class="tagline">Every contact-form submission classified, routed, and replied to by AI — the moment it lands.</p>
+    <div class="metric-callout">7-way AI intent classification with a hard-override so a visitor&#x27;s stated reason always wins</div>
+    <div class="tags"><span class="tag">n8n</span><span class="tag">Azure OpenAI</span><span class="tag">HubSpot</span><span class="tag">Outlook</span><span class="tag">intent classification</span><span class="tag">lead routing</span></div>
+  </header>
+  <div class="product-body">
+    <article class="onesheet">
+      <h3>Overview</h3>
+<p>A global HR-tech (EOR) platform&#x27;s website contact form is a firehose: genuine buyers, partnership pitches, job seekers, vendors, press, and support requests all arrive through one endpoint. This live n8n workflow classifies every submission with an enterprise LLM into one of seven canonical intents (Speak with Sales, Partnership, Career, Customer Support, Press, Employment Verification, General), stamps the right CRM lifecycle stage, routes partnership leads to the alliances owner, and — for genuine sales intent — drafts and logs a human-sounding follow-up email. A hard override honors the reason the visitor actually picked on the form, so the AI never second-guesses an explicit choice.</p>
+<h3>The Problem</h3>
+<p>Inbound form submissions mixed high-intent buyers with vendor spam, job applications, and support tickets, all landing in one place for a human to read, categorize, and route by hand. Real &quot;Speak with Sales&quot; leads waited behind noise, partnership inquiries got misrouted, and lifecycle stages were stamped inconsistently — so reporting on true inbound demand was unreliable.</p>
+<h3>How It Works</h3>
+<ol>
+<li><strong>Webhook intake</strong> — a CRM form submission POSTs into n8n (a workflow-automation platform) via a header-authenticated webhook the instant someone submits.</li>
+<li><strong>AI intent classification</strong> — an enterprise LLM reads the message, the form&#x27;s selected reason, and the source/page context, and returns exactly one of seven canonical categories. A <strong>hard-override rule</strong> fires first: if the visitor explicitly selected a valid reason on the form, that choice wins and the AI doesn&#x27;t override it.</li>
+<li><strong>Reason-for-contact write-back</strong> — the classified intent is written to the contact&#x27;s reason-for-contact property via the CRM API.</li>
+<li><strong>Deterministic lifecycle mapping</strong> — a hand-written JavaScript node maps intent → CRM lifecycle stage (Sales → MQL, Partnership → partnership stage, everything else → an &quot;other&quot; stage), normalizes the original form selection, and emits routing flags — with logic to detect partnership signals even in re-classified submissions.</li>
+<li><strong>Partnership routing</strong> — genuine partnership inquiries are stamped to the alliances owner and can trigger a personalized, on-brand reply drafted by a second AI agent (writing as the named partnerships lead), sent via email.</li>
+<li><strong>Sales follow-up drafting</strong> — for &quot;Speak with Sales&quot; intent, an AI agent writes only the <em>body</em> of a warm, human follow-up email (calm, non-pitchy, acknowledges their message, asks for country only if missing, points to a calendar link) and stamps it to a response property for the rep.</li>
+<li><strong>Shared error handling</strong> — the workflow is its own error-workflow target, so failures surface consistently rather than silently.</li>
+</ol>
+<h3>Stack &amp; Integrations</h3>
+<div class="table-wrap"><table><thead><tr><th>Tool</th><th>Role</th><th>Access needed</th></tr></thead><tbody>
+<tr><td>n8n cloud</td><td>Webhook intake + orchestration</td><td>Workspace + workflow import</td></tr>
+<tr><td>Enterprise LLM (Azure OpenAI)</td><td>Intent classification + email drafting</td><td>Deployment + API credential</td></tr>
+<tr><td>CRM API (HubSpot)</td><td>Contact reads/writes, lifecycle stage, owner routing, properties</td><td>Private-app / OAuth (contacts read-write)</td></tr>
+<tr><td>Email (Outlook)</td><td>Partnership + sales follow-up delivery</td><td>Microsoft 365 OAuth</td></tr>
+<tr><td>Custom JS (lifecycle mapper)</td><td>Deterministic intent→stage + routing flags</td><td>Ships inside the workflow</td></tr>
+</tbody></table></div>
+<h3>Setup Process</h3>
+<ol>
+<li>Create/confirm the CRM properties the workflow writes (reason-for-contact, lifecycle stages, response fields).</li>
+<li>Import the workflow JSON into n8n; bind CRM, LLM, and email credentials.</li>
+<li>Point the CRM form&#x27;s webhook (header-auth) at the n8n trigger URL.</li>
+<li>Confirm the seven canonical category strings and the hard-override list match your CRM&#x27;s picklist values exactly.</li>
+<li>Dry-run with sample payloads for each intent (sales / partnership / vendor spam / job applicant); verify lifecycle stamping and that vendor pitches are filtered to &quot;General&quot; rather than &quot;Sales.&quot;</li>
+<li>Activate; wire the workflow into your shared error-handler.</li>
+</ol>
+<h3>What You Need</h3>
+<ul>
+<li>n8n cloud workspace with webhooks enabled</li>
+<li>Enterprise LLM deployment + credential</li>
+<li>CRM private-app token (contacts read-write, lifecycle, owners)</li>
+<li>Email OAuth connection</li>
+<li>A defined intent taxonomy + owner assignments · <strong>Time-to-deploy: ~2–3 hours</strong></li>
+</ul>
+<h3>Results</h3>
+<ul>
+<li><strong>Live in production</strong> on the company&#x27;s contact form.</li>
+<li>Seven-way AI intent classification with an explicit hard-override so a visitor&#x27;s stated reason is never overridden by the model.</li>
+<li>Deterministic intent→lifecycle mapping keeps CRM reporting on true inbound demand honest.</li>
+<li>Vendor/recruiter pitches routed to &quot;General&quot; (not &quot;Sales&quot;), keeping the MQL pipeline clean.</li>
+</ul>
+<h3>Challenges &amp; Fixes</h3>
+<ul>
+<li><strong>AI over-classifying vendor pitches as sales leads</strong> → explicit vendor/outreach trigger-phrase rules force &quot;General&quot;; only genuine service demand becomes &quot;Speak with Sales.&quot;</li>
+<li><strong>Model second-guessing a visitor&#x27;s explicit form selection</strong> → a hard-override rule evaluated <em>first</em> returns the selected reason verbatim, no analysis.</li>
+<li><strong>Partnership inquiries arriving via re-classified paths</strong> → the JS mapper detects partnership signals in message, form name, and original label — not just the AI output.</li>
+<li><strong>Lifecycle regressions from blind writes</strong> → lifecycle only updates when the target differs from current, so a re-submission never downgrades a contact.</li>
+</ul>
+<h3>Demonstrates</h3>
+<p>LLM classification with deterministic governance rails · CRM lifecycle integrity · human-in-tone AI drafting · defensive routing across messy multi-source inputs.</p>
+    </article>
+    <aside class="side-panel">
+      <div class="panel">
+        <h3>Stack &amp; Integrations</h3>
+        <div class="chips"><span class="chip">n8n</span><span class="chip">Azure OpenAI</span><span class="chip">HubSpot</span><span class="chip">Outlook</span></div>
+      </div>
+      <div class="panel">
+        <h3>What It Needs</h3>
+        <ul class="req-list"><li>n8n cloud workspace with webhooks enabled</li><li>Enterprise LLM deployment + credential</li><li>CRM private-app token (contacts read-write, lifecycle, owners)</li><li>Email OAuth connection</li><li>A defined intent taxonomy + owner assignments</li></ul>
+      </div>
+      <div class="panel panel-cta">
+        <h3>Discuss this build</h3>
+        <p>Happy to walk through the architecture, the failures along the way, or how this could translate to your team.</p>
+        <a class="btn btn-primary" href="mailto:pdiamitani@atlashxm.com?subject=Portfolio%3A%20Inbound Automation Workflow">Email Patrick</a>
+      </div>
+    </aside>
+  </div>
+</main>
+<footer class="footer">
+  <div class="footer-inner">
+    <div>© 2026 Patrick Diamitani. Case studies anonymized for public portfolio use — no employer-identifying or client-identifying detail included.</div>
+    <div class="footer-meta">pdiamitani@atlashxm.com · linkedin.com/in/diamitani</div>
+  </div>
+</footer>
+<script src="../assets/app.js"></script>
+</body>
+</html>

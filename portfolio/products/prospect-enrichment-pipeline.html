@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prospect Enrichment Pipeline — Patrick Diamitani</title>
+<meta name="description" content="A Python enrichment pipeline that guarantees an outsourced SDR agency never calls the same prospect twice.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<nav class="nav">
+  <a class="brand" href="../index.html">Patrick Diamitani<span class="brand-div">/</span><span class="brand-sub">Enterprise AI Production</span></a>
+  <div class="nav-links">
+    <a href="../index.html#about">About</a>
+    <a href="../index.html#library">Skill &amp; Product Library</a>
+    <a href="../index.html#contact">Contact</a>
+    <a class="nav-cta" href="https://linkedin.com/in/diamitani" target="_blank" rel="noopener">LinkedIn ↗</a>
+  </div>
+</nav>
+
+<main class="product-page" style="--cat:#4a6b8a">
+  <div class="crumbs"><a href="../index.html#library">Skill &amp; Product Library</a> <span>/</span> <span>Data Quality</span></div>
+  <header class="product-hero">
+    <div class="badge-row">
+      <span class="badge type-badge">Data Pipeline</span>
+      <span class="badge status-badge">Live in production</span>
+    </div>
+    <h1>Prospect Enrichment Pipeline</h1>
+    <p class="tagline">A Python enrichment pipeline that guarantees an outsourced SDR agency never calls the same prospect twice.</p>
+    <div class="metric-callout">0% overlap against thousands of already-called contacts; 91% phone coverage</div>
+    <div class="tags"><span class="tag">Python</span><span class="tag">Amplemarket</span><span class="tag">Clay</span><span class="tag">data enrichment</span><span class="tag">SDR</span><span class="tag">dedup</span></div>
+  </header>
+  <div class="product-body">
+    <article class="onesheet">
+      <h3>Overview</h3>
+<p>A global HR-tech (EOR) platform pays an outsourced sales agency for SDR calls — so every stale or already-called contact in a send list burns real money and brand equity. This nine-script Python pipeline merges multiple prospecting-tool exports into one master workbook, dedupes against every contact the agency has ever called, enriches missing emails and phones via a data-enrichment API, scrapes public job boards for international-hiring intent, buckets contacts by ICP role, and emits dated weekly send plans — tier-ranked so the best contacts go first. Result: hundreds of unique, confirmed-fresh contacts delivered with zero overlap against thousands of already-called records.</p>
+<h3>The Problem</h3>
+<p>Prospect data lived in five separate enrichment-tool exports with overlapping people, missing emails, and no memory of who the agency had already dialed. Re-feeding called contacts wastes paid SDR time; sending recruiters or benefits admins wastes it twice. The pipeline had to make freshness and ICP fit structural, not a manual QA step.</p>
+<h3>How It Works</h3>
+<ol>
+<li><strong>Build the exclusion memory</strong> — a script parses historical call lists into an exclusion index: thousands of unique keys across three identities (name+company, email, LinkedIn URL). A triple-key dedupe, meaning a contact is caught even if only one identifier matches.</li>
+<li><strong>Merge &amp; dedupe</strong> the five source lists (intent-based hot leads, director-level contacts, global-mobility contacts, fallback CEOs, CEO contacts) into one combined workbook, preserving every source label on merge instead of overwriting.</li>
+<li><strong>Enrich emails</strong> — a script fills missing work emails via a data-enrichment API&#x27;s email-finder endpoint (LinkedIn-URL lookup first, name+domain fallback); a follow-up script folds results back in, highlighted for review.</li>
+<li><strong>Find net-new contacts</strong> — a people-search script searches the enrichment API per company for target titles (Director+, HR, Ops, CEO, CFO, COO, Global Mobility), with per-role, per-company caps to control credit burn, excluding both the workbook and the already-called list.</li>
+<li><strong>Scrape hiring intent</strong> — a script hits public ATS APIs (the job-board platforms companies actually post openings on) and pulls open international roles, a direct buying signal for an Employer-of-Record provider.</li>
+<li><strong>Bucket &amp; plan</strong> — contacts are classified into ICP role tabs with a title-based exclusion list (recruiters, benefits admins, EAs never sent), phones deduped by last-10 digits, and rolled into dated weekly send plans: a fixed contact count per week, top tier (email AND phone) first.</li>
+<li><strong>Log every send</strong> — send briefs and a send log in the repo track exactly what went to the agency and when.</li>
+</ol>
+<h3>Stack &amp; Integrations</h3>
+<div class="table-wrap"><table><thead><tr><th>Tool</th><th>Role</th><th>Access needed</th></tr></thead><tbody>
+<tr><td>Python 3 (9 scripts, single orchestrator)</td><td>Merge, dedupe, classify, batch</td><td>Local machine; standard pip packages</td></tr>
+<tr><td>Data-enrichment API (Amplemarket)</td><td>Email finder, phone reveal, people search</td><td>API key</td></tr>
+<tr><td>Prospecting-tool exports (Clay)</td><td>Source exports (5 lists) + re-enrichment loop</td><td>CSV exports; no API needed for intake</td></tr>
+<tr><td>Public ATS APIs (Greenhouse, Lever, Workable, Ashby, SmartRecruiters)</td><td>International job postings as intent signal</td><td>None — public endpoints</td></tr>
+<tr><td>Spreadsheet workbooks</td><td>Master workbook + dated weekly send plans</td><td>Local files</td></tr>
+<tr><td>CRM (HubSpot)</td><td>Downstream import of the master list</td><td>Import-ready CSVs produced by pipeline</td></tr>
+</tbody></table></div>
+<h3>Setup Process</h3>
+<ol>
+<li>Clone the project folder; install the two required Python packages.</li>
+<li>Set your enrichment-API key in the two scripts that call it.</li>
+<li>Drop the agency&#x27;s historical called lists in the folder and run the exclusion-builder script.</li>
+<li>Place your source export CSVs; run the orchestrator (whole pipeline or a single phase).</li>
+<li>Review the regenerated workbook and dated weekly send plan; tune the role caps and search dictionaries to your ICP.</li>
+<li>Run locally (the enrichment/ATS endpoints need open egress), or route calls through a workflow-automation webhook.</li>
+</ol>
+<h3>What You Need</h3>
+<ul>
+<li>[ ] Enrichment-API account + API key (email finder, phone reveal, people search)</li>
+<li>[ ] Prospecting-tool exports (or any contact CSVs) as source lists</li>
+<li>[ ] Historical &quot;already contacted&quot; lists from your agency/sequences</li>
+<li>[ ] Python 3 with two standard packages</li>
+<li>[ ] Time to deploy: ~1 hour; full pipeline run resumes mid-phase if interrupted</li>
+</ul>
+<h3>Results</h3>
+<ul>
+<li><strong>Hundreds of unique contacts across hundreds of companies</strong> with <strong>confirmed 0% overlap</strong> against thousands of already-called keys.</li>
+<li><strong>~91% mobile-phone coverage</strong>, with a meaningful share carrying 2+ phones.</li>
+<li><strong>~76% work-email coverage</strong>, with automated backfill of the remaining gap.</li>
+<li>Rolling <strong>weekly send plans of a couple hundred contacts</strong>, tier-ranked (top tier = email AND phone goes first); two dozen non-ICP titles auto-excluded.</li>
+<li>Every send logged — send briefs + send log maintained in the repo on an ongoing basis.</li>
+</ul>
+<h3>Challenges &amp; Fixes</h3>
+<ul>
+<li><strong>Same person in multiple exports under different identifiers</strong> → single-key dedupe missed them → triple-key dedupe (name+company, email, LinkedIn) plus phone dedupe by last-10 digits.</li>
+<li><strong>Enrichment credit burn scaling with list size</strong> → per-role, per-company caps and skip-what-exists logic keep spend predictable.</li>
+<li><strong>Enrichment-API endpoint shapes vary by plan/version</strong> → scripts try multiple endpoint/payload shapes; first match wins, documented fallback to update.</li>
+<li><strong>Sandboxed environments block vendor egress</strong> → pipeline runs locally by design; a workflow-automation webhook relay is documented as the sandboxed alternative.</li>
+</ul>
+<h3>Demonstrates</h3>
+<p>Data engineering for GTM · API-based enrichment at scale · cost-capped pipeline design · vendor management through automation.</p>
+    </article>
+    <aside class="side-panel">
+      <div class="panel">
+        <h3>Stack &amp; Integrations</h3>
+        <div class="chips"><span class="chip">Python</span><span class="chip">Amplemarket</span><span class="chip">Clay</span><span class="chip">HubSpot</span><span class="chip">Greenhouse</span><span class="chip">Lever</span><span class="chip">Workable</span><span class="chip">Ashby</span><span class="chip">SmartRecruiters</span></div>
+      </div>
+      <div class="panel">
+        <h3>What It Needs</h3>
+        <ul class="req-list"><li>Data-enrichment API account + key (e.g. Amplemarket)</li><li>Prospecting-tool exports or contact CSVs as source lists</li><li>Historical already-contacted lists from your agency/sequences</li><li>Python 3 with requests + openpyxl</li></ul>
+      </div>
+      <div class="panel panel-cta">
+        <h3>Discuss this build</h3>
+        <p>Happy to walk through the architecture, the failures along the way, or how this could translate to your team.</p>
+        <a class="btn btn-primary" href="mailto:pdiamitani@atlashxm.com?subject=Portfolio%3A%20Prospect Enrichment Pipeline">Email Patrick</a>
+      </div>
+    </aside>
+  </div>
+</main>
+<footer class="footer">
+  <div class="footer-inner">
+    <div>© 2026 Patrick Diamitani. Case studies anonymized for public portfolio use — no employer-identifying or client-identifying detail included.</div>
+    <div class="footer-meta">pdiamitani@atlashxm.com · linkedin.com/in/diamitani</div>
+  </div>
+</footer>
+<script src="../assets/app.js"></script>
+</body>
+</html>

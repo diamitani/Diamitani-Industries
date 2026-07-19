@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Post-Sales Call Automation — Patrick Diamitani</title>
+<meta name="description" content="Four AI agents on every sales call — follow-up email, missed questions, competitor intel, and a CRM note, with zero rep action.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<nav class="nav">
+  <a class="brand" href="../index.html">Patrick Diamitani<span class="brand-div">/</span><span class="brand-sub">Enterprise AI Production</span></a>
+  <div class="nav-links">
+    <a href="../index.html#about">About</a>
+    <a href="../index.html#library">Skill &amp; Product Library</a>
+    <a href="../index.html#contact">Contact</a>
+    <a class="nav-cta" href="https://linkedin.com/in/diamitani" target="_blank" rel="noopener">LinkedIn ↗</a>
+  </div>
+</nav>
+
+<main class="product-page" style="--cat:#8a6d3b">
+  <div class="crumbs"><a href="../index.html#library">Skill &amp; Product Library</a> <span>/</span> <span>Sales Automation</span></div>
+  <header class="product-hero">
+    <div class="badge-row">
+      <span class="badge type-badge">Automation Workflow</span>
+      <span class="badge status-badge">Live in production</span>
+    </div>
+    <h1>Post-Sales Call Automation</h1>
+    <p class="tagline">Four AI agents on every sales call — follow-up email, missed questions, competitor intel, and a CRM note, with zero rep action.</p>
+    <div class="metric-callout">Every sales call → 5 AI deliverables, zero rep action</div>
+    <div class="tags"><span class="tag">n8n</span><span class="tag">Azure OpenAI</span><span class="tag">HubSpot</span><span class="tag">Avoma</span><span class="tag">Azure Blob Storage</span><span class="tag">Outlook</span><span class="tag">multi-agent</span><span class="tag">sales follow-up</span></div>
+  </header>
+  <div class="product-body">
+    <article class="onesheet">
+      <h3>Overview</h3>
+<p>An always-on, multi-agent pipeline that turns every recorded sales call into a rep-ready follow-up package. Triggered by a webhook after each call, it pulls the Avoma transcript, detects which countries the buyer wants to hire in, fetches exact country employment-law files from Azure Blob Storage, and runs four AI agents: a consultative &quot;If I Were You&quot; follow-up email, a missed-questions analysis, competitor research, and a LinkedIn draft — then emails the rep via Outlook and logs a note to the HubSpot deal. Built for a global HR-tech (EOR) platform where country-specific facts win deals. Result: five deliverables per call, zero rep action.</p>
+<h3>The Problem</h3>
+<p>At a global HR-tech (EOR) platform (~500 employees, operating in 160+ countries), reps left sales calls without consistent follow-ups, missed buyer questions went unnoticed, and country-specific facts — the heart of Employer-of-Record selling — varied from rep to rep. Follow-up quality depended entirely on individual discipline.</p>
+<h3>How It Works</h3>
+<ol>
+<li><strong>Webhook trigger (Avoma → n8n cloud)</strong> — a call-recording webhook fires after every sales call; n8n is a workflow-automation platform that runs the pipeline always-on, regardless of whose laptop is off.</li>
+<li><strong>Meeting guard + transcript polling</strong> — a completed-meeting check skips future/scheduled meetings; a bounded wait loop (20 polls × 2 min, ~40 min budget) retries until the transcript is ready, then exits gracefully instead of dead-ending.</li>
+<li><strong>Country extraction → ISO-3 codes</strong> — an LLM step reads the transcript and extracts only countries with real hiring intent (max 8, hard cap 10), mapping each to its ISO-3 code (Germany → DEU).</li>
+<li><strong>Deterministic country-data fetch</strong> — exact files are pulled from Azure Blob Storage (<code>country-data/&lt;ISO3&gt;.md</code>, 250+ countries) — cloud file storage, anonymous read, no index, no tokens to rotate. A context-builder step strips internal noise before injection.</li>
+<li><strong>Four Azure OpenAI agents</strong> — enterprise-hosted GPT models draft the follow-up email, missed-questions analysis, competitor research, and LinkedIn post, each with an explicit &quot;specificity requirement&quot; (cite concrete facts like &quot;13th-month pay split 50% June / 50% December,&quot; never generic filler).</li>
+<li><strong>Delivery</strong> — Outlook (Microsoft&#x27;s email service) sends the package to the rep and sales leadership; the HubSpot API logs a note to the associated deal.</li>
+</ol>
+<h3>Stack &amp; Integrations</h3>
+<div class="table-wrap"><table><thead><tr><th>Tool</th><th>Role</th><th>Access needed</th></tr></thead><tbody>
+<tr><td>n8n (cloud)</td><td>Workflow engine, always-on</td><td>n8n cloud workspace, webhook enabled</td></tr>
+<tr><td>Avoma</td><td>Call recording + transcript API</td><td>Avoma API key (read meetings/transcripts)</td></tr>
+<tr><td>Azure OpenAI</td><td>4 LLM agents + country extraction</td><td>Azure OpenAI deployment + API credential</td></tr>
+<tr><td>Azure Blob Storage</td><td>250+ country data files (<code>&lt;ISO3&gt;.md</code>)</td><td>Anonymous-read container (or SAS if private)</td></tr>
+<tr><td>HubSpot API</td><td>Deal/contact lookup, note creation</td><td>Private app / OAuth with CRM read + notes write</td></tr>
+<tr><td>Microsoft Outlook</td><td>Email delivery to reps</td><td>Microsoft 365 OAuth connection in n8n</td></tr>
+</tbody></table></div>
+<h3>Setup Process</h3>
+<ol>
+<li>Import the workflow JSON into n8n (imports inactive).</li>
+<li>Re-link credentials on each node: Azure OpenAI models, HubSpot, Outlook, Avoma HTTP nodes.</li>
+<li>Stage country data files in a blob container named by ISO-3 code.</li>
+<li>Register the n8n webhook URL as the post-call trigger.</li>
+<li>Dry-run with a saved real webhook body, email routed only to yourself.</li>
+<li>Verify context assembly size and agent output specificity, then activate and widen the recipient list.</li>
+</ol>
+<h3>What You Need</h3>
+<ul>
+<li>[ ] n8n cloud workspace · Avoma API access · Azure OpenAI deployment</li>
+<li>[ ] Azure Blob container with country markdown files</li>
+<li>[ ] HubSpot private-app scopes (deals/contacts read, notes write) · Outlook OAuth</li>
+<li>[ ] ~2–4 hours to deploy and dry-run</li>
+</ul>
+<h3>Results</h3>
+<ul>
+<li><strong>Live in production</strong> — every call auto-produces 5 deliverables (email, missed questions, competitor intel, LinkedIn draft, HubSpot note) with zero rep action.</li>
+<li>Rebuilt from <strong>21/25 executions failing → 2/2 verified end-to-end passes</strong> (0/25 previously reached the email step).</li>
+<li>Verified on a real three-country South America call: <strong>116K characters</strong> of live country context assembled.</li>
+<li>Extraction tightening: <strong>20 → 6 countries</strong> per call, context <strong>882KB → 295KB</strong> (~74K tokens) — lower cost, better signal.</li>
+</ul>
+<h3>Challenges &amp; Fixes</h3>
+<ul>
+<li><strong>Azure AI Search vector index died (84% of failures)</strong> and couldn&#x27;t be recreated due to permissions → removed the RAG layer entirely; replaced with deterministic blob fetch (country code → exact file). The failure point was deleted, not patched.</li>
+<li><strong>Silent wait-loop dead-ends</strong> → future-meeting guard, count-zero retry path, 10 → 20 poll budget, explicit End nodes.</li>
+<li><strong>Paired-item lineage break lost the transcript</strong> → context builder carries base fields forward; all 28 fragile per-item references converted to pairing-immune ones.</li>
+<li><strong>Generic, templated output</strong> → stripped internal noise from country files and enforced a specificity requirement on all four agents.</li>
+</ul>
+<h3>Demonstrates</h3>
+<p>Event-driven multi-agent pipelines · pragmatic RAG-vs-deterministic judgment · graceful degradation · production debugging from execution forensics.</p>
+    </article>
+    <aside class="side-panel">
+      <div class="panel">
+        <h3>Stack &amp; Integrations</h3>
+        <div class="chips"><span class="chip">n8n</span><span class="chip">Avoma</span><span class="chip">Azure OpenAI</span><span class="chip">Azure Blob Storage</span><span class="chip">HubSpot</span><span class="chip">Microsoft Outlook</span></div>
+      </div>
+      <div class="panel">
+        <h3>What It Needs</h3>
+        <ul class="req-list"><li>n8n cloud workspace with webhooks enabled</li><li>Avoma API access (read meetings/transcripts)</li><li>Azure OpenAI deployment + credential</li><li>Azure Blob Storage container with country data files (ISO-3 named)</li><li>HubSpot private app (deals/contacts read, notes write)</li><li>Microsoft 365 / Outlook OAuth connection</li></ul>
+      </div>
+      <div class="panel panel-cta">
+        <h3>Discuss this build</h3>
+        <p>Happy to walk through the architecture, the failures along the way, or how this could translate to your team.</p>
+        <a class="btn btn-primary" href="mailto:pdiamitani@atlashxm.com?subject=Portfolio%3A%20Post-Sales Call Automation">Email Patrick</a>
+      </div>
+    </aside>
+  </div>
+</main>
+<footer class="footer">
+  <div class="footer-inner">
+    <div>© 2026 Patrick Diamitani. Case studies anonymized for public portfolio use — no employer-identifying or client-identifying detail included.</div>
+    <div class="footer-meta">pdiamitani@atlashxm.com · linkedin.com/in/diamitani</div>
+  </div>
+</footer>
+<script src="../assets/app.js"></script>
+</body>
+</html>

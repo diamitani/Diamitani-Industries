@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prospect Automation Engine — Patrick Diamitani</title>
+<meta name="description" content="A daily intent-to-outreach pipeline that turns yesterday&#x27;s buying signals into routed, enriched, ICP-clean accounts — automatically.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<nav class="nav">
+  <a class="brand" href="../index.html">Patrick Diamitani<span class="brand-div">/</span><span class="brand-sub">Enterprise AI Production</span></a>
+  <div class="nav-links">
+    <a href="../index.html#about">About</a>
+    <a href="../index.html#library">Skill &amp; Product Library</a>
+    <a href="../index.html#contact">Contact</a>
+    <a class="nav-cta" href="https://linkedin.com/in/diamitani" target="_blank" rel="noopener">LinkedIn ↗</a>
+  </div>
+</nav>
+
+<main class="product-page" style="--cat:#8a6d3b">
+  <div class="crumbs"><a href="../index.html#library">Skill &amp; Product Library</a> <span>/</span> <span>Sales Automation</span></div>
+  <header class="product-hero">
+    <div class="badge-row">
+      <span class="badge type-badge">Automation Workflow</span>
+      <span class="badge status-badge">Live in production</span>
+    </div>
+    <h1>Prospect Automation Engine</h1>
+    <p class="tagline">A daily intent-to-outreach pipeline that turns yesterday&#x27;s buying signals into routed, enriched, ICP-clean accounts — automatically.</p>
+    <div class="metric-callout">Daily intent → routed, deduped, ICP-clean accounts with zero manual triage</div>
+    <div class="tags"><span class="tag">n8n</span><span class="tag">HubSpot</span><span class="tag">Clay</span><span class="tag">ZoomInfo</span><span class="tag">Factors.ai</span><span class="tag">intent</span><span class="tag">routing</span></div>
+  </header>
+  <div class="product-body">
+    <article class="onesheet">
+      <h3>Overview</h3>
+<p>Every morning, this n8n workflow pulls the companies that showed buying intent yesterday (firmographic + ABM intent signals) from the CRM, runs them through a gauntlet of ICP and safety filters — under 2,000 employees, no existing customers, no open deals, no competitors, no schools/governments, no out-of-region accounts, no recently-touched accounts — assigns each survivor to the right sales pod by region via a round-robin engine, and fires them into a data-enrichment table for contact discovery. The result: reps start each day with a fresh, deduped, territory-routed list of in-market accounts, with zero manual triage.</p>
+<h3>The Problem</h3>
+<p>Buying-intent signals were pouring into the CRM from third-party data providers, but converting them into actionable outbound meant a human manually filtering out customers, open deals, competitors, out-of-ICP accounts, and wrong regions every day — then hand-assigning each account to the right rep. Slow, inconsistent, and it meant hot intent went cold before anyone acted.</p>
+<h3>How It Works</h3>
+<ol>
+<li><strong>Daily schedule trigger</strong> — fires each morning in n8n, a workflow-automation platform that runs the pipeline unattended.</li>
+<li><strong>Yesterday-window intent pull</strong> — a CRM company-search API call pulls companies whose intent-workflow date falls in yesterday&#x27;s window, requesting ~30 firmographic + intent properties.</li>
+<li><strong>Split + size gate</strong> — each company is split out and filtered to <strong>under 2,000 employees</strong> (ICP size).</li>
+<li><strong>Out-of-region exclusion</strong> — a hand-written JS filter removes out-of-region (APAC) accounts using a multi-signal check: location fields, country codes, domain TLD, and company-name keywords — so an account with empty location fields is still caught by its domain.</li>
+<li><strong>Safety gauntlet</strong> — sequential filters strip out companies with associated deals, customer lifecycle, customer type, and no recent sales activity (touched in the last 30 days), then a competitor filter removes named competitors.</li>
+<li><strong>ICP filter</strong> — a JS node removes schools, universities, and government entities (keeping NGOs, which are valid prospects).</li>
+<li><strong>Round-robin routing</strong> — a JS engine normalizes state/country and assigns each account to the correct regional pod, stamping the CRM owner ID, rep name, and email.</li>
+<li><strong>Enrichment handoff</strong> — survivors are POSTed (batched) to a data-enrichment webhook for contact discovery, and upserted into an n8n Data Table as the run&#x27;s source-of-truth record.</li>
+</ol>
+<h3>Stack &amp; Integrations</h3>
+<div class="table-wrap"><table><thead><tr><th>Tool</th><th>Role</th><th>Access needed</th></tr></thead><tbody>
+<tr><td>n8n cloud</td><td>Daily orchestration, filters, routing</td><td>Workspace + workflow import</td></tr>
+<tr><td>CRM API (HubSpot)</td><td>Intent-company search; owner/territory routing</td><td>Private-app token (companies read)</td></tr>
+<tr><td>Intent providers (ZoomInfo, Factors.ai via CRM)</td><td>Buying-intent signals (workflow dates, ABM)</td><td>Signals synced into CRM properties</td></tr>
+<tr><td>Data-enrichment platform (Clay, REST webhook)</td><td>Downstream contact discovery + enrichment</td><td>Enrichment webhook URL</td></tr>
+<tr><td>Custom JS (region filter, ICP filter, round-robin)</td><td>Deterministic exclusion + territory assignment</td><td>Ships inside the workflow</td></tr>
+<tr><td>n8n Data Table</td><td>Source-of-truth log of each day&#x27;s routed accounts</td><td>n8n Data Table feature</td></tr>
+</tbody></table></div>
+<h3>Setup Process</h3>
+<ol>
+<li>Confirm the CRM intent properties exist (intent-workflow dates, firmographics) and are populated by your intent providers.</li>
+<li>Import the workflow JSON; bind the CRM credential and set the enrichment webhook URL.</li>
+<li>Edit the round-robin pod map (rep names, CRM owner IDs, emails) and the territory state sets to your team.</li>
+<li>Tune the ICP gates: employee cap, competitor names, excluded regions, and the recent-activity window.</li>
+<li>Dry-run against yesterday&#x27;s window; verify the filter funnel counts and that routing assigns the right pod per region.</li>
+<li>Activate the daily schedule and confirm the Data Table logs each run.</li>
+</ol>
+<h3>What You Need</h3>
+<ul>
+<li>n8n cloud workspace</li>
+<li>CRM with intent signals synced + a private-app token (companies read)</li>
+<li>A data-enrichment workspace with an inbound webhook</li>
+<li>Your rep roster mapped to territories/owner IDs · <strong>Time-to-deploy: ~half a day</strong> including filter tuning</li>
+</ul>
+<h3>Results</h3>
+<ul>
+<li><strong>Live in production</strong>, running daily on the sales pipeline.</li>
+<li>Turns raw daily intent into a routed, deduped, ICP-clean account list with zero manual triage.</li>
+<li>Multi-signal out-of-region exclusion catches accounts even when location fields are blank (via domain TLD + name keywords).</li>
+<li>Compliance-first by design: customers, open deals, competitors, and recently-touched accounts are all stripped before any account reaches a rep.</li>
+</ul>
+<h3>Challenges &amp; Fixes</h3>
+<ul>
+<li><strong>Out-of-region accounts slipping through on empty location fields</strong> → layered the filter with domain-TLD and company-name keyword detection, not just location fields.</li>
+<li><strong>Re-touching accounts already in play</strong> → sequential gates on associated deals, customer lifecycle/type, and 30-day recent-activity before routing.</li>
+<li><strong>Wasting enrichment credit on non-ICP orgs</strong> → schools/governments and 2,000+ employee companies filtered <em>before</em> the enrichment handoff.</li>
+<li><strong>Uneven rep distribution</strong> → a normalized state/country → pod round-robin so territory assignment is deterministic and auditable.</li>
+</ul>
+<h3>Demonstrates</h3>
+<p>Intent-driven GTM orchestration · compliance-first prospecting (suppress before you send) · deterministic territory routing · cost-aware enrichment (filter before you pay).</p>
+<p><em>Companion to the Prospect Enrichment Pipeline (the Python/enrichment-API side); this is the always-on n8n intent-to-enrichment front end.</em></p>
+    </article>
+    <aside class="side-panel">
+      <div class="panel">
+        <h3>Stack &amp; Integrations</h3>
+        <div class="chips"><span class="chip">n8n</span><span class="chip">HubSpot</span><span class="chip">Clay</span><span class="chip">ZoomInfo</span><span class="chip">Factors.ai</span></div>
+      </div>
+      <div class="panel">
+        <h3>What It Needs</h3>
+        <ul class="req-list"><li>n8n cloud workspace</li><li>CRM with intent signals synced + private-app token (companies read)</li><li>A data-enrichment workspace with an inbound webhook</li><li>Rep roster mapped to territories/owner IDs</li></ul>
+      </div>
+      <div class="panel panel-cta">
+        <h3>Discuss this build</h3>
+        <p>Happy to walk through the architecture, the failures along the way, or how this could translate to your team.</p>
+        <a class="btn btn-primary" href="mailto:pdiamitani@atlashxm.com?subject=Portfolio%3A%20Prospect Automation Engine">Email Patrick</a>
+      </div>
+    </aside>
+  </div>
+</main>
+<footer class="footer">
+  <div class="footer-inner">
+    <div>© 2026 Patrick Diamitani. Case studies anonymized for public portfolio use — no employer-identifying or client-identifying detail included.</div>
+    <div class="footer-meta">pdiamitani@atlashxm.com · linkedin.com/in/diamitani</div>
+  </div>
+</footer>
+<script src="../assets/app.js"></script>
+</body>
+</html>

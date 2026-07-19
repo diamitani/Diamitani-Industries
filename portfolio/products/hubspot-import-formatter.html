@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HubSpot Import Formatter — Patrick Diamitani</title>
+<meta name="description" content="Killing CRM duplicates at the source — any rep spreadsheet becomes a clean HubSpot import in minutes.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<nav class="nav">
+  <a class="brand" href="../index.html">Patrick Diamitani<span class="brand-div">/</span><span class="brand-sub">Enterprise AI Production</span></a>
+  <div class="nav-links">
+    <a href="../index.html#about">About</a>
+    <a href="../index.html#library">Skill &amp; Product Library</a>
+    <a href="../index.html#contact">Contact</a>
+    <a class="nav-cta" href="https://linkedin.com/in/diamitani" target="_blank" rel="noopener">LinkedIn ↗</a>
+  </div>
+</nav>
+
+<main class="product-page" style="--cat:#4a6b8a">
+  <div class="crumbs"><a href="../index.html#library">Skill &amp; Product Library</a> <span>/</span> <span>Data Quality</span></div>
+  <header class="product-hero">
+    <div class="badge-row">
+      <span class="badge type-badge">Claude Skill</span>
+      <span class="badge status-badge">Live in production</span>
+    </div>
+    <h1>HubSpot Import Formatter</h1>
+    <p class="tagline">Killing CRM duplicates at the source — any rep spreadsheet becomes a clean HubSpot import in minutes.</p>
+    <div class="metric-callout">Live for a 50+ rep GTM org — every import Batch-ID tagged and KPI-tracked</div>
+    <div class="tags"><span class="tag">Claude Skill</span><span class="tag">HubSpot</span><span class="tag">NAICS</span><span class="tag">dedup</span><span class="tag">CRM hygiene</span></div>
+  </header>
+  <div class="product-body">
+    <article class="onesheet">
+      <h3>Overview</h3>
+<p>Reps at a global HR-tech (EOR) platform bulk-imported hand-made spreadsheets in inconsistent formats — data-vendor exports, social-selling lists, partner lists — and the CRM couldn&#x27;t dedupe reliably, polluting records with duplicate contacts and companies, inflating forecasts, and splitting activity history. This Claude skill converts any rep spreadsheet into the company&#x27;s official import templates: auto-splitting people from companies, deduping pre-import, semantically mapping messy industry values to the CRM&#x27;s taxonomy enriched with NAICS sector + code, normalizing dropdowns and countries, flagging (never silently dropping) rejected rows, and optionally upserting directly to the CRM with static/active list creation. Live for a 50+-person GTM org, with every import tagged by a Batch ID so data-quality discipline is reportable back to deal attribution.</p>
+<h3>The Problem</h3>
+<p>Reps at a global HR-tech (EOR) platform bulk-imported hand-made spreadsheets in wildly inconsistent formats. The CRM&#x27;s native dedupe couldn&#x27;t catch near-matches across formats, so it filled with duplicate contacts and companies — inflating pipeline forecasts and splitting activity/engagement history across records that should have been one.</p>
+<h3>How It Works</h3>
+<ol>
+<li><strong>Ingest any spreadsheet</strong> — a rep uploads a data-vendor, social-selling, or partner-list export in whatever shape it arrived (Claude skills are reusable, packaged instruction sets that run inside Claude/Claude Code).</li>
+<li><strong>Auto-split people from companies</strong> — the skill detects whether rows are person-level, company-level, or mixed, and separates them into the CRM&#x27;s two-object model.</li>
+<li><strong>Pre-import dedupe</strong> — records are deduped against the upload batch itself and (when upserting live) against existing CRM records, before anything touches the system of record.</li>
+<li><strong>Semantic industry mapping</strong> — messy free-text industry values are mapped to the CRM&#x27;s official industry taxonomy and enriched with the matching <strong>NAICS sector + code</strong> — the US government&#x27;s standard industry classification, which most CRMs don&#x27;t natively carry.</li>
+<li><strong>Normalization</strong> — country names, state/province codes, and dropdown-field values are standardized to exactly what the CRM&#x27;s properties expect, so imports don&#x27;t silently fail on mismatched picklist values.</li>
+<li><strong>Flag, never drop</strong> — any row that can&#x27;t be confidently mapped or deduped is flagged in a rejects tab with a reason, so nothing disappears without a human seeing why.</li>
+<li><strong>Deliver two ways</strong> — export official import-ready Excel/CSV templates for manual upload, or (if authorized) upsert directly to the CRM via the import API with automatic static/active list creation, tagging the import with a <strong>Batch ID</strong> used as the CRM import name.</li>
+</ol>
+<h3>Stack &amp; Integrations</h3>
+<div class="table-wrap"><table><thead><tr><th>Tool</th><th>Role</th><th>Access needed</th></tr></thead><tbody>
+<tr><td>Claude skill</td><td>Ingest, split, dedupe, map, normalize logic</td><td>Claude Code / Claude with skill installed</td></tr>
+<tr><td>Excel/CSV processing</td><td>Reads rep exports, writes official import templates</td><td>Local file access</td></tr>
+<tr><td>NAICS mapping layer</td><td>Sector + code enrichment on industry values</td><td>Ships with the skill (static reference table)</td></tr>
+<tr><td>CRM import API (HubSpot)</td><td>Optional direct upsert + static/active list creation</td><td>Private-app token scoped to contacts/companies + imports</td></tr>
+<tr><td>Run ledger</td><td>Tracks adoption, volume, data-quality KPIs per Batch ID</td><td>Local file or CRM custom object</td></tr>
+</tbody></table></div>
+<h3>Setup Process</h3>
+<ol>
+<li>Install the skill into the team&#x27;s Claude Code / Claude environment.</li>
+<li>Load your official import template schema and an industry-to-NAICS mapping table (ships with the skill; extend as needed).</li>
+<li>Configure the CRM private-app token if direct upsert is wanted (read/write contacts + companies, imports API); otherwise the skill exports templates only.</li>
+<li>Run a test import from a real rep spreadsheet in &quot;export only&quot; mode; review the rejects tab.</li>
+<li>Enable direct upsert for a pilot team; confirm Batch IDs appear as CRM import names and the run ledger logs volume/quality.</li>
+<li>Roll out to the full GTM org with a short rep-facing how-to.</li>
+</ol>
+<h3>What You Need</h3>
+<ul>
+<li>[ ] Claude Code or Claude access for the team</li>
+<li>[ ] An official import template schema (or your own equivalent)</li>
+<li>[ ] Optional: CRM private-app token (contacts/companies read-write, imports API) for direct upsert</li>
+<li>[ ] ~2–3 hours to configure and pilot; minutes per import thereafter</li>
+</ul>
+<h3>Results</h3>
+<ul>
+<li><strong>Live for a 50+-person GTM org.</strong></li>
+<li>Every import carries a Batch ID used as the CRM import name — deal attribution back to clean-data discipline is reportable.</li>
+<li>Built-in run ledger tracks adoption, volume, and data-quality KPIs over time.</li>
+<li>Root-cause fix for CRM duplication rather than a downstream cleanup tool.</li>
+</ul>
+<h3>Challenges &amp; Fixes</h3>
+<ul>
+<li><strong>Inconsistent source formats across vendors</strong> → auto-detection of person vs. company rows instead of requiring a fixed template from reps.</li>
+<li><strong>Free-text industry values that the CRM&#x27;s picklist can&#x27;t match</strong> → semantic mapping layer enriched with NAICS sector + code.</li>
+<li><strong>Silent import failures on bad dropdown values</strong> → explicit normalization pass before export/upsert.</li>
+<li><strong>Risk of quietly dropping unmappable rows</strong> → every uncertain row flagged in a rejects tab with a reason, never silently discarded.</li>
+</ul>
+<h3>Demonstrates</h3>
+<p>Root-cause data-quality engineering · adoption-aware design (make the standard the easy path) · measurable-by-default tooling · semantic-to-deterministic mapping (LLM interprets messy text, static taxonomy governs the outcome).</p>
+    </article>
+    <aside class="side-panel">
+      <div class="panel">
+        <h3>Stack &amp; Integrations</h3>
+        <div class="chips"><span class="chip">Claude Skill</span><span class="chip">HubSpot</span><span class="chip">Excel/CSV</span></div>
+      </div>
+      <div class="panel">
+        <h3>What It Needs</h3>
+        <ul class="req-list"><li>Claude Code or Claude access for the team</li><li>An official import template schema</li><li>Optional: CRM private-app token (contacts/companies read-write, imports API)</li></ul>
+      </div>
+      <div class="panel panel-cta">
+        <h3>Discuss this build</h3>
+        <p>Happy to walk through the architecture, the failures along the way, or how this could translate to your team.</p>
+        <a class="btn btn-primary" href="mailto:pdiamitani@atlashxm.com?subject=Portfolio%3A%20HubSpot Import Formatter">Email Patrick</a>
+      </div>
+    </aside>
+  </div>
+</main>
+<footer class="footer">
+  <div class="footer-inner">
+    <div>© 2026 Patrick Diamitani. Case studies anonymized for public portfolio use — no employer-identifying or client-identifying detail included.</div>
+    <div class="footer-meta">pdiamitani@atlashxm.com · linkedin.com/in/diamitani</div>
+  </div>
+</footer>
+<script src="../assets/app.js"></script>
+</body>
+</html>

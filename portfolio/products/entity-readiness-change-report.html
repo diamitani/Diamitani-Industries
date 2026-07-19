@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Entity Readiness Change Report — Patrick Diamitani</title>
+<meta name="description" content="A failure-safe weekly diff engine that catches every country compliance flip a marketing team would otherwise miss.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<nav class="nav">
+  <a class="brand" href="../index.html">Patrick Diamitani<span class="brand-div">/</span><span class="brand-sub">Enterprise AI Production</span></a>
+  <div class="nav-links">
+    <a href="../index.html#about">About</a>
+    <a href="../index.html#library">Skill &amp; Product Library</a>
+    <a href="../index.html#contact">Contact</a>
+    <a class="nav-cta" href="https://linkedin.com/in/diamitani" target="_blank" rel="noopener">LinkedIn ↗</a>
+  </div>
+</nav>
+
+<main class="product-page" style="--cat:#8b4a3f">
+  <div class="crumbs"><a href="../index.html#library">Skill &amp; Product Library</a> <span>/</span> <span>Compliance</span></div>
+  <header class="product-hero">
+    <div class="badge-row">
+      <span class="badge type-badge">Automation Workflow</span>
+      <span class="badge status-badge">Build-ready</span>
+    </div>
+    <h1>Entity Readiness Change Report</h1>
+    <p class="tagline">A failure-safe weekly diff engine that catches every country compliance flip a marketing team would otherwise miss.</p>
+    <div class="metric-callout">6/6 unit checks passing; baseline writes sit downstream of delivery so failures can never corrupt state</div>
+    <div class="tags"><span class="tag">n8n</span><span class="tag">Onspring</span><span class="tag">compliance</span><span class="tag">state management</span><span class="tag">Outlook</span></div>
+  </header>
+  <div class="product-body">
+    <article class="onesheet">
+      <h3>Overview</h3>
+<p>A global HR-tech (EOR) platform&#x27;s legal ability to hire in each country changes over time, tracked in a GRC/compliance system of record — but nobody was catching the flips, so the marketing team kept paying for search ads in countries the company could no longer legally hire in. This weekly n8n workflow pulls country hire-readiness from the compliance system, normalizes it to a strict boolean (only two exact statuses count as &quot;ready&quot;), diffs against last week&#x27;s saved baseline, and emails leadership (and, in a later phase, the ad agency) only the countries that flipped — a locked two-column report. Build-ready with a full passing unit-test suite and a reliability design that treats &quot;silent failure&quot; as the primary threat to guard against.</p>
+<h3>The Problem</h3>
+<p>A global HR-tech (EOR) platform&#x27;s legal ability to hire in a given country is not static — it changes as entity registrations, licenses, and local regulations shift, and a GRC system tracks this. But nothing surfaced <em>changes</em> to the business side: the marketing team kept running paid search campaigns in countries the company could no longer hire in, wasting spend and creating a compliance risk nobody caught until someone asked.</p>
+<h3>How It Works</h3>
+<ol>
+<li><strong>Weekly schedule trigger</strong> — n8n (a workflow-automation platform) fires the pipeline on a fixed weekly cadence, no manual kickoff needed.</li>
+<li><strong>Pull from the compliance system</strong> — the workflow queries the company&#x27;s governance/risk/compliance platform for the current hire-readiness status of every tracked country.</li>
+<li><strong>Strict normalization</strong> — country status is reduced to a boolean: only two exact status strings count as &quot;ready to hire&quot;; everything else (including unrecognized or blank values) is treated as not-ready, so ambiguous data never silently reads as a green light.</li>
+<li><strong>State comparison via n8n Data Table</strong> — the current week&#x27;s normalized snapshot is diffed against last week&#x27;s saved baseline (n8n&#x27;s built-in Data Table acts as the source-of-truth state store, not a database dependency).</li>
+<li><strong>Only flips are reported</strong> — the output is a locked two-column report (country, direction of flip) containing <em>only</em> countries that changed status this week — up-flips (regained hire eligibility) and down-flips (lost it).</li>
+<li><strong>Delivery + downstream mirror</strong> — the report emails to leadership; a locked spreadsheet mirror on cloud storage satisfies a hard infrastructure constraint set by leadership. A later phase extends delivery to the paid-ads agency directly.</li>
+<li><strong>Baseline write happens last, downstream of delivery</strong> — so a failed pull or failed send can never overwrite last week&#x27;s known-good state.</li>
+</ol>
+<h3>Stack &amp; Integrations</h3>
+<div class="table-wrap"><table><thead><tr><th>Tool</th><th>Role</th><th>Access needed</th></tr></thead><tbody>
+<tr><td>n8n</td><td>Schedule trigger, Data Table (state store), Code nodes (normalization + diff logic)</td><td>n8n workspace</td></tr>
+<tr><td>Compliance/GRC system (Onspring)</td><td>Source of country hire-readiness data</td><td>API/read access to the relevant compliance app</td></tr>
+<tr><td>Email (Outlook)</td><td>Weekly report delivery to leadership</td><td>Microsoft 365 OAuth (mail send)</td></tr>
+<tr><td>Spreadsheet on cloud storage</td><td>Mirror of report state, honoring an infrastructure constraint</td><td>Cloud file access</td></tr>
+</tbody></table></div>
+<h3>Setup Process</h3>
+<ol>
+<li>Confirm the two exact status strings in your compliance system that mean &quot;ready to hire&quot;; hard-code the strict boolean rule.</li>
+<li>Import the n8n workflow JSON; configure the compliance-system pull (API or export-based) and email credential.</li>
+<li>Create the n8n Data Table for baseline state; seed it silently on first run so week one doesn&#x27;t false-alarm on every country.</li>
+<li>Run the unit checks (up-flip, down-flip, first-run seeding, empty-pull abort, missing-country handling, type coercion) before any live send.</li>
+<li>Get stakeholder sign-off on the report format and recipient list before activation.</li>
+<li>Activate the weekly schedule; monitor the first few runs for empty-pull aborts (which should throw loudly, not skip silently).</li>
+</ol>
+<h3>What You Need</h3>
+<ul>
+<li>[ ] Compliance/GRC system access (read scope on the relevant app)</li>
+<li>[ ] n8n workspace with Data Table feature available</li>
+<li>[ ] Microsoft 365 / Outlook OAuth connection</li>
+<li>[ ] Stakeholder sign-off on the two &quot;ready&quot; status strings and the recipient list</li>
+<li>[ ] ~1 day to configure, test, and get sign-off</li>
+</ul>
+<h3>Results</h3>
+<ul>
+<li><strong>Build-ready</strong>, gated on stakeholder sign-off by design (leadership review required before activation).</li>
+<li><strong>Full unit-test suite passes</strong>, covering up-flips, down-flips, first-run seeding, empty-pull aborts, and type coercion.</li>
+<li>Designed so a data-source failure degrades to &quot;no report sent&quot; rather than a false compliance signal in either direction.</li>
+</ul>
+<h3>Challenges &amp; Fixes</h3>
+<ul>
+<li><strong>Nobody caught status flips manually</strong> → automated weekly diff instead of relying on someone remembering to check the compliance system.</li>
+<li><strong>Risk of a failed pull corrupting the baseline</strong> → baseline write sits strictly downstream of successful delivery, so a bad run can never overwrite last week&#x27;s good state.</li>
+<li><strong>New countries appearing in the compliance system</strong> → seed silently into the baseline on first sight instead of firing a false &quot;status changed&quot; alarm.</li>
+<li><strong>Countries disappearing from a data pull</strong> → treated as a data gap, not as &quot;no longer able to hire&quot; — the workflow won&#x27;t fire a false down-flip on missing data.</li>
+<li><strong>Ambiguous or new status strings</strong> → strict allow-list of exactly two &quot;ready&quot; strings; anything else defaults to not-ready rather than guessing.</li>
+</ul>
+<h3>Demonstrates</h3>
+<p>State management and idempotency in workflow systems · stakeholder-constraint engineering (an infrastructure mandate honored, not argued with) · designing for the failure modes first, not the happy path.</p>
+    </article>
+    <aside class="side-panel">
+      <div class="panel">
+        <h3>Stack &amp; Integrations</h3>
+        <div class="chips"><span class="chip">n8n</span><span class="chip">Onspring</span><span class="chip">Outlook</span><span class="chip">OneDrive/SharePoint</span></div>
+      </div>
+      <div class="panel">
+        <h3>What It Needs</h3>
+        <ul class="req-list"><li>Compliance/GRC system access (e.g. Onspring, read scope)</li><li>n8n workspace with Data Table feature</li><li>Microsoft 365 / Outlook OAuth connection</li><li>Stakeholder sign-off on status definitions and recipient list</li></ul>
+      </div>
+      <div class="panel panel-cta">
+        <h3>Discuss this build</h3>
+        <p>Happy to walk through the architecture, the failures along the way, or how this could translate to your team.</p>
+        <a class="btn btn-primary" href="mailto:pdiamitani@atlashxm.com?subject=Portfolio%3A%20Entity Readiness Change Report">Email Patrick</a>
+      </div>
+    </aside>
+  </div>
+</main>
+<footer class="footer">
+  <div class="footer-inner">
+    <div>© 2026 Patrick Diamitani. Case studies anonymized for public portfolio use — no employer-identifying or client-identifying detail included.</div>
+    <div class="footer-meta">pdiamitani@atlashxm.com · linkedin.com/in/diamitani</div>
+  </div>
+</footer>
+<script src="../assets/app.js"></script>
+</body>
+</html>

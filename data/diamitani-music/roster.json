@@ -1,0 +1,24 @@
+[
+  {
+    "id": "pat-dia",
+    "name": "Pat Dia",
+    "role": "Artist — Producer",
+    "genre": "Alternative / Electronic",
+    "status": "signed",
+    "joined": "2024",
+    "releases": 4,
+    "splitProfile": { "artist": 0.70, "label": 0.20, "producer": 0.10 },
+    "advanceBalance": 0
+  },
+  {
+    "id": "artist-02",
+    "name": "Open Slot — A&R",
+    "role": "Artist Development",
+    "genre": "Open genre",
+    "status": "scouting",
+    "joined": "—",
+    "releases": 0,
+    "splitProfile": { "artist": 0.65, "label": 0.25, "producer": 0.10 },
+    "advanceBalance": 0
+  }
+]

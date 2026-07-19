@@ -8,7 +8,7 @@
       "destination": "/portfolio"
     },
     {
-      "source": "/:path((?!assets/|portfolio).*)",
+      "source": "/:path((?!assets/|api/|portfolio).*)",
       "has": [{ "type": "host", "value": "portfolio.diamitani.com" }],
       "destination": "/portfolio/:path"
     },
@@ -18,7 +18,7 @@
       "destination": "/industries"
     },
     {
-      "source": "/:path((?!assets/|industries).*)",
+      "source": "/:path((?!assets/|api/|industries).*)",
       "has": [{ "type": "host", "value": "industries.diamitani.com" }],
       "destination": "/industries/:path"
     },
@@ -28,7 +28,7 @@
       "destination": "/art"
     },
     {
-      "source": "/:path((?!assets/|art).*)",
+      "source": "/:path((?!assets/|api/|art).*)",
       "has": [{ "type": "host", "value": "art.diamitani.com" }],
       "destination": "/art/:path"
     },
@@ -38,9 +38,19 @@
       "destination": "/music"
     },
     {
-      "source": "/:path((?!assets/|music).*)",
+      "source": "/:path((?!assets/|api/|music).*)",
       "has": [{ "type": "host", "value": "music.diamitani.com" }],
       "destination": "/music/:path"
+    },
+    {
+      "source": "/",
+      "has": [{ "type": "host", "value": "label.diamitani.com" }],
+      "destination": "/diamitani-music"
+    },
+    {
+      "source": "/:path((?!assets/|api/|diamitani-music).*)",
+      "has": [{ "type": "host", "value": "label.diamitani.com" }],
+      "destination": "/diamitani-music/:path"
     }
   ]
 }

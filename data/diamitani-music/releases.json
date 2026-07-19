@@ -1,0 +1,47 @@
+[
+  {
+    "id": "sunshine",
+    "title": "Sunshine",
+    "artistId": "pat-dia",
+    "type": "Single",
+    "released": "2025",
+    "status": "released",
+    "links": { "youtube": "https://youtube.com/embed/dNJgW6oE8ew" }
+  },
+  {
+    "id": "harp-about-it",
+    "title": "Harp About It",
+    "artistId": "pat-dia",
+    "type": "Single",
+    "released": "2025",
+    "status": "released",
+    "links": { "youtube": "https://youtube.com/embed/hQgNBccj9gg" }
+  },
+  {
+    "id": "sway",
+    "title": "Sway",
+    "artistId": "pat-dia",
+    "type": "Single",
+    "released": "2025",
+    "status": "released",
+    "links": { "youtube": "https://youtube.com/embed/iSTu9kgrmFU" }
+  },
+  {
+    "id": "deep",
+    "title": "Deep",
+    "artistId": "pat-dia",
+    "type": "Single",
+    "released": "2026",
+    "status": "released",
+    "links": { "youtube": "https://youtube.com/embed/ZLregHRI40E" }
+  },
+  {
+    "id": "next-single",
+    "title": "Next Single",
+    "artistId": "pat-dia",
+    "type": "Single",
+    "released": "2026",
+    "status": "in-studio",
+    "links": {}
+  }
+]

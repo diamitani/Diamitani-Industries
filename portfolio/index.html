@@ -3,41 +3,38 @@
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <meta charset="UTF-8">
-<title>Patrick Diamitani — Enterprise AI Production · Agent Skills & Product Library</title>
+<meta name="description" content="Patrick Diamitani's enterprise AI production portfolio — a Skill &amp; Product Library of production systems used daily by a 50+ person GTM org. A division of Diamitani Industries, Inc.">
+<link rel="icon" type="image/svg+xml" href="/assets/logo.svg">
+<title>Portfolio — Patrick Diamitani · Enterprise AI Production · Diamitani Industries</title>
 <style>
 :root {
-  --bg: #faf8f4;
-  --bg-2: #f1ece2;
-  --panel: #ffffff;
-  --ink: #1c1b19;
-  --ink-soft: #4a4742;
-  --muted: #7a766d;
-  --border: #e4ddd0;
-  --navy: #1b2a4a;
-  --navy-soft: #2e4270;
-  --gold: #a9752f;
-  --success: #2f6b4f;
+  /* Diamitani Industries house style — black + gold (dark by default) */
+  --bg: #050508;
+  --bg-2: #0c0d12;
+  --panel: #12131a;
+  --ink: #e6e6e8;
+  --ink-soft: #b4b5bb;
+  --muted: #8c8d93;
+  --border: #1e1f26;
+  --navy: #c9a227;        /* primary accent remapped to gold */
+  --navy-soft: #e0c25a;
+  --gold: #c9a227;
+  --success: #4ea87a;
   --radius: 10px;
-  --shadow: 0 14px 32px rgba(28,27,25,.08);
-  --font-serif: "Fraunces", "Iowan Old Style", Georgia, serif;
-  --font-body: "Source Sans 3", system-ui, sans-serif;
-  --font-mono: ui-monospace, "SF Mono", Menlo, monospace;
-}
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bg: #17161a; --bg-2: #1e1c21; --panel: #221f26; --ink: #f1efe9; --ink-soft: #cdc8bd;
-    --muted: #9a9488; --border: #34313a; --navy: #8fa6d9; --navy-soft: #b3c4e6; --gold: #d3a866;
-    --success: #7fcfa8; --shadow: 0 14px 32px rgba(0,0,0,.4);
-  }
+  --shadow: 0 14px 32px rgba(0,0,0,.45);
+  --font-serif: "Playfair Display", Georgia, "Times New Roman", serif;
+  --font-body: "Inter", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
 }
 :root[data-theme="dark"] {
-  --bg: #17161a; --bg-2: #1e1c21; --panel: #221f26; --ink: #f1efe9; --ink-soft: #cdc8bd;
-  --muted: #9a9488; --border: #34313a; --navy: #8fa6d9; --navy-soft: #b3c4e6; --gold: #d3a866;
-  --success: #7fcfa8; --shadow: 0 14px 32px rgba(0,0,0,.4);
+  --bg: #050508; --bg-2: #0c0d12; --panel: #12131a; --ink: #e6e6e8; --ink-soft: #b4b5bb;
+  --muted: #8c8d93; --border: #1e1f26; --navy: #c9a227; --navy-soft: #e0c25a; --gold: #c9a227;
+  --success: #4ea87a; --shadow: 0 14px 32px rgba(0,0,0,.45);
 }
 :root[data-theme="light"] {
+  /* optional warm light mode via the toggle */
   --bg: #faf8f4; --bg-2: #f1ece2; --panel: #ffffff; --ink: #1c1b19; --ink-soft: #4a4742;
   --muted: #7a766d; --border: #e4ddd0; --navy: #1b2a4a; --navy-soft: #2e4270; --gold: #a9752f;
   --success: #2f6b4f; --shadow: 0 14px 32px rgba(28,27,25,.08);
@@ -71,7 +68,7 @@ button { font-family: var(--font-body); }
 .view { animation: fade-in .35s ease; }
 @keyframes fade-in { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
 
-.hero { padding: 96px 28px 60px; text-align: center; background: linear-gradient(180deg, var(--bg-2), var(--bg)); border-bottom: 1px solid var(--border); }
+.hero { position: relative; padding: 96px 28px 60px; text-align: center; background: radial-gradient(120% 100% at 50% 0, color-mix(in srgb, var(--gold) 9%, var(--bg-2)) 0, var(--bg-2) 42%, var(--bg) 100%); border-bottom: 1px solid var(--border); overflow: hidden; }
 .hero-inner { max-width: 780px; margin: 0 auto; }
 .hero-eyebrow { font-size: 12px; color: var(--gold); letter-spacing: .14em; text-transform: uppercase; margin-bottom: 18px; font-weight: 600; }
 .hero h1 { font-size: clamp(38px, 7vw, 64px); font-weight: 600; letter-spacing: -.01em; }
@@ -403,8 +400,7 @@ document.getElementById("nav-contact").addEventListener("click", () => { locatio
 
 const root = document.documentElement;
 document.getElementById("theme-toggle").addEventListener("click", () => {
-  const current = root.getAttribute("data-theme") ||
-    (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+  const current = root.getAttribute("data-theme") || "dark";
   root.setAttribute("data-theme", current === "dark" ? "light" : "dark");
 });
 

@@ -1,0 +1,46 @@
+{
+  "name": "Diamitani Music",
+  "tagline": "Label, publishing, and artist-services holding under Diamitani Industries.",
+  "foundedStage": "2026 · founding stage",
+  "defaultSplits": { "artist": 0.70, "label": 0.20, "producer": 0.10 },
+  "flow": [
+    {
+      "stage": "Sign",
+      "detail": "Artist agreement sets a split profile (artist / label / producer) and an optional recoupable advance — no black-box deal terms."
+    },
+    {
+      "stage": "Release",
+      "detail": "Distribution to DSPs (YouTube Music, Spotify) through the label's pipeline. Every release gets a catalog ID and a status: in-studio, released, catalog."
+    },
+    {
+      "stage": "Collect",
+      "detail": "Streaming and sync revenue lands against the release's catalog ID — one execution-level ledger entry per payout event, same auditability standard as the Portfolio division's systems."
+    },
+    {
+      "stage": "Split & Recoup",
+      "detail": "The royalty engine applies the artist's split profile, recoups any outstanding advance from the artist's share first, then pays out the remainder — transparent and re-runnable."
+    },
+    {
+      "stage": "Reinvest",
+      "detail": "The label's share funds the next signing, sync placement push, or production budget. Independent P&L, same holding-company discipline."
+    }
+  ],
+  "services": [
+    {
+      "name": "Label Services",
+      "detail": "Distribution, release planning, and DSP delivery for signed artists — starting with Pat Dia's catalog."
+    },
+    {
+      "name": "Publishing & Sync",
+      "detail": "Publishing administration and sync-licensing scouting for film, TV, and advertising placements."
+    },
+    {
+      "name": "Artist Development",
+      "detail": "A&R, production support, and career planning — the same operator model Artispreneur brings to independent artists, applied to the label's own roster."
+    },
+    {
+      "name": "Royalty & Revenue Ops",
+      "detail": "A transparent split engine — every payout traceable to a release, a split profile, and a recoupment ledger. No black-box accounting."
+    }
+  ]
+}

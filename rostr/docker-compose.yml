@@ -1,0 +1,145 @@
+version: '3.8'
+
+services:
+  # ROSTR API Server
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      NODE_ENV: production
+      PORT: 3000
+      ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY}
+      OPENAI_API_KEY: ${OPENAI_API_KEY}
+      JWT_SECRET: ${JWT_SECRET:-your-secret-key-change-me}
+      AWS_REGION: ${AWS_REGION:-us-east-1}
+      DATABASE_URL: sqlite:///app/data/rostr.db
+    volumes:
+      - rostr-data:/app/data
+      - rostr-hub:/app/.rostr
+    depends_on:
+      - ollama
+    networks:
+      - rostr-net
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3000/health"]
+      interval: 30s
+      timeout: 3s
+      retries: 3
+      start_period: 10s
+
+  # Ollama — local LLM runtime
+  ollama:
+    image: ollama/ollama:latest
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama-data:/root/.ollama
+    networks:
+      - rostr-net
+    environment:
+      - OLLAMA_MODELS=/root/.ollama/models
+    command: serve
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:11434/api/tags"]
+      interval: 30s
+      timeout: 3s
+      retries: 3
+
+  # PostgreSQL — scalable Hub store (optional)
+  postgres:
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_DB: rostr_hub
+      POSTGRES_USER: rostr
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-rostr-dev-password}
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    networks:
+      - rostr-net
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U rostr"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Redis — for caching and task queue
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
+    networks:
+      - rostr-net
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 3s
+      retries: 5
+
+  # Minio — S3-compatible storage for workspace exports
+  minio:
+    image: minio/minio:latest
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    environment:
+      MINIO_ROOT_USER: minioadmin
+      MINIO_ROOT_PASSWORD: ${MINIO_PASSWORD:-minioadmin}
+    volumes:
+      - minio-data:/minio_data
+    networks:
+      - rostr-net
+    command: server /minio_data --console-address ":9001"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9000/minio/health/live"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+
+  # Grafana — observability dashboard
+  grafana:
+    image: grafana/grafana:latest
+    ports:
+      - "3001:3000"
+    environment:
+      GF_SECURITY_ADMIN_PASSWORD: ${GRAFANA_PASSWORD:-admin}
+      GF_USERS_ALLOW_SIGN_UP: "false"
+    volumes:
+      - grafana-data:/var/lib/grafana
+    networks:
+      - rostr-net
+    depends_on:
+      - prometheus
+
+  # Prometheus — metrics collection
+  prometheus:
+    image: prom/prometheus:latest
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+      - prometheus-data:/prometheus
+    command:
+      - "--config.file=/etc/prometheus/prometheus.yml"
+    networks:
+      - rostr-net
+
+volumes:
+  rostr-data:
+  rostr-hub:
+  ollama-data:
+  postgres-data:
+  redis-data:
+  minio-data:
+  grafana-data:
+  prometheus-data:
+
+networks:
+  rostr-net:
+    driver: bridge

@@ -1,6 +1,14 @@
 {
   "cleanUrls": true,
   "trailingSlash": false,
+  "redirects": [
+    {
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "portfolio.diamitani.com" }],
+      "destination": "https://www.diamitani.com/portfolio",
+      "permanent": true
+    }
+  ],
   "rewrites": [
     {
       "source": "/",
@@ -31,10 +39,6 @@
       "source": "/:path((?!assets/|music).*)",
       "has": [{ "type": "host", "value": "music.diamitani.com" }],
       "destination": "/music/:path"
-    },
-    {
-      "source": "/",
-      "destination": "/home"
     }
   ]
 }

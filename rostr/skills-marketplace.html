@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ROSTR Skills Marketplace — 41 Production Skills</title>
+<meta name="description" content="Download 41 production-grade AI skills. Build agents faster. Free tier with signup.">
+<link rel="icon" type="image/svg+xml" href="/assets/logo.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;1,400&family=Source+Sans+3:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/theme.css">
+<style>
+body[data-division="marketplace"]{--accent:#5eb8c4;--accent2:#e2c77a}
+
+.hero-narrow{max-width:900px}
+
+.skills-hero{
+  background:
+    linear-gradient(160deg,rgba(94,184,196,.08),transparent 50%),
+    linear-gradient(135deg,var(--surface2),var(--surface));
+}
+
+.skills-filter{
+  display:flex;gap:12px;flex-wrap:wrap;margin:2rem 0;
+}
+
+.filter-chip{
+  padding:8px 16px;border-radius:999px;border:1px solid var(--border);
+  background:transparent;color:var(--muted);cursor:pointer;
+  font-size:13px;font-weight:500;transition:all .2s var(--ease);
+}
+
+.filter-chip:hover,.filter-chip.active{
+  border-color:var(--accent);color:var(--accent);background:rgba(94,184,196,.1);
+}
+
+.skills-grid{
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px;
+  margin:2rem 0;
+}
+
+.skill-card{
+  background:var(--surface);border:1px solid var(--border);border-radius:14px;
+  padding:24px;display:flex;flex-direction:column;position:relative;
+  transition:transform .22s var(--ease),border-color .22s var(--ease),box-shadow .22s var(--ease);
+  overflow:hidden;
+}
+
+.skill-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:3px;
+  background:linear-gradient(90deg,var(--accent),var(--accent2));opacity:.6;
+}
+
+.skill-card:hover{
+  transform:translateY(-3px);border-color:var(--accent);
+  box-shadow:0 12px 24px rgba(94,184,196,.1);
+}
+
+.skill-header{
+  display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:12px;
+}
+
+.skill-icon{
+  width:40px;height:40px;border-radius:8px;
+  background:linear-gradient(135deg,rgba(94,184,196,.2),rgba(201,168,74,.1));
+  display:flex;align-items:center;justify-content:center;
+  font-size:20px;
+}
+
+.skill-name{
+  font-size:16px;font-weight:600;margin-bottom:4px;letter-spacing:-.02em;
+}
+
+.skill-category{
+  font-family:var(--mono);font-size:9px;text-transform:uppercase;
+  letter-spacing:.12em;color:var(--dim);margin-bottom:10px;
+}
+
+.skill-desc{
+  font-size:13.5px;color:var(--muted);line-height:1.55;margin-bottom:14px;flex-grow:1;
+}
+
+.skill-meta{
+  display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px;
+}
+
+.skill-tag{
+  font-size:11px;padding:4px 10px;border-radius:6px;
+  background:rgba(94,184,196,.1);color:var(--accent);
+  font-weight:500;
+}
+
+.skill-footer{
+  display:flex;justify-content:space-between;align-items:center;
+  padding-top:12px;border-top:1px solid var(--border);
+}
+
+.skill-price{
+  font-family:var(--display);font-style:italic;font-size:18px;color:var(--accent);
+}
+
+.skill-price.free{font-size:13px;text-transform:uppercase;letter-spacing:.1em;}
+
+.btn-sm{
+  padding:8px 14px;font-size:12px;border-radius:6px;border:none;
+  cursor:pointer;font-weight:600;transition:all .2s var(--ease);
+}
+
+.btn-add{
+  background:var(--accent);color:var(--ink);
+}
+
+.btn-add:hover{opacity:.9;transform:translateY(-1px);}
+
+.btn-added{
+  background:var(--surface2);color:var(--accent);border:1px solid var(--accent);
+}
+
+/* Cart & Checkout */
+.cart-panel{
+  position:fixed;right:0;top:0;width:380px;height:100vh;
+  background:var(--surface);border-left:1px solid var(--border);
+  z-index:1000;transform:translateX(400px);
+  transition:transform .3s var(--ease);display:flex;flex-direction:column;
+  box-shadow:-4px 0 16px rgba(0,0,0,.3);
+}
+
+.cart-panel.open{transform:translateX(0)}
+
+.cart-header{
+  padding:20px;border-bottom:1px solid var(--border);
+  display:flex;justify-content:space-between;align-items:center;
+}
+
+.cart-close{
+  background:none;border:none;font-size:20px;color:var(--muted);
+  cursor:pointer;transition:color .2s var(--ease);
+}
+
+.cart-close:hover{color:var(--text)}
+
+.cart-items{
+  flex-grow:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:10px;
+}
+
+.cart-item{
+  background:var(--bg);padding:12px;border-radius:8px;
+  border:1px solid var(--border);position:relative;
+}
+
+.cart-item-name{font-weight:600;font-size:13px;margin-bottom:4px;}
+
+.cart-item-close{
+  position:absolute;top:6px;right:6px;background:none;border:none;
+  color:var(--dim);cursor:pointer;font-size:14px;
+}
+
+.cart-footer{
+  padding:16px;border-top:1px solid var(--border);
+}
+
+.cart-total{
+  font-size:14px;color:var(--muted);margin-bottom:12px;
+}
+
+.cart-total strong{color:var(--accent);font-size:16px;}
+
+.btn-checkout{
+  width:100%;padding:12px;border-radius:8px;
+  background:var(--accent);color:var(--ink);border:none;
+  font-weight:600;cursor:pointer;transition:opacity .2s var(--ease);
+}
+
+.btn-checkout:hover{opacity:.9;}
+
+.btn-checkout:disabled{opacity:.4;cursor:not-allowed;}
+
+.cart-badge{
+  position:fixed;bottom:20px;right:20px;
+  background:var(--accent);color:var(--ink);
+  width:50px;height:50px;border-radius:999px;
+  display:flex;align-items:center;justify-content:center;
+  font-weight:700;cursor:pointer;
+  transition:transform .2s var(--ease),box-shadow .2s var(--ease);
+  z-index:999;box-shadow:0 4px 12px rgba(94,184,196,.3);
+}
+
+.cart-badge:hover{transform:scale(1.1);box-shadow:0 6px 16px rgba(94,184,196,.4);}
+
+/* Signup Modal */
+.modal{
+  position:fixed;inset:0;background:rgba(0,0,0,.6);
+  display:none;align-items:center;justify-content:center;
+  z-index:2000;backdrop-filter:blur(4px);
+}
+
+.modal.open{display:flex}
+
+.modal-content{
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:16px;padding:40px;max-width:420px;width:90%;
+  box-shadow:0 20px 64px rgba(0,0,0,.4);
+}
+
+.modal-header{
+  font-family:var(--display);font-style:italic;font-size:28px;
+  margin-bottom:16px;
+}
+
+.modal-desc{
+  font-size:14px;color:var(--muted);margin-bottom:24px;line-height:1.6;
+}
+
+.form-group{margin-bottom:16px;}
+
+.form-label{
+  display:block;font-size:13px;font-weight:600;margin-bottom:6px;color:var(--text);
+}
+
+.form-input{
+  width:100%;padding:10px 14px;border:1px solid var(--border);
+  border-radius:8px;background:var(--bg);color:var(--text);
+  font-family:var(--font);font-size:13px;
+  transition:border-color .2s var(--ease);
+}
+
+.form-input:focus{outline:none;border-color:var(--accent)}
+
+.modal-cta{
+  display:flex;gap:10px;margin-top:24px;
+}
+
+.btn-sign{
+  flex:1;padding:12px;border-radius:8px;border:none;
+  font-weight:600;cursor:pointer;font-size:13px;
+  transition:all .2s var(--ease);
+}
+
+.btn-sign.primary{
+  background:var(--accent);color:var(--ink);
+}
+
+.btn-sign.primary:hover{opacity:.9;}
+
+.btn-sign.ghost{
+  background:transparent;border:1px solid var(--border);color:var(--text);
+}
+
+.btn-sign.ghost:hover{border-color:var(--accent);color:var(--accent);}
+
+.modal-footer{
+  font-size:12px;color:var(--dim);margin-top:16px;text-align:center;
+}
+
+/* Stats */
+.marketplace-stats{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:2rem 0;
+}
+
+.stat-box{
+  background:var(--surface2);border:1px solid var(--border);
+  border-radius:12px;padding:16px;text-align:center;
+}
+
+.stat-num{
+  font-family:var(--display);font-style:italic;font-size:28px;
+  color:var(--accent);margin-bottom:4px;
+}
+
+.stat-label{
+  font-size:12px;color:var(--muted);text-transform:uppercase;
+  letter-spacing:.1em;
+}
+
+@media(max-width:900px){
+  .cart-panel{width:100%;border-left:none;border-top:1px solid var(--border);}
+  .cart-panel.open{transform:translateY(0)}
+  .cart-badge{display:none}
+  .marketplace-stats{grid-template-columns:repeat(2,1fr);}
+  .skills-grid{grid-template-columns:1fr;}
+  .modal-content{padding:24px;}
+}
+</style>
+</head>
+<body data-division="marketplace">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="https://www.diamitani.com" class="nav-logo">ROSTR <span>Skills</span></a>
+    <div class="nav-links">
+      <a href="#" class="active">Marketplace</a>
+      <a href="#categories">Categories</a>
+      <a href="#pricing">Pricing</a>
+    </div>
+    <button class="nav-cta" id="cart-toggle">Cart (0)</button>
+  </div>
+</nav>
+
+<header class="hero skills-hero" data-section="hero">
+  <div class="hero-inner hero-narrow">
+    <div class="hero-brand">ROSTR Skills Marketplace</div>
+    <h1>41 Production Skills.<br><em>Download & Deploy.</em></h1>
+    <p class="hero-tag">Production-grade skills built for Hermes + ROSTR + any LLM. From GTM automation to video production, developer tools to content systems. Generalized, tested, and ready to use immediately.</p>
+    <div class="marketplace-stats">
+      <div class="stat-box">
+        <div class="stat-num">41</div>
+        <div class="stat-label">Skills</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-num">12</div>
+        <div class="stat-label">Categories</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-num">100%</div>
+        <div class="stat-label">Open Source</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-num">MIT</div>
+        <div class="stat-label">License</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section class="section reveal" id="marketplace">
+  <div class="section-inner">
+    <div class="sl">Browse</div>
+    <h2>Find the skill <em>you need.</em></h2>
+
+    <div class="skills-filter">
+      <button class="filter-chip active" data-filter="all">All Skills</button>
+      <button class="filter-chip" data-filter="gtm">GTM & Sales</button>
+      <button class="filter-chip" data-filter="dev">Developer Tools</button>
+      <button class="filter-chip" data-filter="content">Content & Video</button>
+      <button class="filter-chip" data-filter="data">Data & Analytics</button>
+      <button class="filter-chip" data-filter="automation">Automation</button>
+      <button class="filter-chip" data-filter="product">Product & Design</button>
+      <button class="filter-chip" data-filter="ops">Operations</button>
+    </div>
+
+    <div class="skills-grid" id="skills-grid">
+      <!-- Skills populated by JavaScript -->
+    </div>
+  </div>
+</section>
+
+<!-- Cart Panel -->
+<div class="cart-panel" id="cart-panel">
+  <div class="cart-header">
+    <h3 style="margin:0;font-size:16px;">Download Cart</h3>
+    <button class="cart-close" id="cart-close">✕</button>
+  </div>
+  <div class="cart-items" id="cart-items">
+    <p style="color:var(--dim);text-align:center;padding:40px 20px;">Your cart is empty. Add skills to get started.</p>
+  </div>
+  <div class="cart-footer">
+    <div class="cart-total">Total: <strong id="cart-price">$0</strong></div>
+    <button class="btn-checkout" id="checkout-btn">Download Bundle</button>
+    <p style="font-size:12px;color:var(--dim);margin-top:12px;text-align:center;">Or create a free account to download individually.</p>
+  </div>
+</div>
+
+<!-- Cart Badge -->
+<div class="cart-badge" id="cart-badge">0</div>
+
+<!-- Signup Modal -->
+<div class="modal" id="signup-modal">
+  <div class="modal-content">
+    <h2 class="modal-header">Get Skills Free</h2>
+    <p class="modal-desc">Create your free ROSTR account. Download all 41 skills, get updates, and join the community.</p>
+    <form id="signup-form">
+      <div class="form-group">
+        <label class="form-label">Email</label>
+        <input type="email" class="form-input" id="email" required placeholder="you@example.com">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Name</label>
+        <input type="text" class="form-input" id="name" required placeholder="Your Name">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Organization</label>
+        <input type="text" class="form-input" id="org" placeholder="Optional">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Password</label>
+        <input type="password" class="form-input" id="password" required placeholder="••••••••" minlength="8">
+      </div>
+      <div class="modal-cta">
+        <button type="button" class="btn-sign ghost" id="modal-close">Cancel</button>
+        <button type="submit" class="btn-sign primary">Create Account</button>
+      </div>
+    </form>
+    <p class="modal-footer">Free forever. No credit card required. Upgrade anytime.</p>
+  </div>
+</div>
+
+<div class="family-strip">
+  <div class="family-strip-inner">
+    <div class="fs-label">ROSTR Skills Marketplace</div>
+    <div class="fs-links">
+      <a href="https://github.com/diamitani/rostr-agent">GitHub</a>
+      <a href="https://www.diamitani.com">Diamitani Industries</a>
+      <a href="mailto:patrick.diamitani@gmail.com">Email</a>
+    </div>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="fb-name">ROSTR <span>Skills</span></div>
+        <p>41 production-grade skills for Hermes + ROSTR agents. Build faster. Deploy everywhere.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Skills</h4>
+        <a href="#gtm">GTM & Sales</a>
+        <a href="#dev">Developer Tools</a>
+        <a href="#content">Content & Video</a>
+        <a href="#data">Data & Analytics</a>
+      </div>
+      <div class="footer-col">
+        <h4>Resources</h4>
+        <a href="https://github.com/diamitani/rostr-agent">GitHub</a>
+        <a href="/rostr">ROSTR Docs</a>
+        <a href="#pricing">Pricing</a>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="https://linkedin.com/in/diamitani">LinkedIn</a>
+        <a href="mailto:patrick.diamitani@gmail.com">Support</a>
+        <a href="https://www.diamitani.com">Portfolio</a>
+      </div>
+    </div>
+    <div class="footer-base">
+      <p>ROSTR Skills Marketplace · MIT License</p>
+      <p>Patrick Diamitani · © 2026</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Skills database (generated from 41 .skill files)
+const SKILLS = [
+  {id: 'exec-assistant', name: 'Executive Assistant', category: 'ops', price: 'free', icon: '📋', desc: 'AI executive assistant for email, calendar, notes, and task management. Handles scheduling, summarization, and priority management.', tags: ['productivity','email','calendar']},
+  {id: 'asana-organizer', name: 'Asana Organizer', category: 'automation', price: 'free', icon: '✓', desc: 'Organize and restructure Asana projects. Clean up tasks, rewrite for clarity, restructure teams and priorities.', tags: ['asana','project','management']},
+  {id: 'dashboard-builder', name: 'Dashboard Builder', category: 'product', price: 'free', icon: '📊', desc: 'Build executive dashboards from raw data. Create SQL queries, design layouts, generate embed code.', tags: ['analytics','dashboards','sql']},
+  {id: 'workflow-builder', name: 'Workflow Builder', category: 'automation', price: 'free', icon: '⚙️', desc: 'Design and implement n8n workflows. Translate requirements into working automations with error handling.', tags: ['n8n','automation','integration']},
+  {id: 'atlas-agent-factory', name: 'Atlas Agent Factory', category: 'gtm', price: 'free', icon: '🤖', desc: 'Build multi-agent systems for sales and marketing. Define agent roles, capabilities, and orchestration.', tags: ['agents','sales','automation']},
+  {id: 'prompt-rewriter', name: 'Prompt Rewriter', category: 'dev', price: 'free', icon: '✍️', desc: 'Improve LLM prompts. Enhance clarity, reduce ambiguity, optimize for specific models and use cases.', tags: ['prompting','llm','optimization']},
+  {id: 'video-editor', name: 'Video Editor (HyperFrames)', category: 'content', price: 'free', icon: '🎬', desc: 'Create videos in code with HyperFrames. Add animations, captions, voiceovers, and renders.', tags: ['video','hyperframes','content']},
+  {id: 'clay-prospecting', name: 'Clay Prospecting Engine', category: 'gtm', price: 'free', icon: '🎯', desc: 'Build Clay prospecting sequences. Enrich company data, generate personalized messaging, route leads.', tags: ['clay','prospecting','sales']},
+  {id: 'jtbd-builder', name: 'JTBD Builder', category: 'product', price: 'free', icon: '🎯', desc: 'Jobs-to-be-Done analysis framework. Identify customer jobs, create value propositions, test messaging.', tags: ['product','strategy','marketing']},
+  {id: 'pal', name: 'PAL Compiler', category: 'dev', price: 'free', icon: '🔧', desc: 'ROSTR Prompt Abstraction Layer compiler. Transform natural language into typed agent manifests.', tags: ['rostr','pal','agents']},
+  {id: 'n8n-engineer', name: 'n8n Engineer', category: 'automation', price: 'free', icon: '⚙️', desc: 'Expert n8n workflow builder. Design complex automations, handle error cases, optimize performance.', tags: ['n8n','workflow','engineering']},
+  {id: 'gtm-architect', name: 'GTM Architect', category: 'gtm', price: 'free', icon: '🏗️', desc: 'Design go-to-market strategies. Create messaging, positioning, ICP definition, buyer journey mapping.', tags: ['gtm','strategy','sales']},
+  {id: 'hubspot-analyst', name: 'HubSpot Data Analyst', category: 'data', price: 'free', icon: '📈', desc: 'Analyze HubSpot data. Build reports, identify pipeline issues, track metrics, create forecasts.', tags: ['hubspot','data','crm']},
+  {id: 'file-organizer', name: 'File Organizer', category: 'ops', price: 'free', icon: '📁', desc: 'Auto-organize files and folders. Create naming schemes, restructure hierarchies, batch rename.', tags: ['files','organization','automation']},
+  {id: 'atlas-insider', name: 'Atlas GTM Insider', category: 'content', price: 'free', icon: '📰', desc: 'Generate newsletter-style GTM reports. Transform data into beautiful HTML emails for leadership.', tags: ['content','reporting','gtm']},
+  {id: 'saas-architect', name: 'SaaS Architect', category: 'product', price: 'free', icon: '🏛️', desc: 'Design SaaS products. Create product specs, feature roadmaps, pricing strategies, go-to-market plans.', tags: ['product','saas','strategy']},
+  {id: 'context-engine', name: 'Context Engine', category: 'dev', price: 'free', icon: '🧠', desc: 'ROSTR context persistence layer. Manage session, project, and organizational context across executions.', tags: ['rostr','context','persistence']},
+  {id: 'rostr-builder', name: 'ROSTR Agent Builder', category: 'dev', price: 'free', icon: '🤖', desc: 'Build complete ROSTR multi-agent systems. Design PAL, NPAO, RAG DAL, and Hub layers.', tags: ['rostr','agents','architecture']},
+  {id: 'atlas-video-studio', name: 'Atlas Video Studio', category: 'content', price: 'free', icon: '🎥', desc: 'Create sales and marketing videos. Generate scripts, add overlays, sync audio, render at scale.', tags: ['video','marketing','sales']},
+  {id: 'spend-analyst', name: 'Token Spend Analyzer', category: 'data', price: 'free', icon: '💰', desc: 'Track and optimize LLM token spending. Analyze cost by model, task, and user. Identify savings opportunities.', tags: ['cost','analytics','llm']},
+  {id: 'product-builder', name: 'Product Builder', category: 'product', price: 'free', icon: '🚀', desc: 'Full product development flow. Spec, design, build, test, launch. End-to-end product leadership.', tags: ['product','development','strategy']},
+  {id: 'case-study-builder', name: 'Case Study Builder', category: 'content', price: 'free', icon: '📖', desc: 'Create polished case studies. Interview customers, structure narrative, design layout, publish.', tags: ['content','marketing','case-study']},
+  {id: 'project-closeout', name: 'Project Closeout Report', category: 'ops', price: 'free', icon: '🏁', desc: 'Generate comprehensive project closeout reports. Summarize scope, achievements, lessons, retrospective.', tags: ['reporting','project','operations']},
+  {id: 'n8n-analyst', name: 'n8n Execution Analyst', category: 'automation', price: 'free', icon: '📊', desc: 'Monitor and troubleshoot n8n workflows. Analyze execution logs, find failures, optimize performance.', tags: ['n8n','monitoring','debugging']},
+  {id: 'daily-recap', name: 'Daily Session Recap', category: 'ops', price: 'free', icon: '📝', desc: 'Auto-generate session recaps. Summarize work done, key decisions, next steps, learnings.', tags: ['productivity','reporting','summary']},
+  {id: 'new-project', name: 'New Project System', category: 'product', price: 'free', icon: '📋', desc: 'Scaffold new projects. Create folder structure, documentation templates, setup checklist.', tags: ['project','setup','productivity']},
+  {id: 'handoff', name: 'Project Handoff', category: 'ops', price: 'free', icon: '🤝', desc: 'Create handoff documents. Transition projects between teams. Document decisions, systems, and next steps.', tags: ['documentation','handoff','operations']},
+  {id: 'clay-enricher', name: 'Clay CSV Enricher', category: 'automation', price: 'free', icon: '📊', desc: 'Enrich CSV data via Clay. Add firmographics, contacts, company intelligence, email addresses.', tags: ['clay','data','enrichment']},
+  {id: 'n8n-router', name: 'n8n CSV Router', category: 'automation', price: 'free', icon: '🔀', desc: 'Route and process CSV files in n8n. Parse, validate, split, merge, and deliver data workflows.', tags: ['n8n','csv','automation']},
+  {id: 'n8n-architect', name: 'n8n Workflow Architect', category: 'automation', price: 'free', icon: '🏗️', desc: 'Design large-scale n8n ecosystems. Multi-workflow orchestration, error handling, monitoring.', tags: ['n8n','architecture','automation']},
+  {id: 'clay-credit', name: 'Clay Credit Estimator', category: 'data', price: 'free', icon: '💳', desc: 'Estimate Clay credits needed for operations. Calculate per-record costs, plan budgets, optimize queries.', tags: ['clay','cost','planning']},
+  {id: 'instructions-builder', name: 'Project Instructions Builder', category: 'ops', price: 'free', icon: '📚', desc: 'Generate comprehensive project documentation. Create runbooks, how-to guides, troubleshooting docs.', tags: ['documentation','project','operations']},
+  {id: 'atlas-usecase', name: 'Atlas Use Case Builder', category: 'gtm', price: 'free', icon: '📋', desc: 'Build compelling use cases for Atlas. Create narratives, ROI calculations, customer outcomes.', tags: ['gtm','content','sales']},
+  {id: 'video-builder', name: 'Atlas Prospect Video Builder', category: 'content', price: 'free', icon: '🎬', desc: 'Generate personalized prospect videos. Script, animate, personalize, and deliver at scale.', tags: ['video','sales','personalization']},
+  {id: 'credit-estimator', name: 'Clay Credit Calculator', category: 'data', price: 'free', icon: '📊', desc: 'Calculate Clay API costs. Estimate credits, plan budgets, optimize for cost-efficiency.', tags: ['clay','cost','planning']},
+];
+
+// Filter and render
+const grid = document.getElementById('skills-grid');
+const cartBadge = document.getElementById('cart-badge');
+const cartPanel = document.getElementById('cart-panel');
+const cartToggle = document.getElementById('cart-toggle');
+const cartClose = document.getElementById('cart-close');
+const cartItems = document.getElementById('cart-items');
+const checkoutBtn = document.getElementById('checkout-btn');
+const modal = document.getElementById('signup-modal');
+const modalClose = document.getElementById('modal-close');
+const signupForm = document.getElementById('signup-form');
+
+let cart = JSON.parse(localStorage.getItem('rostr-cart') || '[]');
+
+function renderSkills(filter = 'all') {
+  const filtered = filter === 'all' ? SKILLS : SKILLS.filter(s => s.category === filter);
+  grid.innerHTML = filtered.map(skill => `
+    <div class="skill-card">
+      <div class="skill-header">
+        <div>
+          <div class="skill-category">${skill.category}</div>
+          <div class="skill-name">${skill.name}</div>
+        </div>
+        <div class="skill-icon">${skill.icon}</div>
+      </div>
+      <p class="skill-desc">${skill.desc}</p>
+      <div class="skill-meta">
+        ${skill.tags.map(t => `<span class="skill-tag">${t}</span>`).join('')}
+      </div>
+      <div class="skill-footer">
+        <div class="skill-price ${skill.price === 'free' ? 'free' : ''}">${skill.price}</div>
+        <button class="btn-sm btn-add ${cart.find(s => s.id === skill.id) ? 'btn-added' : ''}" onclick="addToCart('${skill.id}')">
+          ${cart.find(s => s.id === skill.id) ? '✓ Added' : 'Add'}
+        </button>
+      </div>
+    </div>
+  `).join('');
+}
+
+function addToCart(skillId) {
+  const skill = SKILLS.find(s => s.id === skillId);
+  if (!cart.find(s => s.id === skillId)) {
+    cart.push(skill);
+    localStorage.setItem('rostr-cart', JSON.stringify(cart));
+    updateCart();
+    renderSkills(document.querySelector('.filter-chip.active').dataset.filter);
+  }
+}
+
+function removeFromCart(skillId) {
+  cart = cart.filter(s => s.id !== skillId);
+  localStorage.setItem('rostr-cart', JSON.stringify(cart));
+  updateCart();
+  renderSkills(document.querySelector('.filter-chip.active').dataset.filter);
+}
+
+function updateCart() {
+  cartBadge.textContent = cart.length;
+  cartToggle.textContent = `Cart (${cart.length})`;
+  if (cart.length === 0) {
+    cartItems.innerHTML = '<p style="color:var(--dim);text-align:center;padding:40px 20px;">Your cart is empty. Add skills to get started.</p>';
+  } else {
+    cartItems.innerHTML = cart.map(s => `
+      <div class="cart-item">
+        <div class="cart-item-name">${s.name}</div>
+        <button class="cart-item-close" onclick="removeFromCart('${s.id}')">✕</button>
+      </div>
+    `).join('');
+  }
+}
+
+// Event listeners
+document.querySelectorAll('.filter-chip').forEach(chip => {
+  chip.addEventListener('click', (e) => {
+    document.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
+    e.target.classList.add('active');
+    renderSkills(e.target.dataset.filter);
+  });
+});
+
+cartToggle.addEventListener('click', () => cartPanel.classList.toggle('open'));
+cartClose.addEventListener('click', () => cartPanel.classList.remove('open'));
+
+checkoutBtn.addEventListener('click', () => {
+  if (cart.length === 0) return;
+  modal.classList.add('open');
+});
+
+modalClose.addEventListener('click', () => modal.classList.remove('open'));
+
+signupForm.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const email = document.getElementById('email').value;
+  const name = document.getElementById('name').value;
+  const org = document.getElementById('org').value;
+
+  // In production, this would call /api/auth/signup
+  console.log('Signup:', { email, name, org, skills: cart.length });
+
+  alert(`Welcome, ${name}! Your account has been created. Download links for ${cart.length} skills sent to ${email}.`);
+  modal.classList.remove('open');
+  signupForm.reset();
+  cart = [];
+  localStorage.removeItem('rostr-cart');
+  updateCart();
+  renderSkills('all');
+});
+
+// Initial render
+renderSkills();
+updateCart();
+</script>
+</body>
+</html>

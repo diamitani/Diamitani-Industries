@@ -4,16 +4,6 @@
   "rewrites": [
     {
       "source": "/",
-      "has": [{ "type": "host", "value": "portfolio.diamitani.com" }],
-      "destination": "/portfolio"
-    },
-    {
-      "source": "/:path+",
-      "has": [{ "type": "host", "value": "portfolio.diamitani.com" }],
-      "destination": "/portfolio/:path+"
-    },
-    {
-      "source": "/",
       "has": [{ "type": "host", "value": "industries.diamitani.com" }],
       "destination": "/industries"
     },

@@ -4,1020 +4,496 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Portfolio — Patrick Diamitani · Enterprise AI Production · Diamitani Industries</title>
-<meta name="description" content="The full Patrick Diamitani portfolio: 16 production AI systems, 40+ Claude skills, consulting, holdings, research, and civic work. A division of Diamitani Industries.">
+<meta name="description" content="The full Patrick Diamitani portfolio: 16 production AI systems, 40+ Claude skills, shipped products, consulting, and research.">
 <link rel="icon" type="image/svg+xml" href="/assets/logo.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;1,400&family=Source+Sans+3:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<style>
-:root {
-  --bg:#050508; --bg-2:#0c0d12; --panel:#12131a; --ink:#e6e6e8; --ink-soft:#b4b5bb;
-  --muted:#8c8d93; --border:#1e1f26; --gold:#c9a227; --gold-soft:#e0c25a;
-  --success:#4ea87a; --cyan:#5eb8c4; --rose:#d48aa8;
-  --radius:10px; --shadow:0 14px 32px rgba(0,0,0,.45);
-  --font-serif:"Playfair Display",Georgia,serif;
-  --font-body:"Source Sans 3",system-ui,sans-serif;
-  --font-mono:"JetBrains Mono",ui-monospace,"SF Mono",Menlo,monospace;
-}
-*{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{background:var(--bg);color:var(--ink);font-family:var(--font-body);line-height:1.65;-webkit-font-smoothing:antialiased}
-a{color:inherit;text-decoration:none}
-h1,h2,h3,h4{font-family:var(--font-serif);line-height:1.15;color:var(--ink);text-wrap:balance}
-button{font-family:var(--font-body)}
-#app{max-width:100%;overflow-x:hidden}
-@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.001ms!important;transition-duration:.001ms!important}}
-
-/* ── Nav ── */
-.nav{position:sticky;top:0;z-index:200;display:flex;justify-content:space-between;align-items:center;gap:12px;padding:0 28px;height:60px;background:color-mix(in srgb,var(--bg) 90%,transparent);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);flex-wrap:wrap}
-.brand{font-family:var(--font-serif);font-weight:600;font-size:16px;display:flex;align-items:center;gap:8px;cursor:pointer;background:none;border:none;color:var(--ink)}
-.brand-div{color:var(--gold)}
-.brand-sub{font-family:var(--font-body);font-size:10px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.1em}
-.nav-links{display:flex;align-items:center;gap:4px;font-size:13px;color:var(--ink-soft)}
-.nav-links a,.nav-links button{background:none;border:none;color:var(--muted);font-size:13px;cursor:pointer;padding:6px 10px;border-radius:6px;transition:color .15s,background .15s;white-space:nowrap}
-.nav-links a:hover,.nav-links button:hover{color:var(--ink);background:color-mix(in srgb,var(--gold) 8%,transparent)}
-.nav-links a.active,.nav-links button.active{color:var(--gold)}
-.nav-sep{width:1px;height:14px;background:var(--border);margin:0 4px;flex-shrink:0}
-.nav-home{border:1px solid var(--border)!important;border-radius:999px!important;padding:5px 13px!important}
-.nav-home:hover{border-color:var(--gold)!important}
-
-/* ── Buttons ── */
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:11px 22px;border-radius:8px;font-weight:600;font-size:14px;transition:transform .15s,box-shadow .15s,opacity .15s;cursor:pointer;border:none}
-.btn-primary{background:var(--gold);color:#05050a;box-shadow:0 4px 14px color-mix(in srgb,var(--gold) 28%,transparent)}
-.btn-primary:hover{transform:translateY(-2px);opacity:.92}
-.btn-ghost{background:transparent;border:1px solid var(--border);color:var(--ink-soft)}
-.btn-ghost:hover{color:var(--gold);border-color:var(--gold)}
-.btn-accent{background:var(--cyan);color:#05050a}
-.btn-accent:hover{transform:translateY(-2px);opacity:.92}
-.btn:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
-
-/* ── Animations ── */
-.view{animation:fade-in .35s ease}
-@keyframes fade-in{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
-
-/* ── Hero ── */
-.hero{position:relative;padding:96px 28px 64px;text-align:center;background:radial-gradient(120% 100% at 50% 0,color-mix(in srgb,var(--gold) 8%,var(--bg-2)) 0,var(--bg-2) 42%,var(--bg) 100%);border-bottom:1px solid var(--border);overflow:hidden}
-.hero-inner{max-width:800px;margin:0 auto}
-.hero-eyebrow{font-size:11px;color:var(--gold);letter-spacing:.14em;text-transform:uppercase;margin-bottom:18px;font-weight:600}
-.hero h1{font-size:clamp(36px,7vw,62px);font-weight:600;letter-spacing:-.01em;line-height:1.1}
-.hero-tagline{color:var(--ink-soft);font-size:17px;max-width:620px;margin:20px auto 0;line-height:1.6}
-.hero-stats{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin:36px 0 28px}
-.stat{background:var(--panel);border:1px solid var(--border);border-radius:var(--radius);padding:14px 22px;min-width:120px}
-.stat-n{font-family:var(--font-serif);font-size:24px;font-weight:600;color:var(--gold);font-variant-numeric:tabular-nums}
-.stat-l{font-size:11px;color:var(--muted);margin-top:4px}
-.hero-cta{display:flex;justify-content:center;gap:10px;flex-wrap:wrap}
-
-/* ── Section layout ── */
-.section{padding:72px 28px;border-bottom:1px solid var(--border)}
-.section-dark{padding:72px 28px;background:var(--bg-2);border-bottom:1px solid var(--border)}
-.section-inner{max-width:1160px;margin:0 auto}
-.sl{font-size:10px;color:var(--gold);letter-spacing:.14em;text-transform:uppercase;margin-bottom:12px;font-weight:600;font-family:var(--font-mono)}
-.section h2{font-size:clamp(26px,4vw,36px);font-weight:600;letter-spacing:-.01em;margin-bottom:10px}
-.section h2 em,.section-dark h2 em{font-family:var(--font-serif);font-style:italic;font-weight:400;color:var(--gold)}
-.section-dark h2{font-size:clamp(26px,4vw,36px);font-weight:600;letter-spacing:-.01em;margin-bottom:10px}
-.section-sub{color:var(--muted);font-size:15.5px;max-width:560px;margin-bottom:36px;line-height:1.55}
-
-/* ── Filter bar ── */
-.filters{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:24px}
-.filter-btn{background:var(--panel);border:1px solid var(--border);color:var(--muted);border-radius:999px;padding:6px 14px;font-size:12px;font-weight:600;cursor:pointer;transition:all .15s}
-.filter-btn:hover{color:var(--gold)}
-.filter-btn.active{background:var(--gold);color:#05050a;border-color:var(--gold)}
-
-/* ── System cards (case studies) ── */
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px}
-.card{display:flex;flex-direction:column;gap:10px;background:var(--panel);border:1px solid var(--border);border-radius:var(--radius);padding:22px;transition:transform .18s,box-shadow .18s;position:relative;text-align:left;cursor:pointer;color:inherit}
-.card::before{content:"";position:absolute;inset:0 0 auto 0;height:3px;border-radius:var(--radius) var(--radius) 0 0;background:var(--cat-color,var(--gold))}
-.card:hover{transform:translateY(-3px);box-shadow:var(--shadow)}
-.card-top{display:flex;justify-content:space-between;align-items:center}
-.card h3{font-size:17px;font-weight:600;font-family:var(--font-serif)}
-.card-blurb{color:var(--ink-soft);font-size:13px;flex-grow:1}
-.card-footer{display:flex;align-items:center;justify-content:space-between;gap:8px;font-size:11.5px;color:var(--muted);border-top:1px solid var(--border);padding-top:10px}
-.card-cta{color:var(--gold);font-weight:600;white-space:nowrap}
-
-/* ── Badge ── */
-.badge{font-size:10px;font-weight:600;padding:3px 9px;border-radius:999px;letter-spacing:.02em}
-.type-badge{background:var(--bg-2);border:1px solid var(--border);color:var(--ink-soft)}
-.status-badge{background:color-mix(in srgb,var(--success) 12%,transparent);color:var(--success);border:1px solid color-mix(in srgb,var(--success) 35%,transparent)}
-.tags{display:flex;gap:5px;flex-wrap:wrap}
-.tag{font-size:10px;color:var(--muted);background:var(--bg-2);border:1px solid var(--border);padding:3px 8px;border-radius:5px}
-.chip{font-size:11px;color:var(--ink);background:var(--bg-2);border:1px solid var(--border);padding:4px 10px;border-radius:999px}
-.chips{display:flex;gap:5px;flex-wrap:wrap}
-.empty{text-align:center;color:var(--muted);padding:56px 0}
-
-/* ── Skill cards ── */
-.skill-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px}
-.skill-card{background:var(--panel);border:1px solid var(--border);border-radius:var(--radius);padding:20px;display:flex;flex-direction:column;gap:9px;transition:transform .18s,border-color .18s}
-.skill-card:hover{transform:translateY(-2px);border-color:color-mix(in srgb,var(--gold) 45%,var(--border))}
-.skill-cat{font-family:var(--font-mono);font-size:9px;text-transform:uppercase;letter-spacing:.1em;color:var(--skill-color,var(--muted));font-weight:600}
-.skill-card h3{font-size:15px;font-weight:600;color:var(--ink);letter-spacing:-.01em}
-.skill-card p{font-size:12.5px;color:var(--ink-soft);line-height:1.5;flex:1}
-.skill-tags{display:flex;gap:5px;flex-wrap:wrap;margin-top:4px}
-.skill-tag{font-size:10px;color:var(--muted);background:var(--bg-2);border:1px solid var(--border);padding:2px 7px;border-radius:4px}
-
-/* ── Company/Holdings grid ── */
-.holdings-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px}
-.holding-card{background:var(--panel);border:1px solid var(--border);border-radius:var(--radius);padding:24px;display:flex;flex-direction:column;gap:8px;text-decoration:none;color:inherit;transition:transform .18s,border-color .18s;position:relative;overflow:hidden}
-.holding-card::before{content:"";position:absolute;inset:0;background:radial-gradient(80% 60% at 0 0,color-mix(in srgb,var(--hc,var(--gold)) 10%,transparent),transparent 60%);pointer-events:none}
-.holding-card:hover{transform:translateY(-2px);border-color:color-mix(in srgb,var(--hc,var(--gold)) 55%,var(--border))}
-.holding-type{font-family:var(--font-mono);font-size:9px;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);font-weight:600}
-.holding-card h3{font-size:17px;font-weight:600;letter-spacing:-.01em}
-.holding-card p{font-size:13px;color:var(--ink-soft);line-height:1.5;flex:1}
-.holding-link{font-size:12px;color:var(--gold);font-weight:600;margin-top:4px}
-
-/* ── Research card ── */
-.research-block{background:var(--panel);border:1px solid var(--border);border-radius:14px;padding:36px;max-width:820px}
-.research-block .doi{font-family:var(--font-mono);font-size:11px;color:var(--muted);margin-top:8px}
-.research-block p{color:var(--ink-soft);font-size:14.5px;line-height:1.65;margin:18px 0;max-width:68ch}
-.pillars{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px;margin:20px 0}
-.pillar{background:var(--bg-2);border:1px solid var(--border);border-radius:8px;padding:14px}
-.pillar-name{font-family:var(--font-mono);font-size:10px;color:var(--gold);text-transform:uppercase;letter-spacing:.1em;font-weight:600;margin-bottom:4px}
-.pillar p{font-size:12.5px;color:var(--muted);line-height:1.45;margin:0}
-
-/* ── Consulting / About ── */
-.two-col{display:grid;grid-template-columns:1.1fr .9fr;gap:14px}
-.consult-card{background:var(--panel);border:1px solid var(--border);border-radius:14px;padding:34px;text-decoration:none;color:inherit;display:block;transition:transform .2s,border-color .2s;position:relative;overflow:hidden}
-.consult-card::before{content:"";position:absolute;inset:0;background:radial-gradient(80% 60% at 100% 0,color-mix(in srgb,var(--cc,var(--gold)) 14%,transparent),transparent 55%);pointer-events:none}
-.consult-card:hover{transform:translateY(-3px);border-color:color-mix(in srgb,var(--cc,var(--gold)) 50%,var(--border))}
-.consult-card .ct{font-family:var(--font-mono);font-size:9px;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);margin-bottom:10px}
-.consult-card h3{font-family:var(--font-serif);font-style:italic;font-size:clamp(26px,3vw,34px);letter-spacing:-.02em;margin:6px 0 12px}
-.consult-card p{font-size:14px;color:var(--ink-soft);line-height:1.55;margin-bottom:14px;max-width:38ch}
-.consult-card .cl{font-size:13px;color:var(--gold);font-weight:600}
-.consult-card .metric-line{font-family:var(--font-mono);font-size:10px;color:var(--muted);border-top:1px solid var(--border);padding-top:10px;margin:14px 0}
-
-.about-grid{display:grid;grid-template-columns:1fr 1.4fr;gap:48px;align-items:start}
-.about-portrait{width:100%;aspect-ratio:3/4;background:linear-gradient(145deg,color-mix(in srgb,var(--gold) 8%,transparent),transparent 50%),linear-gradient(135deg,#1a1816,#12131a);border:1px solid var(--border);border-radius:14px;display:flex;align-items:center;justify-content:center;font-family:var(--font-serif);font-size:64px;color:var(--muted);font-style:italic}
-.about-body p{color:var(--ink-soft);font-size:14.5px;line-height:1.7;margin-bottom:12px}
-.about-body strong{color:var(--ink)}
-.about-quote{border-left:3px solid var(--gold);padding:12px 20px;margin:20px 0;font-family:var(--font-serif);font-style:italic;font-size:17px;color:var(--ink);line-height:1.45}
-.highlights-list{list-style:none;display:flex;flex-direction:column;gap:10px;margin-top:20px}
-.highlights-list li{position:relative;padding-left:20px;color:var(--ink-soft);font-size:13.5px;line-height:1.5}
-.highlights-list li::before{content:"—";position:absolute;left:0;color:var(--gold);font-weight:700}
-
-/* ── Contact CTA ── */
-.contact-section{padding:76px 28px;text-align:center;background:var(--gold)}
-.contact-section h2,.contact-inner p{color:#05050a}
-.contact-inner p{max-width:520px;margin:0 auto 24px;font-size:15px;opacity:.9}
-.contact-links{display:flex;justify-content:center;gap:10px;flex-wrap:wrap}
-.contact-section .btn-primary{background:#05050a;color:var(--gold)}
-.contact-section .btn-ghost{border-color:rgba(5,5,10,.25);color:#05050a}
-
-/* ── Product detail ── */
-.product-page{max-width:1040px;margin:0 auto;padding:36px 28px 84px}
-.crumbs{font-size:12px;color:var(--muted);margin-bottom:20px;display:flex;gap:8px;align-items:center}
-.crumbs button{background:none;border:none;color:var(--muted);cursor:pointer;font-size:12px;padding:0}
-.crumbs button:hover{color:var(--gold)}
-.product-hero{margin-bottom:32px;padding-bottom:24px;border-bottom:1px solid var(--border)}
-.badge-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
-.product-hero h1{font-size:clamp(26px,5vw,40px);font-weight:600;letter-spacing:-.01em}
-.tagline{color:var(--ink-soft);font-size:15.5px;margin:12px 0 14px;max-width:68ch}
-.metric-callout{display:inline-block;font-weight:600;color:var(--success);background:color-mix(in srgb,var(--success) 10%,transparent);border:1px solid color-mix(in srgb,var(--success) 30%,transparent);border-radius:8px;padding:8px 14px;margin-bottom:14px;font-size:13.5px}
-.product-body{display:grid;grid-template-columns:1fr 270px;gap:24px;align-items:start}
-.side-panel{display:flex;flex-direction:column;gap:12px}
-.panel{background:var(--panel);border:1px solid var(--border);border-radius:var(--radius);padding:16px}
-.panel h3{font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:10px;font-family:var(--font-body);font-weight:700}
-.panel-cta p{font-size:12px;color:var(--ink-soft);margin-bottom:12px}
-.panel-cta .btn{width:100%}
-.req-list{list-style:none;display:flex;flex-direction:column;gap:6px;font-size:12.5px;color:var(--ink-soft)}
-.req-list li::before{content:"\2713 ";color:var(--success);font-weight:700}
-.onesheet{background:var(--panel);border:1px solid var(--border);border-radius:var(--radius);padding:28px 32px}
-.onesheet h2{font-size:18px;margin:24px 0 10px;padding-bottom:7px;border-bottom:1px solid var(--border)}
-.onesheet h2:first-child{margin-top:0}
-.onesheet h3{font-size:15px;margin:18px 0 8px;font-family:var(--font-body);font-weight:700}
-.onesheet p{color:var(--ink-soft);font-size:14px;margin-bottom:10px}
-.onesheet ul,.onesheet ol{margin:0 0 12px 20px;color:var(--ink-soft);font-size:14px;display:flex;flex-direction:column;gap:5px}
-.onesheet strong{color:var(--ink)}
-.onesheet code{font-family:var(--font-mono);font-size:11.5px;background:var(--bg-2);border:1px solid var(--border);padding:2px 5px;border-radius:4px;color:var(--gold)}
-.onesheet hr{border:none;border-top:1px solid var(--border);margin:20px 0}
-.table-wrap{overflow-x:auto;margin:12px 0 16px;border:1px solid var(--border);border-radius:8px}
-.onesheet table{width:100%;border-collapse:collapse;font-size:12.5px}
-.onesheet th{text-align:left;background:var(--bg-2);color:var(--muted);font-weight:700;padding:8px 12px;border-bottom:1px solid var(--border);white-space:nowrap}
-.onesheet td{padding:8px 12px;border-bottom:1px solid var(--border);color:var(--ink-soft);vertical-align:top}
-.onesheet tr:last-child td{border-bottom:none}
-
-/* ── Footer ── */
-.footer{border-top:1px solid var(--border);padding:24px 28px;background:var(--bg-2)}
-.footer-inner{max-width:1160px;margin:0 auto;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:12px;color:var(--muted)}
-
-/* ── Responsive ── */
-@media(max-width:860px){
-  .product-body{grid-template-columns:1fr}
-  .onesheet{padding:20px 16px}
-  .two-col,.about-grid{grid-template-columns:1fr}
-  .nav-links a:not(.nav-home):not(.nav-active){display:none}
-}
-@media(max-width:640px){
-  .hero{padding:72px 16px 48px}
-  .section,.section-dark{padding:52px 16px}
-}
-</style>
+<link rel="stylesheet" href="/assets/theme.css">
 </head>
+<body data-division="portfolio">
 
-<body>
-<div id="app">
-  <nav class="nav">
-    <button class="brand" id="nav-brand">Patrick Diamitani<span class="brand-div">/</span><span class="brand-sub">Portfolio</span></button>
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="https://www.diamitani.com" class="nav-logo">Diamitani <span>Industries</span></a>
     <div class="nav-links">
-      <button id="nav-systems">Systems</button>
-      <button id="nav-skills">Skills</button>
-      <button id="nav-workflows">Workflows</button>
-      <button id="nav-consulting">Consulting</button>
-      <button id="nav-holdings">Holdings</button>
-      <button id="nav-research">Research</button>
-      <button id="nav-about">About</button>
-      <div class="nav-sep"></div>
-      <a class="nav-home" href="https://www.diamitani.com">← diamitani.com</a>
+      <a href="https://www.diamitani.com">Home</a>
+      <a href="/products">Products</a>
+      <a href="/portfolio" class="active">Portfolio</a>
+      <a href="/consulting">Consulting</a>
+      <a href="/civic">Civic</a>
     </div>
-  </nav>
+    <a href="mailto:patrick.diamitani@gmail.com" class="nav-cta">Contact</a>
+  </div>
+</nav>
 
-  <div id="view-root"></div>
-
-  <footer class="footer">
-    <div class="footer-inner" style="flex-direction:column;gap:12px;align-items:stretch">
-      <div style="display:flex;flex-wrap:wrap;gap:12px 18px;justify-content:space-between;align-items:center">
-        <div style="font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-family:var(--font-mono)">Diamitani Industries</div>
-        <div style="display:flex;flex-wrap:wrap;gap:12px 16px;font-size:12.5px">
-          <a href="https://www.diamitani.com">Home</a>
-          <a href="/portfolio" style="color:var(--gold);font-weight:600">Portfolio</a>
-          <a href="https://industries.diamitani.com">Industries</a>
-          <a href="https://art.diamitani.com">Art</a>
-          <a href="https://music.diamitani.com">Music</a>
-        </div>
-      </div>
-      <div style="display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;border-top:1px solid var(--border);padding-top:12px">
-        <div>© 2026 Patrick Diamitani · <a href="https://www.diamitani.com" style="color:inherit;text-decoration:underline">Diamitani Industries, Inc.</a> · Case studies anonymized for public portfolio use.</div>
-        <div>pdiamitani@atlashxm.com · linkedin.com/in/diamitani</div>
-      </div>
+<header class="hero" data-section="hero">
+  <div class="hero-inner hero-narrow">
+    <div class="hero-brand">Portfolio</div>
+    <div class="hero-est">Enterprise AI · Production Systems · Skills · Research</div>
+    <h1>Everything I've <em>built.</em></h1>
+    <p class="hero-tag">16 production AI systems at Atlas HXM. 40+ Claude skills. 11 automation workflows. Shipped products. Published research. The full portfolio in one place.</p>
+    <div class="hero-links">
+      <a href="#products" class="btn btn-primary">Shipped Products</a>
+      <a href="#systems" class="btn btn-ghost">Enterprise Systems</a>
+      <a href="#skills" class="btn btn-ghost">Skills Library</a>
     </div>
-  </footer>
+  </div>
+</header>
+
+<div class="metrics" data-section="metrics">
+  <div class="metrics-inner">
+    <div class="metric"><div class="metric-n">$9M+</div><div class="metric-l">Attributed pipeline from AI inbound</div></div>
+    <div class="metric"><div class="metric-n">16</div><div class="metric-l">Production systems at Atlas HXM</div></div>
+    <div class="metric"><div class="metric-n">40+</div><div class="metric-l">Claude skills shipped</div></div>
+    <div class="metric"><div class="metric-n">11</div><div class="metric-l">Automation workflows live</div></div>
+    <div class="metric"><div class="metric-n">6</div><div class="metric-l">Shipped consumer products</div></div>
+  </div>
 </div>
 
-<script src="data.js"></script>
-<script>
-const viewRoot = document.getElementById("view-root");
-function esc(s){const d=document.createElement("div");d.textContent=s||"";return d.innerHTML}
-
-/* ── Skills data ── */
-const SKILLS = [
-  // Framework & Methodology
-  {name:"PAL — Prompt Abstraction Layer",slug:"pal",cat:"Framework",color:"#c9a227",
-   desc:"A compiler-inspired meta-layer that automatically rewrites every vague or casual message into a structured, model-specific, deployment-ready prompt. Runs on every input before any model sees it.",
-   what:"Sits in front of all Claude interactions. Compiles intent → composition → optimization → runtime instructions. Eliminates token waste and improves first-shot success on every task.",
-   stack:["Claude","Prompt Engineering","ROSTR"],
-   triggers:["any vague prompt","casual message","before any skill runs"],
-   tags:["Claude","ROSTR","Meta-Layer"]},
-
-  {name:"ROSTR Builder",slug:"rostr-builder",cat:"Framework",color:"#c9a227",
-   desc:"Enforces ROSTR architecture (PAL + NPAO + RAG/DAL + ContextEngine) on all agent, skill, automation, and workflow builds. Every output inherits the framework's production discipline.",
-   what:"Takes any build description and produces a properly structured skill file, agent manifest, or automation spec following the ROSTR methodology. The quality gate for everything in the library.",
-   stack:["Claude","ROSTR","Framework Design"],
-   triggers:["build me a skill","create an agent","design a workflow"],
-   tags:["Claude","ROSTR","Framework"]},
-
-  {name:"JTBD Builder",slug:"jtbd-builder",cat:"Framework",color:"#c9a227",
-   desc:"Runs any input through the full PAL compilation pipeline (Intent → Composition → Optimization → Runtime) to produce implementable Jobs-to-be-Done blueprints for AI agents and automations.",
-   what:"Converts a rough idea or user story into a precise JTBD blueprint — the job, constraints, success criteria, and recommended architecture. Prevents building the wrong thing.",
-   stack:["Claude","PAL","JTBD","Framework"],
-   triggers:["define this use case","what job does this do","blueprint this agent"],
-   tags:["Claude","PAL","Blueprint"]},
-
-  {name:"Context Engine",slug:"context-engine",cat:"Framework",color:"#c9a227",
-   desc:"Persistent cross-session memory for Claude. Compresses every session into searchable flat-file records. Five modes: CACHE (save session), RETRIEVE (context flash), REPORT, QUERY, SCHEDULE.",
-   what:"Eliminates the AI cold-start tax (5–20 min of re-explaining context per session). Flat-file store — no database, no infrastructure. Sessions append to a queryable index. Org knowledge compounds.",
-   stack:["Claude","Flat Files","Python","ROSTR"],
-   triggers:["save this session","context flash","what did we work on","load context"],
-   tags:["Claude","Memory","ROSTR"]},
-
-  {name:"Prompt Rewriter",slug:"prompt-rewriter",cat:"Framework",color:"#c9a227",
-   desc:"Rewrites any rough or casual prompt into a structured, model-specific, token-efficient version using documented best practices before it's sent to any AI tool.",
-   what:"Analyzes prompt intent, identifies missing context, injects the right role/format/constraint framing, and returns an optimized version. Cuts token waste and improves output quality.",
-   stack:["Claude","Prompt Engineering"],
-   triggers:["rewrite this prompt","optimize my prompt","make this better for Claude"],
-   tags:["Claude","Optimization","Prompts"]},
-
-  // GTM Automation
-  {name:"GTM Architect",slug:"gtm-architect",cat:"GTM Automation",color:"#5eb8c4",
-   desc:"Full-stack GTM automation expert for Atlas HXM. Answers any question about Clay, HubSpot, n8n, Amplemarket, Avoma, Asana, and Factors.ai — the full Atlas prospecting stack.",
-   what:"Designs, debugs, and explains GTM automation systems. Can spec out a full outbound engine, diagnose a broken workflow, or explain how signals flow from intent data to a rep's inbox.",
-   stack:["Clay","HubSpot","n8n","Amplemarket","Avoma","Asana","Factors.ai"],
-   triggers:["how does our prospecting work","build me an outbound engine","fix my Clay workflow"],
-   tags:["Clay","HubSpot","n8n","GTM"]},
-
-  {name:"n8n Workflow Architect",slug:"n8n-workflow-architect",cat:"GTM Automation",color:"#5eb8c4",
-   desc:"Takes any automation description — natural language, docs, JSON, rough ideas — and produces a full production-ready n8n workflow spec with architecture, node plan, and deployment guide.",
-   what:"The #1 FDE for n8n at Atlas HXM. Goes from rough idea to fully specced workflow in one pass. Includes error handling patterns, credential requirements, and rollback strategy.",
-   stack:["n8n","Architecture","Workflow Design","API Design"],
-   triggers:["architect this workflow","spec out this automation","design the n8n workflow for"],
-   tags:["n8n","Architecture","Specification"]},
-
-  {name:"n8n Engineer",slug:"n8n-engineer",cat:"GTM Automation",color:"#5eb8c4",
-   desc:"Builds, debugs, and scales n8n workflows like a systems engineer — AI agents, MCP server/client setups, HTTP/API integrations, community nodes, and production GTM automations.",
-   what:"Covers official n8n patterns: instance-level MCP, MCP Server Trigger, MCP Client Tool, Call n8n Workflow Tool, HTTP Request, evaluations, error handling, and production rollout. Treats n8n as both automation fabric and agent runtime.",
-   stack:["n8n","MCP","HTTP APIs","AI Agents","LangChain"],
-   triggers:["build this in n8n","debug my n8n workflow","add MCP to n8n"],
-   tags:["n8n","Engineering","MCP","APIs"]},
-
-  {name:"Workflow Builder",slug:"workflow-builder",cat:"GTM Automation",color:"#5eb8c4",
-   desc:"Turns any brief into a shippable visual architecture diagram (SVG + PNG) plus a step-by-step build plan with system components, data flows, and integration points.",
-   what:"Universal architecture diagram builder. Works from prompts, specs, docs, or rough ideas. Output: rendered diagram + implementation guide. Great for stakeholder sign-off before building.",
-   stack:["Architecture","SVG","Diagrams","Documentation"],
-   triggers:["diagram this workflow","show me the architecture","visualize this system"],
-   tags:["Architecture","Diagrams","Documentation"]},
-
-  {name:"Clay Prospecting Engine",slug:"clay-prospecting-engine",cat:"GTM Automation",color:"#5eb8c4",
-   desc:"Accepts a CSV of company names or existing contacts, routes to the correct Clay pipeline, and delivers enriched results via HubSpot table sync, CSV download, or email.",
-   what:"Two modes: Company List → People Search → Contact Enrichment, or Contact Enrichment only. Handles dedup, ICP filtering, and HubSpot handoff. The full Clay prospecting pipeline in one skill.",
-   stack:["Clay","HubSpot","CSV","Enrichment","n8n"],
-   triggers:["enrich this company list","run prospecting on these accounts","Clay pipeline for this CSV"],
-   tags:["Clay","Prospecting","HubSpot"]},
-
-  {name:"Clay CSV Enricher",slug:"clay-csv-enricher",cat:"GTM Automation",color:"#5eb8c4",
-   desc:"Rep drops a CSV of companies → validates, dry-run preview, ingests to Clay, polls until complete, returns enriched CSV. Fast one-off enrichment without touching the Clay UI.",
-   what:"Validates the CSV, shows a dry-run preview to protect credits, fires the batch to a fresh Clay run via webhook, polls until done, returns a computer:// link to the enriched file.",
-   stack:["Clay","CSV","HubSpot","Webhooks"],
-   triggers:["enrich this CSV in Clay","send this list to Clay","run Clay on these companies"],
-   tags:["Clay","CSV","Enrichment"]},
-
-  {name:"Clay Credit Estimator",slug:"clay-credit-estimator",cat:"GTM Automation",color:"#5eb8c4",
-   desc:"Estimates Clay credit cost for any enrichment run before it starts. Upload a CSV, select columns to run, get a per-row cost breakdown and total. Prevents runaway enrichment spend.",
-   what:"Reads the CSV row count, maps each requested column to its Clay credit cost tier, and returns a detailed breakdown. Pairs with the Clay Credit Governance system build.",
-   stack:["Clay","CSV","Cost Engineering"],
-   triggers:["how much will this cost in Clay","estimate Clay credits","credit budget for this list"],
-   tags:["Clay","Cost","Credits"]},
-
-  {name:"n8n CSV Router",slug:"n8n-csv-router",cat:"GTM Automation",color:"#5eb8c4",
-   desc:"The do-it-all CSV-to-list skill. Rep uploads a CSV + picks filters → n8n enriches via Clay, falls back to Amplemarket for missing contacts, then delivers to email and/or HubSpot list.",
-   what:"Collects CSV + filter form (persona, contacts-per-company, output destination, HubSpot list name), validates, fires n8n webhook, hands off async. Full campaign-ready list delivery.",
-   stack:["n8n","Clay","Amplemarket","HubSpot","CSV"],
-   triggers:["build me a list from this CSV","enrich and send to HubSpot","run through Clay and Amplemarket"],
-   tags:["n8n","Clay","HubSpot","CSV"]},
-
-  // Analytics & Reporting
-  {name:"HubSpot Data Analyst",slug:"hubspot-data-analyst",cat:"Analytics",color:"#4ea87a",
-   desc:"CRM data analyst for the Atlas HXM ELT and GTM team. Answers pipeline status, deal analysis, lead/contact reports, revenue metrics, and sales performance questions grounded in real HubSpot data.",
-   what:"Queries HubSpot CRM properties and reports. Pulls real data — never invents numbers. Generates tables, charts, and executive summaries. Answers questions like 'how many MQLs this month' or 'show me deals by stage'.",
-   stack:["HubSpot","CRM","Analytics","Reporting"],
-   triggers:["what's our pipeline","how many MQLs","show me deal data","HubSpot report"],
-   tags:["HubSpot","CRM","Analytics"]},
-
-  {name:"n8n Execution Analyst",slug:"n8n-execution-analyst",cat:"Analytics",color:"#4ea87a",
-   desc:"Monitors, audits, and investigates n8n workflow executions. Pulls logs via n8n Public API, extracts node-level errors, answers plain-English health questions, and renders HTML dashboards.",
-   what:"Connects to the Atlas n8n instance and pulls execution data for any workflow. Identifies recurring failures, stalled workflows, success rates. Daily-scheduled and at-will reporting.",
-   stack:["n8n","n8n Public API","Monitoring","Debugging"],
-   triggers:["check n8n executions","did my workflow run","why did the workflow fail","n8n health"],
-   tags:["n8n","Monitoring","Debugging"]},
-
-  {name:"Maia Chatbot Analyst",slug:"maia-chatbot-analyst",cat:"Analytics",color:"#4ea87a",
-   desc:"Pulls and analyzes results from Maia AI Assistant — Atlas HXM's HubSpot chatbot. Answers any performance question grounded in real data: conversations, MQLs, meetings booked, deals attributed.",
-   what:"Reads HubSpot chatbot data and n8n execution logs. Never invents numbers. Generates board-ready reports on chatbot ROI, funnel conversion, lead quality, and attribution.",
-   stack:["HubSpot","n8n","Chatbot Analytics","Attribution"],
-   triggers:["how is Maia performing","chatbot results","MQLs from chatbot","chatbot report"],
-   tags:["HubSpot","Chatbot","Attribution"]},
-
-  {name:"Marketing Chatbot Execution Analyst",slug:"marketing-chatbot-execution-analyst",cat:"Analytics",color:"#4ea87a",
-   desc:"Execution monitoring scoped only to the Atlas Marketing Chatbot (Maia) automation layer — n8n MQL Classification workflow + HubSpot workflows. Post-run validation and error triage.",
-   what:"Checks whether the chatbot workflow ran, extracts node-level errors, confirms MQL classification success rate, and validates delivery completion. Daily health check for the chatbot pipeline.",
-   stack:["n8n","HubSpot","Chatbot","Execution Logs"],
-   triggers:["did the chatbot workflow run","chatbot workflow health","why did MQL classification fail"],
-   tags:["n8n","HubSpot","Monitoring"]},
-
-  {name:"Dashboard Builder",slug:"dashboard-builder",cat:"Analytics",color:"#4ea87a",
-   desc:"Builds branded Atlas HXM dashboards, reports, and data visualizations. Takes pasted data, natural language descriptions, or structured inputs and returns polished HTML artifacts.",
-   what:"Generates prospect automation reports, sequence performance dashboards, pipeline health views, and executive summaries in Atlas brand style. Self-contained HTML for email or Teams.",
-   stack:["HTML","CSS","Data Viz","Atlas Brand"],
-   triggers:["build a dashboard","create a report","visualize this data","prospect automation report"],
-   tags:["HTML","Dashboards","Reporting"]},
-
-  {name:"Token Spend Analyst",slug:"token-spend-analyst",cat:"Analytics",color:"#4ea87a",
-   desc:"Estimates AI token cost for any project before work starts. Outputs a per-model cost comparison table and recommends the cheapest model that can do the job without quality loss.",
-   what:"Run before any build, skill creation, or multi-step agent workflow. Prevents surprise API costs. Maps task type to model capability and returns a cost-optimized recommendation.",
-   stack:["Claude","Anthropic API","Cost Engineering"],
-   triggers:["how much will this cost","estimate tokens","which model should I use","API cost"],
-   tags:["Claude","Cost","Optimization"]},
-
-  {name:"Atlas GTM Insider",slug:"atlas-gtm-insider",cat:"Analytics",color:"#4ea87a",
-   desc:"Generates polished newsletter-style HTML reports for GTM and ELT distribution via Outlook BCC or Teams. Understands the full Atlas prospecting pipeline end to end.",
-   what:"Takes pasted data, natural language summaries, or structured pipeline metrics and returns a ready-to-send HTML report in Atlas brand style. Board-ready, rep-friendly.",
-   stack:["HTML","Reporting","Atlas Brand","GTM"],
-   triggers:["create a GTM insider","draft the weekly summary","format this as the insider report"],
-   tags:["HTML","Reporting","GTM"]},
-
-  {name:"Daily Session Recap",slug:"daily-session-recap",cat:"Analytics",color:"#4ea87a",
-   desc:"Reads all of today's Claude sessions and generates a structured daily recap covering what was worked on, what was built, decisions made, outputs produced, and what's still open.",
-   what:"Scans the day's Claude conversation files, compresses them into a structured report with sections for: Built, Decided, Unresolved, Next. Pairs with Context Engine for persistent memory.",
-   stack:["Claude","File System","Context Engine"],
-   triggers:["what did we work on today","daily recap","session summary","end of day report"],
-   tags:["Claude","Memory","Reporting"]},
-
-  // Content & Proposals
-  {name:"Case Study Builder",slug:"case-study-builder",cat:"Content",color:"#d48aa8",
-   desc:"Turns any pile of project artifacts — docs, data, AI chat threads, screenshots, notes — into a portfolio-ready case study AND a troubleshooting report. The skill that generated this portfolio.",
-   what:"Structures a build into: Overview, Problem, How It Works, Stack, Setup, Results, Challenges & Fixes, Demonstrates. Follows the exact onesheet format used throughout this portfolio.",
-   stack:["Claude","Writing","Portfolio","Documentation"],
-   triggers:["build a case study","write up this project","document this build","create a onesheet"],
-   tags:["Writing","Case Studies","Portfolio"]},
-
-  {name:"Atlas Proposal Builder",slug:"atlas-proposal-builder",cat:"Content",color:"#d48aa8",
-   desc:"Builds polished, fully branded .pptx decks from user content using the official Atlas HXM template, Gelion fonts, and logos. Output: always a ready-to-send PowerPoint.",
-   what:"Takes deal context, prospect details, or a rough brief and returns a complete proposal deck in Atlas brand. Handles EOR proposals, sales decks, discovery decks, partner presentations.",
-   stack:["PowerPoint","Atlas Brand","python-pptx","Gelion"],
-   triggers:["build a proposal","create a deck","make a presentation","EOR proposal for"],
-   tags:["PowerPoint","Proposals","Atlas"]},
-
-  {name:"Atlas Use Case Builder",slug:"atlas-use-case-builder",cat:"Content",color:"#d48aa8",
-   desc:"Turns any data dump (notes, transcripts, chats, docs, links) into a sequenced ELT-ready package: PAL extract, JTBD blueprint, architecture & workflow doc, timeline & cost doc.",
-   what:"The full package for presenting a use case to leadership: PAL-compiled extract, Jobs-to-be-Done analysis, proposed architecture diagram, implementation timeline, and ROI estimate.",
-   stack:["Claude","PAL","JTBD","Architecture","Documentation"],
-   triggers:["build a use case for this","package this idea for leadership","turn this into a proposal"],
-   tags:["Proposals","Architecture","Atlas"]},
-
-  {name:"Project Closeout Report",slug:"project-closeout-report",cat:"Content",color:"#d48aa8",
-   desc:"Generates a branded Atlas HXM Project Close-Out Report PDF at the end of any project. Documents what shipped, measurable results, lessons learned, and recommendations.",
-   what:"Run at project completion. Produces a structured PDF covering: objectives, deliverables, metrics, what worked, what didn't, and what's recommended next. Board and director-ready.",
-   stack:["Claude","PDF","Atlas Brand","Documentation"],
-   triggers:["close out this project","end of project report","wrap up this build","project complete"],
-   tags:["Reporting","Documentation","Atlas"]},
-
-  {name:"Project Handoff",slug:"project-handoff",cat:"Content",color:"#d48aa8",
-   desc:"Project close-out and handoff package generator for the Atlas GTM AI team. Produces documentation any successor can pick up without context loss — covering what was built, why, and how to maintain it.",
-   what:"Generates: project summary, system architecture, maintenance guide, known issues, access requirements, and next recommended steps. Designed so a new owner can operate the system on day one.",
-   stack:["Claude","Documentation","Architecture"],
-   triggers:["create a handoff doc","document what we built","write up what we shipped","handoff package"],
-   tags:["Handoff","Documentation","Atlas"]},
-
-  // Project Management
-  {name:"New Project System",slug:"new-project-system",cat:"Project Mgmt",color:"#8a6d3b",
-   desc:"The idea-to-execution engine for the Atlas GTM team. Accepts any input and returns a leadership-ready package: PRD, architecture diagram, build plan, KPI framework, and PM export.",
-   what:"Cut idea-to-scoped-project from 4–8 hours to under 30 minutes. Accepts text, files, links, or a vague idea. Outputs a complete package any team can act on without back-and-forth.",
-   stack:["Claude","PRD","Architecture","Asana","Project Management"],
-   triggers:["scope this project","turn this idea into a plan","build a PRD for","new project intake"],
-   tags:["PRD","Project Intake","Planning"]},
-
-  {name:"Project Instructions Builder",slug:"project-instructions-builder",cat:"Project Mgmt",color:"#8a6d3b",
-   desc:"Converts any project description, workflow, persona, or rough brief into a structured CLAUDE.md / project instructions file with personas, rules, tools, and build standards.",
-   what:"Generates production-ready CLAUDE.md files that give Claude full context on a project. Covers: role, goals, tools, rules, style, and behavioral constraints. Reusable across sessions.",
-   stack:["Claude","CLAUDE.md","Documentation"],
-   triggers:["write a CLAUDE.md","build project instructions","create instructions for this project"],
-   tags:["Claude","CLAUDE.md","Documentation"]},
-
-  {name:"Asana Organizer",slug:"asana-organizer",cat:"Project Mgmt",color:"#8a6d3b",
-   desc:"Give it any Asana project URL and requirements — it fetches all tasks, rewrites them for clear stakeholder communication, proposes a reorganized structure, and applies changes back via API.",
-   what:"Reads the live Asana project, analyzes task clarity and structure, rewrites for the target audience (exec/cross-functional/team), proposes new sections, and applies all changes back via the Asana API.",
-   stack:["Asana API","Claude","Project Management"],
-   triggers:["organize my Asana","clean up this project","rewrite tasks for leadership","sort my Asana"],
-   tags:["Asana","Project Mgmt","GTM"]},
-
-  {name:"Exec Assistant / CoF",slug:"exec-assistant",cat:"Project Mgmt",color:"#8a6d3b",
-   desc:"Patrick's personal executive assistant and GTM Architect — two skills in one. Daily briefings, task prioritization, meeting prep, Asana management, director readiness coaching, and status updates.",
-   what:"Acts as Chief of Staff. Loads full context from the Reference Hub, applies NPAO prioritization, answers cross-domain life/work/business questions, and runs the weekly brief.",
-   stack:["Claude","ROSTR","Asana","Context Engine"],
-   triggers:["morning brief","what should I work on","help me prioritize","CoF","chief of staff"],
-   tags:["Executive","Planning","ROSTR"]},
-
-  // Product Development
-  {name:"Product Builder",slug:"product-builder",cat:"Product Dev",color:"#3d6b8a",
-   desc:"End-to-end product development system for a non-technical founder shipping AI-powered web apps and SaaS tools. Covers all 5 phases: Strategy → Design → Build → Launch → Iterate.",
-   what:"Guides a full product build from first principles. Covers product strategy, tech stack selection, UI/UX design, implementation, deployment, and post-launch iteration. Designed for solo founders.",
-   stack:["Claude","React","Next.js","Vercel","Supabase","Stripe"],
-   triggers:["build me a product","help me ship this app","end-to-end product build","I want to launch"],
-   tags:["SaaS","Product Dev","Full Stack"]},
-
-  {name:"SaaS Architect",slug:"saas-architect",cat:"Product Dev",color:"#3d6b8a",
-   desc:"Comprehensive SaaS architecture builder. Takes a rough idea and returns a complete technical spec, data model, API design, auth strategy, deployment plan, and design system.",
-   what:"Produces a full engineering-ready architecture document for any SaaS idea. Covers: user flows, data model, API endpoints, auth, billing, infrastructure, and implementation roadmap.",
-   stack:["Architecture","PostgreSQL","REST API","Auth","Infrastructure"],
-   triggers:["architect this SaaS","design the data model","tech spec for this product","SaaS architecture for"],
-   tags:["Architecture","SaaS","Design"]},
-
-  {name:"Atlas Agent Factory",slug:"atlas-agent-factory",cat:"Product Dev",color:"#3d6b8a",
-   desc:"Intelligent skill and agent builder for the Atlas GTM team. Turns natural language descriptions into production-ready Claude skills using Atlas-specific knowledge and ROSTR architecture.",
-   what:"The master builder. Takes any automation idea and produces a fully structured .skill file with SKILL.md, proper frontmatter, tools, references, and behavioral rules. Follows PAL/ROSTR standards.",
-   stack:["Claude","ROSTR","PAL","Skill Architecture"],
-   triggers:["build me a skill","create an agent","I want reps to be able to","automate this for the team"],
-   tags:["Claude","Agents","ROSTR"]},
-
-  // Video & Media
-  {name:"Atlas Video HyperFrames",slug:"atlas-video-hyperframes",cat:"Video & Media",color:"#9a6b4a",
-   desc:"Atlas HXM branded video builder using HeyGen HyperFrames (HTML-to-video) and Chatterbox-Turbo TTS. Auto-installs everything. Accepts prompts + reference files, renders brand-locked MP4s.",
-   what:"Creates title cards, overlays, caption-synced videos, scene transitions, and audio-reactive visuals. Brand-locked to Atlas Gelion font and palette. Default for new video requests.",
-   stack:["HyperFrames","Chatterbox TTS","Node.js","ffmpeg","Atlas Brand"],
-   triggers:["make a video","Atlas video","LinkedIn video","social video","render a video"],
-   tags:["HyperFrames","Video","Atlas"]},
-
-  {name:"Atlas Video Render",slug:"atlas-video-render",cat:"Video & Media",color:"#9a6b4a",
-   desc:"HTML-to-MP4 renderer — runs HyperFrames HTML stages through Chatterbox TTS + Playwright + ffmpeg into shareable MP4s. Two modes: fast sandbox render or full local pipeline with voiceover.",
-   what:"Takes a completed HyperFrames HTML composition and renders it to a real .mp4 file. Fast mode: ~15s silent MP4 with captions. Full mode: ~2min with Chatterbox voiceover baked in.",
-   stack:["HyperFrames","Playwright","Chatterbox TTS","ffmpeg"],
-   triggers:["render this to MP4","bake the voiceover","export the SOP as a video","convert html to mp4"],
-   tags:["Video","Rendering","HyperFrames"]},
-
-  {name:"Atlas Video Studio",slug:"atlas-video-studio",cat:"Video & Media",color:"#9a6b4a",
-   desc:"Full Atlas HXM video studio using Remotion, Chatterbox TTS, and the locked Atlas brand system. Auto-installs on first run. From prompt to brand-locked MP4.",
-   what:"Compiles casual prompts into a precise JSON brief via PAL intake, builds the Remotion composition with brand lock, renders MP4 and/or opens live preview. For non-technical reps.",
-   stack:["Remotion","Chatterbox TTS","React","Atlas Brand"],
-   triggers:["make a video","build me a video","sales video","explainer video","product demo video"],
-   tags:["Video","Remotion","Atlas"]},
-
-  {name:"Atlas Prospect Video Builder",slug:"atlas-prospect-video-builder",cat:"Video & Media",color:"#9a6b4a",
-   desc:"Turns uploaded decks, briefs, prospect details, or plain-English prompts into a 30–90 second brand-locked MP4 explaining EOR, personalized to the prospect, with voiceover and captions.",
-   what:"Composes atlas-brand-guidelines, atlas-video-hyperframes, and atlas-video-render. Output: .mp4 + computer:// link + re-editable storyboard JSON. Default 60s, 16:9, atlas-warm voice.",
-   stack:["HyperFrames","Chatterbox TTS","Atlas Brand","PowerPoint"],
-   triggers:["make a prospect video","EOR explainer video","personalized video for","pitch video"],
-   tags:["Video","Sales","Personalization"]},
-
-  {name:"Video Editor",slug:"video-editor",cat:"Video & Media",color:"#9a6b4a",
-   desc:"AI-powered video editor using Remotion (React-based video framework). Creates professional videos from plain English descriptions with real-time browser preview, TTS voiceovers, and free stock assets.",
-   what:"General-purpose video editor (not Atlas-specific). Takes a brief, generates a Remotion composition, adds voiceover via ChatterboxTTS, sources stock assets, renders MP4. 10 pre-built templates.",
-   stack:["Remotion","React","ChatterboxTTS","Stock Assets"],
-   triggers:["edit this video","make a video","create a video for my project","video from this script"],
-   tags:["Remotion","Video","React"]},
-
-  // Utilities
-  {name:"File Organizer",slug:"file-organizer",cat:"Utilities",color:"#6c6c72",
-   desc:"Desktop and folder organization skill. Cleans up file structure, analyzes what's being worked on, backs up original locations, renames files, and reorganizes directories into logical groups.",
-   what:"Scans a directory, identifies file types and themes, proposes a clean folder structure, and applies reorganization with a full rollback manifest. Safe-by-default with move confirmation.",
-   stack:["File System","Bash","Claude"],
-   triggers:["clean up my desktop","organize this folder","rename these files","sort my downloads"],
-   tags:["Files","Organization","Utilities"]},
-];
-
-/* ── Workflow data ── */
-const WORKFLOWS = [
-  {name:"AI Customer Agent Suite",slug:"ai-customer-agent-suite",status:"Live · Production",
-   desc:"Two-channel AI inbound system: HubSpot chatbot + Contact Us form automation with unified MQL classification, CRM routing, reporting warehouse, and three-tier deal attribution. $9M+ attributed pipeline.",
-   stack:["HubSpot Breeze","n8n","Azure OpenAI","GPT-4o-mini","Microsoft Graph","SharePoint"],
-   metric:"$9M+ attributed pipeline · $250K deal sourced from single chat"},
-
-  {name:"EOR Compliance Checker",slug:"eor-compliance-checker",status:"Live · Production",
-   desc:"AI deal screening on the live sales pipeline. LLM maps messy CRM data to canonical sectors, deterministic JS rules engine makes the tier decision, verdict writes back with full audit trail.",
-   stack:["n8n","Azure OpenAI","HubSpot","Avoma","Outlook"],
-   metric:"100+ deals wrongly stuck in review correctly cleared · zero production write errors"},
-
-  {name:"Post-Sales Call Automation",slug:"post-sales-call-automation",status:"Live · Production",
-   desc:"Four AI agents on every sales call — follow-up email, missed questions, competitor intel, LinkedIn draft, and HubSpot note. Rebuilt from 0/25 passing to fully verified after removing broken RAG layer.",
-   stack:["n8n","Avoma","Azure OpenAI","Azure Blob Storage","HubSpot","Outlook"],
-   metric:"5 deliverables per call · zero rep action · rebuilt from 0% pass rate"},
-
-  {name:"Inbound Automation Workflow",slug:"inbound-automation",status:"Live · Production",
-   desc:"7-way AI intent classification on every Contact Us submission. LLM classifies, hard-override honors the visitor's stated reason, deterministic JS maps to CRM lifecycle, routes to right owner, drafts reply.",
-   stack:["n8n","Azure OpenAI","HubSpot","Outlook"],
-   metric:"7-way classification · hard-override ensures visitor intent always wins"},
-
-  {name:"Partner PQL Automation",slug:"partner-pql-automation",status:"Live · Production",
-   desc:"AI classifies every partner-inquiry submission as referral/alliance/integration/vendor spam. Real leads get a high-priority task and AI-drafted response. Vendor spam filtered silently.",
-   stack:["n8n","Azure OpenAI","HubSpot"],
-   metric:"Zero manual triage · AI-drafted responses for genuine leads only"},
-
-  {name:"Prospect Automation Engine",slug:"prospect-automation-engine",status:"Live · Production",
-   desc:"Daily intent-to-outreach pipeline. Pulls yesterday's buying signals, runs ICP + safety gauntlet (size, region, deals, customer, competitor, recency), round-robins to reps, fires to Clay enrichment.",
-   stack:["n8n","HubSpot","Clay","ZoomInfo","Factors.ai"],
-   metric:"~75 accounts/week routed with zero manual triage · 55%+ email open rate"},
-
-  {name:"Clay Credit Governance System",slug:"clay-credit-governance",status:"Shipped",
-   desc:"Structural solution to enrichment overspend. A cloneable Clay table with a free ICP eligibility gate, tiered build profiles (minimal/standard/full), and per-row cost estimates.",
-   stack:["Clay","Cost Engineering","ICP Logic"],
-   metric:"~70% cost reduction per record by architecture"},
-
-  {name:"Contract Intake Automation",slug:"msa-docusign-automation",status:"Live · Production",
-   desc:"CRM deal to submitted DocuSign contract intake in under 3 minutes. Two API integrations proven blocked — automation pivoted to the one door left open. Constraint-driven architecture.",
-   stack:["n8n","HubSpot","DocuSign","Outlook"],
-   metric:"Under 3 minutes CRM → submitted contract · zero rep manual steps"},
-
-  {name:"AGS Prospect Automation",slug:"ags-prospect-automation",status:"Shipped",
-   desc:"Nine-script enrichment pipeline for an outsourced SDR pipeline. Achieved confirmed 0% contact overlap against thousands of already-contacted records and 91% phone coverage.",
-   stack:["n8n","Clay","HubSpot","ZoomInfo"],
-   metric:"0% contact overlap · 91% phone coverage across the full pipeline"},
-
-  {name:"Entity Readiness Change Report",slug:"entity-readiness-change-report",status:"Shipped",
-   desc:"Weekly automated report tracking EOR entity readiness changes across 160+ countries. Pulls from Onspring, compares against baseline, delivers formatted change report to stakeholders.",
-   stack:["n8n","Onspring","SharePoint","Microsoft Graph"],
-   metric:"Weekly coverage across 160+ countries · automated baseline comparison"},
-
-  {name:"HubSpot Import Formatter",slug:"hubspot-import-formatter",status:"Live · Production",
-   desc:"Converts any rep spreadsheet into clean, deduped, NAICS-enriched HubSpot import templates. Auto-splits people from companies, flags rejects, optionally upserts directly to CRM.",
-   stack:["Claude Skill","HubSpot","NAICS","Excel/CSV"],
-   metric:"Live for 50+ rep GTM org · every import Batch-ID tagged and KPI-tracked"},
-];
-
-const SKILL_CATS = ["All",...[...new Set(SKILLS.map(s=>s.cat))]];
-
-/* ── Holdings data ── */
-const HOLDINGS = [
-  // Consulting
-  {name:"Gency AI",type:"Consulting · AI Software",url:"https://gencyai.com",desc:"AI software development — agents, skills, prompt libraries, and production web apps. From SOP to shipped system, with adoption built in.",link:"gencyai.com",color:"#5eb8c4",group:"Consulting"},
-  {name:"SalesGency",type:"Consulting · GTM / RevOps",url:"https://salesgency.com",desc:"GTM AI, automation, and RevOps consulting for revenue teams. Outbound engines, CRM workflows, attribution, and production AI systems.",link:"salesgency.com",color:"#c9a227",group:"Consulting"},
-  // AI Products
-  {name:"GPTPAT",type:"AI Products",url:"https://gptpat.co",desc:"Production AI for SMB and mid-market — chatbots, automation, and full-stack apps. Commercial implementations of the GTM AI Platform methodology.",link:"gptpat.co",color:"#4ea87a",group:"AI Products"},
-  {name:"CreditFixer / FCR Agent",type:"AI Products · Fintech",url:"https://creditfixer.vercel.app",desc:"AI-powered credit repair service that guides users through identifying and resolving credit profile issues. Uses AI to automate the credit repair process.",link:"creditfixer.vercel.app",color:"#4ea87a",group:"AI Products"},
-  {name:"Replai",type:"AI Products · Consumer",url:"https://www.replaiall.com",desc:"AI messaging assistant that rewrites impulsive or emotionally charged texts before sending. Per-conversation settings preserve the user's original voice while improving the message.",link:"replaiall.com",color:"#5eb8c4",group:"AI Products"},
-  // Consumer / SaaS
-  {name:"Huddle",type:"SaaS · Coworking",url:"https://www.huddleco.work",desc:"Coworking space directory helping users find, compare, and book workspaces across 7,000+ locations in 1,100+ US cities. Filters by amenities, pricing, and location.",link:"huddleco.work",color:"#8a9bb0",group:"Consumer / SaaS"},
-  {name:"LOLA",type:"Consumer · Fitness AI",url:"https://lola-wd5x.vercel.app",desc:"AI-powered fitness app that creates personalized workout plans curated from YouTube, TikTok, and Reels. Pairs users with accountability partners for shared calendars and streak tracking.",link:"trainlola.com",color:"#d48aa8",group:"Consumer / SaaS"},
-  // Creative
-  {name:"Artispreneur",type:"Creative Platform",url:"https://artispreneur.com",desc:"Music business tools and personalized AI agents that turn independent artists into entrepreneurs. AI-native education and operating system for the music industry.",link:"artispreneur.com",color:"#d48aa8",group:"Creative"},
-  {name:"Artist EPKs",type:"Creative Tools",url:"https://artistsepks.vercel.app",desc:"Electronic press kit platform for independent artists. Clean, fast, shareable EPKs that help artists get booked.",link:"artistsepks.vercel.app",color:"#8a6d3b",group:"Creative"},
-  {name:"Pat Dia",type:"Music · Recording Artist",url:"https://music.diamitani.com",desc:"Original music as Pat Dia — Sunshine to Deep. More in the studio.",link:"music.diamitani.com",color:"#d48aa8",group:"Creative"},
-  // Civic / Legacy
-  {name:"Your48",type:"Civic Infrastructure",url:"https://your48.vercel.app",desc:"Civic intelligence platform for Chicago's 48th Ward. AI-powered constituent services and neighborhood information hub.",link:"your48.vercel.app",color:"#3d6b8a",group:"Civic"},
-  {name:"Omicon Entertainment",type:"Live Entertainment",url:null,desc:"Founding partner — 1,000+ live shows produced for 80,000 students across the tri-state area at $2M in yearly revenue.",link:null,color:"#9a6b4a",group:"Legacy"},
-];
-
-/* ── Render helpers ── */
-function renderSkillCards(filter){
-  const list = filter && filter !== "All" ? SKILLS.filter(s=>s.cat===filter) : SKILLS;
-  return list.map(s=>`
-  <button class="skill-card" style="--skill-color:${s.color}" data-skill="${s.slug}">
-    <div class="skill-cat">${esc(s.cat)}</div>
-    <h3>${esc(s.name)}</h3>
-    <p>${esc(s.desc)}</p>
-    <div class="skill-tags">${s.tags.map(t=>`<span class="skill-tag">${esc(t)}</span>`).join("")}</div>
-    <div class="card-footer" style="margin-top:auto;padding-top:10px;border-top:1px solid var(--border)"><span></span><span class="card-cta">View details →</span></div>
-  </button>`).join("");
-}
-
-function renderSkillDetail(slug){
-  const s = SKILLS.find(x=>x.slug===slug);
-  if(!s){location.hash="#skills";return;}
-  viewRoot.innerHTML = `
-  <main class="product-page view">
-    <div class="crumbs"><button data-back>← Skills Library</button> <span>/</span> <span>${esc(s.cat)}</span></div>
-    <header class="product-hero" style="border-color:${s.color}">
-      <div class="badge-row">
-        <span class="badge type-badge">Claude Skill</span>
-        <span class="badge" style="background:color-mix(in srgb,${s.color} 12%,transparent);color:${s.color};border:1px solid color-mix(in srgb,${s.color} 35%,transparent)">${esc(s.cat)}</span>
-      </div>
-      <h1>${esc(s.name)}</h1>
-      <p class="tagline">${esc(s.desc)}</p>
-      <div class="tags">${s.tags.map(t=>`<span class="tag">${esc(t)}</span>`).join("")}</div>
-    </header>
-    <div class="product-body">
-      <article class="onesheet">
-        <h2>What It Does</h2>
-        <p>${esc(s.what)}</p>
-        <h2>When to Use It</h2>
-        <ul>${s.triggers.map(t=>`<li><code>${esc(t)}</code></li>`).join("")}</ul>
-        <h2>Stack</h2>
-        <div class="chips" style="margin-top:8px">${s.stack.map(x=>`<span class="chip">${esc(x)}</span>`).join("")}</div>
-        <hr>
-        <h2>Part of the GTM AI Platform</h2>
-        <p>This skill is one of 40+ reusable Claude skills shipped as part of the <a href="#/p/gtm-ai-platform" style="color:var(--gold)">GTM AI Platform</a> — the operating system a 50-person GTM org runs its AI adoption on. Each skill inherits the same build standard: PAL prompt compilation, ROSTR architecture, dry-run defaults, and production discipline.</p>
-      </article>
-      <aside class="side-panel">
-        <div class="panel"><h3>Stack & Tools</h3><div class="chips">${s.stack.map(x=>`<span class="chip">${esc(x)}</span>`).join("")}</div></div>
-        <div class="panel"><h3>Category</h3><p style="font-size:13px;color:var(--ink-soft)">${esc(s.cat)}</p></div>
-        <div class="panel panel-cta">
-          <h3>Use this skill</h3>
-          <p>Want to deploy this skill in your org or discuss how it works? Reach out directly.</p>
-          <a class="btn btn-primary" href="mailto:pdiamitani@atlashxm.com?subject=Skill%3A%20${encodeURIComponent(s.name)}">Email Patrick</a>
-        </div>
-      </aside>
+<!-- SHIPPED PRODUCTS -->
+<section class="section" id="products" data-section="products">
+  <div class="section-inner">
+    <div class="sl">Shipped Products</div>
+    <h2>Live <em>products.</em></h2>
+    <p class="st">Production apps I've built and deployed — AI-native SaaS, consumer products, and civic tech. All live and serving users.</p>
+    <div class="grid">
+      <a class="card" href="https://trainlola.com" target="_blank" rel="noopener">
+        <div class="ht">Consumer · Fitness AI · Live</div>
+        <h3>LOLA</h3>
+        <p>AI-powered fitness app that creates personalized workout plans curated from YouTube, TikTok, and Instagram Reels. Pairs users with accountability partners for shared calendars, streak tracking, and social motivation.</p>
+        <div class="metric-line">Next.js · Supabase · OpenAI · Social video curation</div>
+        <span class="hl">trainlola.com →</span>
+      </a>
+      <a class="card" href="https://replaiall.com" target="_blank" rel="noopener">
+        <div class="ht">Consumer · AI Messaging · Live</div>
+        <h3>Replai</h3>
+        <p>AI messaging assistant that rewrites impulsive or emotionally charged texts before you send them. Per-conversation settings preserve your voice while improving the message. Think twice, send once.</p>
+        <div class="metric-line">React · Claude API · Tone analysis · Voice preservation</div>
+        <span class="hl">replaiall.com →</span>
+      </a>
+      <a class="card" href="https://fcragent.com" target="_blank" rel="noopener">
+        <div class="ht">Fintech · AI Agent · Live</div>
+        <h3>FCR Agent (CreditFixer)</h3>
+        <p>AI-powered credit repair agent that guides users through identifying errors, generating dispute letters, and tracking resolution. Automates the credit repair process that typically costs $500-2000 with agencies.</p>
+        <div class="metric-line">Next.js · Claude API · Credit bureau integrations · Document generation</div>
+        <span class="hl">fcragent.com →</span>
+      </a>
+      <a class="card" href="https://huddleco.work" target="_blank" rel="noopener">
+        <div class="ht">SaaS · Directory · Live</div>
+        <h3>Huddle</h3>
+        <p>Coworking space directory covering 7,000+ locations across 1,100+ US cities. Filter by amenities, pricing, day passes, meeting rooms, and location. The comprehensive database for remote workers finding workspace.</p>
+        <div class="metric-line">Next.js · PostgreSQL · 7,000+ locations · Real-time availability</div>
+        <span class="hl">huddleco.work →</span>
+      </a>
+      <a class="card" href="https://academy.artispreneur.com" target="_blank" rel="noopener">
+        <div class="ht">Education · Creative · Live</div>
+        <h3>Artispreneur Academy</h3>
+        <p>Music business education platform for independent artists. Courses on royalties, sync licensing, marketing, and business operations. AI tools for EPK generation, release planning, and audience analysis.</p>
+        <div class="metric-line">Course platform · AI tools · Music industry curriculum</div>
+        <span class="hl">academy.artispreneur.com →</span>
+      </a>
+      <a class="card" href="https://letsvibeai.com" target="_blank" rel="noopener">
+        <div class="ht">Consumer · Social AI · Live</div>
+        <h3>Let's Vibe AI</h3>
+        <p>AI-powered social connection app that helps users find compatible people to hang out with. Interest matching, availability sync, and conversation starters. For people who want to meet new friends IRL.</p>
+        <div class="metric-line">React Native · AI matching · Calendar integration · Location-based</div>
+        <span class="hl">letsvibeai.com →</span>
+      </a>
     </div>
-  </main>`;
-  window.scrollTo({top:0,behavior:"instant"});
-  viewRoot.querySelector("[data-back]")?.addEventListener("click",()=>{location.hash="#skills";});
-}
+  </div>
+</section>
 
-function renderWorkflowDetail(slug){
-  const w = WORKFLOWS.find(x=>x.slug===slug);
-  if(!w){location.hash="#workflows";return;}
-  // Redirect to the product page if it's in SITE.products
-  const p = SITE.products.find(x=>x.slug===slug);
-  if(p){renderProduct(slug);return;}
-  viewRoot.innerHTML = `
-  <main class="product-page view">
-    <div class="crumbs"><button data-back>← Automation Workflows</button></div>
-    <header class="product-hero">
-      <div class="badge-row"><span class="badge type-badge">n8n Workflow</span><span class="badge status-badge">${esc(w.status)}</span></div>
-      <h1>${esc(w.name)}</h1>
-      <p class="tagline">${esc(w.desc)}</p>
-      <div class="metric-callout">${esc(w.metric)}</div>
-    </header>
-    <div class="product-body">
-      <article class="onesheet">
-        <h2>Overview</h2><p>${esc(w.desc)}</p>
-        <h2>Stack</h2><div class="chips" style="margin-top:8px">${w.stack.map(x=>`<span class="chip">${esc(x)}</span>`).join("")}</div>
-        <h2>Part of the Enterprise Systems Library</h2>
-        <p>This automation is one of 16 production systems built for and deployed at Atlas HXM. <a href="/portfolio#systems" style="color:var(--gold)">View all systems →</a></p>
-      </article>
-      <aside class="side-panel">
-        <div class="panel"><h3>Stack</h3><div class="chips">${w.stack.map(x=>`<span class="chip">${esc(x)}</span>`).join("")}</div></div>
-        <div class="panel panel-cta"><h3>Discuss this build</h3><p>Happy to walk through architecture, failures, or how to adapt this to your team.</p><a class="btn btn-primary" href="mailto:pdiamitani@atlashxm.com?subject=Workflow%3A%20${encodeURIComponent(w.name)}">Email Patrick</a></div>
-      </aside>
+<!-- ENTERPRISE SYSTEMS -->
+<section class="section-dark" id="systems" data-section="systems">
+  <div class="section-inner">
+    <div class="sl">Enterprise AI Production</div>
+    <h2>Systems at <em>Atlas HXM.</em></h2>
+    <p class="st">16 production AI systems built for Atlas HXM — a global HR-tech (Employer of Record) platform with ~500 employees operating in 160+ countries. All live in production.</p>
+    <div class="grid">
+      <div class="card">
+        <div class="ht">AI Agent System · Live in production</div>
+        <h3>AI Customer Agent Suite</h3>
+        <p>Two AI-powered inbound channels — HubSpot Breeze chatbot + Contact Us form automation — plus the measurement pipeline that proved $9M+ in attributed pipeline. Every dollar traceable to a source record.</p>
+        <div class="metric-line">$9M+ attributed pipeline · $250K deal from single chat</div>
+      </div>
+      <div class="card">
+        <div class="ht">n8n Workflow · Live in production</div>
+        <h3>EOR Compliance Checker</h3>
+        <p>AI deal screening on the live sales pipeline. LLM maps messy CRM data to canonical sectors, deterministic JS rules engine makes the tier decision, verdict writes back with full audit trail.</p>
+        <div class="metric-line">100+ deals correctly cleared · zero production write errors</div>
+      </div>
+      <div class="card">
+        <div class="ht">n8n Workflow · Live in production</div>
+        <h3>Post-Sales Call Automation</h3>
+        <p>Four AI agents on every sales call — follow-up email, missed questions, competitor intel, LinkedIn draft, and HubSpot note. Rebuilt from 0/25 passing to fully verified after removing broken RAG layer.</p>
+        <div class="metric-line">5 deliverables per call · zero rep action</div>
+      </div>
+      <div class="card">
+        <div class="ht">n8n Workflow · Live in production</div>
+        <h3>Inbound Automation</h3>
+        <p>7-way AI intent classification on every Contact Us submission. LLM classifies, hard-override honors visitor's stated reason, deterministic JS maps to CRM lifecycle, routes to right owner.</p>
+        <div class="metric-line">7-way classification · hard-override ensures visitor intent wins</div>
+      </div>
+      <div class="card">
+        <div class="ht">n8n Workflow · Live in production</div>
+        <h3>Partner PQL Automation</h3>
+        <p>AI classifies every partner-inquiry as referral/alliance/integration/vendor spam. Real leads get a high-priority task and AI-drafted response. Vendor spam filtered silently.</p>
+        <div class="metric-line">Zero manual triage · AI-drafted responses for genuine leads</div>
+      </div>
+      <div class="card">
+        <div class="ht">n8n Workflow · Live in production</div>
+        <h3>Prospect Automation Engine</h3>
+        <p>Daily intent-to-outreach pipeline. Pulls yesterday's buying signals, runs ICP + safety gauntlet, round-robins to reps by region, fires to Clay enrichment.</p>
+        <div class="metric-line">~75 accounts/week routed · 55%+ email open rate</div>
+      </div>
+      <div class="card">
+        <div class="ht">Platform · Shipped</div>
+        <h3>Clay Credit Governance</h3>
+        <p>Structural solution to enrichment overspend. A cloneable Clay table with a free ICP eligibility gate, tiered build profiles (minimal/standard/full), and per-row cost estimates.</p>
+        <div class="metric-line">~70% cost reduction per record by architecture</div>
+      </div>
+      <div class="card">
+        <div class="ht">n8n Workflow · Live in production</div>
+        <h3>Contract Intake Automation</h3>
+        <p>CRM deal to submitted DocuSign contract intake in under 3 minutes. Two API integrations proven blocked — automation pivoted to the one door left open.</p>
+        <div class="metric-line">Under 3 minutes CRM → submitted contract</div>
+      </div>
+      <div class="card">
+        <div class="ht">n8n Workflow · Shipped</div>
+        <h3>AGS Prospect Automation</h3>
+        <p>Nine-script enrichment pipeline for an outsourced SDR pipeline. Achieved confirmed 0% contact overlap against thousands of already-contacted records and 91% phone coverage.</p>
+        <div class="metric-line">0% contact overlap · 91% phone coverage</div>
+      </div>
+      <div class="card">
+        <div class="ht">n8n Workflow · Shipped</div>
+        <h3>Entity Readiness Change Report</h3>
+        <p>Weekly automated report tracking EOR entity readiness changes across 160+ countries. Pulls from Onspring, compares against baseline, delivers formatted change report.</p>
+        <div class="metric-line">160+ countries · automated baseline comparison</div>
+      </div>
+      <div class="card">
+        <div class="ht">Claude Skill · Live in production</div>
+        <h3>HubSpot Import Formatter</h3>
+        <p>Converts any rep spreadsheet into clean, deduped, NAICS-enriched HubSpot import templates. Auto-splits people from companies, flags rejects, optionally upserts directly.</p>
+        <div class="metric-line">Live for 50+ rep GTM org · Batch-ID tagged imports</div>
+      </div>
+      <div class="card">
+        <div class="ht">Platform · Live in production</div>
+        <h3>The GTM AI Platform</h3>
+        <p>Not one automation — the operating system a 50-person GTM org runs its AI adoption on. A published build methodology, intake engine, and 40+ skill library.</p>
+        <div class="metric-line">40+ skills · idea-to-project under 30 min</div>
+      </div>
     </div>
-  </main>`;
-  window.scrollTo({top:0,behavior:"instant"});
-  viewRoot.querySelector("[data-back]")?.addEventListener("click",()=>{location.hash="#workflows";});
-}
+  </div>
+</section>
 
-function renderHome(){
-  const n = SITE.products.length;
-  const live = SITE.products.filter(p=>(p.status||"").toLowerCase().includes("live")).length;
-  const cats = SITE.categories || [...new Set(SITE.products.map(p=>p.category))];
-  const catBtns = cats.map(c=>`<button class="filter-btn" data-cat="${esc(c)}">${esc(c)}</button>`).join("");
-  const skillCatBtns = SKILL_CATS.map(c=>`<button class="skill-filter-btn filter-btn${c==="All"?" active":""}" data-scat="${esc(c)}">${esc(c)}</button>`).join("");
+<!-- SKILLS LIBRARY -->
+<section class="section" id="skills" data-section="skills">
+  <div class="section-inner">
+    <div class="sl">Claude Skills Library</div>
+    <h2>40+ production <em>skills.</em></h2>
+    <p class="st">Reusable, packaged Claude skills shipped across Atlas HXM and Diamitani Industries. Each is a standalone, production-ready capability.</p>
 
-  const sysCards = SITE.products.map(p=>{
-    const blurb = p.portfolio_blurb || p.description_short || "";
-    const searchBlob = `${p.name} ${p.tagline} ${(p.tags||[]).join(" ")}`.toLowerCase();
-    return `
-    <button class="card" style="--cat-color:${p.color}" data-cat="${esc(p.category)}" data-search="${esc(searchBlob)}" data-slug="${p.slug}">
-      <div class="card-top"><span class="badge type-badge">${esc(p.type_label)}</span><span class="badge status-badge">${esc(p.status)}</span></div>
-      <h3>${esc(p.name)}</h3>
-      <p class="card-blurb">${esc(blurb)}</p>
-      <div class="card-footer"><span>${esc(p.demonstrates_short||"")}</span><span class="card-cta">Read the build →</span></div>
-    </button>`;
-  }).join("");
-
-  const holdingCards = HOLDINGS.map(h=>`
-  ${h.url?`<a class="holding-card" href="${h.url}" target="_blank" rel="noopener" style="--hc:${h.color}">`:
-  `<div class="holding-card" style="--hc:${h.color}">`}
-    <div class="holding-type">${esc(h.type)}</div>
-    <h3>${esc(h.name)}</h3>
-    <p>${esc(h.desc)}</p>
-    ${h.link?`<div class="holding-link">${esc(h.link)} →</div>`:""}
-  ${h.url?"</a>":"</div>"}`).join("");
-
-  viewRoot.innerHTML = `
-  <div class="view">
-
-    <!-- Hero -->
-    <header class="hero">
-      <div class="hero-inner">
-        <div class="hero-eyebrow">Enterprise AI Production · Skills Library · Consulting · Holdings</div>
-        <h1>The Full Portfolio</h1>
-        <p class="hero-tagline">Production AI systems used daily by 50+ revenue teammates. A published framework. 40+ Claude skills. Two consulting practices. Multiple ventures. Everything in one place.</p>
-        <div class="hero-stats">
-          <div class="stat"><div class="stat-n">${n}</div><div class="stat-l">Production systems</div></div>
-          <div class="stat"><div class="stat-n">${live}</div><div class="stat-l">Live in production</div></div>
-          <div class="stat"><div class="stat-n">40+</div><div class="stat-l">Published skills</div></div>
-          <div class="stat"><div class="stat-n">12</div><div class="stat-l">Active ventures</div></div>
-        </div>
-        <div class="hero-cta">
-          <a href="#systems" class="btn btn-primary">Enterprise Systems ↓</a>
-          <a href="#skills" class="btn btn-ghost">Skills Library</a>
-          <a href="#about" class="btn btn-ghost">About Patrick</a>
-        </div>
+    <h3 style="font-size:16px;margin:32px 0 16px;color:var(--accent)">Framework & Methodology</h3>
+    <div class="grid">
+      <div class="card">
+        <div class="ht">Framework · ROSTR</div>
+        <h3>PAL — Prompt Abstraction Layer</h3>
+        <p>Compiler-inspired meta-layer that rewrites every vague message into a structured, model-specific prompt. Runs on every input before any model sees it.</p>
       </div>
-    </header>
-
-    <!-- Enterprise Systems -->
-    <section id="systems" class="section">
-      <div class="section-inner">
-        <div class="sl">Enterprise AI Production</div>
-        <h2>Production <em>Systems.</em></h2>
-        <p class="section-sub">Every system built for and deployed at a live, 500-person global HR-tech company. Architecture, stack, failures, and results documented for each.</p>
-        <div class="filters">
-          <button class="filter-btn active" data-cat="all">All (${n})</button>
-          ${catBtns}
-          <input id="search" type="search" placeholder="Search…" style="background:var(--panel);border:1px solid var(--border);color:var(--ink);border-radius:8px;padding:6px 13px;width:min(220px,100%);font-size:12.5px;font-family:var(--font-body);margin-left:auto">
-        </div>
-        <div class="grid" id="sys-grid">${sysCards}</div>
-        <div id="sys-empty" class="empty" hidden>No systems match.</div>
+      <div class="card">
+        <div class="ht">Framework · ROSTR</div>
+        <h3>ROSTR Builder</h3>
+        <p>Enforces ROSTR architecture on all agent, skill, and workflow builds. Every output inherits the framework's production discipline.</p>
       </div>
-    </section>
-
-    <!-- Skills Library -->
-    <section id="skills" class="section-dark">
-      <div class="section-inner">
-        <div class="sl">Agent Skills Library</div>
-        <h2>40+ Claude <em>Skills.</em></h2>
-        <p class="section-sub">Reusable, packaged Claude skills shipped across the Atlas GTM org and Diamitani Industries. Each is a standalone, production-ready capability — click any card for full details.</p>
-        <div class="filters">${skillCatBtns}</div>
-        <div class="skill-grid" id="skill-grid">${renderSkillCards("All")}</div>
+      <div class="card">
+        <div class="ht">Framework · ROSTR</div>
+        <h3>Context Engine</h3>
+        <p>Persistent cross-session memory for Claude. Compresses every session into searchable flat-file records. Eliminates the AI cold-start tax.</p>
       </div>
-    </section>
-
-    <!-- Automation Workflows -->
-    <section id="workflows" class="section">
-      <div class="section-inner">
-        <div class="sl">Automation Workflows</div>
-        <h2>Production <em>Automations.</em></h2>
-        <p class="section-sub">Every n8n workflow and automation system built and deployed in production. Architecture, stack, and results documented for each.</p>
-        <div class="grid" id="wf-grid">${WORKFLOWS.map(w=>`
-        <button class="card" style="--cat-color:#5eb8c4" data-wf="${w.slug}">
-          <div class="card-top"><span class="badge type-badge">n8n Workflow</span><span class="badge status-badge">${esc(w.status)}</span></div>
-          <h3>${esc(w.name)}</h3>
-          <p class="card-blurb">${esc(w.desc)}</p>
-          <div class="card-footer"><span style="font-family:var(--font-mono);font-size:10px;color:var(--muted)">${esc(w.metric)}</span><span class="card-cta">View →</span></div>
-        </button>`).join("")}
-        </div>
+      <div class="card">
+        <div class="ht">Framework · PAL</div>
+        <h3>JTBD Builder</h3>
+        <p>Runs input through PAL compilation to produce Jobs-to-be-Done blueprints for AI agents. Prevents building the wrong thing.</p>
       </div>
-    </section>
-
-    <!-- Consulting -->
-    <section id="consulting" class="section">
-      <div class="section-inner">
-        <div class="sl">Consulting</div>
-        <h2>Two practices. One <em>standard.</em></h2>
-        <p class="section-sub">AI software development through Gency AI. GTM AI, automation, and RevOps through SalesGency. Same production discipline, different domains.</p>
-        <div class="two-col">
-          <a class="consult-card" href="https://gencyai.com" target="_blank" rel="noopener" style="--cc:#5eb8c4">
-            <span class="badge badge-live">Active</span>
-            <div class="ct">AI Software Development</div>
-            <h3>Gency AI</h3>
-            <p>Agents, skills, prompt libraries, and production web apps — from SOP to shipped system, with adoption built in from day one.</p>
-            <div class="metric-line">Build · agents · apps · adoption</div>
-            <span class="cl">gencyai.com →</span>
-          </a>
-          <a class="consult-card" href="https://salesgency.com" target="_blank" rel="noopener" style="--cc:#c9a227">
-            <span class="badge badge-live">Active</span>
-            <div class="ct">GTM AI · Automation · RevOps</div>
-            <h3>SalesGency</h3>
-            <p>Outbound engines, CRM workflows, attribution systems, and RevOps builds that revenue teams can run every single day.</p>
-            <div class="metric-line">Pipeline · process · production AI</div>
-            <span class="cl">salesgency.com →</span>
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <!-- Holdings -->
-    <section id="holdings" class="section-dark">
-      <div class="section-inner">
-        <div class="sl">Holdings</div>
-        <h2>Twelve ventures. One <em>standard.</em></h2>
-        <p class="section-sub">Each operating company runs on the same production discipline — from enterprise AI to civic tech to original music. Diamitani Industries is the common thread.</p>
-        <div class="holdings-grid">${holdingCards}</div>
-      </div>
-    </section>
-
-    <!-- Research -->
-    <section id="research" class="section">
-      <div class="section-inner">
-        <div class="sl">Published Research</div>
-        <h2>The <em>ROSTR</em> Framework.</h2>
-        <p class="section-sub">A published, citable architecture for production-grade multi-agent AI systems — the intellectual property underneath every division.</p>
-        <div class="research-block">
-          <h3 style="font-family:var(--font-serif);font-size:22px;letter-spacing:-.01em">ROSTR: A Layered Architecture for Production Multi-Agent AI Systems</h3>
-          <div class="doi">Patrick Diamitani · Zenodo · DOI: 10.5281/zenodo.19550414 · 2026</div>
-          <p>A fully citable, open framework unifying four layers that turn ephemeral AI sessions into durable, auditable, production systems: PAL for prompt depth, NPAO for work classification, RAG/DAL for provenance honesty, and ContextEngine for cross-session memory.</p>
-          <div class="pillars">
-            <div class="pillar"><div class="pillar-name">PAL</div><p>Prompt Abstraction Layer — sets technical depth and audience framing before any model sees input.</p></div>
-            <div class="pillar"><div class="pillar-name">NPAO</div><p>Navigate · Prioritize · Allocate · Orchestrate — the repeatable work-classification spine for any project.</p></div>
-            <div class="pillar"><div class="pillar-name">RAG / DAL</div><p>Provenance honesty — separates evidenced fact from recollection from inference. Never presents a guess as a fact.</p></div>
-            <div class="pillar"><div class="pillar-name">ContextEngine</div><p>Zero-infrastructure flat-file persistent memory. Sessions stop starting cold. Org knowledge compounds.</p></div>
-          </div>
-          <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:8px">
-            <a href="https://zenodo.org/records/19550414" target="_blank" rel="noopener" class="btn btn-accent">Read the paper (Zenodo DOI)</a>
-            <a href="#systems" class="btn btn-ghost">See it in production →</a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- About -->
-    <section id="about" class="section-dark">
-      <div class="section-inner">
-        <div class="sl">About</div>
-        <h2>Patrick <em>Diamitani.</em></h2>
-        <div class="about-grid">
-          <div class="about-portrait">PD</div>
-          <div class="about-body">
-            <p>GTM AI & Automation Manager at <strong>Atlas HXM</strong> — leading AI-native efforts across sales, marketing, and RevOps at a global HR-tech platform operating in <strong>160+ countries</strong>. Mandate: build production systems that a non-technical team of 50+ reps and marketers can rely on daily.</p>
-            <p>Fifteen years across entertainment, sales, and technology: enterprise sales at <strong>Uber, Upwork, and Asana</strong>; startup sales leadership at DreamItReel (<strong>$200K → $1.5M revenue</strong>); <strong>Techstars</strong> associate supporting three companies that collectively raised over <strong>$100M</strong> (two acquired); founding partner in Omicon Entertainment, producing 1,000+ shows for 80,000 students at <strong>$2M yearly revenue</strong>.</p>
-            <p>Author of the <strong>ROSTR Framework</strong>, founder of <strong>Artispreneur</strong>, <strong>Gency AI</strong>, and <strong>GPTPAT</strong>, builder of <strong>Your48</strong> for Chicago's 48th Ward — and on the weekends, makes records as <strong>Pat Dia</strong>.</p>
-            <div class="about-quote">"One day, this established firm shall have no less than $300,000,000,000 in liquid cash holdings, before the day I am 72 years old."</div>
-            <p style="font-size:11px;color:var(--muted)">Patrick Diamitani · Chicago, IL · pdiamitani@atlashxm.com</p>
-            <ul class="highlights-list">
-              <li>Built a two-channel AI inbound system (chatbot + Contact Us form) with a unified measurement pipeline that attributed <strong>$9M+ in pipeline</strong> within 30 days — every dollar traceable to a specific workflow execution ID.</li>
-              <li>Designed an automated compliance-screening system that corrected <strong>100+ misclassified deals</strong> and more than doubled detection of ineligible deals, with a perfect production write record.</li>
-              <li>Rebuilt a four-agent post-sales-call pipeline from 0/25 passing to fully verified in production — root cause: a broken RAG vector index, fixed by replacing it with deterministic blob fetch.</li>
-              <li>Owned a runaway AI/data-enrichment spend incident and redesigned the system around a free eligibility gate — cutting spend per record by <strong>~70% by architecture</strong>, not vigilance.</li>
-              <li>Built and published a <strong>40+ skill AI automation library</strong> plus a self-serve project-intake engine that cut idea-to-scoped-project time from 4–8 hours to under 30 minutes.</li>
-              <li>Directed a nine-script enrichment pipeline for an outsourced SDR pipeline — <strong>0% contact overlap</strong> against thousands of already-contacted records, 91% phone coverage.</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Contact -->
-    <section id="contact" class="contact-section">
-      <div class="section-inner contact-inner">
-        <h2>Let's build something.</h2>
-        <p>Whether it's enterprise AI, GTM automation, or a consulting engagement — reach out directly.</p>
-        <div class="contact-links">
-          <a class="btn btn-primary" href="mailto:pdiamitani@atlashxm.com">Email Patrick</a>
-          <a class="btn btn-ghost" href="https://linkedin.com/in/diamitani" target="_blank" rel="noopener">LinkedIn ↗</a>
-          <a class="btn btn-ghost" href="https://gencyai.com" target="_blank" rel="noopener">Gency AI</a>
-        </div>
-      </div>
-    </section>
-  </div>`;
-
-  /* System card filter + search */
-  const grid = document.getElementById("sys-grid");
-  const cardEls = Array.from(grid.querySelectorAll(".card"));
-  const filterBtns = Array.from(document.querySelectorAll(".filter-btn[data-cat]"));
-  const search = document.getElementById("search");
-  const sysEmpty = document.getElementById("sys-empty");
-  let activeCat = "all";
-
-  function applyFilters(){
-    const q = (search?.value||"").trim().toLowerCase();
-    let v = 0;
-    cardEls.forEach(c=>{
-      const okCat = activeCat==="all"||c.dataset.cat===activeCat;
-      const okQ = !q||(c.dataset.search||"").includes(q);
-      c.style.display = okCat&&okQ?"":"none";
-      if(okCat&&okQ)v++;
-    });
-    if(sysEmpty)sysEmpty.hidden=v!==0;
-  }
-  filterBtns.forEach(b=>b.addEventListener("click",()=>{
-    filterBtns.forEach(x=>x.classList.remove("active"));
-    b.classList.add("active");
-    activeCat=b.dataset.cat;
-    applyFilters();
-  }));
-  search?.addEventListener("input",applyFilters);
-  cardEls.forEach(c=>c.addEventListener("click",()=>{location.hash=`#/p/${c.dataset.slug}`}));
-
-  /* Skill filter + detail */
-  const skillGrid = document.getElementById("skill-grid");
-  const skillFilterBtns = Array.from(document.querySelectorAll(".skill-filter-btn"));
-  skillFilterBtns.forEach(b=>b.addEventListener("click",()=>{
-    skillFilterBtns.forEach(x=>x.classList.remove("active"));
-    b.classList.add("active");
-    skillGrid.innerHTML=renderSkillCards(b.dataset.scat);
-    // re-attach detail listeners after re-render
-    attachSkillListeners();
-  }));
-  attachSkillListeners();
-
-  /* Workflow cards */
-  document.getElementById("wf-grid")?.querySelectorAll("[data-wf]").forEach(c=>{
-    c.addEventListener("click",()=>{location.hash=`#/w/${c.dataset.wf}`});
-  });
-}
-
-function attachSkillListeners(){
-  document.getElementById("skill-grid")?.querySelectorAll("[data-skill]").forEach(c=>{
-    c.addEventListener("click",()=>{location.hash=`#/s/${c.dataset.skill}`});
-  });
-}
-
-function renderProduct(slug){
-  const p = SITE.products.find(x=>x.slug===slug);
-  if(!p){location.hash="";return}
-  const tags = (p.tags||[]).map(t=>`<span class="tag">${esc(t)}</span>`).join("");
-  const integ = (p.integrations||[]).map(t=>`<span class="chip">${esc(t)}</span>`).join("");
-  const reqs = (p.requirements||[]).map(r=>`<li>${esc(r)}</li>`).join("");
-  viewRoot.innerHTML = `
-  <main class="product-page view" style="--cat-color:${p.color}">
-    <div class="crumbs"><button data-back>← Back to portfolio</button> <span>/</span> <span>${esc(p.category)}</span></div>
-    <header class="product-hero">
-      <div class="badge-row"><span class="badge type-badge">${esc(p.type_label)}</span><span class="badge status-badge">${esc(p.status)}</span></div>
-      <h1>${esc(p.name)}</h1>
-      <p class="tagline">${esc(p.tagline)}</p>
-      <div class="metric-callout">${esc(p.headline_metric)}</div>
-      <div class="tags">${tags}</div>
-    </header>
-    <div class="product-body">
-      <article class="onesheet">${p.onesheet_html}</article>
-      <aside class="side-panel">
-        <div class="panel"><h3>Stack & Integrations</h3><div class="chips">${integ}</div></div>
-        <div class="panel"><h3>What It Needs</h3><ul class="req-list">${reqs}</ul></div>
-        <div class="panel panel-cta">
-          <h3>Discuss this build</h3>
-          <p>Happy to walk through the architecture, the failures, or how this translates to your team.</p>
-          <a class="btn btn-primary" href="mailto:pdiamitani@atlashxm.com?subject=Portfolio%3A%20${encodeURIComponent(p.name)}">Email Patrick</a>
-        </div>
-      </aside>
     </div>
-  </main>`;
-  window.scrollTo({top:0,behavior:"instant"});
-  viewRoot.querySelector("[data-back]")?.addEventListener("click",()=>{history.back();});
-}
 
-function router(){
-  const hash = location.hash||"";
-  const mp = hash.match(/^#\/p\/(.+)$/);
-  const ms = hash.match(/^#\/s\/(.+)$/);
-  const mw = hash.match(/^#\/w\/(.+)$/);
-  if(mp){ renderProduct(decodeURIComponent(mp[1])); }
-  else if(ms){ renderSkillDetail(decodeURIComponent(ms[1])); }
-  else if(mw){ renderWorkflowDetail(decodeURIComponent(mw[1])); }
-  else{
-    renderHome();
-    if(hash&&hash!=="#"){
-      requestAnimationFrame(()=>{
-        const t=document.querySelector(hash);
-        t?.scrollIntoView({behavior:"smooth",block:"start"});
-      });
-    }
-  }
-}
+    <h3 style="font-size:16px;margin:32px 0 16px;color:var(--accent)">GTM Automation</h3>
+    <div class="grid">
+      <div class="card">
+        <div class="ht">GTM · Atlas Stack</div>
+        <h3>GTM Architect</h3>
+        <p>Full-stack GTM automation expert. Answers any question about Clay, HubSpot, n8n, Amplemarket, Avoma, Asana, and Factors.ai.</p>
+      </div>
+      <div class="card">
+        <div class="ht">GTM · n8n</div>
+        <h3>n8n Workflow Architect</h3>
+        <p>Takes any automation description and produces a full production-ready n8n workflow spec with architecture, node plan, and deployment guide.</p>
+      </div>
+      <div class="card">
+        <div class="ht">GTM · Clay</div>
+        <h3>Clay Prospecting Engine</h3>
+        <p>Accepts a CSV of companies, routes to the correct Clay pipeline, delivers enriched results via HubSpot sync, CSV, or email.</p>
+      </div>
+      <div class="card">
+        <div class="ht">GTM · Clay</div>
+        <h3>Clay Credit Estimator</h3>
+        <p>Estimates Clay credit cost for any enrichment run before it starts. Upload CSV, select columns, get per-row cost breakdown.</p>
+      </div>
+    </div>
 
-window.addEventListener("hashchange",router);
-document.getElementById("nav-brand").addEventListener("click",()=>{location.hash="";window.scrollTo({top:0,behavior:"smooth"})});
-document.getElementById("nav-systems").addEventListener("click",()=>{location.hash="#systems"});
-document.getElementById("nav-skills").addEventListener("click",()=>{location.hash="#skills"});
-document.getElementById("nav-workflows").addEventListener("click",()=>{location.hash="#workflows"});
-document.getElementById("nav-consulting").addEventListener("click",()=>{location.hash="#consulting"});
-document.getElementById("nav-holdings").addEventListener("click",()=>{location.hash="#holdings"});
-document.getElementById("nav-research").addEventListener("click",()=>{location.hash="#research"});
-document.getElementById("nav-about").addEventListener("click",()=>{location.hash="#about"});
+    <h3 style="font-size:16px;margin:32px 0 16px;color:var(--accent)">Analytics & Reporting</h3>
+    <div class="grid">
+      <div class="card">
+        <div class="ht">Analytics · HubSpot</div>
+        <h3>HubSpot Data Analyst</h3>
+        <p>CRM data analyst for Atlas. Answers pipeline status, deal analysis, lead/contact reports, revenue metrics. Pulls real data — never invents.</p>
+      </div>
+      <div class="card">
+        <div class="ht">Analytics · n8n</div>
+        <h3>n8n Execution Analyst</h3>
+        <p>Monitors and investigates n8n workflow executions. Pulls logs via API, extracts node-level errors, renders HTML dashboards.</p>
+      </div>
+      <div class="card">
+        <div class="ht">Analytics · Chatbot</div>
+        <h3>Maia Chatbot Analyst</h3>
+        <p>Pulls and analyzes results from Maia AI Assistant — Atlas's HubSpot chatbot. MQLs, meetings booked, deals attributed.</p>
+      </div>
+      <div class="card">
+        <div class="ht">Analytics · Cost</div>
+        <h3>Token Spend Analyst</h3>
+        <p>Estimates AI token cost for any project before work starts. Per-model cost comparison and cheapest-model recommendation.</p>
+      </div>
+    </div>
 
-router();
-</script>
+    <h3 style="font-size:16px;margin:32px 0 16px;color:var(--accent)">Content & Video</h3>
+    <div class="grid">
+      <div class="card">
+        <div class="ht">Content · Portfolio</div>
+        <h3>Case Study Builder</h3>
+        <p>Turns any pile of project artifacts into a portfolio-ready case study. The skill that generated this portfolio.</p>
+      </div>
+      <div class="card">
+        <div class="ht">Content · Atlas</div>
+        <h3>Atlas Proposal Builder</h3>
+        <p>Builds polished, branded .pptx decks using the official Atlas HXM template. EOR proposals, sales decks, partner presentations.</p>
+      </div>
+      <div class="card">
+        <div class="ht">Video · HyperFrames</div>
+        <h3>Atlas Video HyperFrames</h3>
+        <p>Atlas branded video builder using HeyGen HyperFrames and Chatterbox TTS. Accepts prompts + reference files, renders brand-locked MP4s.</p>
+      </div>
+      <div class="card">
+        <div class="ht">Video · Remotion</div>
+        <h3>Video Editor</h3>
+        <p>AI-powered video editor using Remotion. Creates professional videos from plain English with real-time preview and TTS voiceovers.</p>
+      </div>
+    </div>
+
+    <h3 style="font-size:16px;margin:32px 0 16px;color:var(--accent)">Project Management</h3>
+    <div class="grid">
+      <div class="card">
+        <div class="ht">PM · Intake</div>
+        <h3>New Project System</h3>
+        <p>The idea-to-execution engine. Accepts any input and returns a leadership-ready package: PRD, architecture diagram, build plan, KPI framework.</p>
+      </div>
+      <div class="card">
+        <div class="ht">PM · Asana</div>
+        <h3>Asana Organizer</h3>
+        <p>Give it any Asana project URL — it fetches tasks, rewrites them for stakeholder communication, proposes reorganized structure, applies changes.</p>
+      </div>
+      <div class="card">
+        <div class="ht">PM · Executive</div>
+        <h3>Exec Assistant / CoF</h3>
+        <p>Patrick's personal executive assistant. Daily briefings, task prioritization, meeting prep, Asana management, director readiness coaching.</p>
+      </div>
+      <div class="card">
+        <div class="ht">PM · Handoff</div>
+        <h3>Project Handoff</h3>
+        <p>Project close-out and handoff package generator. Produces documentation any successor can pick up without context loss.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AUTOMATION WORKFLOWS -->
+<section class="section-dark" id="workflows" data-section="workflows">
+  <div class="section-inner">
+    <div class="sl">Automation Workflows</div>
+    <h2>11 production <em>workflows.</em></h2>
+    <p class="st">n8n workflows built and deployed at Atlas HXM. Each with architecture, stack details, and demonstrated results.</p>
+    <div class="grid">
+      <div class="card">
+        <div class="ht">n8n · Live</div>
+        <h3>AI Customer Agent Suite</h3>
+        <p>Two-channel AI inbound: HubSpot chatbot + Contact Us form with unified MQL classification and three-tier deal attribution.</p>
+        <div class="metric-line">$9M+ attributed pipeline</div>
+      </div>
+      <div class="card">
+        <div class="ht">n8n · Live</div>
+        <h3>EOR Compliance Checker</h3>
+        <p>AI deal screening with LLM sector mapping and deterministic rules engine. Full audit trail on every verdict.</p>
+        <div class="metric-line">100+ deals correctly cleared</div>
+      </div>
+      <div class="card">
+        <div class="ht">n8n · Live</div>
+        <h3>Post-Sales Call Automation</h3>
+        <p>Four AI agents per call: follow-up email, missed questions, competitor intel, LinkedIn draft, CRM note.</p>
+        <div class="metric-line">5 deliverables · zero rep action</div>
+      </div>
+      <div class="card">
+        <div class="ht">n8n · Live</div>
+        <h3>Inbound Automation</h3>
+        <p>7-way AI intent classification with hard-override for visitor's stated reason. Deterministic lifecycle mapping.</p>
+        <div class="metric-line">7-way classification</div>
+      </div>
+      <div class="card">
+        <div class="ht">n8n · Live</div>
+        <h3>Partner PQL Automation</h3>
+        <p>AI classifies partner inquiries. Real leads get tasks + AI-drafted responses. Vendor spam filtered silently.</p>
+        <div class="metric-line">Zero manual triage</div>
+      </div>
+      <div class="card">
+        <div class="ht">n8n · Live</div>
+        <h3>Prospect Automation Engine</h3>
+        <p>Daily intent-to-outreach: buying signals → ICP gauntlet → round-robin → Clay enrichment.</p>
+        <div class="metric-line">~75 accounts/week · 55%+ open rate</div>
+      </div>
+      <div class="card">
+        <div class="ht">n8n · Live</div>
+        <h3>Contract Intake Automation</h3>
+        <p>CRM deal to submitted DocuSign in under 3 minutes. Constraint-driven architecture after two APIs blocked.</p>
+        <div class="metric-line">Under 3 min end-to-end</div>
+      </div>
+      <div class="card">
+        <div class="ht">n8n · Shipped</div>
+        <h3>AGS Prospect Automation</h3>
+        <p>Nine-script enrichment pipeline for outsourced SDR. Zero contact overlap, 91% phone coverage.</p>
+        <div class="metric-line">0% overlap · 91% phones</div>
+      </div>
+      <div class="card">
+        <div class="ht">n8n · Shipped</div>
+        <h3>Entity Readiness Report</h3>
+        <p>Weekly automated report on EOR entity readiness changes across 160+ countries.</p>
+        <div class="metric-line">160+ countries weekly</div>
+      </div>
+      <div class="card">
+        <div class="ht">Clay · Shipped</div>
+        <h3>Clay Credit Governance</h3>
+        <p>Structural overspend prevention: free ICP gate, tiered profiles, per-row cost estimates.</p>
+        <div class="metric-line">~70% cost reduction</div>
+      </div>
+      <div class="card">
+        <div class="ht">Skill · Live</div>
+        <h3>HubSpot Import Formatter</h3>
+        <p>Any spreadsheet → clean, deduped, NAICS-enriched HubSpot import templates.</p>
+        <div class="metric-line">50+ rep org adoption</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RESEARCH -->
+<section class="section" id="research" data-section="research">
+  <div class="section-inner">
+    <div class="sl">Published Research</div>
+    <h2>The <em>ROSTR</em> Framework.</h2>
+    <p class="st">A published, citable architecture for production-grade multi-agent systems — PAL, RAG DAL, NPAO, Rostr Hub, and a 5D phase taxonomy.</p>
+    <div class="consult-grid">
+      <div class="consult-card">
+        <span class="badge badge-live">Published</span>
+        <div class="ht">Zenodo · DOI: 10.5281/zenodo.19550414</div>
+        <h3>ROSTR: A Unified Architecture for Production-Grade Multi-Agent Systems</h3>
+        <p>22,000 words · 27 references · A fully citable framework unifying PAL (prompt compilation), NPAO (work classification), RAG/DAL (provenance honesty), and ContextEngine (cross-session memory).</p>
+        <div class="metric-line">The intellectual property underneath every build in this portfolio</div>
+      </div>
+      <div class="consult-card">
+        <div class="ht">Framework Components</div>
+        <h3>Four Pillars</h3>
+        <p><strong>PAL</strong> — Prompt Abstraction Layer for depth and audience framing<br>
+        <strong>NPAO</strong> — Navigate, Prioritize, Allocate, Orchestrate<br>
+        <strong>RAG/DAL</strong> — Retrieval with provenance honesty<br>
+        <strong>ContextEngine</strong> — Persistent cross-session memory</p>
+      </div>
+    </div>
+    <div class="hero-links" style="margin-top:28px">
+      <a href="https://zenodo.org/records/19550414" target="_blank" rel="noopener" class="btn btn-accent">Read the paper (Zenodo DOI)</a>
+    </div>
+  </div>
+</section>
+
+<!-- CONSULTING -->
+<section class="section-dark" id="consulting-section" data-section="consulting">
+  <div class="section-inner">
+    <div class="sl">Consulting</div>
+    <h2>Two practices. One <em>standard.</em></h2>
+    <p class="st">AI software development through Gency AI. GTM AI, automation, and RevOps through SalesGency.</p>
+    <div class="consult-grid">
+      <a class="consult-card" href="https://gencyai.com" target="_blank" rel="noopener">
+        <span class="badge badge-live">Active</span>
+        <div class="ht">AI Software Development</div>
+        <h3>Gency AI</h3>
+        <p>Agents, skills, prompt libraries, and production web apps — from SOP to shipped system, with adoption built in.</p>
+        <div class="metric-line">Build · agents · apps · adoption</div>
+        <span class="hl">gencyai.com →</span>
+      </a>
+      <a class="consult-card" href="https://salesgency.com" target="_blank" rel="noopener">
+        <span class="badge badge-live">Active</span>
+        <div class="ht">GTM AI · Automation · RevOps</div>
+        <h3>SalesGency</h3>
+        <p>Outbound engines, CRM workflows, attribution, and RevOps systems revenue teams can run every day.</p>
+        <div class="metric-line">Pipeline · process · production AI</div>
+        <span class="hl">salesgency.com →</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<div class="family-strip">
+  <div class="family-strip-inner">
+    <div class="fs-label">Diamitani Industries</div>
+    <div class="fs-links">
+      <a href="https://www.diamitani.com">Home</a>
+      <a href="/products">Products</a>
+      <a href="/portfolio" class="active">Portfolio</a>
+      <a href="/consulting">Consulting</a>
+      <a href="/civic">Civic</a>
+    </div>
+  </div>
+</div>
+
+<footer class="footer" data-section="footer">
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="fb-name">Diamitani <span>Industries</span></div>
+        <p>The corporate imprint of Patrick Diamitani — holding company, consulting firm, creative agency, and development studio. A New York C-Corporation, established 2014.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Products</h4>
+        <a href="https://trainlola.com" target="_blank" rel="noopener">LOLA</a>
+        <a href="https://replaiall.com" target="_blank" rel="noopener">Replai</a>
+        <a href="https://fcragent.com" target="_blank" rel="noopener">FCR Agent</a>
+        <a href="https://huddleco.work" target="_blank" rel="noopener">Huddle</a>
+      </div>
+      <div class="footer-col">
+        <h4>Consulting</h4>
+        <a href="https://gencyai.com" target="_blank" rel="noopener">Gency AI</a>
+        <a href="https://salesgency.com" target="_blank" rel="noopener">SalesGency</a>
+        <a href="https://gptpat.co" target="_blank" rel="noopener">GPTPAT</a>
+      </div>
+      <div class="footer-col">
+        <h4>Connect</h4>
+        <a href="https://linkedin.com/in/Diamitani" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://zenodo.org/records/19550414" target="_blank" rel="noopener">ROSTR Paper</a>
+        <a href="mailto:patrick.diamitani@gmail.com">Email</a>
+      </div>
+    </div>
+    <div class="footer-base">
+      <p>Diamitani Industries, Inc. · NY C-Corp · Est. 2014</p>
+      <p>Patrick Diamitani · Chicago, IL · © 2026</p>
+    </div>
+  </div>
+</footer>
+
 </body>
 </html>

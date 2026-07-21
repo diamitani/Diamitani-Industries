@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>GPTPAT — Custom GPT Marketplace · 150+ AI Assistants · Diamitani Industries</title>
+<meta name="description" content="150+ custom GPTs across programming, productivity, sales, creative, civic, and lifestyle. Browse the full GPTPAT marketplace.">
+<link rel="icon" type="image/svg+xml" href="/assets/logo.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;1,400&family=Source+Sans+3:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/theme.css">
+<style>
+.gpt-nav{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:24px;padding:16px 0;border-bottom:1px solid var(--border)}
+.gpt-nav button{background:transparent;border:1px solid var(--border);color:var(--muted);padding:10px 20px;border-radius:999px;font-size:13px;font-weight:600;cursor:pointer;transition:all .2s var(--ease);font-family:var(--font)}
+.gpt-nav button:hover{color:var(--text);border-color:var(--text)}
+.gpt-nav button.active{background:var(--accent);color:var(--ink);border-color:var(--accent)}
+.gpt-nav .nav-count{font-size:11px;opacity:.7;margin-left:4px}
+
+.search-bar{display:flex;gap:12px;margin-bottom:32px;flex-wrap:wrap}
+.search-bar input{flex:1;min-width:200px;background:var(--surface);border:1px solid var(--border);color:var(--text);padding:12px 18px;border-radius:8px;font-size:14px;font-family:var(--font)}
+.search-bar input::placeholder{color:var(--dim)}
+.search-bar input:focus{outline:none;border-color:var(--accent)}
+
+.gpt-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px}
+@media(min-width:1200px){.gpt-grid{grid-template-columns:repeat(3,1fr)}}
+@media(min-width:1500px){.gpt-grid{grid-template-columns:repeat(4,1fr)}}
+
+.gpt-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:20px;display:flex;flex-direction:column;transition:all .2s var(--ease)}
+.gpt-card:hover{transform:translateY(-2px);border-color:var(--accent);box-shadow:0 8px 30px rgba(0,0,0,.25)}
+.gpt-card .card-cat{font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:var(--dim);margin-bottom:8px}
+.gpt-card h3{font-size:15px;font-weight:600;margin-bottom:8px;color:var(--text);line-height:1.3}
+.gpt-card p{font-size:12px;color:var(--muted);line-height:1.5;flex:1}
+.gpt-card .card-link{display:inline-block;margin-top:12px;font-size:12px;color:var(--accent);font-weight:600;text-decoration:none}
+.gpt-card .card-link:hover{text-decoration:underline}
+
+.empty-state{text-align:center;padding:60px 20px;color:var(--muted)}
+.empty-state h3{font-size:18px;margin-bottom:8px;color:var(--text)}
+
+.category-badge{display:inline-block;font-size:9px;font-weight:600;padding:3px 8px;border-radius:4px;text-transform:uppercase;letter-spacing:.03em;margin-bottom:10px}
+.category-badge.programming{background:rgba(94,184,196,.15);color:var(--cyan);border:1px solid rgba(94,184,196,.3)}
+.category-badge.productivity{background:rgba(201,168,74,.15);color:#c9a84a;border:1px solid rgba(201,168,74,.3)}
+.category-badge.lifestyle{background:rgba(212,138,168,.15);color:#d48aa8;border:1px solid rgba(212,138,168,.3)}
+.category-badge.education{background:rgba(78,168,122,.15);color:#4ea87a;border:1px solid rgba(78,168,122,.3)}
+.category-badge.research{background:rgba(138,155,176,.15);color:var(--steel);border:1px solid rgba(138,155,176,.3)}
+.category-badge.writing{background:rgba(226,199,122,.15);color:#e2c77a;border:1px solid rgba(226,199,122,.3)}
+.category-badge.dalle{background:rgba(255,107,107,.15);color:#ff6b6b;border:1px solid rgba(255,107,107,.3)}
+</style>
+</head>
+<body data-division="portfolio">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="https://www.diamitani.com" class="nav-logo">Diamitani <span>Industries</span></a>
+    <div class="nav-links">
+      <a href="https://www.diamitani.com">Home</a>
+      <a href="/products">Products</a>
+      <a href="/portfolio">Portfolio</a>
+      <a href="/research">Research</a>
+      <a href="/consulting">Consulting</a>
+      <a href="/civic">Civic</a>
+    </div>
+    <a href="mailto:patrick.diamitani@gmail.com" class="nav-cta">Contact</a>
+  </div>
+</nav>
+
+<header class="hero" data-section="hero">
+  <div class="hero-inner hero-narrow">
+    <div class="hero-brand">GPTPAT</div>
+    <div class="hero-est">Custom GPT Marketplace · AI Assistants · Production Tools</div>
+    <h1>150+ custom <em>GPTs.</em></h1>
+    <p class="hero-tag">A library of production-ready custom GPTs across programming, productivity, sales, creative, civic, and lifestyle. Built for real workflows, available in the GPT Store.</p>
+    <div class="hero-links">
+      <a href="https://gptpat.co" target="_blank" rel="noopener" class="btn btn-primary">Visit GPTPAT.co</a>
+      <a href="#library" class="btn btn-ghost">Browse the Library</a>
+    </div>
+  </div>
+</header>
+
+<div class="metrics" data-section="metrics">
+  <div class="metrics-inner">
+    <div class="metric"><div class="metric-n">150+</div><div class="metric-l">Custom GPTs built</div></div>
+    <div class="metric"><div class="metric-n">8</div><div class="metric-l">Categories</div></div>
+    <div class="metric"><div class="metric-n">GPT Store</div><div class="metric-l">Published & available</div></div>
+  </div>
+</div>
+
+<section class="section" id="library">
+  <div class="section-inner">
+    <div class="sl">GPT Library</div>
+    <h2>Browse the <em>marketplace.</em></h2>
+
+    <!-- Category Tabs -->
+    <div class="gpt-nav" id="category-nav">
+      <button class="active" data-cat="all">All<span class="nav-count" id="count-all"></span></button>
+      <button data-cat="Programming">Programming<span class="nav-count" id="count-programming"></span></button>
+      <button data-cat="Productivity">Productivity<span class="nav-count" id="count-productivity"></span></button>
+      <button data-cat="Research & Analysis">Research<span class="nav-count" id="count-research"></span></button>
+      <button data-cat="Education">Education<span class="nav-count" id="count-education"></span></button>
+      <button data-cat="Lifestyle">Lifestyle<span class="nav-count" id="count-lifestyle"></span></button>
+      <button data-cat="Writing">Writing<span class="nav-count" id="count-writing"></span></button>
+      <button data-cat="DALL-E">DALL-E<span class="nav-count" id="count-dalle"></span></button>
+    </div>
+
+    <!-- Search -->
+    <div class="search-bar">
+      <input type="text" id="search-input" placeholder="Search GPTs by name or description...">
+    </div>
+
+    <!-- Grid -->
+    <div class="gpt-grid" id="gpt-grid"></div>
+    <div class="empty-state" id="empty-state" style="display:none">
+      <h3>No GPTs found</h3>
+      <p>Try adjusting your search or category filter</p>
+    </div>
+  </div>
+</section>
+
+<section class="section-dark" data-section="about">
+  <div class="section-inner">
+    <div class="sl">About GPTPAT</div>
+    <h2>Production AI for <em>everyone.</em></h2>
+    <p class="st">GPTPAT brings enterprise-grade AI thinking to SMB and mid-market businesses — the same production discipline, just packaged for broader access.</p>
+
+    <div class="consult-grid" style="margin-top:32px">
+      <div class="consult-card">
+        <span class="badge badge-live">Focus</span>
+        <div class="ht">Real Workflows</div>
+        <h3>Built for Production</h3>
+        <p>Every GPT is designed for actual work — not demos. From PRD builders to automation architects to sales enablement, these tools solve real problems in real workflows.</p>
+      </div>
+      <div class="consult-card">
+        <span class="badge badge-live">Focus</span>
+        <div class="ht">Broad Coverage</div>
+        <h3>Every Domain</h3>
+        <p>Programming assistants, productivity tools, research agents, educational guides, creative builders, lifestyle helpers — whatever the domain, there's likely a GPT for it.</p>
+      </div>
+      <div class="consult-card">
+        <span class="badge badge-live">Focus</span>
+        <div class="ht">Always Available</div>
+        <h3>GPT Store Published</h3>
+        <p>All GPTs are published in the OpenAI GPT Store. Click any link to start using it immediately — no setup, no configuration, just prompt and go.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="family-strip">
+  <div class="family-strip-inner">
+    <div class="fs-label">Diamitani Industries</div>
+    <div class="fs-links">
+      <a href="https://www.diamitani.com">Home</a>
+      <a href="/products">Products</a>
+      <a href="/portfolio">Portfolio</a>
+      <a href="/research">Research</a>
+      <a href="/consulting">Consulting</a>
+      <a href="/civic">Civic</a>
+    </div>
+  </div>
+</div>
+
+<footer class="footer" data-section="footer">
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="fb-name">Diamitani <span>Industries</span></div>
+        <p>The corporate imprint of Patrick Diamitani — holding company, consulting firm, creative agency, and development studio.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Products</h4>
+        <a href="https://trainlola.com" target="_blank" rel="noopener">LOLA</a>
+        <a href="https://replaiall.com" target="_blank" rel="noopener">Replai</a>
+        <a href="https://fcragent.com" target="_blank" rel="noopener">FCR Agent</a>
+        <a href="https://huddleco.work" target="_blank" rel="noopener">Huddle</a>
+      </div>
+      <div class="footer-col">
+        <h4>Consulting</h4>
+        <a href="https://gencyai.com" target="_blank" rel="noopener">Gency AI</a>
+        <a href="https://salesgency.com" target="_blank" rel="noopener">SalesGency</a>
+        <a href="https://gptpat.co" target="_blank" rel="noopener">GPTPAT</a>
+      </div>
+      <div class="footer-col">
+        <h4>Connect</h4>
+        <a href="https://linkedin.com/in/Diamitani" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://github.com/diamitani" target="_blank" rel="noopener">GitHub</a>
+        <a href="mailto:patrick.diamitani@gmail.com">Email</a>
+      </div>
+    </div>
+    <div class="footer-base">
+      <p>Diamitani Industries, Inc. · NY C-Corp · Est. 2014</p>
+      <p>Patrick Diamitani · Chicago, IL · © 2026</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+const GPTS = [
+  // Programming
+  {name:"Agent Builder Guide",desc:"Guides beginners in building any AI agent with SDKs, Restack, MCP, and API integration",link:"https://chatgpt.com/g/g-6823d7ef9e388191bb15547171896084-agent-builder-guide",cat:"Programming"},
+  {name:"Chatbot Architect",desc:"Builds structured chatbot instructions and guides step-by-step configuration on no-code platforms",link:"https://chatgpt.com/g/g-6820f686c3608191819ebb80e57e990a-chatbot-architect",cat:"Programming"},
+  {name:"Automation Architect",desc:"Expert in Make, Zapier, n8n; builds custom automations step-by-step",link:"https://chatgpt.com/g/g-681e8b22123881919856dcbd09b1765c-automation-architect",cat:"Programming"},
+  {name:"v0.dev Full Stack App Builder",desc:"Delivers exactly 10 v0.dev prompts to build full stack app MVPs",link:"https://chatgpt.com/g/g-681685f291a48191a687c6dac28f4412-v0-dev-full-stack-app-builder",cat:"Programming"},
+  {name:"Custom GPT Builder Guide",desc:"A calm, expert assistant guiding you step-by-step to design, customize, and refine your perfect GPT",link:"https://chatgpt.com/g/g-681009c908b481919c03570bc6e4c7b2-custom-gpt-builder-guide",cat:"Programming"},
+  {name:"Compass GPT Builder",desc:"Helps users build custom GPTs",link:"https://chatgpt.com/g/g-681004f42b9c819199877e2d765d3523-compass-gpt-builder",cat:"Programming"},
+  {name:"Full Stack Copilot",desc:"Scaffolds components from user prompts using React, Tailwind, shadcn/ui, and full-stack logic",link:"https://chatgpt.com/g/g-681003e70b4081919f5c7accc1096e21-custom-gpt-guide",cat:"Programming"},
+  {name:"Replit Builder",desc:"Formats and refines prompts for efficient Replit project building",link:"https://chatgpt.com/g/g-67ebbfd9befc819187ed1174fd1d8289-replit-builder",cat:"Programming"},
+  {name:"PromptBuilder Architect",desc:"Creates modular prompt sets for v0.dev, Cursor, and Replit apps with UI, backend, and deploy flows",link:"https://chatgpt.com/g/g-67ebb39985c88191bde258e563a05af8-promptbuilder-architect",cat:"Programming"},
+  {name:"PromptBuilder Architect V2",desc:"Breaks down app ideas into modular prompts for lovable.dev, tailored by plan tier",link:"https://chatgpt.com/g/g-67ebbfd7c70c8191b0842c96d89af2ac-promptbuilder-architect-v2",cat:"Programming"},
+  {name:"GPT Project Instructions Builder",desc:"The ultimate builder for elite, deployment-ready GPT Instructions and PRDs",link:"https://chatgpt.com/g/g-67a6bd4478e88191ab5fe72a7a0c7375-gpt-project-instructions-builder",cat:"Programming"},
+  {name:"Dynamic GPT Project Generator",desc:"Generates GPT-based projects using PRD and UI inputs",link:"https://chatgpt.com/g/g-67a6627ce5e08191be699f5c2f58eef0-dynamic-gpt-project-generator",cat:"Programming"},
+  {name:"Project Structure Architect",desc:"Generates dynamic project structures from PRDs",link:"https://chatgpt.com/g/g-67a5092e227c81919212f7862604d5cf-project-structure-architect",cat:"Programming"},
+  {name:"Assistant Template Generator",desc:"Generates OpenAI Assistant API templates and setup guides",link:"https://chatgpt.com/g/g-67853e2243348191ab1ad2f89c02d3ef-assistant-template-generator",cat:"Programming"},
+  {name:"Chatbot Guide Bot",desc:"Step-by-step chatbot builder using prompts and downloadable .vf files for Voiceflow",link:"https://chatgpt.com/g/g-67f68acfada0819194761d7dc2c8f7bc-chatbot-guide-bot-using-voice-flow",cat:"Programming"},
+  {name:"PlaceCode",desc:"Designs and optimizes web solutions with tailored scripts, seamless integrations, and deployment-ready assets",link:"https://chatgpt.com/g/g-67689e24ba088191915d9f046ca55c6d-placecode",cat:"Programming"},
+  {name:"Horizon UI Copilot",desc:"Build and deploy sleek UIs for assistants using Horizon UI",link:"https://chatgpt.com/g/g-6765c87b5548819197f8a8b5191d253c-horizon-ui-copilot",cat:"Programming"},
+  {name:"Custom UI Chatbot Assistant",desc:"Configures CSS/HTML Templates and project files to match OpenAI Assistant APIs",link:"https://chatgpt.com/g/g-67612822fb34819198549b0396a5d6e5-custom-ui-chatbot-assistant",cat:"Programming"},
+  {name:"FlowBud",desc:"Build custom agents with OpenAI, Zapier, Make, Dialogflow, and more",link:"https://chatgpt.com/g/g-BlpSmLwM3-flowbud",cat:"Programming"},
+  {name:"Relevance AI Agent Builder",desc:"Uses Relevance.ai documentation to help guide you with agent, tool and bot creation",link:"https://chatgpt.com/g/g-pSPhvxvMh-relevance-ai-custom-agent-builder",cat:"Programming"},
+  {name:"Algorithm Architect",desc:"Helps create algorithms and code with tutorials",link:"https://chatgpt.com/g/g-U2en92Qdn-algorithm-architect",cat:"Programming"},
+  {name:"API Guide",desc:"Make custom actions and functions using APIs by uploading documentation",link:"https://chatgpt.com/g/g-vSbY2y8pd-api-guide",cat:"Programming"},
+  {name:"WordUp",desc:"WordPress Assistant for site building and management",link:"https://chatgpt.com/g/g-L6f108GSb-wordup",cat:"Programming"},
+  {name:"API Integration Architect Pro",desc:"Expert in API schema creation, validation, and seamless AI integrations",link:"https://chatgpt.com/g/g-9KZmYIrNN-api-integration-architect-pro",cat:"Programming"},
+  {name:"Assistant API Builder",desc:"Guide for building GPT assistants with API deployment",link:"https://chatgpt.com/g/g-owjjipHOu-assistant-api-builder",cat:"Programming"},
+  {name:"ScriptCraft",desc:"Expert in crafting GPT assistant scripts",link:"https://chatgpt.com/g/g-b9JD3yH1R-script-savvy",cat:"Programming"},
+  {name:"GPTeach",desc:"Expert guide for building AI solutions with OpenAI tools",link:"https://chatgpt.com/g/g-83vBEpFE0-gpteach",cat:"Programming"},
+  {name:"Funky",desc:"Generates validated JSON schemas and deployment-ready API templates for Assistants and GPTs",link:"https://chatgpt.com/g/g-MW14VqXOV-funky",cat:"Programming"},
+  {name:".JSONL Converter",desc:"Converts uploaded documents to .jsonl format",link:"https://chatgpt.com/g/g-SxGo41QrX-jsonl-converter",cat:"Programming"},
+  {name:"Site Mapper",desc:"Converts app ideas into site maps, page specs, and prompts for code/design tools",link:"https://chatgpt.com/g/g-6865e200d8008191a43209a30d350ad2-site-mapper",cat:"Programming"},
+
+  // Productivity
+  {name:"Course Builder Assistant",desc:"Transforms course ideas or documents into structured outlines and full course content",link:"https://chatgpt.com/g/g-68169561b7108191a2eee3758dace731-course-builder-assistant",cat:"Productivity"},
+  {name:"Jobs to be Done",desc:"Transforms prompts and docs into AI-ready 'Jobs to Be Done' blueprints with guided flows",link:"https://chatgpt.com/g/g-6802c7da3c688191875f67a5468d82e2-jobs-to-be-done",cat:"Productivity"},
+  {name:"Tax Assistant Pro GPT",desc:"Guide users through personal and business tax preparation",link:"https://chatgpt.com/g/g-67a279ecea1481919e8ddc3179102670-tax-assistant-pro-gpt",cat:"Productivity"},
+  {name:"Call Insights Assistant",desc:"Analyzes client calls, provides summaries and updates sheets",link:"https://chatgpt.com/g/g-67a27017ace48191aed2c1b72bbf8f9d-call-insights-assistant",cat:"Productivity"},
+  {name:"WealthMind AI",desc:"A personal budget tracker and financial guide",link:"https://chatgpt.com/g/g-67a0f3c833348191b20061efa83d5847-wealthmind-ai",cat:"Productivity"},
+  {name:"Job Search Assistant",desc:"Parse job links, track jobs, and generate tailored resumes",link:"https://chatgpt.com/g/g-679fe1e9d5248191849631baced67ec5-job-search-assistant",cat:"Productivity"},
+  {name:"Job Link Parser & Tracker",desc:"Parses job links and creates tracking spreadsheets",link:"https://chatgpt.com/g/g-67a119ca27a8819189c4d16e1c18d3cc-job-link-parser-tracker",cat:"Productivity"},
+  {name:"Tenny Search",desc:"Save apartment listing links and parse them into organized CSV format",link:"https://chatgpt.com/g/g-679b58aee3488191baf80c3c9ad90bef-tenny-search",cat:"Productivity"},
+  {name:"ApplyGPT",desc:"Guides users in crafting job applications and preparing for interviews",link:"https://chatgpt.com/g/g-679afade60e48191aba8bf66a54d8e8a-applygpt",cat:"Productivity"},
+  {name:"Personal Video Coach",desc:"Creates professional video scripts for job pitches or any subject",link:"https://chatgpt.com/g/g-678433cdeaa481918b3e95c5cfccb32d-personal-video-coach",cat:"Productivity"},
+  {name:"DOGER",desc:"Analyzes budgets to find inefficiencies, propose AI solutions, and inspire community contributions",link:"https://chatgpt.com/g/g-677f30c415208191ac4429c9952a492d-doger",cat:"Productivity"},
+  {name:"Artist Budget Guide",desc:"Helps artists create realistic budgets for their projects",link:"https://chatgpt.com/g/g-677c38ca83cc8191962b0d2e84a8f377-artist-budget-guide",cat:"Productivity"},
+  {name:"Unleash Your Sales Greatness",desc:"Empowers users with practical, empathetic sales training and growth strategies",link:"https://chatgpt.com/g/g-6778556e2ef481918fdead30de50fb95-unleash-your-sales-greatness",cat:"Productivity"},
+  {name:"SongByrd",desc:"Your ultimate AI-powered songwriting assistant for hits",link:"https://chatgpt.com/g/g-67723c217e1481918982a34fe2bf360d-songbyrd",cat:"Productivity"},
+  {name:"DCASE 312",desc:"Your AI-powered cultural engagement guide for Chicago's Department of Cultural Affairs",link:"https://chatgpt.com/g/g-676ad343f78c81919598a8969432a163-dcase-312",cat:"Productivity"},
+  {name:"A&R Campaign Architect",desc:"Elite A&R strategist for artist campaigns across blogs, playlists, venues, and licensing",link:"https://chatgpt.com/g/g-676aa9f4295081918c546999524f2e84-a-r-campaign-architect",cat:"Productivity"},
+  {name:"Instruction Architect",desc:"Setting the gold standard for AI system instruction design",link:"https://chatgpt.com/g/g-676964c88b088191b70dcd4133ae2595-1-system-instruction-architect",cat:"Productivity"},
+  {name:"Omni Architect",desc:"Master problem solver and workflow designer across all domains",link:"https://chatgpt.com/g/g-6749234181b88191a9e9cf4940f29900-omni-architect",cat:"Productivity"},
+  {name:"Sixth Automation",desc:"Expert automation assistant for Make.com and Softr scenarios",link:"https://chatgpt.com/g/g-673eed917eec81918514e2a40f890fd6-sixth-automation",cat:"Productivity"},
+  {name:"Artist Business Plan Generator",desc:"Guides artists in building tailored business plans and growth strategies",link:"https://chatgpt.com/g/g-673240bec7c08190af4bf954dcef16a5-artist-business-plan-generator",cat:"Productivity"},
+  {name:"RSS Assist",desc:"Transforms RSS feeds into engaging, SEO-optimized blogs with ethical attribution",link:"https://chatgpt.com/g/g-gOBjQdiWm-rss-assist",cat:"Productivity"},
+  {name:"NPAO Bot",desc:"Helps users prioritize and analyze tasks using N.P.A.O. for clarity and growth",link:"https://chatgpt.com/g/g-5BWmDw3PN-npao-bot",cat:"Productivity"},
+  {name:"Sales Process Assistant",desc:"AI assistant for seamless sales automation, CRM integration, and actionable sales insights",link:"https://chatgpt.com/g/g-HqlEVB4Se-sales-process-assistant",cat:"Productivity"},
+  {name:"Business Automation Guide",desc:"Expert guide for automating business workflows and integrating tools like Softr, Zapier, and GPT",link:"https://chatgpt.com/g/g-f4GHCIImp-business-automation-guide",cat:"Productivity"},
+  {name:"Technical Writing Pro",desc:"Expert in refining technical copy, creating processes, and crafting goal-oriented documents",link:"https://chatgpt.com/g/g-DfNpo3dNS-technical-writing-pro",cat:"Productivity"},
+  {name:"Outreach Automator",desc:"Automates email outreach tasks in HubSpot with personalized emails",link:"https://chatgpt.com/g/g-lISjbhdPs-outreach-automator",cat:"Productivity"},
+  {name:"Strategic Business Architect",desc:"Expert guide for strategic growth, sales optimization, and business model innovation",link:"https://chatgpt.com/g/g-sVjPH8xUg-strategic-business-architect",cat:"Productivity"},
+  {name:"AutomateGPT",desc:"Automate custom GPT creation based on Airtable data",link:"https://chatgpt.com/g/g-p7fv7jXmo-automategpt",cat:"Productivity"},
+  {name:"Unstuck Master Plan GPT",desc:"Conversational AI coach guiding users step-by-step through the Power Assessment",link:"https://chatgpt.com/g/g-73w9nmSXx-unstuck-master-plan-gpt",cat:"Productivity"},
+  {name:"Business Audit",desc:"Dynamic business audit and strategic planning assistant",link:"https://chatgpt.com/g/g-ATFdQizuP-business-audit",cat:"Productivity"},
+  {name:"GPT Configurator",desc:"Creates detailed, formatted documents from GPT configurations",link:"https://chatgpt.com/g/g-rIfzVdt47-gpt-configurator",cat:"Productivity"},
+  {name:"List Manager",desc:"Organizes and manages apartment listings with categorization and search tools",link:"https://chatgpt.com/g/g-ZJWsFRQRZ-list-manager",cat:"Productivity"},
+  {name:"InterviewGPT",desc:"Streamlined job application assistant for optimizing resumes and managing application tracking",link:"https://chatgpt.com/g/g-IcSrCDQKp-interviewgpt",cat:"Productivity"},
+  {name:"Enably",desc:"Your advanced and insightful sales enablement agent, optimizing strategies and empowering sales teams",link:"https://chatgpt.com/g/g-RoFhc4Ti4-enably",cat:"Productivity"},
+  {name:"Onboarding Expert",desc:"Guides new clients through structured onboarding from Sales Enablement Plans",link:"https://chatgpt.com/g/g-lnO9bvhKy-onboarding-expert",cat:"Productivity"},
+  {name:"Link Folder",desc:"Adds links from the web to a running database/spreadsheet",link:"https://chatgpt.com/g/g-GFbjf2cuy-link-folder",cat:"Productivity"},
+  {name:"Business Model Canvas Builder",desc:"Generates a Business Model Canvas from a user's idea using NLP and guided questions",link:"https://chatgpt.com/g/g-6874039771988191bc02dc0ee5e2db86-business-model-canvas-builder",cat:"Productivity"},
+  {name:"ChunkMaster Pro",desc:"Chunks, tags, exports, and indexes documents step-by-step with expert guidance",link:"https://chatgpt.com/g/g-6872b45ce1448191ba76ca5aae0d40cf-chunkmaster-pro",cat:"Productivity"},
+  {name:"Go To Market Architect",desc:"Expert GTM strategist helping structure and launch go-to-market campaigns",link:"https://chatgpt.com/g/g-683f2ca476248191b9bdfc97bc4ad641-go-to-market-architect",cat:"Productivity"},
+
+  // GTM & Sales
+  {name:"SOP Architect",desc:"Creates standard operating procedures from any process description",link:"https://chatgpt.com/g/g-68ae5f21a1608191bd68ed88850d7ab1-sop-architect-gpt",cat:"Productivity"},
+  {name:"GTM Engineer & Automation Architect",desc:"Builds secure GTM automations with runbooks and Make/n8n blueprints",link:"https://chatgpt.com/g/g-68ae5687c9b881919c923a432f1fd086-gtm-engineer-automation-architect-gpt",cat:"Productivity"},
+  {name:"KPI Architect",desc:"Generates KPIs and activity metrics from business goals",link:"https://chatgpt.com/g/g-68ae5416b9848191831ef9943306451d-kpi-architect-gpt",cat:"Productivity"},
+  {name:"GTM Playbook Architect",desc:"Generates GTM playbooks, BDR/AE bibles, and battlecards for sales enablement",link:"https://chatgpt.com/g/g-68ae50b86e748191b3b17da1c50e5c68-gtm-playbook-architect",cat:"Productivity"},
+  {name:"TechStack Architect",desc:"Researches, recommends, and generates setup guides for tech stacks",link:"https://chatgpt.com/g/g-68ae4db1e9e88191a905693f73f2f8b3-tech-stack-architect",cat:"Productivity"},
+  {name:"Use Case Architect",desc:"Builds use cases and user stories from requirements",link:"https://chatgpt.com/g/g-68ae4bf0b1a081919c0bac4113cf7334-use-case-architect",cat:"Productivity"},
+  {name:"LinkedIn & Social DM Architect",desc:"Generates LinkedIn, Twitter, and social DMs for outreach and follow-ups",link:"https://chatgpt.com/g/g-68ae4a6f004c81919d19c50ec5e80be8-social-dm-architect",cat:"Productivity"},
+  {name:"Email Architect",desc:"Creates email templates and sequences for sales and marketing",link:"https://chatgpt.com/g/g-68ae46142f6c8191a89f6f4b0ef4a72e-email-architect-gpt",cat:"Productivity"},
+  {name:"Value Proposition Architect",desc:"Crafts value propositions and USPs tailored to product, audience, and GTM strategy",link:"https://chatgpt.com/g/g-68ae3f19816c8191bdc63ae43d37aae5-value-proposition-architect-gpt",cat:"Productivity"},
+  {name:"Buyer Persona Architect",desc:"Generates detailed user and buyer personas from documents or prompts",link:"https://chatgpt.com/g/g-68ae33816490819185f5116a20f0f1d2-buyer-persona-gpt",cat:"Productivity"},
+  {name:"Sales Commander",desc:"General of Your Sales Army",link:"https://chatgpt.com/g/g-MqLy87WdT-sales-commander",cat:"Productivity"},
+  {name:"Revenue Strategist",desc:"Guides businesses in crafting custom sales strategies using Predictable Revenue Modeling",link:"https://chatgpt.com/g/g-IkaglNabJ-revenue-strategist",cat:"Productivity"},
+  {name:"Prossley",desc:"AI-powered sales architect delivering actionable, data-driven insights for optimized client engagement",link:"https://chatgpt.com/g/g-s0HyR5nM8-prossley",cat:"Productivity"},
+
+  // Research & Analysis
+  {name:"(PRD) Product Requirements Document Builder",desc:"Generates PRDs, instructions, and custom resources",link:"https://chatgpt.com/g/g-67a465d99950819186563b257bac0d88-prd-product-requirements-document-builder",cat:"Research & Analysis"},
+  {name:"RAG-DAL Knowledgebase Builder",desc:"Autonomous Knowledge Base Builder for Retrieval-Augmented Generation for Dynamic Autonomous Learning",link:"https://chatgpt.com/g/g-679e8aa68d70819185c2f072b4bf2065-rag-dal-knowledgebase-builder",cat:"Research & Analysis"},
+  {name:"Dynamic Resource Aggregator",desc:"Dynamic resource aggregator with user-defined tables",link:"https://chatgpt.com/g/g-67a132ccde2c8191bc1c6f5aaa8a118b-dynamic-resource-aggregator",cat:"Research & Analysis"},
+  {name:"RSS Aggregator",desc:"Curates and exports tailored RSS feed lists for any industry or niche",link:"https://chatgpt.com/g/g-jKy7Famu9-rss-aggregator",cat:"Research & Analysis"},
+  {name:"Highly Suggested Prompts (HSPs)",desc:"Refines prompts with precision for optimal AI performance and clarity",link:"https://chatgpt.com/g/g-haeo2jTUS-highly-suggested-prompts-hsps",cat:"Research & Analysis"},
+  {name:"Theory Formulation Assistant",desc:"Assists in theory formulation and investigation using the 'nx' theory framework",link:"https://chatgpt.com/g/g-sxSTVv4og-theory-formulation-assistant",cat:"Research & Analysis"},
+  {name:"Candidate Insight GPT",desc:"Provides neutral, structured insight into a political candidate's platform and resources",link:"https://chatgpt.com/g/g-686427e02bc08191b4071b88201a95a4-candidate-insight-gpt",cat:"Research & Analysis"},
+  {name:"Crime Tracker Chicago",desc:"Real-time crime intelligence for Chicago with maps, reports, and predictive analytics",link:"https://chatgpt.com/g/g-pKjwPnJ18-crime-tracker-chicago",cat:"Research & Analysis"},
+  {name:"Image Sourcing Analyst",desc:"Extracts relevant image URLs from sites for visual content enhancement",link:"https://chatgpt.com/g/g-bVKch7kAf-image-sourcing-analyst",cat:"Research & Analysis"},
+  {name:"Hero Image Extractor Pro",desc:"Effortlessly extracts hero images from websites for seamless data integration",link:"https://chatgpt.com/g/g-kyazQOR1h-hero-image-extractor-pro",cat:"Research & Analysis"},
+  {name:"Image Scraper Pro",desc:"Efficient GPT for scraping and returning relevant image URLs",link:"https://chatgpt.com/g/g-FuPsdlwkZ-image-scraper-pro",cat:"Research & Analysis"},
+  {name:"Web Image Extractor",desc:"Extracts and returns the most relevant image URLs from websites",link:"https://chatgpt.com/g/g-SrwBDwnJd-web-image-extractor",cat:"Research & Analysis"},
+
+  // Education
+  {name:"Cloud Course Assistant",desc:"Your personal cloud study assistant",link:"https://chatgpt.com/g/g-67a65a6345648191aef0686947a54223-cloud-course-assistant",cat:"Education"},
+  {name:"Jesus Guide Me",desc:"Guides users in Bible and Gnostic study with tailored questions and reflective notes",link:"https://chatgpt.com/g/g-67a0293f54ec8191a8a7925eb7800963-jesus-guide-me",cat:"Education"},
+  {name:"Driving Test Genius",desc:"US Driving Test Prep Assistant for all states",link:"https://chatgpt.com/g/g-677f99e5db28819194f03aed0ae7bd58-driving-test-genius",cat:"Education"},
+  {name:"Code Camp Mentor",desc:"Your personalized coding bootcamp tutor for Python and AI",link:"https://chatgpt.com/g/g-b1hlsjRXX-code-camp-mentor",cat:"Education"},
+  {name:"ChicagoESQ",desc:"Learn about Chicago Justice System",link:"https://chatgpt.com/g/g-N0Vkz5UV0-chicagoesq",cat:"Education"},
+  {name:"ArtistConnect",desc:"Connect with artists for real advice, mentorship, and coaching based on true journeys",link:"https://chatgpt.com/g/g-EWhVQersh-artistconnect",cat:"Education"},
+  {name:"BLK Heights Career Coach",desc:"Empowering coach and content guide for BLK Heights' tech-driven community",link:"https://chatgpt.com/g/g-faUugyEGJ-blk-heights-career-coach",cat:"Education"},
+
+  // Lifestyle
+  {name:"Poor Richard's GPT",desc:"Provides quotes and insights from Poor Richard's Almanak",link:"https://chatgpt.com/g/g-681ee3be47a0819182590ec346cb304a-poor-richard-s-gpt",cat:"Lifestyle"},
+  {name:"Prayer Companion",desc:"Transforms your worries into heartfelt, personalized prayers",link:"https://chatgpt.com/g/g-67f897048ab881919b0d33912bd8481d-prayer-companion",cat:"Lifestyle"},
+  {name:"Texts Not to Send",desc:"Send messages to me, not your ex",link:"https://chatgpt.com/g/g-67a26b57cb6881918da575f7c7db4129-texts-not-to-send",cat:"Lifestyle"},
+  {name:"Cosmic Oracle",desc:"Your cosmic guide for personalized astrology insights",link:"https://chatgpt.com/g/g-6781683b25b88191be28d4d4596c746e-cosmic-oracle",cat:"Lifestyle"},
+  {name:"The Profile Wingman",desc:"Optimize dating profiles with engaging, app-specific content",link:"https://chatgpt.com/g/g-6781573a72dc81919c5d98ef9d0e67bb-the-profile-wingman",cat:"Lifestyle"},
+  {name:"Musk Insights Tracker",desc:"Tracks Elon Musk's social, financial, and political influence",link:"https://chatgpt.com/g/g-678155531ef08191b64844337cdefc05-musk-insights-tracker",cat:"Lifestyle"},
+  {name:"AI Palmistry Guide",desc:"AI-powered virtual palm reader offering personalized palm readings",link:"https://chatgpt.com/g/g-677d762e938481919973a4b587184c40-ai-palmistry-guide",cat:"Lifestyle"},
+  {name:"Dropshipping AI Assistant",desc:"AI-powered tool for automating dropshipping workflows and optimizing product strategy",link:"https://chatgpt.com/g/g-67a80e4a464881919f740d5178f2c8dd-dropshipping-ai-assistant",cat:"Lifestyle"},
+  {name:"Side Hustle Finder",desc:"Helps users discover quick and easy side hustle opportunities via mobile apps",link:"https://chatgpt.com/g/g-PVbv64iXx-side-hustle-finder",cat:"Lifestyle"},
+  {name:"Jo Kraft",desc:"Expert joke crafter who helps develop jokes based on user's style",link:"https://chatgpt.com/g/g-pCiEuWm6P-jo-kraft",cat:"Lifestyle"},
+  {name:"Ultimate Survival AI",desc:"Your definitive companion for mastering survival in any environment",link:"https://chatgpt.com/g/g-NujG6TmqR-ultimate-survival-ai",cat:"Lifestyle"},
+  {name:"The Tie Breaker",desc:"Builds a futuristic voting platform driven by AI and blockchain for smart governance",link:"https://chatgpt.com/g/g-N1teuetQp-the-tie-breaker",cat:"Lifestyle"},
+  {name:"HUMINT",desc:"Simulates and teaches human intelligence skills focused on self-awareness and empathy",link:"https://chatgpt.com/g/g-vZ4ywRsqf-humint",cat:"Lifestyle"},
+  {name:"Uney: Illinois Unemployment Guide",desc:"Expert on Illinois unemployment insurance",link:"https://chatgpt.com/g/g-cUZm3JhdJ-uney-illinois-unemployment-guide",cat:"Lifestyle"},
+  {name:"Recalla",desc:"Intuitive recall agent providing detailed recall lists",link:"https://chatgpt.com/g/g-Y4fMRqFFf-recalla",cat:"Lifestyle"},
+  {name:"AuctoPilot",desc:"Find auctions, foreclosures, estate sales near you",link:"https://chatgpt.com/g/g-98xUvWZ0A-auctopilot",cat:"Lifestyle"},
+  {name:"AlgoVest",desc:"Personal Investment Algorithm Creator",link:"https://chatgpt.com/g/g-ZKskCRKA7-algovest",cat:"Lifestyle"},
+  {name:"Munger Inspired Investing Pro",desc:"Value-driven investment advice inspired by Charlie Munger",link:"https://chatgpt.com/g/g-i2gWWJYGx-munger-inspired-investing-pro",cat:"Lifestyle"},
+  {name:"Tenny: Chicago",desc:"A tenants rights expert for Chicago residences, aiding in housing issues",link:"https://chatgpt.com/g/g-cpsDOlA46-tenny-chicago",cat:"Lifestyle"},
+  {name:"Chicago 211 Resource Assistant",desc:"Quickly find location-specific services in Chicago",link:"https://chatgpt.com/g/g-g0DGXiljy-chicago-211-resource-assistant",cat:"Lifestyle"},
+  {name:"ERC Assistant",desc:"Guides in filling out employee retention credit forms",link:"https://chatgpt.com/g/g-bq6pdBN1d-erc-assistant",cat:"Lifestyle"},
+  {name:"IRS Form 7202 Assistant",desc:"Helps users complete IRS Form 7202 for their amended 2021 tax return",link:"https://chatgpt.com/g/g-olXCxP7PS-irs-form-7202-assistant",cat:"Lifestyle"},
+  {name:"My Smart Tax Advisor",desc:"Personalized U.S. tax assistant for entrepreneurs",link:"https://chatgpt.com/g/g-MQEBlp8iN-my-smart-tax-advisor",cat:"Lifestyle"},
+  {name:"Hoops Stats and Insights",desc:"NBA stats, trends, betting analysis, and actionable insights for informed decisions",link:"https://chatgpt.com/g/g-eyln5zVfm-hoops-stats-and-insights",cat:"Lifestyle"},
+
+  // Writing
+  {name:"Artispreneur Email Generator",desc:"Generate emails for your music campaign",link:"https://chatgpt.com/g/g-676913cfd1d48191b595497379d27d99-artispreneur-email-generator",cat:"Writing"},
+  {name:"DocuScript",desc:"Guide users in creating compelling documentaries from start to finish",link:"https://chatgpt.com/g/g-fohlSe9g9-docuscript",cat:"Writing"},
+  {name:"AI Newsletter Assistant",desc:"Builds and writes daily AI newsletters with fresh news and smart resource curation",link:"https://chatgpt.com/g/g-68120a8c7aa08191bd2da528ea3bd7ee-ai-newsletter-assistant",cat:"Writing"},
+  {name:"EPK Builder",desc:"Creates EPKs for musicians, crafting engaging bios and media kits",link:"https://chatgpt.com/g/g-k1G0USEyh-epk-builder",cat:"Writing"},
+  {name:"EPK Creator",desc:"Creates sleek, professional EPKs with AI-driven design and music-focused branding tools",link:"https://chatgpt.com/g/g-k7PXF5EgX-epk-creator",cat:"Writing"},
+  {name:"Artist Bio Creator",desc:"Guides musicians through creating professional artist biographies",link:"https://chatgpt.com/g/g-aWdPi7rXs-artist-bio-creator",cat:"Writing"},
+  {name:"Stori",desc:"Guide you through writing professional scripts and storyboards, complete with visual storytelling tools",link:"https://chatgpt.com/g/g-e1Hu90qGa-stori",cat:"Writing"},
+  {name:"Email Template Creator",desc:"Creates custom email templates as requested",link:"https://chatgpt.com/g/g-78vwnqQUg-email-template-creator",cat:"Writing"},
+  {name:"Product Description Editor",desc:"Creates polished product descriptions for ecommerce platforms like WooCommerce",link:"https://chatgpt.com/g/g-kHM2PFMAp-product-description-editor",cat:"Writing"},
+  {name:"E-Word",desc:"Product description writer for WordPress and WooCommerce",link:"https://chatgpt.com/g/g-oU89IAfnv-e-word",cat:"Writing"},
+  {name:"Agreement Architect",desc:"Crafts custom general partnership agreements in Word doc format",link:"https://chatgpt.com/g/g-U53E2wyFn-agreement-architect",cat:"Writing"},
+  {name:"GPT License Generator",desc:"Generates tailored software licenses for GPT solutions",link:"https://chatgpt.com/g/g-W5q52ZGMb-gpt-license-generator",cat:"Writing"},
+
+  // Music & Creative
+  {name:"Artist Interview Bot",desc:"Collects and shares artists' insights for aspiring talents",link:"https://chatgpt.com/g/g-mMIuI7n2u-artist-interview-bot",cat:"Lifestyle"},
+  {name:"Artist AI Coach",desc:"Connects artists with AI-powered personal tutors based on real artist experiences",link:"https://chatgpt.com/g/g-y8hqJDMiF-artist-ai-coach",cat:"Lifestyle"},
+  {name:"Armie",desc:"Advanced artist development and management bot assisting artists to become entrepreneurs",link:"https://chatgpt.com/g/g-YwyaCFT7Y-armie",cat:"Lifestyle"},
+  {name:"Showcase",desc:"Create your open mic, showcase, or release party",link:"https://chatgpt.com/g/g-Fzqo1n15t-showcase",cat:"Lifestyle"},
+  {name:"SyncMaster",desc:"Find music supervisors and libraries to submit your music to",link:"https://chatgpt.com/g/g-hvolaQ0yh-syncmaster",cat:"Lifestyle"},
+  {name:"SongVid",desc:"Create a music video with stock footage based on a song upload",link:"https://chatgpt.com/g/g-z0ounFAlV-songvid",cat:"Lifestyle"},
+  {name:"Reggie: P.R.O.",desc:"A specialized assistant helping users register for PROs and manage music portfolios",link:"https://chatgpt.com/g/g-2eyNECKRg-reggie-p-r-o",cat:"Lifestyle"},
+  {name:"MicSpot",desc:"Finds open mics in your area for Comedy and Music",link:"https://chatgpt.com/g/g-maDxBXHrX-micspot",cat:"Lifestyle"},
+  {name:"E-Milly",desc:"Crafts data-driven campaigns for music promotion",link:"https://chatgpt.com/g/g-gmDJhtOzO-e-milly",cat:"Lifestyle"},
+  {name:"MusicTracts - Split Sheet Agreement",desc:"Your go-to tool for generating professional Music Split Sheet Agreements",link:"https://chatgpt.com/g/g-xtRcRaLBy-musictracts-split-sheet-agreement",cat:"Lifestyle"},
+  {name:"Music Contract Assistant",desc:"Enter a prompt for a music contract, upload your own for review, or submit info for template",link:"https://chatgpt.com/g/g-8a5gA1RQf-music-contract-assistant",cat:"Lifestyle"},
+  {name:"Tour Tracker",desc:"Discover live music tours and book venues with ease",link:"https://chatgpt.com/g/g-jcabF4Xg7-tour-tracker",cat:"Lifestyle"},
+  {name:"VenYou",desc:"Finds and organizes music venue contact info",link:"https://chatgpt.com/g/g-4w9IlssZI-venyou",cat:"Lifestyle"},
+  {name:"Catana",desc:"Manage and enhance music catalogues, providing organization and insights",link:"https://chatgpt.com/g/g-Lkh3vV3d9-catana",cat:"Lifestyle"},
+  {name:"ArtBeat Covers",desc:"Helps artists create visually stunning cover art tailored to their music",link:"https://chatgpt.com/g/g-Ja6aQCuTg-artbeat-covers",cat:"DALL-E"},
+  {name:"Music Biz Daily Digest",desc:"Creates a daily digest of top music industry business news",link:"https://chatgpt.com/g/g-tkvx0g5zl-music-biz-daily-digest",cat:"Lifestyle"},
+  {name:"Artist Resource Hub",desc:"Your ultimate guide to music industry resources, deals, and news",link:"https://chatgpt.com/g/g-gmfOMW8bv-artist-resource-hub",cat:"Lifestyle"},
+
+  // Political & Civic
+  {name:"Political Campaign Guide",desc:"Your comprehensive guide for political campaigns and elections",link:"https://chatgpt.com/g/g-tL61iT0zl-political-campaign-guide",cat:"Productivity"},
+  {name:"Political Campaign Architect",desc:"Your digital strategist for campaign planning and automation",link:"https://chatgpt.com/g/g-68642603d78c8191ab92c78b44528ad8-political-campaign-architect",cat:"Productivity"},
+  {name:"Campaign Digital Director Assistant",desc:"Elite political content strategist for digital mobilization",link:"https://chatgpt.com/g/g-686dc00750e481919b6db2df8029b397-campaign-digital-director-assistant",cat:"Productivity"},
+  {name:"Political Campaign Speechwriter",desc:"Strategic political speechwriter and messaging architect",link:"https://chatgpt.com/g/g-686dbced2df08191b445c8d194d09fb8-political-campaign-speechwriter-assistant",cat:"Productivity"},
+  {name:"Donor Call Sheet Assistant",desc:"Creates strategic donor call sheets from campaign data",link:"https://chatgpt.com/g/g-686dba33bf18819187944a546dcfe716-donor-call-sheet-assistant",cat:"Productivity"},
+
+  // DALL-E
+  {name:"Elite Design Studio",desc:"Agency-level designer with GPT-4o power for elite branding and visual identity systems",link:"https://chatgpt.com/g/g-67721e4ac2008191b639f731f8f2b908-elite-design-studio",cat:"DALL-E"},
+  {name:"Visual Content Studio",desc:"Convert text into visual formats, automate creative workflows, and generate product videos",link:"https://chatgpt.com/g/g-VEJl08aRo-visual-content-studio",cat:"DALL-E"},
+  {name:"Textvi",desc:"Upload text and create video",link:"https://chatgpt.com/g/g-FULmAXEmh-textvi",cat:"DALL-E"},
+];
+
+const grid = document.getElementById('gpt-grid');
+const searchInput = document.getElementById('search-input');
+const categoryNav = document.getElementById('category-nav');
+const emptyState = document.getElementById('empty-state');
+
+let activeCat = 'all';
+
+function getCatClass(cat) {
+  const map = {
+    'Programming': 'programming',
+    'Productivity': 'productivity',
+    'Lifestyle': 'lifestyle',
+    'Education': 'education',
+    'Research & Analysis': 'research',
+    'Writing': 'writing',
+    'DALL-E': 'dalle'
+  };
+  return map[cat] || 'productivity';
+}
+
+function updateCounts() {
+  document.getElementById('count-all').textContent = ` (${GPTS.length})`;
+  document.getElementById('count-programming').textContent = ` (${GPTS.filter(g=>g.cat==='Programming').length})`;
+  document.getElementById('count-productivity').textContent = ` (${GPTS.filter(g=>g.cat==='Productivity').length})`;
+  document.getElementById('count-research').textContent = ` (${GPTS.filter(g=>g.cat==='Research & Analysis').length})`;
+  document.getElementById('count-education').textContent = ` (${GPTS.filter(g=>g.cat==='Education').length})`;
+  document.getElementById('count-lifestyle').textContent = ` (${GPTS.filter(g=>g.cat==='Lifestyle').length})`;
+  document.getElementById('count-writing').textContent = ` (${GPTS.filter(g=>g.cat==='Writing').length})`;
+  document.getElementById('count-dalle').textContent = ` (${GPTS.filter(g=>g.cat==='DALL-E').length})`;
+}
+
+function renderCards() {
+  const search = searchInput.value.toLowerCase();
+  let items = activeCat === 'all' ? GPTS : GPTS.filter(g => g.cat === activeCat);
+
+  if (search) {
+    items = items.filter(g =>
+      g.name.toLowerCase().includes(search) ||
+      g.desc.toLowerCase().includes(search)
+    );
+  }
+
+  if (items.length === 0) {
+    grid.innerHTML = '';
+    emptyState.style.display = 'block';
+    return;
+  }
+
+  emptyState.style.display = 'none';
+
+  grid.innerHTML = items.map(g => `
+    <div class="gpt-card">
+      <span class="category-badge ${getCatClass(g.cat)}">${g.cat}</span>
+      <h3>${g.name}</h3>
+      <p>${g.desc}</p>
+      <a href="${g.link}" target="_blank" rel="noopener" class="card-link">Open in ChatGPT →</a>
+    </div>
+  `).join('');
+}
+
+categoryNav.querySelectorAll('button').forEach(btn => {
+  btn.addEventListener('click', () => {
+    categoryNav.querySelectorAll('button').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    activeCat = btn.dataset.cat;
+    renderCards();
+  });
+});
+
+searchInput.addEventListener('input', renderCards);
+
+updateCounts();
+renderCards();
+</script>
+
+</body>
+</html>

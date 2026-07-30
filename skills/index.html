@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Skills Library — Patrick Diamitani · 54 Production AI Skills</title>
+<meta name="description" content="54 Claude-compatible AI skills built across GTM automation, HubSpot, n8n, project management, RFP suite, chatbots, and more. Open source and configurable.">
+<link rel="icon" type="image/svg+xml" href="/assets/logo.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;1,400&family=Source+Sans+3:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/theme.css">
+<style>
+.portfolio-nav{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:24px;padding:16px 0;border-bottom:1px solid var(--border)}
+.portfolio-nav button{background:transparent;border:1px solid var(--border);color:var(--muted);padding:10px 20px;border-radius:999px;font-size:13px;font-weight:600;cursor:pointer;transition:all .2s var(--ease);font-family:var(--font)}
+.portfolio-nav button:hover{color:var(--text);border-color:var(--text)}
+.portfolio-nav button.active{background:var(--accent);color:var(--ink);border-color:var(--accent)}
+.portfolio-nav .nav-count{font-size:11px;opacity:.7;margin-left:4px}
+.search-bar{display:flex;gap:12px;margin-bottom:32px;flex-wrap:wrap}
+.search-bar input{flex:1;min-width:200px;background:var(--surface);border:1px solid var(--border);color:var(--text);padding:12px 18px;border-radius:8px;font-size:14px;font-family:var(--font)}
+.search-bar input::placeholder{color:var(--dim)}
+.search-bar input:focus{outline:none;border-color:var(--accent)}
+.search-bar select{background:var(--surface);border:1px solid var(--border);color:var(--text);padding:12px 18px;border-radius:8px;font-size:14px;font-family:var(--font);cursor:pointer}
+.card-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px}
+@media(min-width:1200px){.card-grid{grid-template-columns:repeat(3,1fr)}}
+@media(min-width:1400px){.card-grid{grid-template-columns:repeat(4,1fr)}}
+.skill-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:24px;display:flex;flex-direction:column;transition:all .2s var(--ease);position:relative}
+.skill-card:hover{transform:translateY(-3px);border-color:var(--accent);box-shadow:0 12px 40px rgba(0,0,0,.3)}
+.skill-card .card-cat{font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:var(--dim);margin-bottom:8px}
+.skill-card h3{font-size:16px;font-weight:600;margin-bottom:10px;color:var(--text);line-height:1.3}
+.skill-card p{font-size:13px;color:var(--muted);line-height:1.55;flex:1}
+.skill-card .card-meta{display:flex;gap:6px;flex-wrap:wrap;margin-top:14px;padding-top:14px;border-top:1px solid var(--border)}
+.skill-card .card-tag{font-size:10px;color:var(--muted);background:var(--bg);border:1px solid var(--border);padding:3px 8px;border-radius:4px}
+.skill-card .card-actions{display:flex;gap:8px;margin-top:14px;flex-wrap:wrap}
+.skill-card .card-actions a{font-size:11px;font-weight:600;padding:6px 12px;border-radius:6px;text-decoration:none;transition:all .15s}
+.card-action-primary{background:var(--accent);color:var(--ink)}
+.card-action-primary:hover{opacity:.9}
+.card-action-ghost{background:transparent;border:1px solid var(--border);color:var(--muted)}
+.card-action-ghost:hover{border-color:var(--accent);color:var(--accent)}
+.skill-badge{position:absolute;top:16px;right:16px;font-size:9px;font-weight:700;padding:4px 10px;border-radius:999px;text-transform:uppercase;letter-spacing:.05em;background:rgba(78,168,122,.15);color:#4ea87a;border:1px solid rgba(78,168,122,.3)}
+.skill-badge.archived{background:rgba(150,150,150,.1);color:var(--muted);border-color:var(--border)}
+.empty-state{text-align:center;padding:60px 20px;color:var(--muted)}
+.empty-state h3{font-size:18px;margin-bottom:8px;color:var(--text)}
+.section-intro{max-width:640px;margin-bottom:32px}
+.section-intro p{font-size:15px;color:var(--muted);line-height:1.7}
+</style>
+</head>
+<body data-division="skills">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="https://www.diamitani.com" class="nav-logo">Diamitani <span>Industries</span></a>
+    <div class="nav-links">
+      <a href="https://www.diamitani.com">Home</a>
+      <a href="/products">Products</a>
+      <a href="/portfolio">Portfolio</a>
+      <a href="/skills" class="active">Skills</a>
+      <a href="/research">Research</a>
+      <a href="/consulting">Consulting</a>
+      <a href="/civic">Civic</a>
+    </div>
+    <a href="mailto:patrick.diamitani@gmail.com" class="nav-cta">Contact</a>
+  </div>
+</nav>
+
+<header class="hero" data-section="hero">
+  <div class="hero-inner hero-narrow">
+    <div class="hero-brand">Skills Library</div>
+    <div class="hero-est">Claude-Compatible · Production-Built · Open Source</div>
+    <h1>54 skills. <em>Ready to deploy.</em></h1>
+    <p class="hero-tag">Every skill was built to solve a real production problem — GTM automation, HubSpot ops, n8n workflows, RFP response pipelines, AI chatbot management, and more. All Claude-compatible. Atlas-specific skills are generalized — configure the placeholders for your stack.</p>
+    <div class="hero-links">
+      <a href="https://github.com/diamitani/Diamitani-Industries/tree/main/skills" target="_blank" rel="noopener" class="btn btn-primary">View on GitHub</a>
+      <a href="#library" class="btn btn-ghost">Browse Skills</a>
+    </div>
+  </div>
+</header>
+
+<div class="metrics" data-section="metrics">
+  <div class="metrics-inner">
+    <div class="metric"><div class="metric-n">54</div><div class="metric-l">Production skills</div></div>
+    <div class="metric"><div class="metric-n">10</div><div class="metric-l">Categories</div></div>
+    <div class="metric"><div class="metric-n">12+</div><div class="metric-l">Integrations covered</div></div>
+    <div class="metric"><div class="metric-n">100%</div><div class="metric-l">Claude-compatible</div></div>
+  </div>
+</div>
+
+<section class="section" id="library">
+  <div class="section-inner">
+    <div class="section-intro">
+      <p>Browse by category or search. Each skill includes what it does, trigger phrases, tech stack, and setup instructions. Fork any skill and configure it for your own tools.</p>
+    </div>
+
+    <div class="portfolio-nav" id="cat-nav">
+      <button class="active" data-cat="all">All <span class="nav-count" id="count-all"></span></button>
+      <button data-cat="GTM">GTM & Sales</button>
+      <button data-cat="HubSpot">HubSpot & CRM</button>
+      <button data-cat="Automation">Automation</button>
+      <button data-cat="Chatbots">Chatbots</button>
+      <button data-cat="Architecture">Product & Arch</button>
+      <button data-cat="PM">Project Mgmt</button>
+      <button data-cat="RFP">RFP Suite</button>
+      <button data-cat="Compliance">Compliance</button>
+      <button data-cat="Media">Content & Media</button>
+      <button data-cat="Framework">Framework</button>
+      <button data-cat="Analytics">Analytics</button>
+    </div>
+
+    <div class="search-bar">
+      <input type="text" id="skill-search" placeholder="Search skills, tools, use cases...">
+    </div>
+
+    <div class="card-grid" id="skill-grid"></div>
+    <div class="empty-state" id="empty-state" style="display:none">
+      <h3>No skills found</h3>
+      <p>Try a different search or category</p>
+    </div>
+  </div>
+</section>
+
+<div class="family-strip">
+  <div class="family-strip-inner">
+    <div class="fs-label">Diamitani Industries</div>
+    <div class="fs-links">
+      <a href="https://www.diamitani.com">Home</a>
+      <a href="/products">Products</a>
+      <a href="/portfolio">Portfolio</a>
+      <a href="/skills" class="active">Skills</a>
+      <a href="/research">Research</a>
+      <a href="/consulting">Consulting</a>
+      <a href="/civic">Civic</a>
+    </div>
+  </div>
+</div>
+
+<footer class="footer" data-section="footer">
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="fb-name">Diamitani <span>Industries</span></div>
+        <p>The corporate imprint of Patrick Diamitani — holding company, consulting firm, creative agency, and development studio.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Products</h4>
+        <a href="https://trainlola.com" target="_blank" rel="noopener">LOLA</a>
+        <a href="https://replaiall.com" target="_blank" rel="noopener">Replai</a>
+        <a href="https://fcragent.com" target="_blank" rel="noopener">FCR Agent</a>
+        <a href="https://huddleco.work" target="_blank" rel="noopener">Huddle</a>
+      </div>
+      <div class="footer-col">
+        <h4>Work</h4>
+        <a href="/portfolio">Portfolio</a>
+        <a href="/skills">Skills Library</a>
+        <a href="/research">Research</a>
+        <a href="/consulting">Consulting</a>
+      </div>
+      <div class="footer-col">
+        <h4>Connect</h4>
+        <a href="https://linkedin.com/in/Diamitani" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://github.com/diamitani" target="_blank" rel="noopener">GitHub</a>
+        <a href="mailto:patrick.diamitani@gmail.com">Email</a>
+      </div>
+    </div>
+    <div class="footer-base">
+      <p>Diamitani Industries, Inc. · NY C-Corp · Est. 2014</p>
+      <p>Patrick Diamitani · Chicago, IL · © 2026</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+const SKILLS = [
+  {id:"pal-prompt-abstraction",name:"PAL — Prompt Abstraction Layer",cat:"Framework",status:"live",tagline:"Compiler-inspired meta-layer that rewrites every prompt into structured format.",stack:["Claude","Prompt Engineering","ROSTR"],triggers:["any vague prompt","before any skill runs"],github:"https://github.com/diamitani/Diamitani-Industries/tree/main/skills/product-and-architecture/pal.md"},
+  {id:"rostr-builder",name:"ROSTR Builder",cat:"Framework",status:"live",tagline:"Enforces ROSTR architecture on all agent, skill, and workflow builds.",stack:["Claude","ROSTR","Framework Design"],triggers:["build me a skill","create an agent"],github:"https://github.com/diamitani/Diamitani-Industries/tree/main/skills/product-and-architecture"},
+  {id:"context-engine",name:"Context Engine",cat:"Framework",status:"live",tagline:"Persistent cross-session memory for Claude — eliminates the cold-start tax.",stack:["Claude","Flat Files","Python","ROSTR"],triggers:["save this session","context flash","load context"],github:"https://github.com/diamitani/Diamitani-Industries/tree/main/skills/project-management/context-engine.md"},
+  {id:"gtm-engineering",name:"GTM Engineering",cat:"GTM",status:"live",tagline:"Build GTM automation with code — n8n, Make, Zapier, Clay API, AI agents.",stack:["n8n","Make","Zapier","Clay API","Python"],triggers:["build GTM automation","design this workflow"],github:"https://github.com/diamitani/Diamitani-Industries/tree/main/skills/gtm-and-sales/gtm-engineering.md"},
+  {id:"gtm-architect",name:"GTM Architect",cat:"GTM",status:"live",tagline:"Full-stack GTM automation expert for the entire prospecting stack.",stack:["Clay","HubSpot","n8n","Amplemarket","Factors.ai"],triggers:["build me an outbound engine","fix my Clay workflow"],github:"https://github.com/diamitani/Diamitani-Industries/tree/main/skills/gtm-and-sales/gtm-architect.md"},
+  {id:"gtm-agent-os",name:"GTM Agent OS",cat:"GTM",status:"live",tagline:"ROSTR-powered multi-agent OS for the full GTM prospecting stack.",stack:["Claude","ROSTR","Clay","HubSpot","n8n"],triggers:["run the GTM agent","check pipeline health"],github:"https://github.com/diamitani/Diamitani-Industries/tree/main/skills/gtm-and-sales/gtm-agent-os.md"},
+  {id:"pop-framework",name:"POP Framework",cat:"GTM",status:"live",tagline:"Problem-Opportunity-Proof — structured GTM messaging that converts.",stack:["Claude","Framework Design","Copywriting"],triggers:["write GTM messaging","POP framework"],github:"https://github.com/diamitani/Diamitani-Industries/tree/main/skills/gtm-and-sales/pop-framework.md"},
+  {id:"cof-framework",name:"COF — Cost of Failure",cat:"GTM",status:"live",tagline:"Quantifies the cost of NOT solving the problem to build the business case.",stack:["Claude","Financial Modeling"],triggers:["build the business case","cost of failure"],github:"https://github.com/diamitani/Diamitani-Industries/tree/main/skills/gtm-and-sales/cof-framework.md"},
+  {id:"proposal-builder",name:"Proposal Builder",cat:"GTM",status:"live",tagline:"Builds structured sales proposals and pitch decks from company context.",stack:["Claude","python-pptx","ROSTR"],triggers:["build a proposal","make a pitch deck"],github:"https://github.com/diamitani/Diamitani-Industries/tree/main/skills/gtm-and-sales/proposal-builder.md"},
+  {id:"ai-prospecting-tester",name:"AI Prospecting Tester",cat:"GTM",status:"live",tagline:"Tests and validates AI-generated prospecting outputs against ICP criteria.",stack:["Clay","HubSpot","Claude","ICP Logic"],triggers:["QA the prospecting output","check ICP fit"],github:"https://github.com/diamitani/Diamitani-Industries/tree/main/skills/gtm-and-sales/ai-prospecting-tester.md"},
+  {id:"factors-ai",name:"Factors.ai Analyst",cat:"Analytics",status:"live",tagline:"Pulls intent signals from Factors.ai to surface in-market accounts.",stack:["Factors.ai API","HubSpot","n8n"],triggers:["show me intent signals","pull Factors data"],github:"https://github.com/diamitani/Diamitani-Industries/tree/main/skills/gtm-and-sales/factors-ai.md"},
+  {id:"eor-knowledge",name:"EOR Knowledge Base",cat:"Compliance",status:"live",tagline:"Employer of Record compliance knowledge — country-specific hiring rules.",stack:["Claude","Knowledge Base","Compliance Data"],triggers:["EOR requirements for","can we hire in"],github:"https://github.com/diamitani/Diamitani-Industries/tree/main/skills/gtm-and-sales/eor-knowledge.md"},
+  {id:"hubspot-chatbot-manager",name:"HubSpot Chatbot Manager",cat:"HubSpot",status:"live",tagline:"Manages HubSpot chatbot workflows, flow logic, and deployment.",stack:["HubSpot Breeze","Chat Flow API","n8n"],triggers:["fix my chatbot","build a HubSpot chat flow"],github:"https://github.com/diamitani/Diamitani-Industries/tree/main/skills/hubspot-and-crm/hubspot-chatbot-manager.md"},
+  {id:"hubspot-import-formatter",name:"HubSpot Import Formatter",cat:"HubSpot",status:"live",tagline:"Any spreadsheet to a clean, deduplicated, NAICS-enriched HubSpot import.",stack:["Claude","HubSpot API","CSV Processing","NAICS"],triggers:["format this for HubSpot","clean this CSV"],github:"https://github.com/diamitani/Diamitani-Industries/tree/main/skills/hubspot-and-crm/hubspot-import-formatter.md"},
+  {id:"partner-pql-manager",name:"Partner PQL Manager",cat:"HubSpot",status:"live",tagline:"Classifies partner inquiries, scores PQLs, routes to the right owner.",stack:["HubSpot","n8n","Claude","Lead Scoring"],triggers:["manage partner leads","score these PQLs"],github:"https://github.com/diamitani/Diamitani-Industries/tree/main/skills/hubspot-and-crm/partner-pql-manager.md"},
+  {id:"hubspot-customer-agent-analyst",name:"HubSpot Customer Agent Analyst",cat:"HubSpot",status:"live",tagline:"Analyzes HubSpot customer agent conversations — trends, escalations, resolution rates.",stack:["HubSpot API","Python","Analytics"],triggers:["analyze agent conversations","HubSpot conversation report"],github:"https://github.com/diamitani/Diamitani-Industries/tree/main/skills/hubspot-and-crm/hubspot-customer-agent-analyst.md"},
+  {id:"n8n-execution-analyst",name:"n8n Execution Analyst",cat:"Automation",status:"live",tagline:"Monitors, audits, and diagnoses n8n workflow execution health.",stack:["n8n Public API","Monitoring","Debugging"],triggers:["check n8n executions","why did it fail"],github:"https://github.com/diamitani/Diamitani-Industries/tree/main/skills/automation/n8n-execution-analyst.md"},
+  {id:"workflow-builder",name:"Workflow Builder",cat:"Automation",status:"live",tagline:"Converts plain-English automation requests into production-ready n8n specs.",stack:["n8n","Make","Zapier","API Design"],triggers:["build this workflow","automate this process"],github:"https://github.com/diamitani/Diamitani-Industries/tree/main/skills/automation/workflow-builder.md"},
+  {id:"msa-docusign",name:"MSA DocuSign Automation",cat:"Automation",status:"live",tagline:"CRM deal to submitted DocuSign contract in under 3 minutes.",stack:["DocuSign API","HubSpot CRM","n8n"],triggers:["send the MSA","automate contract signing"],github:"https://github.com/diamitani/Diamitani-Industries/tree/main/skills/automation/msa-docusign.md"},
+  {id:"workflow-health-analyst",name:"Workflow Health Analyst",cat:"Automation",status:"live",tagline:"Post-run validation for n8n workflows — node-level health and delivery confirmation.",stack:["n8n API","Python","Execution Analysis"],triggers:["check this workflow run","validate execution health"],github:"https://github.com/diamitani/Diamitani-Industries/tree/main/skills/compliance-and-data/workflow-health-analyst.md"},
+  {id:"chatbot-analyst",name:"Chatbot Analyst",cat:"Chatbots",status:"live",tagline:"Full chatbot performance analytics — conversations, MQLs, revenue attribution.",stack:["HubSpot API","n8n","Analytics"],triggers:["chatbot results","MQLs from chat"],github:"https://github.com/diamitani/Diamitani-Industries/tree/main/skills/chatbots/chatbot-analyst.md"},
+  {id:"chatbot-marketer",name:"Chatbot Marketer",cat:"Chatbots",status:"live",tagline:"Generates copy and campaigns for marketing chatbot flows.",stack:["Claude","HubSpot","Copywriting"],triggers:["write chatbot copy","improve the bot messaging"],github:"https://github.com/diamitani/Diamitani-Industries/tree/main/skills/chatbots/chatbot-marketer.md"},
+  {id:"chatbot-execution-analyst",name:"Chatbot Execution Analyst",cat:"Chatbots",status:"live",tagline:"Monitors chatbot automation pipelines — health, throughput, conversion metrics.",stack:["n8n","HubSpot","Monitoring"],triggers:["check chatbot execution","chatbot throughput"],github:"https://github.com/diamitani/Diamitani-Industries/tree/main/skills/chatbots/chatbot-execution-analyst.md"},
+  {id:"pal",name:"PAL — Prompt Abstraction Layer",cat:"Architecture",status:"live",tagline:"Compiler-inspired meta-layer for structuring prompts before any model sees them.",stack:["Claude","Prompt Engineering","ROSTR"],triggers:["PAL","compile this prompt"],github:"https://github.com/diamitani/Diamitani-Industries/tree/main/skills/product-and-architecture/pal.md"},
+  {id:"npao",name:"NPAO Framework",cat:"Architecture",status:"live",tagline:"Need-Problem-Action-Outcome — structures problem statements and solution designs.",stack:["Claude","Framework Design","ROSTR"],triggers:["apply NPAO","structure this problem"],github:"https://github.com/diamitani/Diamitani-Industries/tree/main/skills/product-and-architecture/npao.md"},
+  {id:"jtbd-builder",name:"JTBD Builder",cat:"Architecture",status:"live",tagline:"Jobs-To-Be-Done framework — user stories, pain points, value propositions.",stack:["Claude","Framework Design","Product Management"],triggers:["JTBD analysis","what job is the user hiring this for"],github:"https://github.com/diamitani/Diamitani-Industries/tree/main/skills/product-and-architecture/jtbd-builder.md"},
+  {id:"prd-builder",name:"PRD Builder",cat:"Architecture",status:"live",tagline:"Generates a full Product Requirements Document from a brief input.",stack:["Claude","PRD Templates","Product Management"],triggers:["build a PRD","write the product spec"],github:"https://github.com/diamitani/Diamitani-Industries/tree/main/skills/product-and-architecture/prd-builder.md"},
+  {id:"instruction-architect",name:"Instruction Architect",cat:"Architecture",status:"live",tagline:"Designs Claude instruction stacks and multi-agent hierarchies.",stack:["Claude","Prompt Engineering","ROSTR","Multi-Agent Design"],triggers:["design the instruction stack","build a system prompt"],github:"https://github.com/diamitani/Diamitani-Industries/tree/main/skills/product-and-architecture/instruction-architect.md"},
+  {id:"diagram-builder",name:"Diagram Builder",cat:"Architecture",status:"live",tagline:"Technical and process diagrams from plain-English descriptions.",stack:["Mermaid","PlantUML","SVG"],triggers:["draw a diagram","architecture diagram for"],github:"https://github.com/diamitani/Diamitani-Industries/tree/main/skills/product-and-architecture/diagram-builder.md"},
+  {id:"new-project-system",name:"New Project System",cat:"PM",status:"live",tagline:"Idea-to-execution engine — any input to leadership-ready package in under 30 min.",stack:["Claude","PRD","Asana","Project Management"],triggers:["scope this project","turn this idea into a plan"],github:"https://github.com/diamitani/Diamitani-Industries/tree/main/skills/project-management/new-project-system.md"},
+  {id:"exec-assistant",name:"Exec Assistant / Chief of Staff",cat:"PM",status:"live",tagline:"Personal executive assistant — daily briefings, prioritization, cross-domain ops.",stack:["Claude","ROSTR","Asana","Context Engine"],triggers:["morning brief","what should I work on"],github:"https://github.com/diamitani/Diamitani-Industries/tree/main/skills/project-management/exec-assistant.md"},
+  {id:"context-engine-pm",name:"Context Engine",cat:"PM",status:"live",tagline:"Persistent cross-session memory — eliminates the AI cold-start tax.",stack:["Claude","Flat Files","Python"],triggers:["save this session","context flash"],github:"https://github.com/diamitani/Diamitani-Industries/tree/main/skills/project-management/context-engine.md"},
+  {id:"asana-organizer",name:"Asana Organizer",cat:"PM",status:"live",tagline:"Fetches Asana tasks, rewrites for stakeholders, applies changes via API.",stack:["Asana API","Claude","Project Management"],triggers:["organize Asana","clean up the project"],github:"https://github.com/diamitani/Diamitani-Industries/tree/main/skills/project-management/asana-organizer.md"},
+  {id:"case-study-builder",name:"Case Study Builder",cat:"PM",status:"live",tagline:"Turns project artifacts into portfolio-ready case studies.",stack:["Claude","Writing","Portfolio","Documentation"],triggers:["build a case study","write up this project"],github:"https://github.com/diamitani/Diamitani-Industries/tree/main/skills/project-management/case-study-builder.md"},
+  {id:"session-overview",name:"Session Overview",cat:"PM",status:"live",tagline:"Reads full transcript and reports what actually ran — debrief and audit.",stack:["Claude","Context Engine","Flat Files"],triggers:["session overview","session debrief"],github:"https://github.com/diamitani/Diamitani-Industries/tree/main/skills/project-management/session-overview.md"},
+  {id:"daily-session-recap",name:"Daily Session Recap",cat:"PM",status:"live",tagline:"Generates structured end-of-day recap — what was built, decisions, next steps.",stack:["Claude","Context Engine"],triggers:["recap today","session recap"],github:"https://github.com/diamitani/Diamitani-Industries/tree/main/skills/project-management/daily-session-recap.md"},
+  {id:"project-handoff",name:"Project Handoff Generator",cat:"PM",status:"live",tagline:"Creates structured transition documents for stakeholder or team handoffs.",stack:["Claude","Documentation","Templates"],triggers:["create a handoff doc","project handoff for"],github:"https://github.com/diamitani/Diamitani-Industries/tree/main/skills/project-management/project-handoff.md"},
+  {id:"avoma-kb",name:"Avoma Knowledge Base",cat:"Analytics",status:"live",tagline:"Retrieves call recordings, transcripts, and AI insights from Avoma.",stack:["Avoma API","Claude","Sales Intelligence"],triggers:["pull Avoma data","get the call transcript"],github:"https://github.com/diamitani/Diamitani-Industries/tree/main/skills/project-management/avoma-kb.md"},
+  {id:"rfp-kb-builder",name:"RFP Knowledge Base Builder",cat:"RFP",status:"live",tagline:"Parses RFP documents into atomic Q/A pairs — the foundation of your answer library.",stack:["Claude","HubSpot","Excel/CSV","Document Parsing"],triggers:["build the RFP KB","parse this RFP"],github:"https://github.com/diamitani/Diamitani-Industries/tree/main/skills/rfp-suite/rfp-kb-builder.md"},
+  {id:"rfp-answer-retriever",name:"RFP Answer Retriever",cat:"RFP",status:"live",tagline:"Semantic search against your RFP knowledge base — HIGH/MEDIUM/NO MATCH confidence.",stack:["Claude","HubSpot API","Semantic Search"],triggers:["answer this RFP question","batch process this RFP"],github:"https://github.com/diamitani/Diamitani-Industries/tree/main/skills/rfp-suite/rfp-answer-retriever.md"},
+  {id:"rfp-response-builder",name:"RFP Response Builder",cat:"RFP",status:"live",tagline:"Assembles a complete formatted RFP response from the knowledge base.",stack:["Claude","Knowledge Base","Document Generation"],triggers:["build the RFP response","draft the RFP"],github:"https://github.com/diamitani/Diamitani-Industries/tree/main/skills/rfp-suite/rfp-response-builder.md"},
+  {id:"compliance-data-analyst",name:"Compliance Data Analyst",cat:"Compliance",status:"live",tagline:"Analyzes compliance tracking data from CSV exports or workflow runs — read-only.",stack:["Python","CSV Processing","n8n","Reporting"],triggers:["analyze compliance data","compliance coverage report"],github:"https://github.com/diamitani/Diamitani-Industries/tree/main/skills/compliance-and-data/compliance-data-analyst.md"},
+  {id:"workflow-health",name:"Workflow Health Analyst",cat:"Compliance",status:"live",tagline:"Post-run validation for workflows — node health, delivery confirmation, safe-to-deploy.",stack:["n8n API","Python","Execution Analysis"],triggers:["validate execution health","post-run check"],github:"https://github.com/diamitani/Diamitani-Industries/tree/main/skills/compliance-and-data/workflow-health-analyst.md"},
+  {id:"video-studio",name:"Video Studio",cat:"Media",status:"live",tagline:"AI video builder — HyperFrames + Chatterbox TTS, prompt to MP4.",stack:["HyperFrames","Chatterbox TTS","Node.js","ffmpeg"],triggers:["make a video","build a video for"],github:"https://github.com/diamitani/Diamitani-Industries/tree/main/skills/content-and-media/video-studio.md"},
+  {id:"presentations-builder",name:"Presentations Builder",cat:"Media",status:"live",tagline:"Builds polished branded slide decks and executive presentations from any brief.",stack:["python-pptx","Claude","Template Engine"],triggers:["build a presentation","create a deck"],github:"https://github.com/diamitani/Diamitani-Industries/tree/main/skills/content-and-media/presentations-builder.md"},
+  {id:"brand-guidelines",name:"Brand Guidelines Enforcer",cat:"Media",status:"live",tagline:"Enforces brand voice, visual standards, and consistency across all outputs.",stack:["Claude","Brand System","Style Guide"],triggers:["check this for brand","brand review"],github:"https://github.com/diamitani/Diamitani-Industries/tree/main/skills/content-and-media/brand-guidelines.md"},
+  {id:"dashboard-builder",name:"Dashboard Builder",cat:"Media",status:"live",tagline:"Builds executive dashboards and reporting views from raw data.",stack:["Claude","HTML/CSS","Data Visualization","CSV"],triggers:["build a dashboard","make an exec dashboard"],github:"https://github.com/diamitani/Diamitani-Industries/tree/main/skills/content-and-media/dashboard-builder.md"},
+  {id:"clay-daily-report",name:"Clay Daily Report",cat:"Analytics",status:"live",tagline:"Daily Clay.com enrichment run summary — contacts, credit spend, hit rates.",stack:["Clay API","n8n","Reporting","Cost Monitoring"],triggers:["Clay daily report","credit spend for today"],github:"https://github.com/diamitani/Diamitani-Industries/tree/main/skills/clay-and-prospecting/clay-daily-report.md"},
+  {id:"hubspot-data-analyst",name:"HubSpot Data Analyst",cat:"Analytics",status:"live",tagline:"CRM data analyst — pulls real data, never invents numbers.",stack:["HubSpot","CRM","Analytics","Reporting"],triggers:["what's our pipeline","show me deal data"],github:"https://github.com/diamitani/Diamitani-Industries/tree/main/skills/hubspot-and-crm"},
+  {id:"new-project-intake",name:"New Project Intake",cat:"PM",status:"archived",tagline:"Standalone project intake form. Superseded by New Project System.",stack:["Claude","Project Management"],triggers:["new project intake"],github:"https://github.com/diamitani/Diamitani-Industries/tree/main/skills/project-management/new-project-intake.md"},
+  {id:"new-project-scheduler",name:"New Project Scheduler",cat:"PM",status:"archived",tagline:"Sprint scheduler. Now bundled in New Project System.",stack:["Claude","Project Management"],triggers:["schedule this project"],github:"https://github.com/diamitani/Diamitani-Industries/tree/main/skills/project-management/new-project-scheduler.md"},
+  {id:"new-project-jtbd",name:"New Project JTBD Builder",cat:"PM",status:"archived",tagline:"JTBD builder for project intake. Now bundled in New Project System.",stack:["Claude","JTBD","Project Management"],triggers:["JTBD for this project"],github:"https://github.com/diamitani/Diamitani-Industries/tree/main/skills/project-management/new-project-jtbd-builder.md"},
+  {id:"project-package-planner",name:"Project Package Planner",cat:"PM",status:"live",tagline:"Plans and scopes deliverable packages — milestones, effort estimates, dependencies.",stack:["Claude","Project Management","Estimation"],triggers:["plan this project package","scope the deliverables"],github:"https://github.com/diamitani/Diamitani-Industries/tree/main/skills/project-management/project-package-planner.md"},
+  {id:"presentation-builder",name:"Presentation Builder",cat:"Media",status:"live",tagline:"Sales and marketing presentation builder — quick turnaround decks.",stack:["python-pptx","Claude","Presentation Design"],triggers:["build a sales deck","quick presentation for"],github:"https://github.com/diamitani/Diamitani-Industries/tree/main/skills/content-and-media/presentation-builder.md"},
+  {id:"n8n-workflow-architect",name:"n8n Workflow Architect",cat:"Automation",status:"live",tagline:"Takes any automation description and produces a full production-ready n8n spec.",stack:["n8n","Architecture","Workflow Design"],triggers:["architect this workflow","spec out this automation"],github:"https://github.com/diamitani/Diamitani-Industries/tree/main/skills/automation"},
+  {id:"clay-prospecting-engine",name:"Clay Prospecting Engine",cat:"GTM",status:"live",tagline:"Full Clay prospecting pipeline — company list to enriched contacts.",stack:["Clay","HubSpot","CSV","Enrichment","n8n"],triggers:["enrich this company list","run prospecting on these accounts"],github:"https://github.com/diamitani/Diamitani-Industries/tree/main/skills/clay-and-prospecting"},
+];
+
+let activeCat = 'all';
+const grid = document.getElementById('skill-grid');
+const searchInput = document.getElementById('skill-search');
+const emptyState = document.getElementById('empty-state');
+
+function updateCounts() {
+  document.getElementById('count-all').textContent = ` (${SKILLS.length})`;
+}
+
+function render() {
+  const q = searchInput.value.toLowerCase();
+  let items = activeCat === 'all' ? SKILLS : SKILLS.filter(s => s.cat === activeCat);
+  if (q) {
+    items = items.filter(s =>
+      s.name.toLowerCase().includes(q) ||
+      s.tagline.toLowerCase().includes(q) ||
+      s.stack.some(t => t.toLowerCase().includes(q)) ||
+      (s.triggers || []).some(t => t.toLowerCase().includes(q))
+    );
+  }
+  if (!items.length) {
+    grid.innerHTML = '';
+    emptyState.style.display = 'block';
+    return;
+  }
+  emptyState.style.display = 'none';
+  grid.innerHTML = items.map(s => `
+    <div class="skill-card">
+      <span class="skill-badge ${s.status === 'archived' ? 'archived' : ''}">${s.status === 'archived' ? 'Archived' : 'Live'}</span>
+      <div class="card-cat">${s.cat}</div>
+      <h3>${s.name}</h3>
+      <p>${s.tagline}</p>
+      <div class="card-meta">
+        ${s.stack.slice(0,3).map(t => `<span class="card-tag">${t}</span>`).join('')}
+      </div>
+      <div class="card-actions">
+        <a href="${s.github}" target="_blank" rel="noopener" class="card-action-primary">View on GitHub →</a>
+      </div>
+    </div>
+  `).join('');
+}
+
+document.getElementById('cat-nav').querySelectorAll('button').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.getElementById('cat-nav').querySelectorAll('button').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    activeCat = btn.dataset.cat;
+    render();
+  });
+});
+searchInput.addEventListener('input', render);
+
+updateCounts();
+render();
+</script>
+
+</body>
+</html>

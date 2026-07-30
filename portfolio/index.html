@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Portfolio — Patrick Diamitani · Enterprise AI Production · Diamitani Industries</title>
-<meta name="description" content="The full Patrick Diamitani portfolio: 16 production AI systems, 40+ Claude skills, shipped products, consulting, and research.">
+<meta name="description" content="The full Patrick Diamitani portfolio: 16 production AI systems, 54 Claude skills, shipped products, consulting, and research.">
 <link rel="icon" type="image/svg+xml" href="/assets/logo.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;1,400&family=Source+Sans+3:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -96,6 +96,7 @@
       <a href="https://www.diamitani.com">Home</a>
       <a href="/products">Products</a>
       <a href="/portfolio" class="active">Portfolio</a>
+      <a href="/skills">Skills</a>
       <a href="/research">Research</a>
       <a href="/consulting">Consulting</a>
       <a href="/civic">Civic</a>
@@ -109,7 +110,7 @@
     <div class="hero-brand">Portfolio</div>
     <div class="hero-est">Enterprise AI · Production Systems · Skills Marketplace</div>
     <h1>Everything I've <em>built.</em></h1>
-    <p class="hero-tag">16 production AI systems at Atlas HXM. 40+ Claude skills available for download. 11 automation workflows. Browse, filter, and explore the full library.</p>
+    <p class="hero-tag">16 production AI systems in production. 54 skills available for download. 11 automation workflows. Browse, filter, and explore the full library.</p>
     <div class="hero-links">
       <a href="/resume" class="btn btn-primary">View Full Resume</a>
       <a href="#library" class="btn btn-ghost">Browse Systems</a>
@@ -121,7 +122,7 @@
   <div class="metrics-inner">
     <div class="metric"><div class="metric-n">$9M+</div><div class="metric-l">Attributed pipeline</div></div>
     <div class="metric"><div class="metric-n">16</div><div class="metric-l">Production systems</div></div>
-    <div class="metric"><div class="metric-n">40+</div><div class="metric-l">Skills available</div></div>
+    <div class="metric"><div class="metric-n">54</div><div class="metric-l">Skills available</div></div>
     <div class="metric"><div class="metric-n">11</div><div class="metric-l">Workflows live</div></div>
   </div>
 </div>
@@ -149,6 +150,12 @@
         <option value="Sales">Sales Automation</option>
         <option value="Compliance">Compliance</option>
         <option value="RevOps">RevOps</option>
+        <option value="HubSpot">HubSpot & CRM</option>
+        <option value="Automation">Automation</option>
+        <option value="Chatbots">Chatbots</option>
+        <option value="RFP">RFP Suite</option>
+        <option value="Architecture">Architecture</option>
+        <option value="Media">Media</option>
       </select>
       <select id="filter-status">
         <option value="">All Status</option>
@@ -428,7 +435,7 @@ const DATA = {
       category: "GTM",
       status: "live",
       tagline: "Full-stack GTM automation expert for the entire prospecting stack.",
-      description: "Full-stack GTM automation expert for Atlas HXM. Answers any question about Clay, HubSpot, n8n, Amplemarket, Avoma, Asana, and Factors.ai — the full prospecting stack.",
+      description: "Full-stack GTM automation expert. Answers any question about Clay, HubSpot, n8n, Amplemarket, Avoma, Asana, and Factors.ai — the full prospecting stack.",
       tags: ["Clay", "HubSpot", "n8n", "GTM"],
       stack: ["Clay", "HubSpot", "n8n", "Amplemarket", "Avoma", "Asana", "Factors.ai"],
       triggers: ["how does our prospecting work", "build me an outbound engine", "fix my Clay workflow"],
@@ -470,7 +477,7 @@ const DATA = {
       category: "Analytics",
       status: "live",
       tagline: "CRM data analyst — pulls real data, never invents numbers.",
-      description: "CRM data analyst for the Atlas HXM ELT and GTM team. Answers pipeline status, deal analysis, lead/contact reports, revenue metrics, and sales performance questions grounded in real HubSpot data.",
+      description: "CRM data analyst for sales and RevOps teams. Answers pipeline status, deal analysis, lead/contact reports, revenue metrics, and sales performance questions grounded in real HubSpot data.",
       tags: ["HubSpot", "CRM", "Analytics"],
       stack: ["HubSpot", "CRM", "Analytics", "Reporting"],
       triggers: ["what's our pipeline", "how many MQLs", "show me deal data", "HubSpot report"],
@@ -521,12 +528,12 @@ const DATA = {
     },
     {
       id: "atlas-video-hyperframes",
-      name: "Atlas Video HyperFrames",
+      name: "Video HyperFrames Builder",
       type: "skills",
       category: "Content",
       status: "live",
       tagline: "Brand-locked video builder using HeyGen HyperFrames and TTS.",
-      description: "Atlas HXM branded video builder using HeyGen HyperFrames (HTML-to-video) and Chatterbox-Turbo TTS. Auto-installs everything. Accepts prompts + reference files, renders brand-locked MP4s.",
+      description: "Branded video builder using HeyGen HyperFrames (HTML-to-video) and Chatterbox-Turbo TTS. Auto-installs everything. Accepts prompts + reference files, renders brand-configured MP4s.",
       tags: ["HyperFrames", "Video", "Atlas"],
       stack: ["HyperFrames", "Chatterbox TTS", "Node.js", "ffmpeg", "Atlas Brand"],
       triggers: ["make a video", "Atlas video", "LinkedIn video", "render a video"],
@@ -546,6 +553,435 @@ const DATA = {
       triggers: ["morning brief", "what should I work on", "help me prioritize", "CoF"],
       github: "https://github.com/diamitani/rostr-skills/tree/main/exec-assistant",
       whatItDoes: "Acts as Chief of Staff. Loads full context from Reference Hub, applies NPAO prioritization, answers cross-domain questions."
+    },
+    {
+      id: "gtm-engineering",
+      name: "GTM Engineering",
+      type: "skills",
+      category: "GTM",
+      status: "live",
+      tagline: "Build GTM automation with code — n8n, Make, Zapier, Clay API, AI agents.",
+      description: "Full GTM engineering skill for building automation pipelines. Covers workflow architectures, AI agents for GTM tasks, API-first design, n8n/Make/Zapier/Clay, and the architecture-over-tools philosophy.",
+      tags: ["n8n", "Clay", "Make", "Zapier"],
+      stack: ["n8n", "Make", "Zapier", "Clay API", "Python", "Architecture Design"],
+      triggers: ["build GTM automation", "design this workflow", "architect this pipeline"],
+      whatItDoes: "Takes any GTM automation request and designs production-ready systems. Covers workflow nodes, error handling, credentials, and rollback strategies."
+    },
+    {
+      id: "pop-framework",
+      name: "POP Framework",
+      type: "skills",
+      category: "GTM",
+      status: "live",
+      tagline: "Problem-Opportunity-Proof — GTM messaging framework.",
+      description: "Builds structured GTM messaging using the POP (Problem-Opportunity-Proof) storytelling method. Turns raw product facts into buyer-centric narratives.",
+      tags: ["Messaging", "GTM", "Framework"],
+      stack: ["Claude", "Framework Design", "Copywriting"],
+      triggers: ["write GTM messaging", "build a pitch", "POP framework", "position this product"],
+      whatItDoes: "Takes a product or service description and produces a POP-structured message: the problem the buyer faces, the opportunity your solution opens, and proof it works."
+    },
+    {
+      id: "cof-framework",
+      name: "COF — Cost of Failure",
+      type: "skills",
+      category: "GTM",
+      status: "live",
+      tagline: "Quantifies the cost of not solving the problem to build the business case.",
+      description: "COF (Cost of Failure) analysis skill. Builds a quantified business case by calculating what it costs a prospect to NOT solve the problem. Turns soft benefits into hard dollar figures.",
+      tags: ["GTM", "Business Case", "Framework"],
+      stack: ["Claude", "Financial Modeling", "GTM"],
+      triggers: ["build the business case", "cost of failure", "quantify the ROI", "why should they buy now"],
+      whatItDoes: "Walks through a structured COF analysis: maps the problem to a cost center, quantifies frequency and impact, extrapolates annual cost, and frames the solution ROI."
+    },
+    {
+      id: "ai-prospecting-tester",
+      name: "AI Prospecting Tester",
+      type: "skills",
+      category: "GTM",
+      status: "live",
+      tagline: "Tests and validates AI-generated prospecting outputs against ICP criteria.",
+      description: "QA layer for AI prospecting automation. Validates Clay-generated contacts and outreach against ICP criteria and messaging standards before they reach reps.",
+      tags: ["Clay", "Prospecting", "QA"],
+      stack: ["Clay", "HubSpot", "Claude", "ICP Logic"],
+      triggers: ["validate these contacts", "QA the prospecting output", "check ICP fit"],
+      whatItDoes: "Takes a batch of AI-generated prospecting outputs and scores them against configurable ICP criteria. Flags non-fits, verifies message quality, and surfaces enrichment gaps."
+    },
+    {
+      id: "factors-ai",
+      name: "Factors.ai Analyst",
+      type: "skills",
+      category: "Analytics",
+      status: "live",
+      tagline: "Pulls intent signals from Factors.ai to prioritize outreach.",
+      description: "Factors.ai integration skill. Retrieves account-level intent signals and engagement data to surface in-market accounts for rep prioritization.",
+      tags: ["Factors.ai", "Intent Data", "Analytics"],
+      stack: ["Factors.ai API", "HubSpot", "n8n"],
+      triggers: ["show me intent signals", "who is showing intent", "pull Factors data"],
+      whatItDoes: "Connects to Factors.ai and extracts intent signal data. Ranks accounts by signal strength, maps to CRM records, and formats a prioritized outreach list."
+    },
+    {
+      id: "gtm-agent-os",
+      name: "GTM Agent OS",
+      type: "skills",
+      category: "GTM",
+      status: "live",
+      tagline: "ROSTR-powered multi-agent OS for the full prospecting stack.",
+      description: "Full GTM Agent Operating System built on the ROSTR framework. Orchestrates Clay, HubSpot, n8n, and outreach tools in a unified agent loop. Designed to be configured for your specific stack.",
+      tags: ["ROSTR", "Multi-Agent", "Clay", "HubSpot"],
+      stack: ["Claude", "ROSTR", "Clay", "HubSpot", "n8n", "Amplemarket"],
+      triggers: ["run the GTM agent", "fix my automation", "check pipeline health", "start the agent OS"],
+      whatItDoes: "Acts as an autonomous GTM operator. Polls intent data, runs ICP checks, manages enrichment queues, stamps CRM, and reports on workflow health — all in one skill."
+    },
+    {
+      id: "proposal-builder",
+      name: "Proposal Builder",
+      type: "skills",
+      category: "GTM",
+      status: "live",
+      tagline: "Builds structured sales proposals and decks from company context.",
+      description: "Autonomous proposal builder. Takes company context, deal notes, and discovery outputs and generates a fully structured sales proposal or pitch deck. Configurable for any company brand and product.",
+      tags: ["Proposals", "Sales Decks", "PowerPoint"],
+      stack: ["Claude", "python-pptx", "ROSTR", "Template Engine"],
+      triggers: ["build a proposal", "create a deck", "make a pitch deck", "build me a PowerPoint"],
+      whatItDoes: "Takes raw deal context and outputs a complete proposal: executive summary, problem framing, solution design, pricing, and next steps. Can output to .pptx via python-pptx."
+    },
+    {
+      id: "hubspot-import-formatter",
+      name: "HubSpot Import Formatter",
+      type: "skills",
+      category: "HubSpot",
+      status: "live",
+      tagline: "Any spreadsheet to clean, deduplicated, NAICS-enriched HubSpot import.",
+      description: "Formats raw data exports into HubSpot-ready import CSVs. Maps fields, cleans data, validates required columns, and enriches with NAICS codes.",
+      tags: ["HubSpot", "CSV", "NAICS"],
+      stack: ["Claude", "HubSpot API", "CSV Processing", "NAICS"],
+      triggers: ["format this for HubSpot", "clean this CSV", "prepare a HubSpot import"],
+      whatItDoes: "Takes any spreadsheet or CSV and normalizes it into a clean HubSpot import file. Deduplicates by email/domain, maps columns to HubSpot properties, flags missing required fields."
+    },
+    {
+      id: "hubspot-chatbot-manager",
+      name: "HubSpot Chatbot Manager",
+      type: "skills",
+      category: "HubSpot",
+      status: "live",
+      tagline: "Manages HubSpot chatbot workflows, flow logic, and deployment.",
+      description: "Expert-level HubSpot chatbot management. Builds, debugs, and optimizes HubSpot chat flows — from intent routing logic to MQL qualification and follow-up sequencing.",
+      tags: ["HubSpot", "Chatbot", "Flow Logic"],
+      stack: ["HubSpot Breeze", "Chat Flow API", "n8n"],
+      triggers: ["fix my chatbot", "build a HubSpot chat flow", "debug this chatflow", "improve the bot routing"],
+      whatItDoes: "Designs and debugs HubSpot chatbot flows. Configures branching logic, intent routing, meeting booking integrations, and handoff to live agents or sequences."
+    },
+    {
+      id: "partner-pql-manager",
+      name: "Partner PQL Manager",
+      type: "skills",
+      category: "HubSpot",
+      status: "live",
+      tagline: "Classifies partner inquiries, scores PQLs, and routes to the right owner.",
+      description: "Manages the partner inbound channel. Classifies partner inquiries using AI, scores product-qualified leads, routes to the right owner, and filters vendor spam automatically.",
+      tags: ["Partners", "PQL", "HubSpot"],
+      stack: ["HubSpot", "n8n", "Claude", "Lead Scoring"],
+      triggers: ["manage partner leads", "score these PQLs", "route partner inquiries", "classify this partner submission"],
+      whatItDoes: "Runs partner inbound submissions through an AI classification layer. Real partner leads get tasks created and AI-drafted responses. Vendor spam is silently routed away."
+    },
+    {
+      id: "workflow-builder",
+      name: "Workflow Builder",
+      type: "skills",
+      category: "Automation",
+      status: "live",
+      tagline: "Builds n8n and automation workflow designs from plain-English descriptions.",
+      description: "Converts natural language automation requests into full n8n workflow specifications. Covers node architecture, credential setup, error handling, and deployment guides.",
+      tags: ["n8n", "Workflow Design", "Automation"],
+      stack: ["n8n", "Make", "Zapier", "API Design"],
+      triggers: ["build this workflow", "automate this process", "design the n8n flow for"],
+      whatItDoes: "Takes a plain-English process description and outputs a complete workflow spec: node plan, trigger setup, branching logic, error paths, and testing checklist."
+    },
+    {
+      id: "msa-docusign",
+      name: "MSA DocuSign Automation",
+      type: "skills",
+      category: "Automation",
+      status: "live",
+      tagline: "CRM deal to submitted DocuSign contract in under 3 minutes.",
+      description: "Automates the Master Services Agreement DocuSign workflow. Reads deal data from CRM, populates contract template, routes for signature, tracks completion, and updates CRM.",
+      tags: ["DocuSign", "HubSpot", "n8n"],
+      stack: ["DocuSign API", "HubSpot CRM", "n8n", "Contract Templates"],
+      triggers: ["send the MSA", "trigger DocuSign", "automate contract signing", "send contract for [company]"],
+      whatItDoes: "End-to-end contract automation: CRM trigger → template population → DocuSign envelope creation → signature routing → completion webhook → CRM update."
+    },
+    {
+      id: "chatbot-analyst",
+      name: "Chatbot Analyst",
+      type: "skills",
+      category: "Chatbots",
+      status: "live",
+      tagline: "Analyzes chatbot performance — conversations, MQLs, revenue attribution.",
+      description: "Full chatbot performance analytics skill. Pulls conversation data, scores lead quality, calculates MQL rates, revenue attribution, and surfaces improvement opportunities.",
+      tags: ["Chatbot", "Analytics", "HubSpot"],
+      stack: ["HubSpot API", "n8n", "Analytics", "Reporting"],
+      triggers: ["how is the chatbot performing", "chatbot results", "MQLs from chat", "show chatbot ROI"],
+      whatItDoes: "Connects to chatbot data sources and generates performance reports: conversation volume, qualification rate, meetings booked, deals influenced, and bad conversation detection."
+    },
+    {
+      id: "chatbot-marketer",
+      name: "Chatbot Marketer",
+      type: "skills",
+      category: "Chatbots",
+      status: "live",
+      tagline: "Generates content and campaigns for marketing chatbot flows.",
+      description: "Marketing-focused chatbot content skill. Generates copy, campaigns, and messaging specifically for chatbot flows — from entry greetings through qualification scripts to follow-up sequences.",
+      tags: ["Chatbot", "Marketing", "Copy"],
+      stack: ["Claude", "HubSpot", "Copywriting"],
+      triggers: ["write chatbot copy", "create a chatbot campaign", "improve the bot messaging", "draft flow copy"],
+      whatItDoes: "Takes a marketing brief and outputs chatbot-optimized copy: concise, conversational, high-converting. Includes A/B variant suggestions and mobile-first formatting."
+    },
+    {
+      id: "chatbot-execution-analyst",
+      name: "Chatbot Execution Analyst",
+      type: "skills",
+      category: "Chatbots",
+      status: "live",
+      tagline: "Analyzes chatbot execution pipelines — health, throughput, conversion metrics.",
+      description: "Technical analyst for chatbot execution pipelines. Monitors message delivery rates, handoff success, MQL workflow triggers, and conversion funnel health across chat infrastructure.",
+      tags: ["Chatbot", "Analytics", "Pipeline Health"],
+      stack: ["n8n", "HubSpot", "Monitoring", "API"],
+      triggers: ["check chatbot execution", "why did the bot fail", "pipeline health report", "chatbot throughput"],
+      whatItDoes: "Pulls execution logs from chatbot infrastructure, maps message-level success/failure, identifies bottlenecks in the MQL pipeline, and produces HTML health dashboards."
+    },
+    {
+      id: "rfp-kb-builder",
+      name: "RFP Knowledge Base Builder",
+      type: "skills",
+      category: "RFP",
+      status: "live",
+      tagline: "Parses RFP files into atomic Q/A pairs — the foundation of your answer library.",
+      description: "Phase 1 of the RFP Suite. Parses uploaded RFP documents and existing HubSpot tickets into atomic question/answer pairs. Classifies by topic, routes to owner, flags conflicts, and exports to Excel.",
+      tags: ["RFP", "Knowledge Base", "HubSpot"],
+      stack: ["Claude", "HubSpot", "Excel/CSV", "Document Parsing"],
+      triggers: ["build the RFP KB", "parse this RFP", "create answers from this RFP", "build the answer library"],
+      whatItDoes: "Takes any RFP document and extracts every question. Maps each to the best available answer, flags gaps, assigns owner, and outputs a reviewable Excel workbook."
+    },
+    {
+      id: "rfp-response-builder",
+      name: "RFP Response Builder",
+      type: "skills",
+      category: "RFP",
+      status: "live",
+      tagline: "Drafts full RFP response documents from the knowledge base.",
+      description: "Phase 2 of the RFP Suite. Pulls from the answer library built by rfp-kb-builder and assembles a complete, formatted RFP response document ready for review and submission.",
+      tags: ["RFP", "Proposal Writing", "Automation"],
+      stack: ["Claude", "Knowledge Base", "Document Generation"],
+      triggers: ["build the RFP response", "draft the RFP", "assemble the response document"],
+      whatItDoes: "Takes the structured answer library and composes a complete RFP response. Handles formatting, section ordering, boilerplate, and flags questions that still need human answers."
+    },
+    {
+      id: "asana-organizer",
+      name: "Asana Organizer",
+      type: "skills",
+      category: "PM",
+      status: "live",
+      tagline: "Fetches Asana tasks, rewrites for stakeholders, and applies changes.",
+      description: "Asana project organizer. Fetches tasks via Asana API, rewrites descriptions for stakeholder communication, proposes reorganized structure, and applies changes back to Asana.",
+      tags: ["Asana", "Project Management", "API"],
+      stack: ["Asana API", "Claude", "Project Management"],
+      triggers: ["organize Asana", "clean up the project", "rewrite these tasks", "Asana project review"],
+      whatItDoes: "Connects to Asana and reads the current project state. Proposes a cleaned-up structure, rewrites task titles for clarity, and optionally applies the changes via API."
+    },
+    {
+      id: "daily-session-recap",
+      name: "Daily Session Recap",
+      type: "skills",
+      category: "PM",
+      status: "live",
+      tagline: "Generates structured daily work recap — what was built, decisions, next steps.",
+      description: "End-of-session report generator. Reviews the full session and produces a structured recap: what was accomplished, decisions made, open questions, next steps, and time allocation.",
+      tags: ["Reporting", "Session Management", "Documentation"],
+      stack: ["Claude", "Context Engine", "Flat Files"],
+      triggers: ["recap today", "end of day summary", "session recap", "what did we accomplish"],
+      whatItDoes: "Scans the session context and produces a daily recap report. Categorizes work by project, captures decisions, flags blockers, and outputs a ready-to-share summary."
+    },
+    {
+      id: "project-handoff",
+      name: "Project Handoff Generator",
+      type: "skills",
+      category: "PM",
+      status: "live",
+      tagline: "Creates structured transition documents for stakeholder or team handoffs.",
+      description: "Generates professional project handoff documents. Takes current project state and produces a complete transition brief: context, decisions made, open items, contacts, and next steps.",
+      tags: ["Documentation", "Handoff", "Project Management"],
+      stack: ["Claude", "Documentation", "Templates"],
+      triggers: ["create a handoff doc", "write the transition brief", "project handoff for"],
+      whatItDoes: "Reads project context and generates a complete handoff document. Covers project background, what was built, architectural decisions, known issues, and ownership map."
+    },
+    {
+      id: "avoma-kb",
+      name: "Avoma Knowledge Base",
+      type: "skills",
+      category: "Analytics",
+      status: "live",
+      tagline: "Retrieves call recordings, transcripts, and insights from Avoma.",
+      description: "Avoma integration skill. Fetches call recordings, transcripts, and AI-generated insights from Avoma for deal prep, coaching, and competitive intelligence.",
+      tags: ["Avoma", "Call Intelligence", "Sales"],
+      stack: ["Avoma API", "Claude", "Sales Intelligence"],
+      triggers: ["pull Avoma data", "get the call transcript", "Avoma insights for this deal"],
+      whatItDoes: "Connects to Avoma and retrieves transcripts, summary notes, and AI insights for specified calls or deals. Formats into coaching-ready or deal-prep reports."
+    },
+    {
+      id: "video-studio",
+      name: "Video Studio",
+      type: "skills",
+      category: "Content",
+      status: "live",
+      tagline: "AI video builder using HeyGen HyperFrames and TTS.",
+      description: "Autonomous video builder using HeyGen HyperFrames (HTML-to-video pipeline) and Chatterbox-Turbo TTS. Accepts prompts and reference files, renders branded MP4 videos.",
+      tags: ["HyperFrames", "Video", "TTS"],
+      stack: ["HyperFrames", "Chatterbox TTS", "Node.js", "ffmpeg"],
+      triggers: ["make a video", "build a video for", "render a LinkedIn video"],
+      whatItDoes: "Takes a brief or script and produces a complete MP4 video: title cards, overlays, caption-synced TTS audio, scene transitions. Configure brand assets for your company."
+    },
+    {
+      id: "dashboard-builder",
+      name: "Dashboard Builder",
+      type: "skills",
+      category: "Analytics",
+      status: "live",
+      tagline: "Builds executive dashboards and reporting views from raw data.",
+      description: "Generates structured HTML/visual reporting layouts from any raw data input. Designed for executive reporting, board presentations, and operations dashboards.",
+      tags: ["Dashboard", "Reporting", "HTML"],
+      stack: ["Claude", "HTML/CSS", "Data Visualization", "CSV"],
+      triggers: ["build a dashboard", "create a report view", "make an exec dashboard"],
+      whatItDoes: "Takes structured data and generates a clean HTML dashboard. Includes KPI tiles, trend charts, data tables, and export-ready formatting."
+    },
+    {
+      id: "compliance-data-analyst",
+      name: "Compliance Data Analyst",
+      type: "skills",
+      category: "Compliance",
+      status: "live",
+      tagline: "Analyzes compliance tracking data from CSV or workflow exports.",
+      description: "Read-only compliance data analyst. Takes exported compliance tracking CSVs or workflow execution outputs and produces structured reports: coverage totals, status changes, gap analysis.",
+      tags: ["Compliance", "Analytics", "Reporting"],
+      stack: ["Python", "CSV Processing", "n8n", "Reporting"],
+      triggers: ["analyze compliance data", "compliance coverage report", "show readiness status"],
+      whatItDoes: "Parses compliance tracking data exports. Reports coverage percentages, status change summaries, timestamp coverage, and flags entities missing required data."
+    },
+    {
+      id: "rfp-answer-retriever",
+      name: "RFP Answer Retriever",
+      type: "skills",
+      category: "RFP",
+      status: "live",
+      tagline: "Semantic search against your RFP knowledge base — HIGH/MEDIUM/NO MATCH confidence.",
+      description: "Phase 2 of the RFP Suite. Accepts any RFP question and runs semantic search against the knowledge base. Returns matches with HIGH/MEDIUM/NO MATCH confidence scores, auto-creates HubSpot tickets for gaps, and supports batch processing.",
+      tags: ["RFP", "Semantic Search", "HubSpot"],
+      stack: ["Claude", "HubSpot API", "Semantic Search", "Batch Processing"],
+      triggers: ["answer this RFP question", "search the RFP KB", "batch process this RFP"],
+      whatItDoes: "Takes any RFP question and retrieves the best matching answer from the KB with confidence scoring. Flags gaps and auto-creates HubSpot tickets for unanswered questions."
+    },
+    {
+      id: "workflow-health-analyst",
+      name: "Workflow Health Analyst",
+      type: "skills",
+      category: "Automation",
+      status: "live",
+      tagline: "Post-run validation for n8n workflows — node-level health, delivery confirmation.",
+      description: "Inspects n8n workflow execution logs for success/error status at each node. Validates data pull health from source systems, checks delivery completion, and confirms safe-to-deploy state.",
+      tags: ["n8n", "Monitoring", "Validation"],
+      stack: ["n8n API", "Python", "Execution Analysis"],
+      triggers: ["check this workflow run", "validate execution health", "post-run check", "did the workflow complete"],
+      whatItDoes: "Reads n8n execution data and produces a pass/fail health report per node. Flags errors, delivery failures, and activation issues before you promote a workflow to production."
+    },
+    {
+      id: "eor-knowledge",
+      name: "EOR Knowledge Base",
+      type: "skills",
+      category: "Compliance",
+      status: "live",
+      tagline: "Employer of Record compliance knowledge — country-specific rules and hiring requirements.",
+      description: "Knowledge base skill for EOR compliance topics. Answers country-specific questions about hiring rules, payroll requirements, entity readiness, and restrictions. Configure with your own EOR documentation.",
+      tags: ["EOR", "Compliance", "Knowledge Base"],
+      stack: ["Claude", "Knowledge Base", "Compliance Data"],
+      triggers: ["EOR requirements for", "can we hire in", "EOR knowledge for this deal", "country compliance check"],
+      whatItDoes: "Retrieves relevant EOR compliance information for a given country or deal. Synthesizes rules into a rep-ready brief. Configure with your own compliance data source."
+    },
+    {
+      id: "gtm-agent-os",
+      name: "GTM Agent OS",
+      type: "skills",
+      category: "GTM",
+      status: "live",
+      tagline: "ROSTR-powered multi-agent OS for the full GTM prospecting stack.",
+      description: "Full GTM Agent Operating System built on the ROSTR framework. Orchestrates Clay, HubSpot, n8n, and outreach tools. Acts as an autonomous GTM operator — polls intent data, runs ICP checks, manages enrichment queues, stamps CRM.",
+      tags: ["ROSTR", "Multi-Agent", "Clay", "HubSpot"],
+      stack: ["Claude", "ROSTR", "Clay", "HubSpot", "n8n", "Amplemarket"],
+      triggers: ["run the GTM agent", "fix my automation", "check pipeline health", "start the agent OS"],
+      whatItDoes: "Autonomous GTM ops loop: intent signal polling → ICP gauntlet → enrichment queue management → CRM stamping → workflow health reporting. Configurable for any stack."
+    },
+    {
+      id: "session-overview",
+      name: "Session Overview",
+      type: "skills",
+      category: "PM",
+      status: "live",
+      tagline: "Session debrief skill — reads full transcript and reports what actually ran.",
+      description: "Session debrief and audit skill. Reads the full conversation transcript — every message, code block, tool call, and approval — and produces a structured report of what ran, what was approved, alignment score, and pattern log.",
+      tags: ["Session Management", "Audit", "Documentation"],
+      stack: ["Claude", "Context Engine", "Flat Files"],
+      triggers: ["session overview", "what happened this session", "session debrief", "audit this session"],
+      whatItDoes: "Scans the full session and surfaces: what was built, what you approved without reading, what changed, and how aligned the session was to your stated goal."
+    },
+    {
+      id: "instruction-architect",
+      name: "Instruction Architect",
+      type: "skills",
+      category: "Architecture",
+      status: "live",
+      tagline: "Designs Claude instruction stacks and multi-agent instruction hierarchies.",
+      description: "Builds Claude system prompts, skill instruction files, and multi-agent instruction hierarchies. Applies ROSTR framework conventions and production discipline — dry-run defaults, audit trails, cost awareness.",
+      tags: ["Claude", "Prompt Engineering", "ROSTR"],
+      stack: ["Claude", "Prompt Engineering", "ROSTR", "Multi-Agent Design"],
+      triggers: ["design the instruction stack", "build a system prompt", "architect this agent", "write the skill file"],
+      whatItDoes: "Takes any agent description and produces a structured Claude instruction file. Covers persona, trigger conditions, tool access, output format, and edge case handling."
+    },
+    {
+      id: "diagram-builder",
+      name: "Diagram Builder",
+      type: "skills",
+      category: "Architecture",
+      status: "live",
+      tagline: "Technical and process diagrams from plain-English descriptions.",
+      description: "Converts any system, workflow, or process description into a clean diagram. Outputs Mermaid, PlantUML, or SVG. Covers architecture diagrams, sequence diagrams, ERDs, flowcharts, and state machines.",
+      tags: ["Mermaid", "PlantUML", "Diagrams"],
+      stack: ["Mermaid", "PlantUML", "SVG", "Diagram Design"],
+      triggers: ["draw a diagram", "architecture diagram for", "sequence diagram of", "visualize this workflow"],
+      whatItDoes: "Takes a plain-English description and outputs a ready-to-render diagram in your choice of format. Great for architecture docs, README visuals, and stakeholder presentations."
+    },
+    {
+      id: "brand-guidelines",
+      name: "Brand Guidelines Enforcer",
+      type: "skills",
+      category: "Media",
+      status: "live",
+      tagline: "Enforces brand voice, visual standards, and consistency across all outputs.",
+      description: "Brand system enforcement skill. Applies brand guidelines to any output — copy, design direction, deck, or video script. Checks voice consistency, visual standard compliance, and logo/color/typography rules. Configure with your own brand system.",
+      tags: ["Brand", "Copy", "Design"],
+      stack: ["Claude", "Brand System", "Style Guide"],
+      triggers: ["check this for brand", "brand review", "does this follow our guidelines", "brand compliance check"],
+      whatItDoes: "Reviews any content against a configured brand guide. Returns a pass/fail on each dimension with specific fix recommendations. v8 with multi-format coverage."
+    },
+    {
+      id: "presentations-builder",
+      name: "Presentations Builder",
+      type: "skills",
+      category: "Media",
+      status: "live",
+      tagline: "Builds polished branded slide decks and executive presentations from any brief.",
+      description: "Full presentation builder. Takes any brief, company context, or data input and generates a structured, branded slide deck. Outputs to .pptx via python-pptx. Configure with your own brand template.",
+      tags: ["PowerPoint", "Presentations", "python-pptx"],
+      stack: ["python-pptx", "Claude", "Template Engine", "Brand Assets"],
+      triggers: ["build a presentation", "create a deck", "make slides", "quarterly deck for"],
+      whatItDoes: "From brief to .pptx in one pass. Covers title, agenda, problem/solution, data slides, and conclusion. Configurable for any company brand template."
     }
   ],
   workflows: [

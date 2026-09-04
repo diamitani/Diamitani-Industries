@@ -3,410 +3,368 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Patrick Diamitani — Enterprise AI Production · Diamitani Industries</title>
-<meta name="description" content="Patrick Diamitani builds production AI systems that sales, marketing, and RevOps teams use every day. GTM AI & Automation Manager. Published researcher. Founder. Case studies, frameworks, and ventures.">
-<link rel="icon" type="image/svg+xml" href="/assets/logo.svg">
+<meta name="description" content="Patrick Diamitani — Production AI builder for GTM teams. 8+ live automations, 30+ shipped skills, published ROSTR framework. Chicago.">
+<title>Patrick Diamitani — Production AI for GTM</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;1,400&family=Source+Sans+3:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/theme.css">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;460;500;600;700&family=Playfair+Display:ital,wght@0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#050508;--surface:#0c0d12;--surface2:#14151b;--border:#1e1f26;
+  --text:#e6e6e8;--muted:#8c8d93;--dim:#55565c;
+  --accent:#a78bfa;--accent2:#06b6d4;--gold:#c9a227;--cream:#e9e5dd;--ink:#1a1917;
+  --font:'Inter',system-ui,sans-serif;--display:'Playfair Display',serif;--mono:'JetBrains Mono',monospace}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--font);background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased}
+
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(5,5,8,.94);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);padding:0 2rem}
+.nav-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:56px}
+.nav-logo{font-weight:700;font-size:15px;color:var(--text);text-decoration:none;letter-spacing:-.3px}
+.nav-logo span{color:var(--accent)}
+.nav-links{display:flex;gap:1.5rem;align-items:center}
+.nav-links a{font-size:13px;color:var(--muted);text-decoration:none;font-weight:460}
+.nav-links a:hover,.nav-links a.active{color:var(--text)}
+.nav-cta{padding:6px 16px;border-radius:8px;font-size:13px;font-weight:600;background:var(--cream);color:var(--ink);text-decoration:none}
+
+.hero{min-height:92vh;display:flex;align-items:center;padding:140px 2rem 80px;overflow:hidden;background:radial-gradient(160% 100% at 50% 0,#141028 0,#0b0a14 35%,#050508 100%);position:relative}
+.hero::after{content:'';position:absolute;top:-20%;right:-15%;width:500px;height:500px;background:radial-gradient(circle,rgba(167,139,250,.1),rgba(6,182,212,.02)60%);filter:blur(80px);pointer-events:none}
+.hero-inner{max-width:880px;position:relative;z-index:2}
+.hero-tag{font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:.2em;color:var(--accent);font-weight:600;margin-bottom:1.75rem;display:flex;align-items:center;gap:10px}
+.hero-tag .dot{width:6px;height:6px;border-radius:50%;background:var(--accent);box-shadow:0 0 12px var(--accent)}
+.hero h1{font-size:clamp(36px,5.5vw,64px);font-weight:540;line-height:1.15;letter-spacing:-1.2px;margin-bottom:1.5rem;color:#fff;display:flex;flex-direction:column}
+.hero h1 .line2{font-family:var(--display);font-style:italic;font-weight:400;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero-sub{font-size:18px;color:rgba(255,255,255,.7);max-width:620px;line-height:1.55;margin-bottom:2.5rem;font-weight:400}
+.hero-metrics{display:flex;gap:32px;margin-bottom:2.5rem;flex-wrap:wrap}
+.metric{display:flex;flex-direction:column;gap:2px}
+.mv{font-family:var(--display);font-size:30px;font-style:italic;color:var(--text);letter-spacing:-.5px}
+.ml{font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:.15em;color:var(--dim)}
+.hero-links{display:flex;gap:12px;flex-wrap:wrap}
+.hero-links a{padding:12px 28px;border-radius:8px;font-size:14px;font-weight:600;text-decoration:none;transition:all .15s}
+.bp{background:var(--cream);color:var(--ink)}
+.bp:hover{opacity:.85;transform:translateY(-1px)}
+.bg{border:1px solid rgba(255,255,255,.2);color:#fff}
+.bg:hover{border-color:rgba(255,255,255,.4)}
+
+.section{padding:100px 2rem}
+.section-dark{padding:100px 2rem;background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.section-inner{max-width:1100px;margin:0 auto}
+.sl{font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:.2em;color:var(--accent);font-weight:600;margin-bottom:.75rem}
+h2{font-size:36px;font-weight:540;line-height:1.1;letter-spacing:-.5px;margin-bottom:1.5rem}
+h2 em{font-family:var(--display);font-style:italic;font-weight:400;color:var(--accent)}
+p.st{font-size:16px;color:var(--muted);max-width:620px;margin-bottom:3rem;line-height:1.55}
+
+/* What I build grid */
+.build-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}
+.build{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:28px;transition:all .2s;text-decoration:none;color:inherit;display:flex;flex-direction:column}
+.build:hover{border-color:var(--accent);transform:translateY(-2px)}
+.build-icon{font-family:var(--mono);font-size:11px;color:var(--accent2);margin-bottom:16px;letter-spacing:.05em}
+.build h3{font-size:17px;font-weight:600;margin-bottom:8px;letter-spacing:-.3px}
+.build p{font-size:13px;color:var(--muted);line-height:1.55;margin-bottom:14px;flex:1}
+.build-stats{display:flex;gap:14px;margin-bottom:14px;font-family:var(--mono);font-size:10px;color:var(--dim);text-transform:uppercase;letter-spacing:.1em;flex-wrap:wrap}
+.build-stats span strong{color:var(--text);font-weight:600}
+.build-cta{color:var(--accent);font-weight:600;font-size:12px;margin-top:auto}
+
+/* Featured cases */
+.cases{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:14px}
+.case{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:28px;text-decoration:none;color:inherit;display:flex;flex-direction:column;transition:all .2s}
+.case:hover{border-color:var(--accent2);transform:translateY(-2px)}
+.case-num{font-family:var(--mono);font-size:10px;color:var(--dim);letter-spacing:.15em;margin-bottom:12px}
+.case h3{font-size:18px;font-weight:600;margin-bottom:6px;letter-spacing:-.3px;line-height:1.3}
+.case-org{font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:.12em;color:var(--accent2);margin-bottom:14px}
+.case p{font-size:13px;color:var(--muted);line-height:1.55;margin-bottom:16px}
+.case-metrics{display:flex;gap:18px;margin-top:auto;padding-top:14px;border-top:1px solid var(--border);flex-wrap:wrap}
+.case-metrics div{display:flex;flex-direction:column;gap:2px}
+.case-metrics strong{font-family:var(--display);font-size:22px;font-style:italic;color:var(--gold);letter-spacing:-.5px}
+.case-metrics span{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.1em}
+
+/* Skills snapshot */
+.skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px}
+.skill-col h4{font-size:12px;text-transform:uppercase;letter-spacing:.15em;color:var(--dim);font-family:var(--mono);font-weight:600;margin-bottom:14px;padding-bottom:10px;border-bottom:1px solid var(--border)}
+.skill-list{display:flex;flex-direction:column;gap:10px}
+.skill-item{display:flex;justify-content:space-between;align-items:baseline;gap:12px}
+.skill-name{font-size:14px;font-weight:500;color:var(--text)}
+.skill-lvl{font-family:var(--mono);font-size:10px;color:var(--dim);text-transform:uppercase;letter-spacing:.1em}
+
+/* Journey strip */
+.journey{display:grid;grid-template-columns:auto 1fr;gap:32px;align-items:start}
+.journey-years{display:flex;flex-direction:column;gap:0}
+.jyear{font-family:var(--mono);font-size:11px;color:var(--dim);padding:18px 0;border-bottom:1px solid var(--border);min-width:90px}
+.jyear:last-child{border-bottom:none}
+.jbody{padding-top:6px}
+.jrow{display:grid;grid-template-columns:1fr;gap:6px;padding:18px 0;border-bottom:1px solid var(--border)}
+.jrow:last-child{border-bottom:none}
+.jrole{font-size:15px;font-weight:600;color:var(--text)}
+.jorg{font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:.12em;color:var(--accent2);margin-bottom:4px}
+.jdesc{font-size:13px;color:var(--muted);line-height:1.5}
+
+.footer{padding:48px 2rem;text-align:center;border-top:1px solid var(--border)}
+.fl{display:flex;gap:24px;justify-content:center;flex-wrap:wrap;margin-bottom:20px}
+.fl a{font-size:13px;color:var(--muted);text-decoration:none}
+.fl a:hover{color:var(--text)}
+.fc{font-size:12px;color:var(--dim)}
+
+@media(max-width:768px){
+  .hero h1{font-size:36px}
+  .section{padding:60px 1.25rem}
+  h2{font-size:26px}
+  .journey{grid-template-columns:1fr;gap:8px}
+  .jyear{padding:8px 0;border-bottom:none;border-right:1px solid var(--border);display:inline-block}
+  .nav-links{display:none}
+}
+</style>
 </head>
-<body data-division="corporate">
+<body>
 
 <nav class="nav">
   <div class="nav-inner">
-    <a href="https://www.diamitani.com" class="nav-logo">Diamitani <span>Industries</span></a>
+    <a href="./" class="nav-logo">Patrick <span>Diamitani</span></a>
     <div class="nav-links">
-      <a href="https://www.diamitani.com" class="active">Home</a>
-      <a href="/products">Products</a>
-      <a href="/portfolio">Portfolio</a>
-      <a href="/skills">Skills</a>
-      <a href="/research">Research</a>
-      <a href="/consulting">Consulting</a>
-      <a href="/civic">Civic</a>
+      <a href="./" class="active">Work</a>
+      <a href="portfolio/">Portfolio</a>
+      <a href="research/">Research</a>
+      <a href="skills/">Skills</a>
+      <a href="products/">Apps</a>
+      <a href="civic/">Civic</a>
+      <a href="resume/">Resume</a>
     </div>
     <a href="mailto:patrick.diamitani@gmail.com" class="nav-cta">Contact</a>
   </div>
 </nav>
 
-<header class="hero" data-section="hero">
-  <div class="hero-inner hero-narrow">
-    <div class="hero-brand">Patrick Diamitani</div>
-    <div class="hero-est">GTM AI & Automation Manager · Enterprise AI Production · Published Researcher</div>
-    <h1>I build the systems that let organizations <em>run on AI.</em></h1>
-    <p class="hero-tag">Production AI systems that 50+ non-technical revenue teammates use every day — including a two-channel AI inbound system that's attributed $9M+ in pipeline. Full-stack automation ownership: design, ship, and financially prove. Every dollar traceable to a source record.</p>
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-tag"><span class="dot"></span>Open to GTM & Forward Deployed roles · Chicago</div>
+    <h1>
+      <span>Production AI for revenue teams —</span>
+      <span class="line2">built, shipped, and operated at scale.</span>
+    </h1>
+    <p class="hero-sub">I'm Patrick. I lead AI &amp; Automation for a 50-person GTM org at Atlas HXM — shipping 8+ production systems, 30+ reusable skills, and a published multi-agent framework. Former enterprise BDR at Uber and Upwork.</p>
+    <div class="hero-metrics">
+      <div class="metric"><span class="mv">8+</span><span class="ml">Live automations</span></div>
+      <div class="metric"><span class="mv">30+</span><span class="ml">Skills shipped</span></div>
+      <div class="metric"><span class="mv">50+</span><span class="ml">Users on platform</span></div>
+      <div class="metric"><span class="mv">$947K</span><span class="ml">Bookings @ Uber</span></div>
+    </div>
     <div class="hero-links">
-      <a href="/portfolio#systems" class="btn btn-primary">Explore the portfolio</a>
-      <a href="#about" class="btn btn-ghost">About Patrick</a>
-    </div>
-  </div>
-</header>
-
-<div class="metrics" data-section="metrics">
-  <div class="metrics-inner">
-    <div class="metric"><div class="metric-n">$9M+</div><div class="metric-l">Attributed pipeline from AI inbound</div></div>
-    <div class="metric"><div class="metric-n">50+</div><div class="metric-l">Daily non-technical users</div></div>
-    <div class="metric"><div class="metric-n">16</div><div class="metric-l">Production systems in the library</div></div>
-    <div class="metric"><div class="metric-n">$16M+</div><div class="metric-l">Pipeline enabled by AI builds</div></div>
-    <div class="metric"><div class="metric-n">$100M+</div><div class="metric-l">Raised by Techstars companies supported</div></div>
-  </div>
-</div>
-
-<section class="section reveal" id="about" data-section="about">
-  <div class="section-inner">
-    <div class="sl">About</div>
-    <h2>Fifteen years across entertainment, sales, <em>and AI.</em></h2>
-    <div class="about-grid">
-      <div class="about-text">
-        <p>Patrick Diamitani owns AI strategy and automation across an entire go-to-market organization — sales, marketing, and revenue operations — at a global HR-tech (Employer of Record) platform with roughly 500 employees operating in 160+ countries. His mandate: build production systems that a non-technical team of 50+ reps and marketers can rely on daily, not demos that impress once and then quietly stop being used.</p>
-        <p><strong>Four themes run through everything he builds.</strong> Hybrid AI architecture — LLMs handle what they're good at (reading messy text, drafting, classification), while deterministic, unit-tested code handles anything that must be auditable, like compliance tiers or money. Production discipline — every build ships with dry-run tests, rollback plans, and shared error handling. Cost engineering — AI and data-enrichment spend is measured and capped by design. Platform building — beyond any single automation, the real product is a reusable skill library, a project-intake system, and a build standard so the work compounds instead of resetting.</p>
-        <p>The result is a portfolio that reads less like a collection of scripts and more like a small internal product organization: an AI agent with its own attribution model, a compliance engine with full audit trails, a cost-governance framework that turned an owned mistake into a permanent safeguard, and the standards layer that let one person's work scale across fifty.</p>
-      </div>
-      <div class="about-highlights">
-        <h3>Career Highlights</h3>
-        <ul>
-          <li>Built and shipped a two-channel AI inbound system (website chatbot + Contact Us form automation) with a unified measurement pipeline that attributed $9M+ in pipeline within 30 days — every dollar traceable to a specific workflow execution ID, with a strict attribution rule that deliberately excluded over $1.1M in flattering-but-false revenue.</li>
-          <li>Designed and launched an automated compliance-screening system that corrected 100+ misclassified deals stuck in manual review and more than doubled detection of ineligible deals across the full sales pipeline, with a perfect production write record.</li>
-          <li>Diagnosed and rebuilt a four-agent, post-sales-call automation pipeline from a failing RAG-based design to a deterministic architecture — going from 0 successful end-to-end runs to fully verified in production.</li>
-          <li>Owned a runaway AI/data-enrichment spend incident end to end and redesigned the underlying system around a free eligibility gate and tiered cost profiles, cutting spend per record by roughly 70% by architecture, not vigilance.</li>
-          <li>Built and published a 54-skill AI automation library plus a self-serve project-intake engine that cut idea-to-scoped-project time from 4–8 hours to under 30 minutes across a 50-person go-to-market org.</li>
-          <li>Directed a nine-script enrichment pipeline for an outsourced sales-development pipeline, achieving confirmed 0% contact overlap against thousands of already-contacted records and 91% phone coverage.</li>
-        </ul>
-      </div>
+      <a href="#work" class="bp">See the work</a>
+      <a href="portfolio/" class="bg">Portfolio</a>
+      <a href="research/" class="bg">Published research</a>
+      <a href="resume/" class="bg">Resume</a>
     </div>
   </div>
 </section>
 
-<section class="section-dark reveal" id="systems" data-section="systems">
+<section class="section" id="work">
   <div class="section-inner">
-    <div class="sl">Approach</div>
-    <h2>How I <em>build.</em></h2>
-    <p class="st">Four principles that run through every system in the library.</p>
-    <div class="consult-grid">
-      <div class="consult-card">
-        <span class="badge badge-live">Principle</span>
-        <div class="ht">Judgment vs. Interpretation</div>
-        <h3>Hybrid AI Architecture</h3>
-        <p>Language models handle what they're good at — reading unstructured text, mapping messy values to clean categories, drafting first-pass copy — while the actual decision (a compliance tier, a lifecycle stamp, a dollar figure) is made by deterministic, testable code that produces the same answer on the same input, every time.</p>
-      </div>
-      <div class="consult-card">
-        <span class="badge badge-live">Principle</span>
-        <div class="ht">Ship Safe, Fail Loud</div>
-        <h3>Production Discipline</h3>
-        <p>Nothing ships without a dry-run path, a rollback plan, and a way to fail loudly instead of silently. Systems that touch live CRM data default to report-only until a human signs off. Every automation shares a common error-handling pattern.</p>
-      </div>
-      <div class="consult-card">
-        <span class="badge badge-live">Principle</span>
-        <div class="ht">Cost by Architecture</div>
-        <h3>Cost Engineering</h3>
-        <p>AI and enrichment spend is treated as an engineering constraint, not an afterthought. Free eligibility checks run before any paid step, expensive operations are gated to the accounts that actually warrant them, and every workflow reports its own cost.</p>
-      </div>
-      <div class="consult-card">
-        <span class="badge badge-live">Principle</span>
-        <div class="ht">Work That Compounds</div>
-        <h3>Platform Building</h3>
-        <p>The most durable output isn't any single automation — it's the standard that makes the next one faster to build safely. A shared build methodology, a self-serve project-intake tool, and a reusable skill library mean the organization's AI capability compounds.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="section reveal" id="case-studies" data-section="case-studies">
-  <div class="section-inner">
-    <div class="sl">Featured Production Systems</div>
-    <h2>Systems that <em>ship.</em></h2>
-    <p class="st">A selection from the 16-system library. Every build includes architecture, stack details, challenges & fixes, and demonstrated capabilities.</p>
-    <div class="grid">
-      <a class="card" href="/portfolio#/p/ai-customer-agent-suite">
-        <div class="ht">AI Agent System · Live in production</div>
-        <h3>AI Customer Agent Suite</h3>
-        <p>Two AI-powered inbound channels — website chatbot + Contact Us form automation — plus the measurement pipeline that proved $9M+ in attributed pipeline, with every dollar traceable to a source record.</p>
-        <div class="metric-line">Full-stack AI product ownership + revenue attribution</div>
-        <span class="hl">Read the build →</span>
+    <div class="sl">What I build</div>
+    <h2>Skills, workflows, agents, <em>and the apps that run them.</em></h2>
+    <p class="st">I work across the full stack of AI-augmented GTM — from prompt abstractions and RAG pipelines to live production automations and the operator-facing tools that ship them.</p>
+    <div class="build-grid">
+      <a class="build" href="skills/">
+        <div class="build-icon">// SKILLS</div>
+        <h3>Reusable AI Skills</h3>
+        <p>30+ production-grade Claude skills covering video, audio, scraping, analysis, RAG, sales intelligence, civic tech, and content systems. Drop-in capability packs.</p>
+        <div class="build-stats"><span><strong>30+</strong> skills</span><span><strong>14</strong> domains</span></div>
+        <span class="build-cta">Browse skills →</span>
       </a>
-      <a class="card" href="/portfolio#/p/eor-compliance-checker">
-        <div class="ht">n8n Workflow · Live in production</div>
-        <h3>EOR Compliance Checker</h3>
-        <p>AI deal screening on the live sales pipeline — an LLM maps messy CRM data, a unit-tested rules engine makes the deterministic call, and the verdict writes back with full audit trail.</p>
-        <div class="metric-line">Regulated-domain AI with audit trails</div>
-        <span class="hl">Read the build →</span>
+      <a class="build" href="research/">
+        <div class="build-icon">// RESEARCH</div>
+        <h3>ROSTR Framework</h3>
+        <p>Published architecture for production-grade multi-agent systems. PAL, NPAO, RAG DAL, Rostr Hub. 5D phase taxonomy. Zenodo DOI. The backbone of my Center of Excellence at Atlas.</p>
+        <div class="build-stats"><span><strong>4</strong> components</span><span><strong>1</strong> Zenodo DOI</span></div>
+        <span class="build-cta">Read the paper →</span>
       </a>
-      <a class="card" href="/portfolio#/p/post-sales-call-automation">
-        <div class="ht">n8n Workflow · Live in production</div>
-        <h3>Post-Sales Call Automation</h3>
-        <p>Four AI agents on every sales call — follow-up email, missed questions, competitor intel, and a CRM note, with zero rep action. Rebuilt from 0/25 passing to fully verified.</p>
-        <div class="metric-line">Event-driven multi-agent pipelines</div>
-        <span class="hl">Read the build →</span>
+      <a class="build" href="products/">
+        <div class="build-icon">// WEB APPS</div>
+        <h3>Shipped Web Apps</h3>
+        <p>Next.js + Supabase + Vercel production apps. Your48 (civic platform), Artist EPKs (creative platform), Artispreneur (music business OS), Gency AI (agency site).</p>
+        <div class="build-stats"><span><strong>4</strong> live apps</span><span><strong>$0/mo</strong> infra</span></div>
+        <span class="build-cta">View apps →</span>
       </a>
-      <a class="card" href="/gptpat">
-        <div class="ht">GPT Marketplace · 150+ Custom GPTs</div>
-        <h3>GPTPAT</h3>
-        <p>150+ custom GPTs across programming, productivity, sales, creative, civic, and lifestyle. Production-ready AI assistants available in the GPT Store.</p>
-        <div class="metric-line">Custom GPT marketplace</div>
-        <span class="hl">Browse the library →</span>
+      <a class="build" href="civic/">
+        <div class="build-icon">// CIVIC</div>
+        <h3>Civic Infrastructure</h3>
+        <p>Built Your48 as a precinct captain for Chicago's 48th Ward. Precinct directory, business licenses, constituent intake, ward dashboard — zero infra cost.</p>
+        <div class="build-stats"><span><strong>$0</strong> / month</span><span><strong>3</strong> neighborhoods</span></div>
+        <span class="build-cta">See Your48 →</span>
       </a>
-      <a class="card" href="/portfolio#/p/clay-credit-governance">
-        <div class="ht">Platform · Shipped</div>
-        <h3>Clay Credit Governance</h3>
-        <p>Cutting enrichment cost ~70% by making overspend structurally impossible. A cloneable table with a free ICP gate, tiered build profiles, and per-row cost estimates.</p>
-        <div class="metric-line">FinOps for AI/data tooling</div>
-        <span class="hl">Read the build →</span>
+      <a class="build" href="portfolio/">
+        <div class="build-icon">// PORTFOLIO</div>
+        <h3>Full Portfolio</h3>
+        <p>The complete case-study archive: 16 production AI systems, consulting wins, products shipped, and research. Recruiter-friendly deep dive.</p>
+        <div class="build-stats"><span><strong>16</strong> systems</span><span><strong>8</strong> years</span></div>
+        <span class="build-cta">Open portfolio →</span>
       </a>
-      <a class="card" href="/portfolio#/p/gtm-ai-platform">
-        <div class="ht">Platform · Live in production</div>
-        <h3>The GTM AI Platform</h3>
-        <p>Not one automation — the operating system a 50-person GTM org runs its AI adoption on. A published build methodology, intake engine, and 54-skill library.</p>
-        <div class="metric-line">Standards, governance, and scale</div>
-        <span class="hl">Read the build →</span>
-      </a>
-      <a class="card" href="/skills">
-        <div class="ht">Skills Library · Open Source</div>
-        <h3>54 Production Skills</h3>
-        <p>Claude-compatible AI skills covering GTM automation, HubSpot, n8n, project management, RFP, and more. Open source and configurable.</p>
-        <div class="metric-line">54 skills · 8+ categories · production-ready</div>
-        <span class="hl">Browse the library →</span>
-      </a>
-    </div>
-    <div class="hero-links" style="margin-top:28px">
-      <a href="/portfolio#systems" class="btn btn-primary">View all 16 systems in the library</a>
-    </div>
-  </div>
-</section>
-
-<section class="section-dark reveal" id="research" data-section="research">
-  <div class="section-inner">
-    <div class="sl">Published Research</div>
-    <h2>The <em>ROSTR</em> Framework.</h2>
-    <p class="st">A published, citable architecture for production-grade multi-agent systems — PAL, RAG DAL, NPAO, Rostr Hub, and a 5D phase taxonomy. The intellectual property underneath every division.</p>
-
-    <!-- ROSTR Video -->
-    <div style="margin:40px auto;max-width:800px;border-radius:12px;overflow:hidden;border:1px solid var(--border)">
-      <div style="position:relative;padding-bottom:56.25%;height:0">
-        <iframe
-          src="https://www.youtube.com/embed/VIDEO_ID_HERE"
-          style="position:absolute;top:0;left:0;width:100%;height:100%;border:none"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowfullscreen
-          title="ROSTR Framework Overview">
-        </iframe>
-      </div>
-    </div>
-
-    <div class="hero-links">
-      <a href="https://rostragent.com" target="_blank" rel="noopener" class="btn btn-primary">Rostr Agent</a>
-      <a href="https://zenodo.org/records/19550414" target="_blank" rel="noopener" class="btn btn-accent">Read the paper (Zenodo DOI)</a>
-      <a href="/research" class="btn btn-ghost">Explore ROSTR</a>
-    </div>
-  </div>
-</section>
-
-<section class="section-dark" data-section="founder">
-  <div class="section-inner">
-    <div class="sl">Founder & Principal</div>
-    <div class="founder">
-      <div class="fp">PD</div>
-      <div class="ft">
-        <h2>Patrick <em>Diamitani</em></h2>
-        <p>Production AI systems builder. Published researcher. Founder. <strong>I build the systems that let organizations run on AI</strong> — and the frameworks that let others do the same.</p>
-        <p>Fifteen years across entertainment, sales, and technology: enterprise sales at <strong>Uber, Upwork, and Asana</strong>; startup sales leadership at DreamItReel, taking revenue from <strong>$200K to $1.5M</strong>; a <strong>Techstars</strong> associate supporting three companies that collectively raised over <strong>$100M</strong> (two acquired); and a founding partner in Omicon Entertainment, producing 1,000+ shows for 80,000 students at <strong>$2M in yearly revenue</strong>.</p>
-        <p>Today I'm GTM AI & Automation Manager at <strong>Atlas HXM</strong>, leading AI-native efforts across sales, ops, marketing, and RevOps — my automations and AI builds have enabled over <strong>$16M in pipeline</strong> to date. I authored the <strong>ROSTR Framework</strong>, founded <strong>Artispreneur</strong>, <strong>Gency AI</strong>, and <strong>GPTPAT</strong>, built <strong>Your48</strong> for Chicago's 48th Ward — and on the weekends, I make records.</p>
-        <div class="fq">"One day, this established firm shall have no less than $300,000,000,000 in liquid cash holdings, before the day I am 72 years old."</div>
-        <p style="font-size:12px;color:var(--dim)">Patrick Diamitani · Chicago, IL</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="section" data-section="divisions">
-  <div class="section-inner">
-    <div class="sl">The Divisions</div>
-    <h2>Four divisions. One <em>standard.</em></h2>
-    <p class="st">Every property under Diamitani Industries runs on the same production discipline — from enterprise AI to original music.</p>
-    <div class="divisions">
-      <a class="division" href="/portfolio" style="--dc:#5eb8c4">
-        <div class="ht">diamitani.com/portfolio</div>
-        <h3>Port<em>folio</em></h3>
-        <p>Enterprise AI production. 16 production systems, 54 Claude skills, consulting, 12 ventures, published research, and full career context — all in one place.</p>
-        <span class="hl">Open the portfolio →</span>
-      </a>
-      <a class="division" href="https://industries.diamitani.com" style="--dc:#c9a84a">
-        <div class="ht">industries.diamitani.com</div>
-        <h3>Indus<em>tries</em></h3>
-        <p>Holding company & venture studio — build, partner, invest. AI training, token usage, legal/ops.</p>
-        <span class="hl">Meet the holdings →</span>
-      </a>
-      <a class="division" href="https://art.diamitani.com" style="--dc:#e2c77a">
-        <div class="ht">art.diamitani.com</div>
-        <h3>A<em>rt</em></h3>
-        <p>Visual albums, comedy, photography — including <em style="font-style:italic">12!30</em>.</p>
-        <span class="hl">See the work →</span>
-      </a>
-      <a class="division" href="https://music.diamitani.com" style="--dc:#d48aa8">
-        <div class="ht">music.diamitani.com</div>
-        <h3>Mu<em>sic</em></h3>
-        <p>Original music as Pat Dia — Sunshine to Deep, more in the studio.</p>
-        <span class="hl">Press play →</span>
+      <a class="build" href="xai/">
+        <div class="build-icon">// ROLE BRIEFS</div>
+        <h3>Forward Deployed Brief</h3>
+        <p>Targeted brief for Forward Deployed / AI Engineer roles: production systems, agent frameworks, published research, operator-first deployments.</p>
+        <div class="build-stats"><span><strong>xAI</strong></span><span><strong>FD</strong> eng</span></div>
+        <span class="build-cta">View brief →</span>
       </a>
     </div>
   </div>
 </section>
 
-<section class="section-dark reveal" id="consulting" data-section="consulting">
+<section class="section-dark">
   <div class="section-inner">
-    <div class="sl">Consulting</div>
-    <h2>Two practices. One <em>standard.</em></h2>
-    <p class="st">AI software development through Gency AI. GTM AI, automation, and RevOps through SalesGency.</p>
-    <div class="consult-grid">
-      <a class="consult-card" href="https://gencyai.com" target="_blank" rel="noopener">
-        <span class="badge badge-live">Active</span>
-        <div class="ht">AI Software Development</div>
-        <h3>Gency AI</h3>
-        <p>Agents, skills, prompt libraries, and production web apps — from SOP to shipped system, with adoption built in.</p>
-        <div class="metric-line">Build · agents · apps · adoption</div>
-        <span class="hl">gencyai.com →</span>
+    <div class="sl">Featured work</div>
+    <h2>Case studies <em>with numbers.</em></h2>
+    <p class="st">Three projects that show how I think about AI in a GTM context — what shipped, who used it, and what it moved.</p>
+    <div class="cases">
+      <a class="case" href="portfolio/">
+        <div class="case-num">CASE 01</div>
+        <div class="case-org">Atlas HXM · GTM AI</div>
+        <h3>Center of Excellence: from 4–8 hours to under 30 minutes</h3>
+        <p>Built a ROSTR-powered ideation pipeline that turns raw ideas into scoped, ready-to-build projects. Now the standard intake for any new AI initiative across the GTM org.</p>
+        <div class="case-metrics">
+          <div><strong>~93%</strong><span>Faster scoping</span></div>
+          <div><strong>50+</strong><span>Operators</span></div>
+        </div>
       </a>
-      <a class="consult-card" href="https://salesgency.com" target="_blank" rel="noopener">
-        <span class="badge badge-live">Active</span>
-        <div class="ht">GTM AI · Automation · RevOps</div>
-        <h3>SalesGency</h3>
-        <p>Outbound engines, CRM workflows, attribution, and RevOps systems revenue teams can run every day.</p>
-        <div class="metric-line">Pipeline · process · production AI</div>
-        <span class="hl">salesgency.com →</span>
+      <a class="case" href="portfolio/">
+        <div class="case-num">CASE 02</div>
+        <div class="case-org">Atlas HXM · Compliance</div>
+        <h3>Deal screening against compliance frameworks — fully auditable</h3>
+        <p>Hybrid LLM + deterministic engine that auto-screens deals against 6 compliance frameworks. 46-node n8n workflow. Every verdict traceable to source clauses.</p>
+        <div class="case-metrics">
+          <div><strong>242</strong><span>Deals / month</span></div>
+          <div><strong>100%</strong><span>Audit trail</span></div>
+        </div>
       </a>
+      <a class="case" href="civic/">
+        <div class="case-num">CASE 03</div>
+        <div class="case-org">Your48 · Civic</div>
+        <h3>Civic intelligence for Chicago's 48th Ward — $0/month</h3>
+        <p>Built Your48 as a precinct captain: precinct directory, business licenses, constituent intake, ward dashboard. Zero infrastructure cost. Real constituents actually use it.</p>
+        <div class="case-metrics">
+          <div><strong>$0</strong><span>Monthly infra</span></div>
+          <div><strong>3</strong><span>Neighborhoods</span></div>
+        </div>
+      </a>
+    </div>
+    <div style="margin-top:28px">
+      <a href="portfolio/" style="color:var(--accent);font-weight:600;font-size:14px;text-decoration:none">Full portfolio →</a>
     </div>
   </div>
 </section>
 
-<section class="section" data-section="companies">
+<section class="section">
   <div class="section-inner">
-    <div class="sl">Holdings at a Glance</div>
-    <h2>Operating <em>companies.</em></h2>
-    <p class="st">Twelve active ventures across AI software, GTM consulting, consumer products, creative platforms, and civic tech. Same production standard across all of them.</p>
-    <div class="grid">
-      <a class="card" href="https://gencyai.com" target="_blank" rel="noopener">
-        <div class="ht">Consulting · AI Software</div>
-        <h3>Gency AI</h3>
-        <p>AI software development — agents, apps, and in-house AI capability.</p>
-        <span class="hl">gencyai.com →</span>
-      </a>
-      <a class="card" href="https://salesgency.com" target="_blank" rel="noopener">
-        <div class="ht">Consulting · GTM / RevOps</div>
-        <h3>SalesGency</h3>
-        <p>GTM AI, automation, and RevOps consulting for revenue teams.</p>
-        <span class="hl">salesgency.com →</span>
-      </a>
-      <a class="card" href="/gptpat">
-        <div class="ht">AI Products · 150+ Custom GPTs</div>
-        <h3>GPTPAT</h3>
-        <p>150+ custom GPTs across programming, productivity, sales, creative, civic, and lifestyle.</p>
-        <span class="hl">Browse the marketplace →</span>
-      </a>
-      <a class="card" href="https://creditfixer.vercel.app" target="_blank" rel="noopener">
-        <div class="ht">AI Products · Fintech</div>
-        <h3>CreditFixer</h3>
-        <p>AI-powered credit repair that guides users through identifying and resolving credit profile issues.</p>
-        <span class="hl">creditfixer.vercel.app →</span>
-      </a>
-      <a class="card" href="https://www.replaiall.com" target="_blank" rel="noopener">
-        <div class="ht">AI Products · Consumer</div>
-        <h3>Replai</h3>
-        <p>AI messaging assistant that rewrites impulsive or emotionally charged texts — preserving your voice, improving your message.</p>
-        <span class="hl">replaiall.com →</span>
-      </a>
-      <a class="card" href="https://www.huddleco.work" target="_blank" rel="noopener">
-        <div class="ht">SaaS · Coworking</div>
-        <h3>Huddle</h3>
-        <p>Coworking space directory — find, compare, and book from 7,000+ locations across 1,100+ US cities.</p>
-        <span class="hl">huddleco.work →</span>
-      </a>
-      <a class="card" href="https://lola-wd5x.vercel.app" target="_blank" rel="noopener">
-        <div class="ht">Consumer · Fitness AI</div>
-        <h3>LOLA</h3>
-        <p>AI fitness app with personalized workout plans, curated classes from social video, and accountability partners.</p>
-        <span class="hl">trainlola.com →</span>
-      </a>
-      <a class="card" href="https://artispreneur.com" target="_blank" rel="noopener">
-        <div class="ht">Creative Education</div>
-        <h3>Artispreneur</h3>
-        <p>Music business tools and AI agents that turn independent artists into entrepreneurs.</p>
-        <span class="hl">artispreneur.com →</span>
-      </a>
-      <a class="card" href="https://artistsepks.vercel.app" target="_blank" rel="noopener">
-        <div class="ht">Creative Tools</div>
-        <h3>Artist EPKs</h3>
-        <p>Electronic press kit platform for independent artists.</p>
-        <span class="hl">artistsepks.vercel.app →</span>
-      </a>
-      <a class="card" href="https://your48.vercel.app" target="_blank" rel="noopener">
-        <div class="ht">Civic Infrastructure</div>
-        <h3>Your48</h3>
-        <p>Civic intelligence platform for Chicago's 48th Ward.</p>
-        <span class="hl">your48.vercel.app →</span>
-      </a>
-      <div class="card">
-        <div class="ht">Live Entertainment</div>
-        <h3>Omicon Entertainment</h3>
-        <p>Founding partner — 1,000+ shows for 80,000 students, $2M yearly revenue.</p>
+    <div class="sl">Skills snapshot</div>
+    <h2>What I'm <em>good at.</em></h2>
+    <p class="st">A condensed view of the technical and operational surface area I've built across — useful for a 30-second scan before diving deeper.</p>
+    <div class="skills-grid">
+      <div class="skill-col">
+        <h4>AI / Engineering</h4>
+        <div class="skill-list">
+          <div class="skill-item"><span class="skill-name">LLM orchestration (Claude, GPT, Gemini)</span><span class="skill-lvl">Production</span></div>
+          <div class="skill-item"><span class="skill-name">Multi-agent frameworks (ROSTR)</span><span class="skill-lvl">Published</span></div>
+          <div class="skill-item"><span class="skill-name">RAG pipelines (multi-pass, tiered)</span><span class="skill-lvl">Production</span></div>
+          <div class="skill-item"><span class="skill-name">n8n / Make.com workflows</span><span class="skill-lvl">Production</span></div>
+          <div class="skill-item"><span class="skill-name">Python, TypeScript, SQL</span><span class="skill-lvl">Daily</span></div>
+          <div class="skill-item"><span class="skill-name">AWS (Bedrock, S3, CFN, IAM)</span><span class="skill-lvl">Certified</span></div>
+          <div class="skill-item"><span class="skill-name">Next.js + Supabase</span><span class="skill-lvl">Daily</span></div>
+        </div>
       </div>
-      <a class="card" href="/portfolio#holdings">
-        <div class="ht">Full Directory</div>
-        <h3>All holdings</h3>
-        <p>Full directory with descriptions and live links — at diamitani.com/portfolio.</p>
-        <span class="hl">See all →</span>
-      </a>
+      <div class="skill-col">
+        <h4>GTM / Revenue</h4>
+        <div class="skill-list">
+          <div class="skill-item"><span class="skill-name">Enterprise BDR/AE motion</span><span class="skill-lvl">6 yrs</span></div>
+          <div class="skill-item"><span class="skill-name">Outbound at scale (2K+ emails/wk)</span><span class="skill-lvl">Uber, Upwork</span></div>
+          <div class="skill-item"><span class="skill-name">Sales ops &amp; tooling</span><span class="skill-lvl">Built for 50+</span></div>
+          <div class="skill-item"><span class="skill-name">Lead qualification &amp; enrichment</span><span class="skill-lvl">Production</span></div>
+          <div class="skill-item"><span class="skill-name">Meeting intelligence &amp; follow-up</span><span class="skill-lvl">Production</span></div>
+          <div class="skill-item"><span class="skill-name">ICP &amp; persona development</span><span class="skill-lvl">Daily</span></div>
+          <div class="skill-item"><span class="skill-name">Operator adoption &amp; enablement</span><span class="skill-lvl">50+ users</span></div>
+        </div>
+      </div>
+      <div class="skill-col">
+        <h4>Operator / Leadership</h4>
+        <div class="skill-list">
+          <div class="skill-item"><span class="skill-name">Build-with-the-operator philosophy</span><span class="skill-lvl">Core</span></div>
+          <div class="skill-item"><span class="skill-name">Cross-functional (Eng, GTM, Legal, Civic)</span><span class="skill-lvl">Daily</span></div>
+          <div class="skill-item"><span class="skill-name">Published researcher (Zenodo DOI)</span><span class="skill-lvl">2026</span></div>
+          <div class="skill-item"><span class="skill-name">Precinct captain, 48th Ward Chicago</span><span class="skill-lvl">Active</span></div>
+          <div class="skill-item"><span class="skill-name">Music production &amp; live performance</span><span class="skill-lvl">15 yrs</span></div>
+          <div class="skill-item"><span class="skill-name">Photography, design, branding</span><span class="skill-lvl">Side</span></div>
+          <div class="skill-item"><span class="skill-name">Hiring &amp; team building</span><span class="skill-lvl">Led cohort</span></div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
-
-<div class="family-strip">
-  <div class="family-strip-inner">
-    <div class="fs-label">Diamitani Industries</div>
-    <div class="fs-links">
-      <a href="https://www.diamitani.com" class="active">Home</a>
-      <a href="/products">Products</a>
-      <a href="/portfolio">Portfolio</a>
-      <a href="/research">Research</a>
-      <a href="/consulting">Consulting</a>
-      <a href="/civic">Civic</a>
+<section class="section-dark">
+  <div class="section-inner">
+    <div class="sl">My journey</div>
+    <h2>From enterprise sales to <em>building the systems.</em></h2>
+    <p class="st">I started selling. Now I build the AI that lets revenue teams move faster — with the operator's perspective baked into every architecture decision.</p>
+    <div class="journey">
+      <div class="journey-years">
+        <div class="jyear">2025–Now</div>
+        <div class="jyear">2023–24</div>
+        <div class="jyear">2022–23</div>
+        <div class="jyear">2019–21</div>
+        <div class="jyear">2016–18</div>
+      </div>
+      <div class="jbody">
+        <div class="jrow">
+          <div class="jorg">Atlas HXM · Chicago</div>
+          <div class="jrole">GTM AI &amp; Automation Manager</div>
+          <div class="jdesc">Lead AI &amp; Automation for a 50-person GTM org. Shipped 8+ production automations, 30+ Claude skills, Center of Excellence framework. Published ROSTR research.</div>
+        </div>
+        <div class="jrow">
+          <div class="jorg">RevEnabled · Chicago</div>
+          <div class="jrole">Founder — GTM Consulting</div>
+          <div class="jdesc">Took Dark Roast Media $1M → $3M ARR. Built the GTM stack for Rand McNally Rand Fleet — $5M pipeline, 2,000% engagement lift.</div>
+        </div>
+        <div class="jrow">
+          <div class="jorg">Uber for Business · Chicago</div>
+          <div class="jrole">Enterprise BDR</div>
+          <div class="jdesc">$947K+ gross bookings. Led the hiring cohort on quota. 2,000+ emails / 250 dials per week to C-suite and VP buyers.</div>
+        </div>
+        <div class="jrow">
+          <div class="jorg">Upwork · Chicago</div>
+          <div class="jrole">Senior Enterprise BDR</div>
+          <div class="jdesc">Top 10% on a 60-rep team. #1 connection rate (100+ dials/day). Fortune 500 strategic outsourcing use cases.</div>
+        </div>
+        <div class="jrow">
+          <div class="jorg">Techstars · DreamItReel · Omicon</div>
+          <div class="jrole">Founding AE / Portfolio Associate</div>
+          <div class="jdesc">Sales infra for 2ndKitchen &amp; Clyde (acquired), Rheaply ($40M). DreamItReel $2M+ revenue, 40% YoY. Omicon: 150+ events, 80K attendees.</div>
+        </div>
+      </div>
+    </div>
+    <div style="margin-top:28px">
+      <a href="resume/" style="color:var(--accent);font-weight:600;font-size:14px;text-decoration:none">Full resume →</a>
     </div>
   </div>
-</div>
+</section>
 
-<footer class="footer" data-section="footer">
-  <div class="footer-inner">
-    <div class="footer-grid">
-      <div class="footer-brand">
-        <div class="fb-name">Diamitani <span>Industries</span></div>
-        <p>The corporate imprint of Patrick Diamitani — holding company, consulting firm, creative agency, and development studio. A New York C-Corporation, established 2014, built for generations.</p>
-      </div>
-      <div class="footer-col">
-        <h4>Products</h4>
-        <a href="https://trainlola.com" target="_blank" rel="noopener">LOLA</a>
-        <a href="https://replaiall.com" target="_blank" rel="noopener">Replai</a>
-        <a href="https://fcragent.com" target="_blank" rel="noopener">FCR Agent</a>
-        <a href="https://huddleco.work" target="_blank" rel="noopener">Huddle</a>
-      </div>
-      <div class="footer-col">
-        <h4>Consulting</h4>
-        <a href="https://gencyai.com" target="_blank" rel="noopener">Gency AI</a>
-        <a href="https://salesgency.com" target="_blank" rel="noopener">SalesGency</a>
-        <a href="https://gptpat.co" target="_blank" rel="noopener">GPTPAT</a>
-        <a href="https://artispreneur.com" target="_blank" rel="noopener">Artispreneur</a>
-        <a href="https://your48.vercel.app" target="_blank" rel="noopener">Your48</a>
-      </div>
-      <div class="footer-col">
-        <h4>Connect</h4>
-        <a href="https://linkedin.com/in/Diamitani" target="_blank" rel="noopener">LinkedIn</a>
-        <a href="https://instagram.com/iampatd" target="_blank" rel="noopener">Instagram @iampatd</a>
-        <a href="https://zenodo.org/records/19550414" target="_blank" rel="noopener">ROSTR Paper</a>
-        <a href="mailto:patrick.diamitani@gmail.com">Email</a>
-      </div>
-    </div>
-    <div class="footer-base">
-      <p>Diamitani Industries, Inc. · NY C-Corp · Est. 2014</p>
-      <p>Patrick Diamitani · Chicago, IL · © 2026</p>
+<section class="section" style="padding:60px 2rem;text-align:center">
+  <div class="section-inner">
+    <div class="sl">Get in touch</div>
+    <h2 style="margin-bottom:1rem">Let's <em>talk.</em></h2>
+    <p class="st" style="margin-left:auto;margin-right:auto">GTM, Forward Deployed, AI Engineer, or anything where production AI ships into a real revenue team — I'm in.</p>
+    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+      <a href="mailto:patrick.diamitani@gmail.com" class="bp" style="padding:14px 32px;border-radius:8px;font-size:14px;font-weight:600;text-decoration:none;background:var(--cream);color:var(--ink)">Email me</a>
+      <a href="https://linkedin.com/in/Diamitani" class="bg" style="padding:14px 32px;border-radius:8px;font-size:14px;font-weight:600;text-decoration:none;border:1px solid rgba(255,255,255,.2);color:#fff">LinkedIn</a>
+      <a href="https://github.com/diamitani" class="bg" style="padding:14px 32px;border-radius:8px;font-size:14px;font-weight:600;text-decoration:none;border:1px solid rgba(255,255,255,.2);color:#fff">GitHub</a>
     </div>
   </div>
+</section>
+
+<footer class="footer">
+  <div class="fl">
+    <a href="mailto:patrick.diamitani@gmail.com">Email</a>
+    <a href="https://linkedin.com/in/Diamitani">LinkedIn</a>
+    <a href="https://github.com/diamitani">GitHub</a>
+    <a href="https://instagram.com/iampatd">@iampatd</a>
+    <a href="https://zenodo.org/records/19550414">ROSTR Paper</a>
+    <a href="https://your48.vercel.app">Your48</a>
+  </div>
+  <p class="fc">Patrick Diamitani · 319.930.0290 · patrick.diamitani@gmail.com · Chicago, IL · © 2026</p>
 </footer>
 
 </body>

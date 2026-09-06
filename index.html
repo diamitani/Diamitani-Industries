@@ -6,120 +6,164 @@
 <meta name="description" content="Patrick Diamitani — Production AI builder for GTM teams. 8+ live automations, 30+ shipped skills, published ROSTR framework. Chicago.">
 <title>Patrick Diamitani — Production AI for GTM</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;460;500;600;700&family=Playfair+Display:ital,wght@0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Inter+Tight:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bg:#050508;--surface:#0c0d12;--surface2:#14151b;--border:#1e1f26;
-  --text:#e6e6e8;--muted:#8c8d93;--dim:#55565c;
-  --accent:#a78bfa;--accent2:#06b6d4;--gold:#c9a227;--cream:#e9e5dd;--ink:#1a1917;
-  --font:'Inter',system-ui,sans-serif;--display:'Playfair Display',serif;--mono:'JetBrains Mono',monospace}
+  --bg:#f9f9f9;
+  --bg-cream:#fafaf9;
+  --bg-soft:#f5f4f3;
+  --bg-dark:#1e1e1e;
+  --ink:#090909;
+  --ink-2:#1e1e1e;
+  --ink-3:#63615e;
+  --muted:rgba(9,9,9,0.6);
+  --muted-2:rgba(9,9,9,0.4);
+  --border:rgba(234,234,234,0.65);
+  --border-strong:#eaeaea;
+  --accent:#ff462e;
+  --accent-2:#f9452c;
+  --font:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
+  --display:'Inter Tight','Inter',sans-serif;
+  --mono:'JetBrains Mono',monospace}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
-body{font-family:var(--font);background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased}
+body{font-family:var(--font);background:var(--bg);color:var(--ink);line-height:1.5;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;overflow-x:hidden}
 
-.nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(5,5,8,.94);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);padding:0 2rem}
-.nav-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:56px}
-.nav-logo{font-weight:700;font-size:15px;color:var(--text);text-decoration:none;letter-spacing:-.3px}
-.nav-logo span{color:var(--accent)}
-.nav-links{display:flex;gap:1.5rem;align-items:center}
-.nav-links a{font-size:13px;color:var(--muted);text-decoration:none;font-weight:460}
-.nav-links a:hover,.nav-links a.active{color:var(--text)}
-.nav-cta{padding:6px 16px;border-radius:8px;font-size:13px;font-weight:600;background:var(--cream);color:var(--ink);text-decoration:none}
+/* ── Nav ─────────────────────────── */
+.nav{position:sticky;top:0;z-index:50;background:rgba(249,249,249,0.85);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
+.nav-inner{max-width:1280px;margin:0 auto;padding:18px 32px;display:flex;align-items:center;justify-content:space-between;gap:32px}
+.nav-logo{font-family:var(--display);font-weight:600;font-size:18px;letter-spacing:-.5px;color:var(--ink);text-decoration:none}
+.nav-logo em{font-style:italic;font-weight:400;color:var(--accent)}
+.nav-links{display:flex;gap:28px;align-items:center}
+.nav-links a{font-size:14px;color:var(--ink-2);text-decoration:none;font-weight:500;transition:color .15s}
+.nav-links a:hover{color:var(--accent)}
+.nav-cta{padding:10px 20px;border-radius:100px;font-size:13px;font-weight:500;background:var(--ink);color:var(--bg);text-decoration:none;transition:all .15s}
+.nav-cta:hover{background:var(--accent)}
 
-.hero{min-height:92vh;display:flex;align-items:center;padding:140px 2rem 80px;overflow:hidden;background:radial-gradient(160% 100% at 50% 0,#141028 0,#0b0a14 35%,#050508 100%);position:relative}
-.hero::after{content:'';position:absolute;top:-20%;right:-15%;width:500px;height:500px;background:radial-gradient(circle,rgba(167,139,250,.1),rgba(6,182,212,.02)60%);filter:blur(80px);pointer-events:none}
-.hero-inner{max-width:880px;position:relative;z-index:2}
-.hero-tag{font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:.2em;color:var(--accent);font-weight:600;margin-bottom:1.75rem;display:flex;align-items:center;gap:10px}
-.hero-tag .dot{width:6px;height:6px;border-radius:50%;background:var(--accent);box-shadow:0 0 12px var(--accent)}
-.hero h1{font-size:clamp(36px,5.5vw,64px);font-weight:540;line-height:1.15;letter-spacing:-1.2px;margin-bottom:1.5rem;color:#fff;display:flex;flex-direction:column}
-.hero h1 .line2{font-family:var(--display);font-style:italic;font-weight:400;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.hero-sub{font-size:18px;color:rgba(255,255,255,.7);max-width:620px;line-height:1.55;margin-bottom:2.5rem;font-weight:400}
-.hero-metrics{display:flex;gap:32px;margin-bottom:2.5rem;flex-wrap:wrap}
-.metric{display:flex;flex-direction:column;gap:2px}
-.mv{font-family:var(--display);font-size:30px;font-style:italic;color:var(--text);letter-spacing:-.5px}
-.ml{font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:.15em;color:var(--dim)}
-.hero-links{display:flex;gap:12px;flex-wrap:wrap}
-.hero-links a{padding:12px 28px;border-radius:8px;font-size:14px;font-weight:600;text-decoration:none;transition:all .15s}
-.bp{background:var(--cream);color:var(--ink)}
-.bp:hover{opacity:.85;transform:translateY(-1px)}
-.bg{border:1px solid rgba(255,255,255,.2);color:#fff}
-.bg:hover{border-color:rgba(255,255,255,.4)}
+/* ── Hero ─────────────────────────── */
+.hero{padding:120px 32px 80px;max-width:1280px;margin:0 auto}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:.18em;color:var(--muted);margin-bottom:32px}
+.hero-eyebrow .dot{width:6px;height:6px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 4px rgba(255,70,46,.15)}
+.hero h1{font-family:var(--display);font-size:clamp(48px,7.5vw,96px);font-weight:500;line-height:1.02;letter-spacing:-2.5px;color:var(--ink);max-width:1100px;margin-bottom:40px}
+.hero h1 em{font-style:italic;font-weight:400;color:var(--accent)}
+.hero-sub{font-size:20px;line-height:1.5;color:var(--muted);max-width:680px;margin-bottom:48px}
+.hero-cta{display:flex;gap:12px;flex-wrap:wrap}
+.btn{padding:14px 28px;border-radius:100px;font-size:14px;font-weight:500;text-decoration:none;transition:all .2s;display:inline-flex;align-items:center;gap:8px}
+.btn-primary{background:var(--ink);color:var(--bg)}
+.btn-primary:hover{background:var(--accent)}
+.btn-ghost{border:1px solid var(--border-strong);color:var(--ink)}
+.btn-ghost:hover{border-color:var(--ink)}
+.btn .arrow{display:inline-block;transition:transform .2s}
+.btn:hover .arrow{transform:translateX(4px)}
 
-.section{padding:100px 2rem}
-.section-dark{padding:100px 2rem;background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
-.section-inner{max-width:1100px;margin:0 auto}
-.sl{font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:.2em;color:var(--accent);font-weight:600;margin-bottom:.75rem}
-h2{font-size:36px;font-weight:540;line-height:1.1;letter-spacing:-.5px;margin-bottom:1.5rem}
-h2 em{font-family:var(--display);font-style:italic;font-weight:400;color:var(--accent)}
-p.st{font-size:16px;color:var(--muted);max-width:620px;margin-bottom:3rem;line-height:1.55}
+/* ── Marquee ──────────────────────── */
+.marquee{border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:20px 0;overflow:hidden;background:var(--bg-cream)}
+.marquee-track{display:flex;gap:48px;font-family:var(--display);font-size:24px;font-weight:500;letter-spacing:-.5px;color:var(--ink-3);white-space:nowrap;animation:marquee 40s linear infinite}
+.marquee-track span{display:inline-flex;align-items:center;gap:48px}
+.marquee-track span::after{content:"●";color:var(--accent);font-size:14px}
+@keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
 
-/* What I build grid */
-.build-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}
-.build{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:28px;transition:all .2s;text-decoration:none;color:inherit;display:flex;flex-direction:column}
-.build:hover{border-color:var(--accent);transform:translateY(-2px)}
-.build-icon{font-family:var(--mono);font-size:11px;color:var(--accent2);margin-bottom:16px;letter-spacing:.05em}
-.build h3{font-size:17px;font-weight:600;margin-bottom:8px;letter-spacing:-.3px}
-.build p{font-size:13px;color:var(--muted);line-height:1.55;margin-bottom:14px;flex:1}
-.build-stats{display:flex;gap:14px;margin-bottom:14px;font-family:var(--mono);font-size:10px;color:var(--dim);text-transform:uppercase;letter-spacing:.1em;flex-wrap:wrap}
-.build-stats span strong{color:var(--text);font-weight:600}
-.build-cta{color:var(--accent);font-weight:600;font-size:12px;margin-top:auto}
+/* ── Section base ─────────────────── */
+.section{padding:120px 32px;max-width:1280px;margin:0 auto}
+.section-wide{padding:120px 32px;background:var(--bg-soft);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.section-dark{padding:120px 32px;background:var(--bg-dark);color:var(--bg)}
+.section-dark .sl{color:rgba(249,249,249,0.5)}
+.section-dark h2{color:var(--bg)}
+.section-dark p.st{color:rgba(249,249,249,0.7)}
+.sl{font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:.18em;color:var(--accent);font-weight:500;margin-bottom:20px;display:flex;align-items:center;gap:10px}
+.sl::before{content:"";width:24px;height:1px;background:var(--accent)}
+h2{font-family:var(--display);font-size:clamp(36px,5vw,56px);font-weight:500;line-height:1.05;letter-spacing:-1.5px;margin-bottom:24px}
+h2 em{font-style:italic;font-weight:400;color:var(--accent)}
+p.st{font-size:17px;line-height:1.5;color:var(--muted);max-width:600px;margin-bottom:64px}
 
-/* Featured cases */
-.cases{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:14px}
-.case{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:28px;text-decoration:none;color:inherit;display:flex;flex-direction:column;transition:all .2s}
-.case:hover{border-color:var(--accent2);transform:translateY(-2px)}
-.case-num{font-family:var(--mono);font-size:10px;color:var(--dim);letter-spacing:.15em;margin-bottom:12px}
-.case h3{font-size:18px;font-weight:600;margin-bottom:6px;letter-spacing:-.3px;line-height:1.3}
-.case-org{font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:.12em;color:var(--accent2);margin-bottom:14px}
-.case p{font-size:13px;color:var(--muted);line-height:1.55;margin-bottom:16px}
-.case-metrics{display:flex;gap:18px;margin-top:auto;padding-top:14px;border-top:1px solid var(--border);flex-wrap:wrap}
-.case-metrics div{display:flex;flex-direction:column;gap:2px}
-.case-metrics strong{font-family:var(--display);font-size:22px;font-style:italic;color:var(--gold);letter-spacing:-.5px}
-.case-metrics span{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.1em}
+/* ── Featured portfolio (work cards) ── */
+.work-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--border-strong);border:1px solid var(--border-strong);border-radius:16px;overflow:hidden}
+.work-card{background:var(--bg);padding:36px;text-decoration:none;color:inherit;display:flex;flex-direction:column;gap:24px;transition:background .2s;position:relative;min-height:280px}
+.work-card:hover{background:var(--bg-cream)}
+.work-num{font-family:var(--mono);font-size:11px;color:var(--muted-2);letter-spacing:.15em}
+.work-card h3{font-family:var(--display);font-size:24px;font-weight:500;letter-spacing:-.5px;line-height:1.2;color:var(--ink)}
+.work-card p{font-size:14px;color:var(--muted);line-height:1.55;flex:1}
+.work-meta{display:flex;justify-content:space-between;align-items:center;padding-top:16px;border-top:1px solid var(--border);margin-top:auto}
+.work-tag{font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:.15em;color:var(--muted)}
+.work-arrow{color:var(--accent);transition:transform .2s}
+.work-card:hover .work-arrow{transform:translate(4px,-4px)}
 
-/* Skills snapshot */
-.skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px}
-.skill-col h4{font-size:12px;text-transform:uppercase;letter-spacing:.15em;color:var(--dim);font-family:var(--mono);font-weight:600;margin-bottom:14px;padding-bottom:10px;border-bottom:1px solid var(--border)}
-.skill-list{display:flex;flex-direction:column;gap:10px}
-.skill-item{display:flex;justify-content:space-between;align-items:baseline;gap:12px}
-.skill-name{font-size:14px;font-weight:500;color:var(--text)}
-.skill-lvl{font-family:var(--mono);font-size:10px;color:var(--dim);text-transform:uppercase;letter-spacing:.1em}
+/* ── Stats ─────────────────────────── */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:1px solid var(--border-strong);border-bottom:1px solid var(--border-strong)}
+.stat{padding:48px 24px;border-right:1px solid var(--border-strong)}
+.stat:last-child{border-right:none}
+.stat-n{font-family:var(--display);font-size:clamp(48px,6vw,72px);font-weight:500;letter-spacing:-2px;line-height:1;color:var(--ink);margin-bottom:8px;font-style:italic}
+.stat-l{font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:.15em;color:var(--muted)}
 
-/* Journey strip */
-.journey{display:grid;grid-template-columns:auto 1fr;gap:32px;align-items:start}
-.journey-years{display:flex;flex-direction:column;gap:0}
-.jyear{font-family:var(--mono);font-size:11px;color:var(--dim);padding:18px 0;border-bottom:1px solid var(--border);min-width:90px}
-.jyear:last-child{border-bottom:none}
-.jbody{padding-top:6px}
-.jrow{display:grid;grid-template-columns:1fr;gap:6px;padding:18px 0;border-bottom:1px solid var(--border)}
-.jrow:last-child{border-bottom:none}
-.jrole{font-size:15px;font-weight:600;color:var(--text)}
-.jorg{font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:.12em;color:var(--accent2);margin-bottom:4px}
-.jdesc{font-size:13px;color:var(--muted);line-height:1.5}
+/* ── Services / Capabilities ───────── */
+.services{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.service{background:var(--bg);border:1px solid var(--border-strong);border-radius:16px;padding:36px;display:flex;flex-direction:column;gap:16px;transition:all .2s}
+.service:hover{border-color:var(--ink);transform:translateY(-4px)}
+.service-num{font-family:var(--mono);font-size:11px;color:var(--accent);letter-spacing:.15em}
+.service h3{font-family:var(--display);font-size:20px;font-weight:500;letter-spacing:-.3px}
+.service p{font-size:14px;color:var(--muted);line-height:1.55}
+.service-list{list-style:none;padding:0;margin:8px 0 0;display:flex;flex-direction:column;gap:8px;font-size:13px;color:var(--ink-2)}
+.service-list li{position:relative;padding-left:18px}
+.service-list li::before{content:"→";position:absolute;left:0;color:var(--accent)}
 
-.footer{padding:48px 2rem;text-align:center;border-top:1px solid var(--border)}
-.fl{display:flex;gap:24px;justify-content:center;flex-wrap:wrap;margin-bottom:20px}
-.fl a{font-size:13px;color:var(--muted);text-decoration:none}
-.fl a:hover{color:var(--text)}
-.fc{font-size:12px;color:var(--dim)}
+/* ── About ─────────────────────────── */
+.about-wrap{display:grid;grid-template-columns:1fr 1.4fr;gap:80px;align-items:start}
+.about-label{font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:.18em;color:var(--muted);margin-bottom:32px;display:flex;align-items:center;gap:10px}
+.about-label::before{content:"";width:24px;height:1px;background:var(--ink)}
+.about-text p{font-size:17px;line-height:1.6;color:var(--ink-2);margin-bottom:20px}
+.about-text p strong{color:var(--ink);font-weight:600}
+.about-quote{font-family:var(--display);font-style:italic;font-size:24px;line-height:1.35;color:var(--accent);padding:32px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);margin:32px 0}
+
+/* ── Timeline ──────────────────────── */
+.timeline{display:grid;grid-template-columns:140px 1fr;gap:0;border-top:1px solid var(--border-strong)}
+.tl-row{display:contents}
+.tl-year{font-family:var(--mono);font-size:12px;color:var(--muted);padding:28px 24px 28px 0;border-bottom:1px solid var(--border-strong)}
+.tl-body{padding:28px 0;border-bottom:1px solid var(--border-strong)}
+.tl-org{font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:.15em;color:var(--accent);margin-bottom:6px}
+.tl-role{font-family:var(--display);font-size:18px;font-weight:500;letter-spacing:-.3px;color:var(--ink);margin-bottom:6px}
+.tl-desc{font-size:14px;color:var(--muted);line-height:1.55;max-width:560px}
+
+/* ── Contact / CTA ────────────────── */
+.contact{text-align:center;padding:160px 32px;max-width:1100px;margin:0 auto}
+.contact h2{margin-bottom:32px}
+.contact p{font-size:18px;color:var(--muted);max-width:560px;margin:0 auto 40px;line-height:1.5}
+.contact-links{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+
+/* ── Footer ───────────────────────── */
+.footer{border-top:1px solid var(--border-strong);padding:48px 32px;max-width:1280px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:24px}
+.footer-l{font-size:13px;color:var(--muted)}
+.footer-l strong{color:var(--ink);font-weight:600}
+.footer-links{display:flex;gap:24px;flex-wrap:wrap}
+.footer-links a{font-size:13px;color:var(--muted);text-decoration:none;transition:color .15s}
+.footer-links a:hover{color:var(--accent)}
 
 @media(max-width:768px){
-  .hero h1{font-size:36px}
-  .section{padding:60px 1.25rem}
-  h2{font-size:26px}
-  .journey{grid-template-columns:1fr;gap:8px}
-  .jyear{padding:8px 0;border-bottom:none;border-right:1px solid var(--border);display:inline-block}
+  .hero{padding:80px 24px 60px}
+  .section,.section-wide,.section-dark{padding:80px 24px}
+  .work-grid{grid-template-columns:1fr}
+  .stats{grid-template-columns:repeat(2,1fr)}
+  .stat{border-right:1px solid var(--border-strong);border-bottom:1px solid var(--border-strong)}
+  .stat:nth-child(2n){border-right:none}
+  .stat:nth-last-child(-n+2){border-bottom:none}
+  .services{grid-template-columns:1fr}
+  .about-wrap{grid-template-columns:1fr;gap:40px}
+  .timeline{grid-template-columns:1fr;gap:0}
+  .tl-year{padding:16px 0 8px;border-bottom:none;color:var(--accent)}
+  .tl-body{padding:0 0 24px}
+  .footer{flex-direction:column;text-align:center}
   .nav-links{display:none}
 }
 </style>
 </head>
 <body>
 
+<!-- ─── Nav ──────────────────────── -->
 <nav class="nav">
   <div class="nav-inner">
-    <a href="./" class="nav-logo">Patrick <span>Diamitani</span></a>
+    <a href="./" class="nav-logo">Patrick <em>Diamitani</em></a>
     <div class="nav-links">
-      <a href="./" class="active">Work</a>
+      <a href="./">Work</a>
       <a href="portfolio/">Portfolio</a>
       <a href="research/">Research</a>
       <a href="skills/">Skills</a>
@@ -127,244 +171,262 @@ p.st{font-size:16px;color:var(--muted);max-width:620px;margin-bottom:3rem;line-h
       <a href="civic/">Civic</a>
       <a href="resume/">Resume</a>
     </div>
-    <a href="mailto:patrick.diamitani@gmail.com" class="nav-cta">Contact</a>
+    <a href="mailto:patrick.diamitani@gmail.com" class="nav-cta">Get in touch</a>
   </div>
 </nav>
 
+<!-- ─── Hero ──────────────────────── -->
 <section class="hero">
-  <div class="hero-inner">
-    <div class="hero-tag"><span class="dot"></span>Open to GTM & Forward Deployed roles · Chicago</div>
-    <h1>
-      <span>Production AI for revenue teams —</span>
-      <span class="line2">built, shipped, and operated at scale.</span>
-    </h1>
-    <p class="hero-sub">I'm Patrick. I lead AI &amp; Automation for a 50-person GTM org at Atlas HXM — shipping 8+ production systems, 30+ reusable skills, and a published multi-agent framework. Former enterprise BDR at Uber and Upwork.</p>
-    <div class="hero-metrics">
-      <div class="metric"><span class="mv">8+</span><span class="ml">Live automations</span></div>
-      <div class="metric"><span class="mv">30+</span><span class="ml">Skills shipped</span></div>
-      <div class="metric"><span class="mv">50+</span><span class="ml">Users on platform</span></div>
-      <div class="metric"><span class="mv">$947K</span><span class="ml">Bookings @ Uber</span></div>
-    </div>
-    <div class="hero-links">
-      <a href="#work" class="bp">See the work</a>
-      <a href="portfolio/" class="bg">Portfolio</a>
-      <a href="research/" class="bg">Published research</a>
-      <a href="resume/" class="bg">Resume</a>
-    </div>
+  <div class="hero-eyebrow"><span class="dot"></span>Open to GTM & Forward Deployed roles · Chicago</div>
+  <h1>Production AI for revenue teams — <em>built, shipped,</em> and operated at scale.</h1>
+  <p class="hero-sub">I'm Patrick. I lead AI &amp; Automation for a 50-person GTM org at Atlas HXM — shipping 8+ production systems, 30+ reusable skills, and a published multi-agent framework. Former enterprise BDR at Uber and Upwork.</p>
+  <div class="hero-cta">
+    <a href="#work" class="btn btn-primary">See the work <span class="arrow">→</span></a>
+    <a href="resume/" class="btn btn-ghost">Read resume</a>
   </div>
 </section>
 
+<!-- ─── Marquee ─────────────────── -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track">
+    <span>GTM Engineering</span>
+    <span>Forward Deployed</span>
+    <span>Multi-Agent Systems</span>
+    <span>Published Research</span>
+    <span>Civic Tech</span>
+    <span>Operator-First AI</span>
+    <span>GTM Engineering</span>
+    <span>Forward Deployed</span>
+    <span>Multi-Agent Systems</span>
+    <span>Published Research</span>
+    <span>Civic Tech</span>
+    <span>Operator-First AI</span>
+  </div>
+</div>
+
+<!-- ─── Featured work ──────────── -->
 <section class="section" id="work">
-  <div class="section-inner">
-    <div class="sl">What I build</div>
-    <h2>Skills, workflows, agents, <em>and the apps that run them.</em></h2>
-    <p class="st">I work across the full stack of AI-augmented GTM — from prompt abstractions and RAG pipelines to live production automations and the operator-facing tools that ship them.</p>
-    <div class="build-grid">
-      <a class="build" href="skills/">
-        <div class="build-icon">// SKILLS</div>
-        <h3>Reusable AI Skills</h3>
-        <p>30+ production-grade Claude skills covering video, audio, scraping, analysis, RAG, sales intelligence, civic tech, and content systems. Drop-in capability packs.</p>
-        <div class="build-stats"><span><strong>30+</strong> skills</span><span><strong>14</strong> domains</span></div>
-        <span class="build-cta">Browse skills →</span>
-      </a>
-      <a class="build" href="research/">
-        <div class="build-icon">// RESEARCH</div>
-        <h3>ROSTR Framework</h3>
-        <p>Published architecture for production-grade multi-agent systems. PAL, NPAO, RAG DAL, Rostr Hub. 5D phase taxonomy. Zenodo DOI. The backbone of my Center of Excellence at Atlas.</p>
-        <div class="build-stats"><span><strong>4</strong> components</span><span><strong>1</strong> Zenodo DOI</span></div>
-        <span class="build-cta">Read the paper →</span>
-      </a>
-      <a class="build" href="products/">
-        <div class="build-icon">// WEB APPS</div>
-        <h3>Shipped Web Apps</h3>
-        <p>Next.js + Supabase + Vercel production apps. Your48 (civic platform), Artist EPKs (creative platform), Artispreneur (music business OS), Gency AI (agency site).</p>
-        <div class="build-stats"><span><strong>4</strong> live apps</span><span><strong>$0/mo</strong> infra</span></div>
-        <span class="build-cta">View apps →</span>
-      </a>
-      <a class="build" href="civic/">
-        <div class="build-icon">// CIVIC</div>
-        <h3>Civic Infrastructure</h3>
-        <p>Built Your48 as a precinct captain for Chicago's 48th Ward. Precinct directory, business licenses, constituent intake, ward dashboard — zero infra cost.</p>
-        <div class="build-stats"><span><strong>$0</strong> / month</span><span><strong>3</strong> neighborhoods</span></div>
-        <span class="build-cta">See Your48 →</span>
-      </a>
-      <a class="build" href="portfolio/">
-        <div class="build-icon">// PORTFOLIO</div>
-        <h3>Full Portfolio</h3>
-        <p>The complete case-study archive: 16 production AI systems, consulting wins, products shipped, and research. Recruiter-friendly deep dive.</p>
-        <div class="build-stats"><span><strong>16</strong> systems</span><span><strong>8</strong> years</span></div>
-        <span class="build-cta">Open portfolio →</span>
-      </a>
-      <a class="build" href="xai/">
-        <div class="build-icon">// ROLE BRIEFS</div>
-        <h3>Forward Deployed Brief</h3>
-        <p>Targeted brief for Forward Deployed / AI Engineer roles: production systems, agent frameworks, published research, operator-first deployments.</p>
-        <div class="build-stats"><span><strong>xAI</strong></span><span><strong>FD</strong> eng</span></div>
-        <span class="build-cta">View brief →</span>
-      </a>
-    </div>
+  <div class="sl">Featured Portfolio</div>
+  <h2>What I shipped <em>recently.</em></h2>
+  <p class="st">Three projects that show how I think about AI in a GTM context — what shipped, who used it, and what it moved.</p>
+
+  <div class="work-grid">
+    <a class="work-card" href="portfolio/">
+      <div class="work-num">01 / GTM AI</div>
+      <h3>Center of Excellence: from 4–8 hours to under 30 minutes</h3>
+      <p>Built a ROSTR-powered ideation pipeline that turns raw ideas into scoped, ready-to-build projects. Now the standard intake for any new AI initiative across the GTM org.</p>
+      <div class="work-meta">
+        <span class="work-tag">Atlas HXM · 50+ Operators</span>
+        <span class="work-arrow">↗</span>
+      </div>
+    </a>
+
+    <a class="work-card" href="portfolio/">
+      <div class="work-num">02 / Compliance</div>
+      <h3>Deal screening against compliance frameworks — fully auditable</h3>
+      <p>Hybrid LLM + deterministic engine that auto-screens deals against 6 compliance frameworks. 46-node n8n workflow. Every verdict traceable to source clauses.</p>
+      <div class="work-meta">
+        <span class="work-tag">Atlas HXM · 242 deals/mo</span>
+        <span class="work-arrow">↗</span>
+      </div>
+    </a>
+
+    <a class="work-card" href="civic/">
+      <div class="work-num">03 / Civic</div>
+      <h3>Your48 — civic intelligence for Chicago's 48th Ward</h3>
+      <p>Built as a precinct captain: precinct directory, business licenses, constituent intake, ward dashboard. Zero infrastructure cost. Real constituents actually use it.</p>
+      <div class="work-meta">
+        <span class="work-tag">$0/mo · 3 neighborhoods</span>
+        <span class="work-arrow">↗</span>
+      </div>
+    </a>
+
+    <a class="work-card" href="research/">
+      <div class="work-num">04 / Research</div>
+      <h3>ROSTR Framework — published, citable architecture</h3>
+      <p>Unified architecture for production-grade multi-agent systems. PAL, NPAO, RAG DAL, Rostr Hub. Zenodo DOI. The backbone of my Center of Excellence at Atlas.</p>
+      <div class="work-meta">
+        <span class="work-tag">Zenodo DOI · 2026</span>
+        <span class="work-arrow">↗</span>
+      </div>
+    </a>
+  </div>
+
+  <div style="margin-top:48px">
+    <a href="portfolio/" class="btn btn-ghost">View full portfolio <span class="arrow">→</span></a>
   </div>
 </section>
 
+<!-- ─── Stats ─────────────────────── -->
 <section class="section-dark">
-  <div class="section-inner">
-    <div class="sl">Featured work</div>
-    <h2>Case studies <em>with numbers.</em></h2>
-    <p class="st">Three projects that show how I think about AI in a GTM context — what shipped, who used it, and what it moved.</p>
-    <div class="cases">
-      <a class="case" href="portfolio/">
-        <div class="case-num">CASE 01</div>
-        <div class="case-org">Atlas HXM · GTM AI</div>
-        <h3>Center of Excellence: from 4–8 hours to under 30 minutes</h3>
-        <p>Built a ROSTR-powered ideation pipeline that turns raw ideas into scoped, ready-to-build projects. Now the standard intake for any new AI initiative across the GTM org.</p>
-        <div class="case-metrics">
-          <div><strong>~93%</strong><span>Faster scoping</span></div>
-          <div><strong>50+</strong><span>Operators</span></div>
-        </div>
-      </a>
-      <a class="case" href="portfolio/">
-        <div class="case-num">CASE 02</div>
-        <div class="case-org">Atlas HXM · Compliance</div>
-        <h3>Deal screening against compliance frameworks — fully auditable</h3>
-        <p>Hybrid LLM + deterministic engine that auto-screens deals against 6 compliance frameworks. 46-node n8n workflow. Every verdict traceable to source clauses.</p>
-        <div class="case-metrics">
-          <div><strong>242</strong><span>Deals / month</span></div>
-          <div><strong>100%</strong><span>Audit trail</span></div>
-        </div>
-      </a>
-      <a class="case" href="civic/">
-        <div class="case-num">CASE 03</div>
-        <div class="case-org">Your48 · Civic</div>
-        <h3>Civic intelligence for Chicago's 48th Ward — $0/month</h3>
-        <p>Built Your48 as a precinct captain: precinct directory, business licenses, constituent intake, ward dashboard. Zero infrastructure cost. Real constituents actually use it.</p>
-        <div class="case-metrics">
-          <div><strong>$0</strong><span>Monthly infra</span></div>
-          <div><strong>3</strong><span>Neighborhoods</span></div>
-        </div>
-      </a>
-    </div>
-    <div style="margin-top:28px">
-      <a href="portfolio/" style="color:var(--accent);font-weight:600;font-size:14px;text-decoration:none">Full portfolio →</a>
+  <div style="max-width:1280px;margin:0 auto">
+    <div class="sl">Every Pixel Shipped.</div>
+    <h2>Numbers, <em>not adjectives.</em></h2>
+    <p class="st">What production looks like when you build with operators, not for them.</p>
+    <div class="stats">
+      <div class="stat">
+        <div class="stat-n">8+</div>
+        <div class="stat-l">Live automations</div>
+      </div>
+      <div class="stat">
+        <div class="stat-n">30+</div>
+        <div class="stat-l">Skills shipped</div>
+      </div>
+      <div class="stat">
+        <div class="stat-n">50+</div>
+        <div class="stat-l">Operators on platform</div>
+      </div>
+      <div class="stat">
+        <div class="stat-n">$947K</div>
+        <div class="stat-l">Bookings @ Uber</div>
+      </div>
     </div>
   </div>
 </section>
 
+<!-- ─── Services / Capabilities ──── -->
 <section class="section">
-  <div class="section-inner">
-    <div class="sl">Skills snapshot</div>
-    <h2>What I'm <em>good at.</em></h2>
-    <p class="st">A condensed view of the technical and operational surface area I've built across — useful for a 30-second scan before diving deeper.</p>
-    <div class="skills-grid">
-      <div class="skill-col">
-        <h4>AI / Engineering</h4>
-        <div class="skill-list">
-          <div class="skill-item"><span class="skill-name">LLM orchestration (Claude, GPT, Gemini)</span><span class="skill-lvl">Production</span></div>
-          <div class="skill-item"><span class="skill-name">Multi-agent frameworks (ROSTR)</span><span class="skill-lvl">Published</span></div>
-          <div class="skill-item"><span class="skill-name">RAG pipelines (multi-pass, tiered)</span><span class="skill-lvl">Production</span></div>
-          <div class="skill-item"><span class="skill-name">n8n / Make.com workflows</span><span class="skill-lvl">Production</span></div>
-          <div class="skill-item"><span class="skill-name">Python, TypeScript, SQL</span><span class="skill-lvl">Daily</span></div>
-          <div class="skill-item"><span class="skill-name">AWS (Bedrock, S3, CFN, IAM)</span><span class="skill-lvl">Certified</span></div>
-          <div class="skill-item"><span class="skill-name">Next.js + Supabase</span><span class="skill-lvl">Daily</span></div>
-        </div>
-      </div>
-      <div class="skill-col">
-        <h4>GTM / Revenue</h4>
-        <div class="skill-list">
-          <div class="skill-item"><span class="skill-name">Enterprise BDR/AE motion</span><span class="skill-lvl">6 yrs</span></div>
-          <div class="skill-item"><span class="skill-name">Outbound at scale (2K+ emails/wk)</span><span class="skill-lvl">Uber, Upwork</span></div>
-          <div class="skill-item"><span class="skill-name">Sales ops &amp; tooling</span><span class="skill-lvl">Built for 50+</span></div>
-          <div class="skill-item"><span class="skill-name">Lead qualification &amp; enrichment</span><span class="skill-lvl">Production</span></div>
-          <div class="skill-item"><span class="skill-name">Meeting intelligence &amp; follow-up</span><span class="skill-lvl">Production</span></div>
-          <div class="skill-item"><span class="skill-name">ICP &amp; persona development</span><span class="skill-lvl">Daily</span></div>
-          <div class="skill-item"><span class="skill-name">Operator adoption &amp; enablement</span><span class="skill-lvl">50+ users</span></div>
-        </div>
-      </div>
-      <div class="skill-col">
-        <h4>Operator / Leadership</h4>
-        <div class="skill-list">
-          <div class="skill-item"><span class="skill-name">Build-with-the-operator philosophy</span><span class="skill-lvl">Core</span></div>
-          <div class="skill-item"><span class="skill-name">Cross-functional (Eng, GTM, Legal, Civic)</span><span class="skill-lvl">Daily</span></div>
-          <div class="skill-item"><span class="skill-name">Published researcher (Zenodo DOI)</span><span class="skill-lvl">2026</span></div>
-          <div class="skill-item"><span class="skill-name">Precinct captain, 48th Ward Chicago</span><span class="skill-lvl">Active</span></div>
-          <div class="skill-item"><span class="skill-name">Music production &amp; live performance</span><span class="skill-lvl">15 yrs</span></div>
-          <div class="skill-item"><span class="skill-name">Photography, design, branding</span><span class="skill-lvl">Side</span></div>
-          <div class="skill-item"><span class="skill-name">Hiring &amp; team building</span><span class="skill-lvl">Led cohort</span></div>
-        </div>
-      </div>
+  <div class="sl">Feasible Plans.</div>
+  <h2>Three surfaces <em>I work across.</em></h2>
+  <p class="st">A condensed view of what I build and where — useful for a 30-second scan before diving deeper.</p>
+
+  <div class="services">
+    <div class="service">
+      <div class="service-num">/ 01 · AI ENGINEERING</div>
+      <h3>Multi-agent production systems</h3>
+      <p>Hybrid LLM + deterministic architectures. Every decision auditable, every workflow reproducible.</p>
+      <ul class="service-list">
+        <li>Claude, GPT, Gemini orchestration</li>
+        <li>ROSTR multi-agent framework</li>
+        <li>RAG pipelines (multi-pass, tiered)</li>
+        <li>n8n / Make.com workflows</li>
+        <li>AWS (Bedrock, S3, CFN, IAM)</li>
+        <li>Next.js + Supabase</li>
+      </ul>
+    </div>
+
+    <div class="service">
+      <div class="service-num">/ 02 · GTM / REVENUE</div>
+      <h3>Operator-first GTM systems</h3>
+      <p>Six years of enterprise sales — now I build the AI that lets revenue teams move faster with that perspective baked in.</p>
+      <ul class="service-list">
+        <li>Lead qualification &amp; enrichment</li>
+        <li>Outbound at scale (2K+ emails/wk)</li>
+        <li>Meeting intelligence &amp; follow-up</li>
+        <li>Sales ops &amp; tooling</li>
+        <li>ICP &amp; persona development</li>
+        <li>Operator adoption &amp; enablement</li>
+      </ul>
+    </div>
+
+    <div class="service">
+      <div class="service-num">/ 03 · OPERATOR / LEADERSHIP</div>
+      <h3>Cross-functional execution</h3>
+      <p>Build, ship, and stand it up. From a precinct captain's civic platform to a 50-person GTM org's Center of Excellence.</p>
+      <ul class="service-list">
+        <li>Published researcher (Zenodo DOI)</li>
+        <li>Cross-functional (Eng, GTM, Legal)</li>
+        <li>Precinct captain, 48th Ward</li>
+        <li>Music production &amp; live performance</li>
+        <li>Hiring &amp; team building</li>
+      </ul>
     </div>
   </div>
 </section>
 
-<section class="section-dark">
-  <div class="section-inner">
-    <div class="sl">My journey</div>
-    <h2>From enterprise sales to <em>building the systems.</em></h2>
-    <p class="st">I started selling. Now I build the AI that lets revenue teams move faster — with the operator's perspective baked into every architecture decision.</p>
-    <div class="journey">
-      <div class="journey-years">
-        <div class="jyear">2025–Now</div>
-        <div class="jyear">2023–24</div>
-        <div class="jyear">2022–23</div>
-        <div class="jyear">2019–21</div>
-        <div class="jyear">2016–18</div>
+<!-- ─── About / Journey ─────────── -->
+<section class="section-wide">
+  <div style="max-width:1280px;margin:0 auto">
+    <div class="about-wrap">
+      <div>
+        <div class="about-label">About me</div>
+        <h2 style="font-size:36px">From <em>enterprise sales</em> to building the systems.</h2>
       </div>
-      <div class="jbody">
-        <div class="jrow">
-          <div class="jorg">Atlas HXM · Chicago</div>
-          <div class="jrole">GTM AI &amp; Automation Manager</div>
-          <div class="jdesc">Lead AI &amp; Automation for a 50-person GTM org. Shipped 8+ production automations, 30+ Claude skills, Center of Excellence framework. Published ROSTR research.</div>
+      <div class="about-text">
+        <p>I started selling. Six years at Uber and Upwork taught me what revenue teams actually need — and what they don't. That perspective is why I build AI differently: every system I design ships with the operator in mind, not just the architecture.</p>
+        <p>Today I lead AI &amp; Automation for a 50-person GTM org at Atlas HXM. I own production AI from problem framing with the VP of Growth through architecture, build, reliability, and operator adoption. I've shipped <strong>8+ production automations</strong> that auto-screen deals against compliance frameworks, prepare reps for calls, automate post-call follow-ups, and govern enrichment spend.</p>
+        <p>I'm also the author of <strong>ROSTR</strong>, a published framework for production-grade multi-agent systems — the backbone of the Center of Excellence I built at Atlas, which cuts idea-to-scoped-project from 4–8 hours to under 30 minutes.</p>
+        <div class="about-quote">"AI should be boring. The best systems are the ones operators forget exist because they just work."</div>
+        <p>Outside of work, I serve as a precinct captain for Chicago's 48th Ward, where I built Your48 — a civic intelligence platform connecting residents to their government at $0/month infrastructure cost.</p>
+      </div>
+    </div>
+
+    <div style="margin-top:80px">
+      <div class="sl">My Journey.</div>
+      <h2>Career <em>timeline.</em></h2>
+    </div>
+
+    <div class="timeline" style="margin-top:40px">
+      <div class="tl-row">
+        <div class="tl-year">2025–Now</div>
+        <div class="tl-body">
+          <div class="tl-org">Atlas HXM · Chicago</div>
+          <div class="tl-role">GTM AI &amp; Automation Manager</div>
+          <div class="tl-desc">Lead AI &amp; Automation for a 50-person GTM org. Shipped 8+ production automations, 30+ Claude skills, Center of Excellence framework. Published ROSTR research.</div>
         </div>
-        <div class="jrow">
-          <div class="jorg">RevEnabled · Chicago</div>
-          <div class="jrole">Founder — GTM Consulting</div>
-          <div class="jdesc">Took Dark Roast Media $1M → $3M ARR. Built the GTM stack for Rand McNally Rand Fleet — $5M pipeline, 2,000% engagement lift.</div>
+      </div>
+      <div class="tl-row">
+        <div class="tl-year">2023–24</div>
+        <div class="tl-body">
+          <div class="tl-org">RevEnabled · Chicago</div>
+          <div class="tl-role">Founder — GTM Consulting</div>
+          <div class="tl-desc">Took Dark Roast Media $1M → $3M ARR. Built the GTM stack for Rand McNally Rand Fleet — $5M pipeline, 2,000% engagement lift.</div>
         </div>
-        <div class="jrow">
-          <div class="jorg">Uber for Business · Chicago</div>
-          <div class="jrole">Enterprise BDR</div>
-          <div class="jdesc">$947K+ gross bookings. Led the hiring cohort on quota. 2,000+ emails / 250 dials per week to C-suite and VP buyers.</div>
+      </div>
+      <div class="tl-row">
+        <div class="tl-year">2022–23</div>
+        <div class="tl-body">
+          <div class="tl-org">Uber for Business · Chicago</div>
+          <div class="tl-role">Enterprise BDR</div>
+          <div class="tl-desc">$947K+ gross bookings. Led the hiring cohort on quota. 2,000+ emails / 250 dials per week to C-suite and VP buyers.</div>
         </div>
-        <div class="jrow">
-          <div class="jorg">Upwork · Chicago</div>
-          <div class="jrole">Senior Enterprise BDR</div>
-          <div class="jdesc">Top 10% on a 60-rep team. #1 connection rate (100+ dials/day). Fortune 500 strategic outsourcing use cases.</div>
+      </div>
+      <div class="tl-row">
+        <div class="tl-year">2019–21</div>
+        <div class="tl-body">
+          <div class="tl-org">Upwork · Chicago</div>
+          <div class="tl-role">Senior Enterprise BDR</div>
+          <div class="tl-desc">Top 10% on a 60-rep team. #1 connection rate (100+ dials/day). Fortune 500 strategic outsourcing use cases.</div>
         </div>
-        <div class="jrow">
-          <div class="jorg">Techstars · DreamItReel · Omicon</div>
-          <div class="jrole">Founding AE / Portfolio Associate</div>
-          <div class="jdesc">Sales infra for 2ndKitchen &amp; Clyde (acquired), Rheaply ($40M). DreamItReel $2M+ revenue, 40% YoY. Omicon: 150+ events, 80K attendees.</div>
+      </div>
+      <div class="tl-row">
+        <div class="tl-year">2016–18</div>
+        <div class="tl-body">
+          <div class="tl-org">Techstars · DreamItReel · Omicon</div>
+          <div class="tl-role">Founding AE / Portfolio Associate</div>
+          <div class="tl-desc">Sales infra for 2ndKitchen &amp; Clyde (acquired), Rheaply ($40M). DreamItReel $2M+ revenue, 40% YoY. Omicon: 150+ events, 80K attendees.</div>
         </div>
       </div>
     </div>
-    <div style="margin-top:28px">
-      <a href="resume/" style="color:var(--accent);font-weight:600;font-size:14px;text-decoration:none">Full resume →</a>
+
+    <div style="margin-top:48px">
+      <a href="resume/" class="btn btn-ghost">Full resume <span class="arrow">→</span></a>
     </div>
   </div>
 </section>
 
-<section class="section" style="padding:60px 2rem;text-align:center">
-  <div class="section-inner">
-    <div class="sl">Get in touch</div>
-    <h2 style="margin-bottom:1rem">Let's <em>talk.</em></h2>
-    <p class="st" style="margin-left:auto;margin-right:auto">GTM, Forward Deployed, AI Engineer, or anything where production AI ships into a real revenue team — I'm in.</p>
-    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
-      <a href="mailto:patrick.diamitani@gmail.com" class="bp" style="padding:14px 32px;border-radius:8px;font-size:14px;font-weight:600;text-decoration:none;background:var(--cream);color:var(--ink)">Email me</a>
-      <a href="https://linkedin.com/in/Diamitani" class="bg" style="padding:14px 32px;border-radius:8px;font-size:14px;font-weight:600;text-decoration:none;border:1px solid rgba(255,255,255,.2);color:#fff">LinkedIn</a>
-      <a href="https://github.com/diamitani" class="bg" style="padding:14px 32px;border-radius:8px;font-size:14px;font-weight:600;text-decoration:none;border:1px solid rgba(255,255,255,.2);color:#fff">GitHub</a>
-    </div>
+<!-- ─── Contact ────────────────── -->
+<section class="contact">
+  <div class="sl" style="justify-content:center;display:inline-flex">Stay Connected.</div>
+  <h2>Let's <em>talk.</em></h2>
+  <p>GTM, Forward Deployed, AI Engineer, or anything where production AI ships into a real revenue team — I'm in.</p>
+  <div class="contact-links">
+    <a href="mailto:patrick.diamitani@gmail.com" class="btn btn-primary">Email me <span class="arrow">→</span></a>
+    <a href="https://linkedin.com/in/Diamitani" class="btn btn-ghost" target="_blank" rel="noopener">LinkedIn</a>
+    <a href="https://github.com/diamitani" class="btn btn-ghost" target="_blank" rel="noopener">GitHub</a>
   </div>
 </section>
 
+<!-- ─── Footer ────────────────── -->
 <footer class="footer">
-  <div class="fl">
-    <a href="mailto:patrick.diamitani@gmail.com">Email</a>
-    <a href="https://linkedin.com/in/Diamitani">LinkedIn</a>
-    <a href="https://github.com/diamitani">GitHub</a>
-    <a href="https://instagram.com/iampatd">@iampatd</a>
-    <a href="https://zenodo.org/records/19550414">ROSTR Paper</a>
-    <a href="https://your48.vercel.app">Your48</a>
+  <div class="footer-l"><strong>Patrick Diamitani</strong> · 319.930.0290 · patrick.diamitani@gmail.com · Chicago, IL · © 2026</div>
+  <div class="footer-links">
+    <a href="https://linkedin.com/in/Diamitani" target="_blank" rel="noopener">LinkedIn</a>
+    <a href="https://github.com/diamitani" target="_blank" rel="noopener">GitHub</a>
+    <a href="https://instagram.com/iampatd" target="_blank" rel="noopener">Instagram</a>
+    <a href="https://zenodo.org/records/19550414" target="_blank" rel="noopener">ROSTR Paper</a>
+    <a href="https://your48.vercel.app" target="_blank" rel="noopener">Your48</a>
   </div>
-  <p class="fc">Patrick Diamitani · 319.930.0290 · patrick.diamitani@gmail.com · Chicago, IL · © 2026</p>
 </footer>
 
 </body>

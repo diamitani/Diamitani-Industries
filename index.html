@@ -8,7 +8,7 @@
 <link rel="icon" type="image/svg+xml" href="/assets/logo.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;1,400&family=Source+Sans+3:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Figtree:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/assets/theme.css">
 <style>
 .audience{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
@@ -26,14 +26,14 @@
       <a href="/portfolio">Portfolio</a>
       <a href="/consulting">Consulting</a>
       <a href="/company">Company</a>
-      <a href="/insights">Insights</a>
+      <a href="/resume">Resume</a>
       <a href="/contact">Contact</a>
     </div>
-    <a href="/consulting" class="nav-cta">Get a GTM teardown</a>
+    <a href="/contact" class="nav-cta">Start a conversation</a>
   </div>
 </nav>
 
-<header class="hero" data-section="hero">
+<header class="hero hero-photo" data-section="hero">
   <div class="hero-inner hero-narrow">
     <div class="hero-brand">Diamitani Industries</div>
     <div class="hero-est">Holding Company · Applied AI Studio</div>
@@ -66,9 +66,9 @@
         <span class="hl">Browse the portfolio →</span>
       </a>
       <a class="card" href="/company">
-        <div class="ht">Investors · Acquirers</div>
+        <div class="ht">Investors · Employers</div>
         <h3>Understand the company</h3>
-        <p>Founder, principles, operating model, and proof. One thesis across revenue, creativity, and everyday life — with a contact path.</p>
+        <p>Founder, principles, operating model, and proof. One thesis across revenue, creativity, and everyday life — plus a full resume.</p>
         <span class="hl">Meet the company →</span>
       </a>
     </div>
@@ -79,8 +79,8 @@
 <div class="metrics" data-section="metrics">
   <div class="metrics-inner">
     <div class="metric"><div class="metric-n">16</div><div class="metric-l">Production AI systems shipped and operated</div></div>
+    <div class="metric"><div class="metric-n">$16M+</div><div class="metric-l">Pipeline enabled by AI systems</div></div>
     <div class="metric"><div class="metric-n">369</div><div class="metric-l">Skills in the canonical library</div></div>
-    <div class="metric"><div class="metric-n">1</div><div class="metric-l">Shared agent platform — Rostr</div></div>
     <div class="metric"><div class="metric-n">4</div><div class="metric-l">Product studios: work, creator, consumer, infrastructure</div></div>
   </div>
 </div>
@@ -92,40 +92,46 @@
     <h2>Focused <em>bets.</em></h2>
     <p class="st">A curated set of products with a clear promise, an owner, and a live destination. Everything else stays in the internal register until it earns a card.</p>
     <div class="grid">
-      <a class="card" href="/consulting">
+      <a class="card card-media" href="/consulting">
+        <div class="media-thumb"><img src="/assets/images/studio-work.jpg" alt=""></div>
         <span class="badge badge-live">Work &amp; Revenue Studio</span>
         <div class="ht">Consulting + GTM Products</div>
         <h3>Salesgency</h3>
         <p>The commercial consulting engine. AI GTM audits, build sessions, sprints, and fractional leadership — plus self-serve build packages.</p>
         <span class="hl">Work with Salesgency →</span>
       </a>
-      <a class="card" href="https://rostr-platform.vercel.app" target="_blank" rel="noopener">
+      <a class="card card-media" href="https://rostr-platform.vercel.app" target="_blank" rel="noopener">
+        <div class="media-thumb"><img src="/assets/images/studio-infra.jpg" alt=""></div>
         <span class="badge badge-live">Rostr Labs</span>
         <div class="ht">Agent Runtime · Shared Infrastructure</div>
         <h3>Rostr</h3>
         <p>The shared agent runtime underneath the portfolio: definitions, skills, tool policies, orchestration, and a versioned API.</p>
         <span class="hl">Visit Rostr →</span>
       </a>
-      <a class="card" href="https://skillco-work.vercel.app" target="_blank" rel="noopener">
+      <a class="card card-media" href="https://skillco-work.vercel.app" target="_blank" rel="noopener">
+        <div class="media-thumb"><img src="/assets/images/studio-work.jpg" alt=""></div>
         <span class="badge badge-live">Work &amp; Revenue Studio</span>
         <div class="ht">Skills Marketplace</div>
         <h3>SkillCo</h3>
         <p>The marketplace for deployable AI skills — the distribution arm for the canonical skill library.</p>
         <span class="hl">Browse the marketplace →</span>
       </a>
-      <a class="card" href="https://trainlola.com" target="_blank" rel="noopener">
+      <a class="card card-media" href="https://trainlola.com" target="_blank" rel="noopener">
+        <div class="media-thumb"><img src="/assets/images/studio-consumer.jpg" alt=""></div>
         <div class="ht">Consumer Studio</div>
         <h3>Lola</h3>
         <p>AI fitness product turning saved workouts and video content into usable training plans.</p>
         <span class="hl">trainlola.com →</span>
       </a>
-      <a class="card" href="https://art.diamitani.com">
+      <a class="card card-media" href="https://art.diamitani.com">
+        <div class="media-thumb"><img src="/assets/images/studio-creator.jpg" alt=""></div>
         <div class="ht">Creator Studio</div>
         <h3>Artispreneur</h3>
         <p>Creator platform helping independent artists package, manage, and grow their careers.</p>
         <span class="hl">Visit Artispreneur →</span>
       </a>
-      <a class="card" href="https://gencyai.com" target="_blank" rel="noopener">
+      <a class="card card-media" href="https://gencyai.com" target="_blank" rel="noopener">
+        <div class="media-thumb"><img src="/assets/images/studio-work.jpg" alt=""></div>
         <div class="ht">Work &amp; Revenue Studio</div>
         <h3>Gency AI</h3>
         <p>AI product and automation builds — agents, skills, and production apps with adoption built in.</p>

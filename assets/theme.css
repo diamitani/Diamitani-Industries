@@ -4,6 +4,8 @@
    Institutional editorial · cream/gold accent · no AI-violet glow
    ============================================================ */
 
+@import url("https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&display=swap");
+
 :root{
   --bg:#0a0908;
   --surface:#121110;
@@ -24,9 +26,9 @@
   --accent:var(--gold);
   --accent2:var(--cream);
 
-  --font:'Source Sans 3',system-ui,sans-serif;
-  --display:'Playfair Display',Georgia,serif;
-  --mono:'JetBrains Mono',ui-monospace,monospace;
+  --font:'Figtree',system-ui,sans-serif;
+  --display:'Newsreader',Georgia,serif;
+  --mono:'IBM Plex Mono',ui-monospace,monospace;
 
   --ease:cubic-bezier(.16,1,.3,1);
   --radius:10px;
@@ -133,6 +135,15 @@ body::before{
     radial-gradient(70% 50% at 10% 80%,rgba(94,184,196,.06),transparent 50%),
     linear-gradient(165deg,#141210 0%,#0a0908 48%,#080706 100%);
 }
+.hero.hero-photo{
+  background:
+    linear-gradient(180deg,rgba(8,8,7,.38) 0%,rgba(8,8,7,.58) 52%,var(--bg) 100%),
+    url("/assets/images/hero-chicago.jpg") center/cover no-repeat;
+}
+.media-thumb{aspect-ratio:16/9;overflow:hidden;border-radius:12px 12px 0 0;margin:-26px -26px 18px}
+.media-thumb img{width:100%;height:100%;object-fit:cover;display:block}
+.card.card-media{padding-top:0;overflow:hidden}
+
 .hero::after{
   content:'';position:absolute;inset:0;pointer-events:none;
   background:linear-gradient(180deg,transparent 55%,var(--bg) 100%);

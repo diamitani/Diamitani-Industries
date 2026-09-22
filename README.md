@@ -3,8 +3,9 @@
 Corporate site for Diamitani Industries, Inc. (NY C-Corp, est. 2014) —
 Patrick Diamitani's holding company, applied-AI studio, and consulting engine.
 
-2026 rebuild: institutional SaaS-studio design, full portfolio library,
-Instrument Serif / Instrument Sans house type, champagne-on-black system.
+v4 (September 2026) — institutional SaaS-agency redesign: Instrument Serif /
+Instrument Sans, cinematic Chicago photography, cream/champagne house style,
+full portfolio library.
 
 ## Structure
 
@@ -14,8 +15,10 @@ Instrument Serif / Instrument Sans house type, champagne-on-black system.
 | `/portfolio` | Full portfolio — live brands + systems / skills / workflows |
 | `/consulting` | Salesgency offers |
 | `/company` | Founder, principles, HoldCo model |
+| `/resume` | Patrick Diamitani resume |
 | `/insights` | Build notes and case studies |
 | `/products` | Consumer, SaaS, and creator products |
+| `/research` | ROSTR framework |
 | `/industries` `/art` `/music` | Division surfaces |
 
 Static Vercel deploy. No build step.

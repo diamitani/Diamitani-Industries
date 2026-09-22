@@ -124,6 +124,38 @@ body::before{
     linear-gradient(90deg, rgba(243,234,214,.035) 1px, transparent 1px);
   background-size:72px 72px;mask-image:linear-gradient(#000 0%, transparent 80%);
 }
+.hero.hero-photo::before{
+  background:
+    linear-gradient(180deg,rgba(7,7,6,.28) 0%,rgba(7,7,6,.52) 48%,var(--bg) 100%),
+    url("/assets/images/hero-chicago.jpg") center/cover no-repeat;
+}
+.hero.hero-photo::after{opacity:.22}
+.hero.hero-work::before{
+  background:
+    linear-gradient(180deg,rgba(7,7,6,.34) 0%,rgba(7,7,6,.58) 52%,var(--bg) 100%),
+    url("/assets/images/studio-work.jpg") center/cover no-repeat;
+}
+.hero.hero-lake::before{
+  background:
+    linear-gradient(180deg,rgba(7,7,6,.38) 0%,rgba(7,7,6,.62) 55%,var(--bg) 100%),
+    url("/assets/images/hero-lake.jpg") center/cover no-repeat;
+}
+.card.card-media{padding-top:0}
+.media-thumb{
+  aspect-ratio:16/9;overflow:hidden;
+  margin:0 -24px 18px;border-radius:20px 20px 0 0;
+}
+.media-thumb img{
+  width:100%;height:100%;object-fit:cover;display:block;
+  transition:transform .7s var(--ease);
+}
+.card.card-media:hover .media-thumb img{transform:scale(1.045)}
+.founder-photo{
+  border-radius:20px;overflow:hidden;border:1px solid var(--border);
+  min-height:280px;background:#111;
+}
+.founder-photo img{width:100%;height:100%;object-fit:cover;min-height:280px}
+
 .hero-inner{position:relative;z-index:1;max-width:var(--maxw);margin:0 auto;width:100%}
 .hero-narrow{max-width:860px}
 .hero-brand{

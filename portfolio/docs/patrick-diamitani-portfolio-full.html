@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Patrick Diamitani — AI &amp; Automation Portfolio (Full edition)</title>
+<style>
+:root{
+ --ink:#0b1220; --ink2:#1c2740; --muted:#5b667f; --line:#e6e9f0;
+ --bg:#ffffff; --soft:#f6f8fc; --accent:#4f46e5; --accent2:#06b6d4; --gold:#f59e0b;
+}
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;background:var(--soft);color:var(--ink);
+ font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,Helvetica,Arial,sans-serif;
+ line-height:1.5;-webkit-font-smoothing:antialiased;}
+.wrap{max-width:960px;margin:0 auto;background:var(--bg);}
+a{color:inherit;text-decoration:none;}
+
+/* HERO */
+.hero{background:radial-gradient(120% 140% at 0% 0%,#111a35 0%,#0b1220 55%,#080d1c 100%);
+ color:#fff;padding:44px 52px 34px;position:relative;overflow:hidden;}
+.hero::after{content:"";position:absolute;right:-120px;top:-120px;width:360px;height:360px;
+ background:radial-gradient(circle,rgba(79,70,229,.55),rgba(6,182,212,.05) 70%);filter:blur(6px);}
+.hero .eyebrow{letter-spacing:.22em;text-transform:uppercase;font-size:11px;color:#9fb0d8;margin-bottom:10px;}
+.hero h1{font-size:40px;line-height:1.05;margin:0 0 6px;font-weight:800;letter-spacing:-.5px;}
+.hero .role{font-size:16px;color:#c7d2f0;font-weight:600;margin-bottom:14px;}
+.hero .tag{font-size:16px;color:#e8edfb;max-width:640px;margin-bottom:16px;}
+.hero .target{font-size:12.5px;color:#93a4cc;border-left:2px solid var(--accent2);padding-left:12px;margin-bottom:18px;}
+.chips{display:flex;gap:8px;flex-wrap:wrap;position:relative;z-index:2;}
+.chip{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);color:#dbe4fb;
+ padding:5px 11px;border-radius:999px;font-size:12px;}
+.modebar{display:flex;justify-content:space-between;align-items:center;background:var(--ink);
+ color:#9fb0d8;font-size:11px;letter-spacing:.06em;padding:7px 52px;text-transform:uppercase;}
+
+/* SECTIONS */
+.section{padding:30px 52px;}
+.section h2.shead{font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);
+ margin:0 0 16px;font-weight:700;}
+.note{background:#fff8ec;border:1px solid #f3dfb0;color:#7a5a12;font-size:12px;
+ padding:9px 14px;border-radius:8px;margin:0 52px 4px;}
+
+/* METRIC TILES */
+.tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;}
+.tile{background:var(--soft);border:1px solid var(--line);border-radius:12px;padding:16px 16px;}
+.tile-n{font-size:27px;font-weight:800;color:var(--accent);letter-spacing:-.5px;}
+.tile-l{font-size:12.5px;color:var(--muted);margin-top:5px;line-height:1.35;}
+
+/* STACK */
+.stackwrap{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;}
+.stackgroup h4{margin:0 0 8px;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink2);}
+.stackitem{padding:7px 0;border-bottom:1px dashed var(--line);}
+.sname{font-weight:700;font-size:13px;color:var(--ink);}
+.sgloss{display:block;font-size:11.5px;color:var(--muted);margin-top:1px;}
+
+/* PROJECT GRID */
+.pgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;}
+.pcard{display:block;background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:14px 15px;
+ transition:.15s;position:relative;}
+.pcard:hover{border-color:var(--accent);box-shadow:0 6px 20px rgba(79,70,229,.12);transform:translateY(-1px);}
+.pcard-tag{font-size:10.5px;letter-spacing:.05em;text-transform:uppercase;color:var(--accent2);font-weight:700;margin-bottom:4px;}
+.pcard-name{font-size:15px;font-weight:800;color:var(--ink);margin-bottom:5px;}
+.pcard-one{font-size:12px;color:var(--muted);line-height:1.4;margin-bottom:8px;}
+.pcard-stack{font-size:10.5px;color:var(--ink2);opacity:.75;}
+
+/* DETAILS */
+.detailwrap{padding:8px 0 0;}
+.detail{padding:26px 52px;border-top:1px solid var(--line);}
+.ddlabel{font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);font-weight:700;margin-bottom:14px;}
+.detail-head{display:flex;gap:16px;align-items:flex-start;margin-bottom:14px;}
+.detail-idx{font-size:30px;font-weight:800;color:var(--accent);line-height:1;min-width:48px;opacity:.85;}
+.detail-tag{font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent2);font-weight:700;}
+.detail h2{font-size:23px;margin:2px 0 6px;font-weight:800;letter-spacing:-.3px;}
+.detail-one{font-size:13.5px;color:var(--ink2);margin:0;max-width:640px;}
+.detail-grid{display:grid;grid-template-columns:1.65fr 1fr;gap:20px;}
+.block{margin-bottom:13px;}
+.block h3{font-size:12px;letter-spacing:.05em;text-transform:uppercase;color:var(--accent);margin:0 0 5px;}
+.block p{margin:0;font-size:13px;color:var(--ink2);}
+.block ul{margin:0;padding-left:17px;}
+.block li{font-size:13px;color:var(--ink2);margin-bottom:4px;}
+.block.sys{background:var(--soft);border-left:3px solid var(--accent);border-radius:0 8px 8px 0;padding:11px 14px;}
+.block.sys p{font-size:12.5px;}
+.ttable{width:100%;border-collapse:collapse;margin-top:4px;}
+.ttable th{text-align:left;font-size:10.5px;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);
+ border-bottom:1px solid var(--line);padding:5px 8px;}
+.ttable td{font-size:11.5px;color:var(--ink2);border-bottom:1px solid var(--line);padding:6px 8px;vertical-align:top;}
+.ttable td.tw{font-weight:600;color:var(--ink);width:42%;}
+.sidebox{background:var(--soft);border:1px solid var(--line);border-radius:12px;padding:13px 15px;margin-bottom:12px;}
+.sidebox h4{margin:0 0 7px;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink2);}
+.sidebox ul{margin:0;padding-left:16px;}
+.sidebox li{font-size:12px;color:var(--ink2);margin-bottom:5px;}
+.stagtags{display:flex;gap:6px;flex-wrap:wrap;}
+.stag{background:#eef1fb;border:1px solid #dfe4f6;color:var(--ink2);font-size:10.5px;padding:3px 8px;border-radius:6px;}
+
+/* FOOTER */
+.foot{padding:24px 52px 34px;background:var(--ink);color:#9fb0d8;font-size:12px;}
+.foot strong{color:#fff;}
+.foot .fname{font-size:15px;color:#fff;font-weight:700;}
+
+@media (max-width:720px){
+ .tiles,.stackwrap,.pgrid{grid-template-columns:1fr;}
+ .detail-grid{grid-template-columns:1fr;}
+ .hero,.section,.detail,.foot,.modebar{padding-left:24px;padding-right:24px;}
+ .note{margin-left:24px;margin-right:24px;}
+ .hero h1{font-size:30px;}
+}
+
+/* PRINT / PDF */
+@page{size:Letter;margin:14mm 13mm;}
+@media print{
+ body,.wrap{background:#fff;}
+ .modebar{position:static;}
+ .pcard:hover{box-shadow:none;transform:none;}
+ .detail{break-inside:avoid;page-break-inside:avoid;}
+ .firstdetail{page-break-before:always;}
+ a[href^="#"]{color:inherit;}
+ .hero::after{display:none;}
+}
+</style></head>
+<body><div class="wrap">
+
+  <div class="modebar"><span>Patrick Diamitani — AI &amp; Automation Portfolio</span><span>Full edition · October 2026</span></div>
+
+  <header class="hero">
+    <div class="eyebrow">AI &amp; Automation · GTM Systems Engineering</div>
+    <h1>Patrick Diamitani</h1>
+    <div class="role">GTM AI &amp; Automation Manager &nbsp;·&nbsp; formerly AI &amp; Automation lead at <strong>Atlas HXM</strong> (2023–2026).</div>
+    <div class="tag">I build production AI automations that ship — and the systems that let a 50+ person GTM org run on them.</div>
+    <div class="target"><strong>Targeting:</strong> Director of AI &amp; Automation · Applied-AI / Forward-Deployed Engineering · Founding GTM-Engineering roles</div>
+    <div class="chips"><span class="chip">Patrick.Diamitani@gmail.com</span><span class="chip">linkedin.com/in/diamitani</span><span class="chip">Chicago, IL</span></div>
+  </header>
+
+  
+
+  <div class="master-page">
+  <section class="section">
+    <h2 class="shead">Impact at a glance</h2>
+    <div class="tiles"><div class="tile"><div class="tile-n">8+</div><div class="tile-l">production automations live across the GTM stack</div></div><div class="tile"><div class="tile-n">~242</div><div class="tile-l">pipeline deals auto-screened for EOR compliance, every one auditable</div></div><div class="tile"><div class="tile-n">0&rarr;stable</div><div class="tile-l">post-sales workflow recovered from 21/25 failing to reliable end-to-end</div></div><div class="tile"><div class="tile-n">515K</div><div class="tile-l">credit spend spike traced to root cause &amp; governed with a reusable template</div></div><div class="tile"><div class="tile-n">&lt;30 min</div><div class="tile-l">idea &rarr; fully-scoped project, down from 4&ndash;8 hours</div></div><div class="tile"><div class="tile-n">30+</div><div class="tile-l">reusable Claude skills &amp; agents shipped for the whole GTM team</div></div></div>
+  </section>
+
+  <section class="section" style="padding-top:6px;">
+    <h2 class="shead">Technology &amp; platforms</h2>
+    <div class="stackwrap"><div class="stackgroup"><h4>Orchestration</h4><div class="stackitem"><span class="sname">n8n</span><span class="sgloss">automation platform that chains apps so steps fire automatically — no human clicking buttons</span></div><div class="stackitem"><span class="sname">Webhooks &amp; MCP</span><span class="sgloss">event triggers and tool-connectors that let systems call each other in real time</span></div><div class="stackitem"><span class="sname">Custom JavaScript engines</span><span class="sgloss">deterministic rules written in code, so decisions are repeatable and auditable</span></div></div><div class="stackgroup"><h4>AI / LLM</h4><div class="stackitem"><span class="sname">Azure OpenAI (GPT-4o / GPT-5-chat)</span><span class="sgloss">the reasoning layer that reads messy text and classifies or drafts</span></div><div class="stackitem"><span class="sname">Claude + Claude Skills / Agent SDK</span><span class="sgloss">the platform used to build the reusable skill &amp; agent library</span></div><div class="stackitem"><span class="sname">Retrieval &amp; grounding</span><span class="sgloss">feeding models real source data so outputs are specific, not generic</span></div></div><div class="stackgroup"><h4>GTM Data &amp; CRM</h4><div class="stackitem"><span class="sname">HubSpot API</span><span class="sgloss">the CRM system of record — deals, contacts, properties, workflows</span></div><div class="stackitem"><span class="sname">Clay</span><span class="sgloss">data-enrichment workspace that builds and enriches prospect lists</span></div><div class="stackitem"><span class="sname">Amplemarket &amp; ZoomInfo</span><span class="sgloss">contact discovery and firmographic enrichment sources</span></div><div class="stackitem"><span class="sname">Avoma</span><span class="sgloss">call-recording &amp; transcription intelligence</span></div><div class="stackitem"><span class="sname">Factors.ai</span><span class="sgloss">first-party website intent &amp; account signals</span></div></div><div class="stackgroup"><h4>Infra &amp; Delivery</h4><div class="stackitem"><span class="sname">Azure Blob Storage</span><span class="sgloss">cloud file store used to serve 250+ country data files deterministically</span></div><div class="stackitem"><span class="sname">Microsoft 365 (Outlook, Teams, Excel, OneDrive)</span><span class="sgloss">delivery + human-readable mirrors</span></div><div class="stackitem"><span class="sname">Onspring</span><span class="sgloss">internal governance/compliance data source</span></div></div></div>
+  </section>
+
+  <section class="section" style="padding-top:6px;">
+    <h2 class="shead">Portfolio of built work</h2>
+    <div class="pgrid"><a class="pcard" href="#compliance"><div class="pcard-tag">Flagship · Live in production</div><div class="pcard-name">EOR Compliance Checker (v5)</div><div class="pcard-one">Auto-screens every sales-pipeline deal against a 30-sector compliance worksheet the moment it enters — and writes an auditable verdict back to the CRM.</div><div class="pcard-stack">n8n · Azure OpenAI GPT-4o · HubSpot API · Avoma API</div></a><a class="pcard" href="#postcall"><div class="pcard-tag">Live · Major reliability turnaround</div><div class="pcard-name">Post-Sales Call Automation</div><div class="pcard-one">After every sales call, reads the transcript and auto-generates a rep-ready follow-up package: consultative email, missed-questions analysis, competitor research, LinkedIn draft, and a logged CRM note.</div><div class="pcard-stack">n8n cloud · Avoma webhook · Azure OpenAI · Azure Blob Storage (250+ country files)</div></a><a class="pcard" href="#precall"><div class="pcard-tag">Built · Requested by VP Growth</div><div class="pcard-name">Pre-Sales Call Automation</div><div class="pcard-one">The moment a meeting is booked, sends the rep a concise pre-call prep note so they walk in already knowing where they're most likely to close.</div><div class="pcard-stack">HubSpot workflows · n8n · Factors.ai Journey API · Azure OpenAI</div></a><a class="pcard" href="#chatbot"><div class="pcard-tag">Live · Recovered a whole channel</div><div class="pcard-name">Chatbot MQL Automation + Attribution</div><div class="pcard-one">When a website chat ends without a booking, an AI classifies MQL vs. non-MQL, drafts the right follow-up, routes it, and — critically — makes the chatbot a measurable, attributable GTM channel.</div><div class="pcard-stack">HubSpot chatbot + workflows · n8n · Azure OpenAI · HubSpot CRM API</div></a><a class="pcard" href="#pql"><div class="pcard-tag">Deploy-ready</div><div class="pcard-name">Partner PQL Workflow</div><div class="pcard-one">Classifies inbound partner-form submissions, drafts a partner-specific email, and routes a task to the partnerships owner automatically.</div><div class="pcard-stack">n8n · Azure OpenAI (gpt-5-chat) · HubSpot API</div></a><a class="pcard" href="#entity"><div class="pcard-tag">Build-ready · Approval-gated</div><div class="pcard-name">Entity Readiness Change Report</div><div class="pcard-one">Every Monday, diffs the company's country hire-readiness against last week and emails Growth only the countries that flipped — as a locked two-column table.</div><div class="pcard-stack">n8n · Onspring · n8n Data Table · Microsoft Excel / OneDrive</div></a><a class="pcard" href="#ags"><div class="pcard-tag">Ongoing · Owns the pipeline</div><div class="pcard-name">SDR-Agency Prospecting Enablement (AGS)</div><div class="pcard-one">Runs the full prospecting supply chain for an outsourced SDR agency — clean, enriched, CRM-safe lists activated on a weekly cadence.</div><div class="pcard-stack">Clay · Amplemarket · ZoomInfo · HubSpot API</div></a><a class="pcard" href="#signals"><div class="pcard-tag">Strategy + build</div><div class="pcard-name">Outbound Signals &amp; Intent Engine</div><div class="pcard-one">A defined library of fit + intent signals, a 0&ndash;100 account scoring model, and composite &ldquo;plays&rdquo; that stack signals into prioritized, repeatable outbound motions.</div><div class="pcard-stack">Clay · Factors.ai · HubSpot · Scoring model (0&ndash;100)</div></a><a class="pcard" href="#clay"><div class="pcard-tag">Shipped · Cost + governance win</div><div class="pcard-name">Clay Credit Governance &amp; Cost Control</div><div class="pcard-one">Traced a runaway enrichment-credit spike to its real sources and shipped a reusable template + guardrails that cut per-row cost and stop the leak repeating.</div><div class="pcard-stack">Clay API · Excel data modeling · PDF one-sheeter for leadership</div></a><a class="pcard" href="#coe"><div class="pcard-tag">Meta-system · Framework</div><div class="pcard-name">New Project Automation System (Center of Excellence)</div><div class="pcard-one">Turns any raw input — notes, files, links, a one-line idea — into a complete, leadership-ready project package: knowledge base, PRD, architecture diagram, reporting framework, and a phased build plan.</div><div class="pcard-stack">Claude / Agent SDK · n8n · Notion · Asana</div></a><a class="pcard" href="#skills"><div class="pcard-tag">Platform · Built for 50+ reps</div><div class="pcard-name">GTM Skill &amp; Agent Library (30+)</div><div class="pcard-one">A library of reusable AI skills and agents that put every automation above into the hands of non-technical reps and marketers through plain-English commands.</div><div class="pcard-stack">Claude Skills / Agent SDK · n8n · Clay · HubSpot</div></a></div>
+  </section>
+  </div>
+
+  <div class="detailwrap">
+    
+        <section class="detail firstdetail" id="compliance">
+          <div class="ddlabel">Project deep-dives</div>
+          <div class="detail-head">
+            <div class="detail-idx">01</div>
+            <div>
+              <div class="detail-tag">Flagship · Live in production</div>
+              <h2>EOR Compliance Checker (v5)</h2>
+              <p class="detail-one">Auto-screens every sales-pipeline deal against a 30-sector compliance worksheet the moment it enters — and writes an auditable verdict back to the CRM.</p>
+            </div>
+          </div>
+          <div class="detail-grid">
+            <div class="col-main">
+              <div class="block"><h3>The problem</h3><p>Reps advanced deals to contracting &amp; KYC without knowing if the role or industry was even eligible for EOR. Compliance only caught blockers at contract review — after the prospect was ready to sign. Lost deals, wasted KYC, eroded trust.</p></div>
+              <div class="block"><h3>What I built</h3><ul><li>A 46-node n8n production workflow (real-time webhook + hourly safety-net sweep + on-demand batch re-screen).</li><li>A hybrid engine: the LLM only maps messy CRM data to one of 30 canonical sectors; a deterministic JavaScript matrix makes every tier decision.</li><li>A three-axis compliance framework (viability tier + advisory flags + hard screen-outs) transcribed faithfully from the official worksheet.</li><li>A report-only dry-run harness that tests any future rule change against the entire pipeline with zero writes.</li></ul></div>
+              <div class="block sys"><h3>Systems thinking</h3><p>The core design decision — rules live in code, not in the model's head — is what makes it durable. The LLM does only what it's good at (reading unstructured text); every verdict is deterministic, repeatable, and cites its own reasoning. Edge cases were reasoned about explicitly: pass-through detection (a staffing firm placing workers into oil &amp; gas is screened as oil &amp; gas), semantic sector aliasing, and a &ldquo;needs-title&rdquo; hold instead of guessing on thin data.</p></div>
+              <div class="block"><h3>What broke &amp; how it was fixed</h3><table class="ttable"><thead><tr><th>Issue / symptom</th><th>Root-cause fix &amp; prevention</th></tr></thead><tbody><tr><td class="tw">A const-reassignment bug surfaced on the first live production test</td><td>Caught immediately by the verification step; fixed and re-tested green. Prevention: the dry-run harness now gates every change.</td></tr><tr><td class="tw">Five analytics properties silently failed to write (didn't exist in the CRM)</td><td>Folded that content into the audit-note field instead. Prevention: validate property existence before writing.</td></tr><tr><td class="tw">Old prompt let thin data demote clean sectors</td><td>Re-architected so confidence is a report field that never changes the tier.</td></tr></tbody></table></div>
+            </div>
+            <div class="col-side">
+              <div class="sidebox"><h4>Outcome</h4><ul><li>Live in production, screening the full Sales Pipeline (~242 open deals).</li><li>Corrected 103 deals wrongly stuck in &ldquo;review required&rdquo; while tightening genuine ineligibility detection (Tier 3 caught up from 7 &rarr; 15, all traceable to a named worksheet trigger).</li><li>16 unit tests + full dry-run validation + 238/238 clean production writes before go-live.</li></ul></div>
+              <div class="sidebox"><h4>Stack</h4><div class="stagtags"><span class="stag">n8n</span><span class="stag">Azure OpenAI GPT-4o</span><span class="stag">HubSpot API</span><span class="stag">Avoma API</span><span class="stag">Custom JS rules engine</span><span class="stag">NAICS resolver</span><span class="stag">Outlook</span></div></div>
+            </div>
+          </div>
+        </section>
+        <section class="detail" id="postcall">
+          
+          <div class="detail-head">
+            <div class="detail-idx">02</div>
+            <div>
+              <div class="detail-tag">Live · Major reliability turnaround</div>
+              <h2>Post-Sales Call Automation</h2>
+              <p class="detail-one">After every sales call, reads the transcript and auto-generates a rep-ready follow-up package: consultative email, missed-questions analysis, competitor research, LinkedIn draft, and a logged CRM note.</p>
+            </div>
+          </div>
+          <div class="detail-grid">
+            <div class="col-main">
+              <div class="block"><h3>The problem</h3><p>Reps spent time after every call on follow-up research and writing. The automation that was supposed to do it was failing 21 of 25 recent runs — a dead vector-search index left four AI agents with no country context.</p></div>
+              <div class="block"><h3>What I built</h3><ul><li>An always-on n8n cloud workflow triggered by a call-platform webhook, so it fires regardless of whose laptop is open.</li><li>Four AI agents (follow-up email, missed questions, competitor research, LinkedIn post) grounded in real country data.</li><li>A deterministic replacement for the broken search: extract countries &rarr; ISO-3 codes &rarr; fetch each file directly from blob storage &rarr; inject into every agent.</li></ul></div>
+              <div class="block sys"><h3>Systems thinking</h3><p>This is a textbook resilience rebuild. Rather than recreate a fragile index (which needed permissions Patrick didn't have), the whole failure point was designed out: country code &rarr; exact file, no fuzzy search, no credentials to rotate, and a graceful fallback so the email still sends if a file is missing. Failure modes were mapped end-to-end — future/scheduled meetings, broken item-lineage, context bloat — and each got an explicit guard.</p></div>
+              <div class="block"><h3>What broke &amp; how it was fixed</h3><table class="ttable"><thead><tr><th>Issue / symptom</th><th>Root-cause fix &amp; prevention</th></tr></thead><tbody><tr><td class="tw">84% of failures: dead Azure AI Search index (DNS not-found)</td><td>Removed the dependency entirely; replaced with deterministic blob fetch. Prevention: prefer deterministic lookups over services that can silently die.</td></tr><tr><td class="tw">Silent dead-ends on scheduled/future meetings</td><td>Added a meeting-completion guard + bounded retry budget (10&rarr;20 polls) + explicit exit nodes.</td></tr><tr><td class="tw">Broken paired-item lineage dropped the transcript downstream</td><td>Carried the base object forward and converted 28 fragile item-references to a stable form.</td></tr></tbody></table></div>
+            </div>
+            <div class="col-side">
+              <div class="sidebox"><h4>Outcome</h4><ul><li>Recovered from 0/25 runs reaching the email step to reliable end-to-end delivery.</li><li>Cut context bloat from 20 countries / 882KB to intent-only 6 countries / 295KB per call — cheaper and higher signal.</li><li>Restored specific, grounded output (real severance formulas, social-security rates) over generic filler.</li></ul></div>
+              <div class="sidebox"><h4>Stack</h4><div class="stagtags"><span class="stag">n8n cloud</span><span class="stag">Avoma webhook</span><span class="stag">Azure OpenAI</span><span class="stag">Azure Blob Storage (250+ country files)</span><span class="stag">HubSpot</span><span class="stag">Outlook</span></div></div>
+            </div>
+          </div>
+        </section>
+        <section class="detail" id="precall">
+          
+          <div class="detail-head">
+            <div class="detail-idx">03</div>
+            <div>
+              <div class="detail-tag">Built · Requested by VP Growth</div>
+              <h2>Pre-Sales Call Automation</h2>
+              <p class="detail-one">The moment a meeting is booked, sends the rep a concise pre-call prep note so they walk in already knowing where they're most likely to close.</p>
+            </div>
+          </div>
+          <div class="detail-grid">
+            <div class="col-main">
+              <div class="block"><h3>The problem</h3><p>Reps burned time on manual pre-call research; time-zone-based daily checks risked missing calls booked across regions.</p></div>
+              <div class="block"><h3>What I built</h3><ul><li>HubSpot meeting-booked webhook &rarr; n8n &rarr; enrichment &rarr; one-paragraph prep note emailed to the assigned rep.</li><li>Enrichment pulls first-party intent (Factors Journey API), company data, and the most recent contact message.</li><li>A guardrail against duplicate sends; the summary is pre-built instantly and timed to arrive a set number of hours before the call.</li></ul></div>
+              <div class="block sys"><h3>Systems thinking</h3><p>Chose an event trigger (meeting booked) over a scheduled daily sweep specifically to defeat the time-zone failure mode — a systems decision made before the first line was built, and documented with an explicit risk/mitigation in the brief.</p></div>
+              <div class="block"><h3>What broke &amp; how it was fixed</h3><table class="ttable"><thead><tr><th>Issue / symptom</th><th>Root-cause fix &amp; prevention</th></tr></thead><tbody><tr><td class="tw">Risk: a daily check could miss calls in other time zones</td><td>Mitigation designed in up front — trigger on booking, dedupe, and send relative to call time regardless of zone.</td></tr></tbody></table></div>
+            </div>
+            <div class="col-side">
+              <div class="sidebox"><h4>Outcome</h4><ul><li>Scoped, brief-approved, and built against a clear definition-of-ready (webhooks fire cleanly, AI uses only factual data — no hallucinations).</li></ul></div>
+              <div class="sidebox"><h4>Stack</h4><div class="stagtags"><span class="stag">HubSpot workflows</span><span class="stag">n8n</span><span class="stag">Factors.ai Journey API</span><span class="stag">Azure OpenAI</span></div></div>
+            </div>
+          </div>
+        </section>
+        <section class="detail" id="chatbot">
+          
+          <div class="detail-head">
+            <div class="detail-idx">04</div>
+            <div>
+              <div class="detail-tag">Live · Recovered a whole channel</div>
+              <h2>Chatbot MQL Automation + Attribution</h2>
+              <p class="detail-one">When a website chat ends without a booking, an AI classifies MQL vs. non-MQL, drafts the right follow-up, routes it, and — critically — makes the chatbot a measurable, attributable GTM channel.</p>
+            </div>
+          </div>
+          <div class="detail-grid">
+            <div class="col-main">
+              <div class="block"><h3>The problem</h3><p>The chatbot (an AI customer agent) was capturing conversations, but the attribution flag was never being stamped — so 364 chatbot contacts going back years were invisible to every report and list. The channel looked dead when it wasn't.</p></div>
+              <div class="block"><h3>What I built</h3><ul><li>An n8n workflow that classifies intent (Azure OpenAI), generates a tailored follow-up, and routes MQL vs. nurture — with an idempotency flag so nothing double-processes.</li><li>Three coordinated HubSpot workflows: chat-end trigger, MQL owner-assignment + internal notification, and non-MQL system email with resources.</li><li>An attribution-stamp workflow + a 364-contact API backfill (364/364 updated, 0 errors) and five smart lists to make the channel reportable.</li></ul></div>
+              <div class="block sys"><h3>Systems thinking</h3><p>Diagnosed the root attribution failure before building anything (a data audit found the capture-vs-stamp gap), then designed for reliability: UUID session IDs, an idempotency checkpoint, and system-inbox sending so delivery never depends on a person.</p></div>
+              <div class="block"><h3>What broke &amp; how it was fixed</h3><table class="ttable"><thead><tr><th>Issue / symptom</th><th>Root-cause fix &amp; prevention</th></tr></thead><tbody><tr><td class="tw">Attribution flag captured chat data but never stamped the source</td><td>Built a stamp workflow for go-forward + API backfill for history. Prevention: audit the whole capture&rarr;report chain, not just capture.</td></tr></tbody></table></div>
+            </div>
+            <div class="col-side">
+              <div class="sidebox"><h4>Outcome</h4><ul><li>364 historical contacts recovered into attribution and made visible in all reporting.</li><li>Idempotent MQL classification &rarr; routing &rarr; rep notification pipeline live end-to-end.</li></ul></div>
+              <div class="sidebox"><h4>Stack</h4><div class="stagtags"><span class="stag">HubSpot chatbot + workflows</span><span class="stag">n8n</span><span class="stag">Azure OpenAI</span><span class="stag">HubSpot CRM API</span><span class="stag">Slack notifications</span></div></div>
+            </div>
+          </div>
+        </section>
+        <section class="detail" id="pql">
+          
+          <div class="detail-head">
+            <div class="detail-idx">05</div>
+            <div>
+              <div class="detail-tag">Deploy-ready</div>
+              <h2>Partner PQL Workflow</h2>
+              <p class="detail-one">Classifies inbound partner-form submissions, drafts a partner-specific email, and routes a task to the partnerships owner automatically.</p>
+            </div>
+          </div>
+          <div class="detail-grid">
+            <div class="col-main">
+              <div class="block"><h3>The problem</h3><p>Partner inquiries needed manual triage, classification, and routing before anyone could act.</p></div>
+              <div class="block"><h3>What I built</h3><ul><li>An n8n workflow: form webhook &rarr; AI classify (partner vs. not) &rarr; AI-drafted partner email &rarr; lifecycle set &rarr; CRM task routed to the partnerships owner.</li><li>Hardened for production: fixed a v3-API association bug (id vs. vid) that would have created tasks with no contact link, and wired a shared error-handler workflow.</li></ul></div>
+              <div class="block sys"><h3>Systems thinking</h3><p>Explicitly matched the error-handling pattern of the existing inbound workflow so failures surface in one place — thinking about the operational estate, not just the single workflow.</p></div>
+              <div class="block"><h3>What broke &amp; how it was fixed</h3><table class="ttable"><thead><tr><th>Issue / symptom</th><th>Root-cause fix &amp; prevention</th></tr></thead><tbody><tr><td class="tw">HubSpot v2.2 nodes use the v3 API, which returns id not vid</td><td>Read id first with a vid fallback, so tasks always associate to the contact. Prevention: verify API-version field shapes on import.</td></tr></tbody></table></div>
+            </div>
+            <div class="col-side">
+              <div class="sidebox"><h4>Outcome</h4><ul><li>JSON is deploy-ready; owner ID patched, association bug fixed, error workflow wired. Blocked only on four CRM properties + a partner-form change on another owner's track.</li></ul></div>
+              <div class="sidebox"><h4>Stack</h4><div class="stagtags"><span class="stag">n8n</span><span class="stag">Azure OpenAI (gpt-5-chat)</span><span class="stag">HubSpot API</span></div></div>
+            </div>
+          </div>
+        </section>
+        <section class="detail" id="entity">
+          
+          <div class="detail-head">
+            <div class="detail-idx">06</div>
+            <div>
+              <div class="detail-tag">Build-ready · Approval-gated</div>
+              <h2>Entity Readiness Change Report</h2>
+              <p class="detail-one">Every Monday, diffs the company's country hire-readiness against last week and emails Growth only the countries that flipped — as a locked two-column table.</p>
+            </div>
+          </div>
+          <div class="detail-grid">
+            <div class="col-main">
+              <div class="block"><h3>The problem</h3><p>Nobody caught weekly changes in which countries the company could legally hire in. Marketing pays for country-specific search ads and didn't want to keep bidding on a country it could no longer serve — or miss one that just opened.</p></div>
+              <div class="block"><h3>What I built</h3><ul><li>An importable n8n workflow: weekly trigger &rarr; pull readiness &rarr; normalize to a boolean &rarr; diff vs. saved baseline &rarr; report only the flips &rarr; deliver &rarr; then write the new baseline.</li><li>A hard no-cloud constraint honored: state lives in an n8n Data Table (source of truth) mirrored to an Excel file for humans — no Azure.</li></ul></div>
+              <div class="block sys"><h3>Systems thinking</h3><p>Two constraints drove the architecture and were respected exactly: baseline writes happen only after a successful, non-empty pull (a failed run never corrupts last week's state), and the output stays locked to two columns per the stakeholder's requirement. First-run seeding, empty-pull, and failed-pull edge cases are each handled.</p></div>
+              <div class="block"><h3>What broke &amp; how it was fixed</h3><table class="ttable"><thead><tr><th>Issue / symptom</th><th>Root-cause fix &amp; prevention</th></tr></thead><tbody><tr><td class="tw">Risk: a failed or empty data pull could overwrite good state</td><td>Baseline writes gated behind a successful non-empty pull; normalize step throws on empty. Prevention: never let a failed run mutate the source of truth.</td></tr></tbody></table></div>
+            </div>
+            <div class="col-side">
+              <div class="sidebox"><h4>Outcome</h4><ul><li>Build-ready spec + importable workflow delivered; routed to VP Growth + reviewer for sign-off per the approval gate. Phase-2 agency feed built but held pending format spec.</li></ul></div>
+              <div class="sidebox"><h4>Stack</h4><div class="stagtags"><span class="stag">n8n</span><span class="stag">Onspring</span><span class="stag">n8n Data Table</span><span class="stag">Microsoft Excel / OneDrive</span><span class="stag">Outlook / Teams</span></div></div>
+            </div>
+          </div>
+        </section>
+        <section class="detail" id="ags">
+          
+          <div class="detail-head">
+            <div class="detail-idx">07</div>
+            <div>
+              <div class="detail-tag">Ongoing · Owns the pipeline</div>
+              <h2>SDR-Agency Prospecting Enablement (AGS)</h2>
+              <p class="detail-one">Runs the full prospecting supply chain for an outsourced SDR agency — clean, enriched, CRM-safe lists activated on a weekly cadence.</p>
+            </div>
+          </div>
+          <div class="detail-grid">
+            <div class="col-main">
+              <div class="block"><h3>The problem</h3><p>A paid sales agency needed a steady stream of clean, targeted, compliance-screened lists — without contacting existing customers, open deals, closed-lost, or recently-touched contacts.</p></div>
+              <div class="block"><h3>What I built</h3><ul><li>A repeatable intake &rarr; normalize &rarr; dedupe &rarr; enrich &rarr; suppress &rarr; activate pipeline across Clay, Amplemarket, ZoomInfo and HubSpot.</li><li>Live HubSpot suppression screening for customer status, open deals, and closed-lost on every company before send.</li><li>A competitive-takeaway play: 188 verified HR contacts at companies currently on a named competitor EOR, ~100 net-new to CRM.</li></ul></div>
+              <div class="block sys"><h3>Systems thinking</h3><p>Treats prospecting as a governed data pipeline with source-of-truth boundaries (CRM = truth, enrichment = workspace, orchestration = glue) and a compliance-first suppression layer — the difference between a list and a liability.</p></div>
+              <div class="block"><h3>What broke &amp; how it was fixed</h3><table class="ttable"><thead><tr><th>Issue / symptom</th><th>Root-cause fix &amp; prevention</th></tr></thead><tbody><tr><td class="tw">Parallel one-off workbooks caused drift and duplicated effort</td><td>Consolidated into one master workbook + segment tabs as the operating source of truth.</td></tr></tbody></table></div>
+            </div>
+            <div class="col-side">
+              <div class="sidebox"><h4>Outcome</h4><ul><li>5,398-contact master activated; weekly batches tagged by segment for agency-level reporting.</li><li>Every list screened live against the CRM — 4 companies pulled for open-deal/closed-lost, 20 contacts removed for active-sequence/recent-touch before send.</li></ul></div>
+              <div class="sidebox"><h4>Stack</h4><div class="stagtags"><span class="stag">Clay</span><span class="stag">Amplemarket</span><span class="stag">ZoomInfo</span><span class="stag">HubSpot API</span></div></div>
+            </div>
+          </div>
+        </section>
+        <section class="detail" id="signals">
+          
+          <div class="detail-head">
+            <div class="detail-idx">08</div>
+            <div>
+              <div class="detail-tag">Strategy + build</div>
+              <h2>Outbound Signals &amp; Intent Engine</h2>
+              <p class="detail-one">A defined library of fit + intent signals, a 0&ndash;100 account scoring model, and composite &ldquo;plays&rdquo; that stack signals into prioritized, repeatable outbound motions.</p>
+            </div>
+          </div>
+          <div class="detail-grid">
+            <div class="col-main">
+              <div class="block"><h3>The problem</h3><p>Broad, untargeted outbound was expensive and easy to ignore, with no defensible reason for any given touch.</p></div>
+              <div class="block"><h3>What I built</h3><ul><li>Eight signal categories (expansion, funding, hiring, leadership, competitor/tech, compliance, first-party engagement, suppression), each weighted and mapped to a data source, persona, and query logic.</li><li>A flagship &ldquo;Displacement&rdquo; play targeting Director+ People leaders who hire internationally and already use a competitor EOR.</li><li>A companion Master Signal &amp; Intent Library workbook feeding Clay build sessions.</li></ul></div>
+              <div class="block sys"><h3>Systems thinking</h3><p>Turns intuition into a system: every touch has a named, weighted, time-bound reason behind it, which is what lifts reply rates and keeps enrichment credit and rep time focused on accounts with a real reason to buy now.</p></div>
+              
+            </div>
+            <div class="col-side">
+              <div class="sidebox"><h4>Outcome</h4><ul><li>Framework + scoring model + flagship play documented for GTM leadership and operationalized in Clay.</li></ul></div>
+              <div class="sidebox"><h4>Stack</h4><div class="stagtags"><span class="stag">Clay</span><span class="stag">Factors.ai</span><span class="stag">HubSpot</span><span class="stag">Scoring model (0&ndash;100)</span></div></div>
+            </div>
+          </div>
+        </section>
+        <section class="detail" id="clay">
+          
+          <div class="detail-head">
+            <div class="detail-idx">09</div>
+            <div>
+              <div class="detail-tag">Shipped · Cost + governance win</div>
+              <h2>Clay Credit Governance &amp; Cost Control</h2>
+              <p class="detail-one">Traced a runaway enrichment-credit spike to its real sources and shipped a reusable template + guardrails that cut per-row cost and stop the leak repeating.</p>
+            </div>
+          </div>
+          <div class="detail-grid">
+            <div class="col-main">
+              <div class="block"><h3>The problem</h3><p>Enrichment credit usage spiked from &lt;15K/month to 515K in a single month. 21% of a month's spend ran through unattributed &ldquo;Copy of&rdquo; tables, phone numbers were bought 2&ndash;3x per contact, and people-searches ran with no ICP gate.</p></div>
+              <div class="block"><h3>What I built</h3><ul><li>A full-year forensic audit (a seven-sheet master dataset) that re-attributed the unnamed &ldquo;Copy of&rdquo; spend back to its real source tables.</li><li>A Standard Enrichment Table Template: a free ICP-fit gate in front of every paid column, a 3-column deduped phone model capped at 3 attempts, and AI/HTTP columns gated to top-tier accounts.</li><li>Three build profiles (Lean ~15 / Balanced ~21 / Full ~50 credits per row) replacing an undisciplined ~50-credit average.</li></ul></div>
+              <div class="block sys"><h3>Systems thinking</h3><p>A credit-planning architecture, not a one-time cleanup: gate &rarr; cap &rarr; clone-don't-copy &rarr; dedupe &rarr; consolidate &rarr; review weekly. The weekly review replaces after-the-fact audits so the next spike is caught in days, not months.</p></div>
+              <div class="block"><h3>What broke &amp; how it was fixed</h3><table class="ttable"><thead><tr><th>Issue / symptom</th><th>Root-cause fix &amp; prevention</th></tr></thead><tbody><tr><td class="tw">A single day burned 201,924 credits from a phone-waterfall re-buying the same numbers</td><td>Split phone into three deduped columns capped at 3 provider attempts. Prevention: dedupe + cap before any waterfall runs.</td></tr></tbody></table></div>
+            </div>
+            <div class="col-side">
+              <div class="sidebox"><h4>Outcome</h4><ul><li>Root cause identified and a leadership one-sheeter + master dataset delivered to VP Growth, replacing a pile of ad-hoc exports.</li><li>Per-row cost brought under explicit control; a standing weekly credit review installed as the go-forward guardrail.</li></ul></div>
+              <div class="sidebox"><h4>Stack</h4><div class="stagtags"><span class="stag">Clay API</span><span class="stag">Excel data modeling</span><span class="stag">PDF one-sheeter for leadership</span></div></div>
+            </div>
+          </div>
+        </section>
+        <section class="detail" id="coe">
+          
+          <div class="detail-head">
+            <div class="detail-idx">10</div>
+            <div>
+              <div class="detail-tag">Meta-system · Framework</div>
+              <h2>New Project Automation System (Center of Excellence)</h2>
+              <p class="detail-one">Turns any raw input — notes, files, links, a one-line idea — into a complete, leadership-ready project package: knowledge base, PRD, architecture diagram, reporting framework, and a phased build plan.</p>
+            </div>
+          </div>
+          <div class="detail-grid">
+            <div class="col-main">
+              <div class="block"><h3>The problem</h3><p>Projects were scattered across a task tool (inconsistent), chat threads (buried), and nowhere (lost). Leadership had no clean answer to &ldquo;what are we building, why, and when.&rdquo; Every project was an island only one person understood.</p></div>
+              <div class="block"><h3>What I built</h3><ul><li>An intake engine built on a documented framework (PAL for depth, NPAO for work classification, 4Ds for phasing, RAG/DAL for provenance) that outputs a standardized package every time.</li><li>A searchable project index/database so any initiative is one link away for leadership and onboarding.</li><li>The engine that spawned the reusable skills below — projects come out clean, complete, and consistent.</li></ul></div>
+              <div class="block sys"><h3>Systems thinking</h3><p>This is the systems-thinking artifact of the whole portfolio: a repeatable operating model that standardizes how an entire team scopes, documents, and ships work — designed so quality is structural, not dependent on any one person.</p></div>
+              
+            </div>
+            <div class="col-side">
+              <div class="sidebox"><h4>Outcome</h4><ul><li>Idea &rarr; fully-scoped project cut from 4&ndash;8 hours to under 30 minutes.</li><li>A permanent, searchable Center of Excellence: consistent PRDs, architecture, and build plans across every GTM initiative.</li></ul></div>
+              <div class="sidebox"><h4>Stack</h4><div class="stagtags"><span class="stag">Claude / Agent SDK</span><span class="stag">n8n</span><span class="stag">Notion</span><span class="stag">Asana</span><span class="stag">RAG web search</span></div></div>
+            </div>
+          </div>
+        </section>
+        <section class="detail" id="skills">
+          
+          <div class="detail-head">
+            <div class="detail-idx">11</div>
+            <div>
+              <div class="detail-tag">Platform · Built for 50+ reps</div>
+              <h2>GTM Skill &amp; Agent Library (30+)</h2>
+              <p class="detail-one">A library of reusable AI skills and agents that put every automation above into the hands of non-technical reps and marketers through plain-English commands.</p>
+            </div>
+          </div>
+          <div class="detail-grid">
+            <div class="col-main">
+              <div class="block"><h3>The problem</h3><p>Powerful automations are useless if only the builder can run them. A 50+ person GTM org needed self-serve, rep-friendly tools — not one-off scripts.</p></div>
+              <div class="block"><h3>What I built</h3><ul><li>Prospecting &amp; enrichment: Clay prospecting engine, credit estimator, CSV enrichers, HubSpot import formatter, list routers.</li><li>Workflow &amp; ops: n8n workflow architect, execution analyst, GTM architect, project intake &amp; handoff, close-out reporting.</li><li>Revenue &amp; enablement: HubSpot data/revenue analysts, RFP knowledge-base builder + answer retriever, Factors.ai signal operator, case-study builder.</li><li>Content at scale: a full branded content suite (email, social, ads, blog, decks, one-pagers) plus an agent-factory that builds new skills from a description.</li></ul></div>
+              <div class="block sys"><h3>Systems thinking</h3><p>A platform play: reusable skills with clear triggers, composability (skills call specialist skills), and guardrails baked in (secret-handling, CRM-safety, approval gates) — so scaling to 50+ users doesn't scale the risk.</p></div>
+              
+            </div>
+            <div class="col-side">
+              <div class="sidebox"><h4>Outcome</h4><ul><li>30+ skills/agents shipped and organized into installable suites for the GTM team.</li><li>Repeatable, governed self-service replacing builder-dependent one-offs.</li></ul></div>
+              <div class="sidebox"><h4>Stack</h4><div class="stagtags"><span class="stag">Claude Skills / Agent SDK</span><span class="stag">n8n</span><span class="stag">Clay</span><span class="stag">HubSpot</span><span class="stag">Factors.ai</span><span class="stag">Avoma</span></div></div>
+            </div>
+          </div>
+        </section>
+  </div>
+
+  <footer class="foot">
+    <div class="fname">Patrick Diamitani</div>
+    <div>GTM AI &amp; Automation Manager · formerly at Atlas HXM (2023–2026) · Chicago, IL</div>
+    <div style="margin-top:6px;">Patrick.Diamitani@gmail.com · linkedin.com/in/diamitani</div>
+    <div style="margin-top:10px;font-size:11px;opacity:.7;">Every metric and technical detail on this page is drawn from real, shipped project records. Full edition — shared under NDA / for direct evaluation. No secrets, keys, tokens, or endpoints are reproduced anywhere in this document.</div>
+  </footer>
+
+</div></body></html>

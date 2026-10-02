@@ -85,6 +85,17 @@
 /* Tab sections */
 .tab-content{display:none}
 .tab-content.active{display:block}
+
+/* Portfolio documents band */
+.docs-band{background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.docs-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin-top:28px}
+.doc-card{background:var(--bg);border:1px solid var(--border);border-radius:12px;padding:24px;display:flex;flex-direction:column;transition:all .2s var(--ease);text-decoration:none;color:inherit}
+.doc-card:hover{transform:translateY(-4px);border-color:var(--accent);box-shadow:0 12px 40px rgba(0,0,0,.3)}
+.doc-card .doc-badge{align-self:flex-start;font-size:10px;font-weight:700;padding:4px 10px;border-radius:999px;text-transform:uppercase;letter-spacing:.06em;background:rgba(94,184,196,.15);color:var(--cyan);border:1px solid rgba(94,184,196,.3);margin-bottom:12px}
+.doc-card h3{font-size:17px;font-weight:600;margin-bottom:8px;color:var(--text)}
+.doc-card p{font-size:13px;color:var(--muted);line-height:1.55;flex:1}
+.doc-card .doc-meta{font-family:var(--mono);font-size:11px;color:var(--dim);margin-top:12px}
+.doc-card .doc-cta{font-size:13px;color:var(--accent);font-weight:600;margin-top:10px}
 </style>
 </head>
 <body data-division="portfolio">
@@ -126,6 +137,44 @@
     <div class="metric"><div class="metric-n">11</div><div class="metric-l">Workflows live</div></div>
   </div>
 </div>
+
+<section class="section docs-band" id="documents">
+  <div class="section-inner">
+    <div class="sl">Documents</div>
+    <h2>The portfolio, <em>as documents.</em></h2>
+    <p class="st">Download or read the full portfolio editions and case-study write-ups — built for hiring managers, founders, and partners evaluating the work.</p>
+    <div class="docs-grid">
+      <a class="doc-card" href="/portfolio/docs/patrick-diamitani-portfolio-full.html">
+        <span class="doc-badge">Full edition</span>
+        <h3>AI &amp; Automation Portfolio</h3>
+        <p>All 11 production systems with problem, build, systems-thinking, and what-broke deep-dives. The complete record, shared for direct evaluation.</p>
+        <div class="doc-meta">HTML · October 2026 · 11 projects</div>
+        <span class="doc-cta">Read the full edition →</span>
+      </a>
+      <a class="doc-card" href="/portfolio/docs/patrick-diamitani-portfolio-public.html">
+        <span class="doc-badge">Public edition</span>
+        <h3>Portfolio — Anonymized</h3>
+        <p>The same portfolio with employer and internal identifiers anonymized. Safe to forward, post, or attach to any application.</p>
+        <div class="doc-meta">HTML · October 2026 · share freely</div>
+        <span class="doc-cta">Read the public edition →</span>
+      </a>
+      <a class="doc-card" href="/portfolio/docs/ai-automation-portfolio-case-studies.pdf">
+        <span class="doc-badge">PDF · Case studies</span>
+        <h3>Fourteen AI Systems, One Operating Model</h3>
+        <p>Fourteen production case studies — ship it, prove it, govern it — including the RFP suite, contract intake, and the observability layer.</p>
+        <div class="doc-meta">PDF · July 2026 · 14 case studies</div>
+        <span class="doc-cta">Download PDF →</span>
+      </a>
+      <a class="doc-card" href="/portfolio/docs/ai-customer-agent-suite.pdf">
+        <span class="doc-badge">PDF · Flagship build</span>
+        <h3>AI Customer Agent Suite</h3>
+        <p>End-to-end build write-up: the production website agent, qualification pipeline, reporting warehouse, and revenue-attribution layer — a $250K deal traced to a single chat.</p>
+        <div class="doc-meta">PDF · July 2026 · flagship system</div>
+        <span class="doc-cta">Download PDF →</span>
+      </a>
+    </div>
+  </div>
+</section>
 
 <section class="section" id="library">
   <div class="section-inner">
